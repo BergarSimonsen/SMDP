@@ -33,7 +33,7 @@
     <eLiterals name="BOOLEAN" value="1"/>
     <eLiterals name="DOUBLE" value="2" literal="DOUBLE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Type"/>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="#//TypeName"/>
   </eClassifiers>

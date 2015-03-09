@@ -4,3 +4,6 @@
   - possible and chosen values
     - chosen values must be from the set of possible values.
   - Constraint class??
+
+    fix type
+    elaborate on constraints
