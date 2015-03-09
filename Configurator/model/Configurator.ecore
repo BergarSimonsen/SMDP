@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Configurator">
-  <eClassifiers xsi:type="ecore:EClass" name="Configurator">
+  <eClassifiers xsi:type="ecore:EClass" name="ConfiguratorModel">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//Contraint" containment="true"/>
+        eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="categories" upperBound="-1"
         eType="#//ParamCategory" containment="true"/>
   </eClassifiers>
@@ -20,14 +20,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Contraint" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constrained" lowerBound="1"
-        upperBound="-1" eType="#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constrainer" lowerBound="1"
-        eType="#//Parameter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="#//Contraint" containment="true"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" eSuperTypes="#//ConstraintOperand"/>
   <eClassifiers xsi:type="ecore:EEnum" name="TypeName">
     <eLiterals name="INT"/>
     <eLiterals name="BOOLEAN" value="1"/>
@@ -57,13 +50,24 @@
     <eLiterals name="GTEQ" value="7"/>
     <eLiterals name="LTEQ" value="8"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BinaryConstraint" eSuperTypes="#//Contraint">
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryConstraint" eSuperTypes="#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BinaryOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leftOperand" lowerBound="1"
+        eType="#//ConstraintOperand" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rightOperand" lowerBound="1"
+        eType="#//ConstraintOperand" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="UnaryConstraint" eSuperTypes="#//Contraint">
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryConstraint" eSuperTypes="#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//UnaryOperator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
+        eType="#//ConstraintOperand" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="UnaryOperator">
     <eLiterals name="NOT"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintOperand" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterIdentifier" eSuperTypes="#//ConstraintOperand">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+        eType="#//Parameter"/>
   </eClassifiers>
 </ecore:EPackage>
