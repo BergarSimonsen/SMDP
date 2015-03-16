@@ -20,7 +20,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true" eSuperTypes="#//ConstraintOperand"/>
   <eClassifiers xsi:type="ecore:EEnum" name="TypeName">
     <eLiterals name="INT"/>
     <eLiterals name="BOOLEAN" value="1"/>
@@ -53,19 +53,20 @@
   <eClassifiers xsi:type="ecore:EClass" name="BinaryConstraint" eSuperTypes="#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BinaryOperator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="leftOperand" lowerBound="1"
-        eType="#//Constraint" containment="true"/>
+        eType="#//ConstraintOperand" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rightOperand" lowerBound="1"
-        eType="#//Constraint" containment="true"/>
+        eType="#//ConstraintOperand" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UnaryConstraint" eSuperTypes="#//Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//UnaryOperator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" lowerBound="1"
-        eType="#//Constraint" containment="true"/>
+        eType="#//ConstraintOperand" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="UnaryOperator">
     <eLiterals name="NOT"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParameterIdentifier" eSuperTypes="#//Constraint">
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintOperand" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ParameterIdentifier" eSuperTypes="#//ConstraintOperand">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
         eType="#//Parameter"/>
   </eClassifiers>
