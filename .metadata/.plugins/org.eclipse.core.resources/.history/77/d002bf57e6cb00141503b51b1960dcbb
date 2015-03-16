@@ -26,6 +26,7 @@
     <eLiterals name="BOOLEAN" value="1"/>
     <eLiterals name="DOUBLE" value="2" literal="DOUBLE"/>
     <eLiterals name="STRING" value="3"/>
+    <eLiterals name="NULL" value="4"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="SimpleType" eSuperTypes="#//Type">

@@ -7,3 +7,6 @@
 
     fix type
     elaborate on constraints
+** Constraints
+   1. whenever a binary constraints which takes two parameters (param identifiers), then both params must be of the same type. (type(p1) == type(p2))
+   2. 
