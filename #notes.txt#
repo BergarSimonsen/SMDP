@@ -1,0 +1,27 @@
+* XTend constraints
+  - parameter and parameter category
+    - both parameter and parameter category can't be 0
+  - possible and chosen values
+    - chosen values must be from the set of possible values.
+  - Constraint class??
+
+    fix type
+    elaborate on constraints
+** Constraints
+   1. whenever a binary constraints which takes two parameters (param identifiers), then both params must be of the same type. (type(p1) == type(p2))
+   2. 
+** Xtext
+ConfiguratorModel "ModelName" {
+	parameters:
+	    Parameter "ParamName1" ( 1, SimpleType BOOLEAN ), 
+	    Parameter "ParamName2" ( 42, SimpleType INT ), 
+	    Parameter "ParamName3" ( 42, SimpleType DOUBLE )
+	constraints
+
+}
+
+ConfiguratorModel {
+	Name "SampleName"
+	parameters{Parameter{Name "NAME!!!" maxChosenValues 42 paramType SimpleType{ Name BOOLEAN } } } 
+}
+

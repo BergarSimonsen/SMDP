@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Configurator/src" modelPluginID="Configurator"
+    modelName="Configurator" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>Configurator.ecore</foreignModel>
+  <genPackages prefix="Configurator" disposableProviderFactory="true" ecorePackage="Configurator.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Configurator.ecore#//TypeName">
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//TypeName/INT"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//TypeName/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//TypeName/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//TypeName/STRING"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Configurator.ecore#//BinaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/AND"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/OR"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/EQUALS"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/NOTEQUALS"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/GT"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/LT"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/GTEQ"/>
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/LTEQ"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Configurator.ecore#//UnaryOperator">
+      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//UnaryOperator/NOT"/>
+    </genEnums>
+    <genClasses ecoreClass="Configurator.ecore#//ConfiguratorModel">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ConfiguratorModel/parameters"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//ConfiguratorModel/Name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ConfiguratorModel/constraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ConfiguratorModel/categories"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//Parameter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/required"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/maxChosenValues"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/paramType"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//Value">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Value/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Configurator.ecore#//Constraint"/>
+    <genClasses image="false" ecoreClass="Configurator.ecore#//Type"/>
+    <genClasses ecoreClass="Configurator.ecore#//SimpleType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//SimpleType/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//Enum">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Enum/values"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//ParamCategory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ParamCategory/params"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//ParamCategory/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//BinaryConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//BinaryConstraint/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryConstraint/leftOperand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryConstraint/rightOperand"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//UnaryConstraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//UnaryConstraint/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//UnaryConstraint/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Configurator.ecore#//ParameterIdentifier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//ParameterIdentifier/parameter"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
