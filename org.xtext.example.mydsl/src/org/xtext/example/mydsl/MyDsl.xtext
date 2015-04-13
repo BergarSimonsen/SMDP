@@ -2,49 +2,47 @@
 grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 //import "http://www.itu.dk/smdp/" 
-
 import "platform:/resource/Configurator/model/Configurator.ecore"
-
-
-
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 ConfiguratorModel returns ConfiguratorModel:
 	{ConfiguratorModel}
 	'ConfiguratorModel'
+	name=EString
 	'{'
-		('Name' Name=EString)?
 		('parameters' '{' parameters+=Parameter ( "," parameters+=Parameter)* '}' )?
 		('constraints' '{' constraints+=Constraint ( "," constraints+=Constraint)* '}' )?
-		('categories' '{' categories+=ParamCategory ( "," categories+=ParamCategory)* '}' )?
+		('enums' '{' enums+=Enum ( "," enums+=Enum)* '}' )?
 	'}';
 
 
 Constraint returns Constraint:
-	BinaryConstraint | UnaryConstraint | ParameterIdentifier;
+	BinaryConstraint | UnaryConstraint | ParameterIdentifier | IntLiteral | DoubleLiteral | StringLiteral | BooleanLiteral | Literal_Impl;
 
 
-Type returns Type:
-	SimpleType | Enum;
+Literal returns Literal:
+	Literal_Impl | IntLiteral | DoubleLiteral | StringLiteral | BooleanLiteral;
 
-
-Parameter returns Parameter:
-	(required?='required')?
-	'Parameter'
-	'{'
-		('Name' Name=EString)?
-		('maxChosenValues' maxChosenValues=EInt)?
-		'paramType' paramType=Type
-	'}';
 
 EString returns ecore::EString:
 	STRING | ID;
 
-ParamCategory returns ParamCategory:
-	'ParamCategory'
+Parameter returns Parameter:
+	{Parameter}
+	(required?='required')?
+	'Parameter'
 	'{'
-		('Name' Name=EString)?
-		'params' '{' params+=Parameter ( "," params+=Parameter)* '}' 
+		('maxChosenValues' maxChosenValues=EInt)?
+		('minChosenValues' minChosenValues=EInt)?
+		('enumValue' enumValue=[Enum|EString])?
+		('literalValue' '{' literalValue+=Literal ( "," literalValue+=Literal)* '}' )?
+	'}';
+
+Enum returns Enum:
+	'Enum'
+	name=EString
+	'{'
+		'values' '{' values+=Value ( "," values+=Value)* '}' 
 	'}';
 
 EBoolean returns ecore::EBoolean:
@@ -53,26 +51,43 @@ EBoolean returns ecore::EBoolean:
 EInt returns ecore::EInt:
 	'-'? INT;
 
-SimpleType returns SimpleType:
-	{SimpleType}
-	'SimpleType'
-	'{'
-		('Name' Name=TypeName)?
-	'}';
-
-Enum returns Enum:
-	'Enum'
-	'{'
-		'values' '{' values+=Value ( "," values+=Value)* '}' 
-	'}';
-
-enum TypeName returns TypeName:
-				INT = 'INT' | BOOLEAN = 'BOOLEAN' | DOUBLE = 'DOUBLE' | STRING = 'STRING';
-
-Value returns Value:
-	{Value}
-	'Value'
+Literal_Impl returns Literal:
+	{Literal}
+	'Literal'
 	name=EString;
+
+IntLiteral returns IntLiteral:
+	{IntLiteral}
+	'IntLiteral'
+	name=EString
+	'{'
+		('value' value=EInt)?
+	'}';
+
+DoubleLiteral returns DoubleLiteral:
+	{DoubleLiteral}
+	'DoubleLiteral'
+	name=EString
+	'{'
+		('value' value=EDouble)?
+	'}';
+
+StringLiteral returns StringLiteral:
+	{StringLiteral}
+	'StringLiteral'
+	name=EString
+	'{'
+		('value' value=EString)?
+	'}';
+
+BooleanLiteral returns BooleanLiteral:
+	{BooleanLiteral}
+	(value?='value')?
+	'BooleanLiteral'
+	name=EString;
+
+EDouble returns ecore::EDouble:
+	'-'? INT? '.' INT (('E'|'e') '-'? INT)?;
 
 BinaryConstraint returns BinaryConstraint:
 	'BinaryConstraint'
@@ -100,3 +115,8 @@ enum BinaryOperator returns BinaryOperator:
 
 enum UnaryOperator returns UnaryOperator:
 				NOT = 'NOT';
+
+Value returns Value:
+	{Value}
+	'Value'
+	name=EString;

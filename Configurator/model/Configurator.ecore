@@ -1,45 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Configurator" nsURI="http://www.itu.dk/smdp/" nsPrefix="dk.itu.smdp.Configurator1">
-  <eClassifiers xsi:type="ecore:EClass" name="ConfiguratorModel">
+  <eClassifiers xsi:type="ecore:EClass" name="ConfiguratorModel" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//Constraint" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="categories" upperBound="-1"
-        eType="#//ParamCategory" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enums" upperBound="-1"
+        eType="#//Enum" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="maxChosenValues" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="paramType" lowerBound="1"
-        eType="#//Type" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="literalValue" upperBound="-1"
+        eType="#//Literal" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enumValue" eType="#//Enum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="minChosenValues" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Value">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Value" eSuperTypes="#//NamedElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="TypeName">
-    <eLiterals name="INT"/>
-    <eLiterals name="BOOLEAN" value="1"/>
-    <eLiterals name="DOUBLE" value="2" literal="DOUBLE"/>
-    <eLiterals name="STRING" value="3"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="SimpleType" eSuperTypes="#//Type">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="#//TypeName"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Enum" eSuperTypes="#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="Enum" eSuperTypes="#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="values" lowerBound="1"
         upperBound="-1" eType="#//Value" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParamCategory">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="params" lowerBound="1"
-        upperBound="-1" eType="#//Parameter" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="BinaryOperator">
     <eLiterals name="AND"/>
@@ -71,4 +53,20 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
         eType="#//Parameter"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DoubleLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Literal">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Literal" eSuperTypes="#//NamedElement #//Constraint"/>
 </ecore:EPackage>
