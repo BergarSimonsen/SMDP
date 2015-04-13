@@ -5,21 +5,16 @@ package Configurator.impl;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
-import Configurator.ParamCategory;
 import Configurator.Parameter;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -32,15 +27,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getCategories <em>Categories</em>}</li>
+ *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getEnums <em>Enums</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implements ConfiguratorModel {
+public class ConfiguratorModelImpl extends NamedElementImpl implements ConfiguratorModel {
 	/**
 	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -50,26 +44,6 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 	 * @ordered
 	 */
 	protected EList<Parameter> parameters;
-
-	/**
-	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
@@ -82,14 +56,14 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 	protected EList<Constraint> constraints;
 
 	/**
-	 * The cached value of the '{@link #getCategories() <em>Categories</em>}' containment reference list.
+	 * The cached value of the '{@link #getEnums() <em>Enums</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCategories()
+	 * @see #getEnums()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ParamCategory> categories;
+	protected EList<Configurator.Enum> enums;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -127,27 +101,6 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setName(String newName) {
-		String oldName = name;
-		name = newName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.CONFIGURATOR_MODEL__NAME, oldName, name));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Constraint> getConstraints() {
 		if (constraints == null) {
 			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS);
@@ -160,11 +113,11 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ParamCategory> getCategories() {
-		if (categories == null) {
-			categories = new EObjectContainmentEList<ParamCategory>(ParamCategory.class, this, ConfiguratorPackage.CONFIGURATOR_MODEL__CATEGORIES);
+	public EList<Configurator.Enum> getEnums() {
+		if (enums == null) {
+			enums = new EObjectContainmentEList<Configurator.Enum>(Configurator.Enum.class, this, ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS);
 		}
-		return categories;
+		return enums;
 	}
 
 	/**
@@ -179,8 +132,8 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__CATEGORIES:
-				return ((InternalEList<?>)getCategories()).basicRemove(otherEnd, msgs);
+			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
+				return ((InternalEList<?>)getEnums()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -195,12 +148,10 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID) {
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__PARAMETERS:
 				return getParameters();
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__NAME:
-				return getName();
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				return getConstraints();
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__CATEGORIES:
-				return getCategories();
+			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
+				return getEnums();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -218,16 +169,13 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__NAME:
-				setName((String)newValue);
-				return;
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				getConstraints().clear();
 				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__CATEGORIES:
-				getCategories().clear();
-				getCategories().addAll((Collection<? extends ParamCategory>)newValue);
+			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
+				getEnums().clear();
+				getEnums().addAll((Collection<? extends Configurator.Enum>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -244,14 +192,11 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__PARAMETERS:
 				getParameters().clear();
 				return;
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__NAME:
-				setName(NAME_EDEFAULT);
-				return;
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				getConstraints().clear();
 				return;
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__CATEGORIES:
-				getCategories().clear();
+			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
+				getEnums().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -267,30 +212,12 @@ public class ConfiguratorModelImpl extends MinimalEObjectImpl.Container implemen
 		switch (featureID) {
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__NAME:
-				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__CATEGORIES:
-				return categories != null && !categories.isEmpty();
+			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
+				return enums != null && !enums.isEmpty();
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (Name: ");
-		result.append(name);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ConfiguratorModelImpl

@@ -4,14 +4,16 @@ package Configurator.impl;
 
 import Configurator.BinaryConstraint;
 import Configurator.BinaryOperator;
+import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorFactory;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
-import Configurator.ParamCategory;
+import Configurator.DoubleLiteral;
+import Configurator.IntLiteral;
+import Configurator.Literal;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
-import Configurator.SimpleType;
-import Configurator.TypeName;
+import Configurator.StringLiteral;
 import Configurator.UnaryConstraint;
 import Configurator.UnaryOperator;
 import Configurator.Value;
@@ -72,12 +74,15 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 			case ConfiguratorPackage.CONFIGURATOR_MODEL: return createConfiguratorModel();
 			case ConfiguratorPackage.PARAMETER: return createParameter();
 			case ConfiguratorPackage.VALUE: return createValue();
-			case ConfiguratorPackage.SIMPLE_TYPE: return createSimpleType();
 			case ConfiguratorPackage.ENUM: return createEnum();
-			case ConfiguratorPackage.PARAM_CATEGORY: return createParamCategory();
 			case ConfiguratorPackage.BINARY_CONSTRAINT: return createBinaryConstraint();
 			case ConfiguratorPackage.UNARY_CONSTRAINT: return createUnaryConstraint();
 			case ConfiguratorPackage.PARAMETER_IDENTIFIER: return createParameterIdentifier();
+			case ConfiguratorPackage.INT_LITERAL: return createIntLiteral();
+			case ConfiguratorPackage.DOUBLE_LITERAL: return createDoubleLiteral();
+			case ConfiguratorPackage.STRING_LITERAL: return createStringLiteral();
+			case ConfiguratorPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
+			case ConfiguratorPackage.LITERAL: return createLiteral();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -91,8 +96,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ConfiguratorPackage.TYPE_NAME:
-				return createTypeNameFromString(eDataType, initialValue);
 			case ConfiguratorPackage.BINARY_OPERATOR:
 				return createBinaryOperatorFromString(eDataType, initialValue);
 			case ConfiguratorPackage.UNARY_OPERATOR:
@@ -110,8 +113,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ConfiguratorPackage.TYPE_NAME:
-				return convertTypeNameToString(eDataType, instanceValue);
 			case ConfiguratorPackage.BINARY_OPERATOR:
 				return convertBinaryOperatorToString(eDataType, instanceValue);
 			case ConfiguratorPackage.UNARY_OPERATOR:
@@ -156,29 +157,9 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SimpleType createSimpleType() {
-		SimpleTypeImpl simpleType = new SimpleTypeImpl();
-		return simpleType;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Configurator.Enum createEnum() {
 		EnumImpl enum_ = new EnumImpl();
 		return enum_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ParamCategory createParamCategory() {
-		ParamCategoryImpl paramCategory = new ParamCategoryImpl();
-		return paramCategory;
 	}
 
 	/**
@@ -216,10 +197,9 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TypeName createTypeNameFromString(EDataType eDataType, String initialValue) {
-		TypeName result = TypeName.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public IntLiteral createIntLiteral() {
+		IntLiteralImpl intLiteral = new IntLiteralImpl();
+		return intLiteral;
 	}
 
 	/**
@@ -227,8 +207,39 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertTypeNameToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public DoubleLiteral createDoubleLiteral() {
+		DoubleLiteralImpl doubleLiteral = new DoubleLiteralImpl();
+		return doubleLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public StringLiteral createStringLiteral() {
+		StringLiteralImpl stringLiteral = new StringLiteralImpl();
+		return stringLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BooleanLiteral createBooleanLiteral() {
+		BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
+		return booleanLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Literal createLiteral() {
+		LiteralImpl literal = new LiteralImpl();
+		return literal;
 	}
 
 	/**

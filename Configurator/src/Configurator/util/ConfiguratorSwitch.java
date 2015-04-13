@@ -3,14 +3,17 @@
 package Configurator.util;
 
 import Configurator.BinaryConstraint;
+import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
-import Configurator.ParamCategory;
+import Configurator.DoubleLiteral;
+import Configurator.IntLiteral;
+import Configurator.Literal;
+import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
-import Configurator.SimpleType;
-import Configurator.Type;
+import Configurator.StringLiteral;
 import Configurator.UnaryConstraint;
 import Configurator.Value;
 
@@ -79,6 +82,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.CONFIGURATOR_MODEL: {
 				ConfiguratorModel configuratorModel = (ConfiguratorModel)theEObject;
 				T result = caseConfiguratorModel(configuratorModel);
+				if (result == null) result = caseNamedElement(configuratorModel);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -91,6 +95,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.VALUE: {
 				Value value = (Value)theEObject;
 				T result = caseValue(value);
+				if (result == null) result = caseNamedElement(value);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -100,29 +105,10 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.TYPE: {
-				Type type = (Type)theEObject;
-				T result = caseType(type);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConfiguratorPackage.SIMPLE_TYPE: {
-				SimpleType simpleType = (SimpleType)theEObject;
-				T result = caseSimpleType(simpleType);
-				if (result == null) result = caseType(simpleType);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConfiguratorPackage.ENUM: {
 				Configurator.Enum enum_ = (Configurator.Enum)theEObject;
 				T result = caseEnum(enum_);
-				if (result == null) result = caseType(enum_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ConfiguratorPackage.PARAM_CATEGORY: {
-				ParamCategory paramCategory = (ParamCategory)theEObject;
-				T result = caseParamCategory(paramCategory);
+				if (result == null) result = caseNamedElement(enum_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -144,6 +130,56 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				ParameterIdentifier parameterIdentifier = (ParameterIdentifier)theEObject;
 				T result = caseParameterIdentifier(parameterIdentifier);
 				if (result == null) result = caseConstraint(parameterIdentifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.NAMED_ELEMENT: {
+				NamedElement namedElement = (NamedElement)theEObject;
+				T result = caseNamedElement(namedElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.INT_LITERAL: {
+				IntLiteral intLiteral = (IntLiteral)theEObject;
+				T result = caseIntLiteral(intLiteral);
+				if (result == null) result = caseLiteral(intLiteral);
+				if (result == null) result = caseNamedElement(intLiteral);
+				if (result == null) result = caseConstraint(intLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.DOUBLE_LITERAL: {
+				DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
+				T result = caseDoubleLiteral(doubleLiteral);
+				if (result == null) result = caseLiteral(doubleLiteral);
+				if (result == null) result = caseNamedElement(doubleLiteral);
+				if (result == null) result = caseConstraint(doubleLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.STRING_LITERAL: {
+				StringLiteral stringLiteral = (StringLiteral)theEObject;
+				T result = caseStringLiteral(stringLiteral);
+				if (result == null) result = caseLiteral(stringLiteral);
+				if (result == null) result = caseNamedElement(stringLiteral);
+				if (result == null) result = caseConstraint(stringLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.BOOLEAN_LITERAL: {
+				BooleanLiteral booleanLiteral = (BooleanLiteral)theEObject;
+				T result = caseBooleanLiteral(booleanLiteral);
+				if (result == null) result = caseLiteral(booleanLiteral);
+				if (result == null) result = caseNamedElement(booleanLiteral);
+				if (result == null) result = caseConstraint(booleanLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.LITERAL: {
+				Literal literal = (Literal)theEObject;
+				T result = caseLiteral(literal);
+				if (result == null) result = caseNamedElement(literal);
+				if (result == null) result = caseConstraint(literal);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -212,36 +248,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseType(Type object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Simple Type</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Simple Type</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseSimpleType(SimpleType object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Enum</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -253,21 +259,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEnum(Configurator.Enum object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Param Category</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Param Category</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParamCategory(ParamCategory object) {
 		return null;
 	}
 
@@ -313,6 +304,96 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameterIdentifier(ParameterIdentifier object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Named Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNamedElement(NamedElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Int Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Int Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntLiteral(IntLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Double Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Double Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDoubleLiteral(DoubleLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>String Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>String Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStringLiteral(StringLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Boolean Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Boolean Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBooleanLiteral(BooleanLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLiteral(Literal object) {
 		return null;
 	}
 

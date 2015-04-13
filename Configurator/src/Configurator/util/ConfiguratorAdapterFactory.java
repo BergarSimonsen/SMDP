@@ -3,14 +3,17 @@
 package Configurator.util;
 
 import Configurator.BinaryConstraint;
+import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
-import Configurator.ParamCategory;
+import Configurator.DoubleLiteral;
+import Configurator.IntLiteral;
+import Configurator.Literal;
+import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
-import Configurator.SimpleType;
-import Configurator.Type;
+import Configurator.StringLiteral;
 import Configurator.UnaryConstraint;
 import Configurator.Value;
 
@@ -94,20 +97,8 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 				return createConstraintAdapter();
 			}
 			@Override
-			public Adapter caseType(Type object) {
-				return createTypeAdapter();
-			}
-			@Override
-			public Adapter caseSimpleType(SimpleType object) {
-				return createSimpleTypeAdapter();
-			}
-			@Override
 			public Adapter caseEnum(Configurator.Enum object) {
 				return createEnumAdapter();
-			}
-			@Override
-			public Adapter caseParamCategory(ParamCategory object) {
-				return createParamCategoryAdapter();
 			}
 			@Override
 			public Adapter caseBinaryConstraint(BinaryConstraint object) {
@@ -120,6 +111,30 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseParameterIdentifier(ParameterIdentifier object) {
 				return createParameterIdentifierAdapter();
+			}
+			@Override
+			public Adapter caseNamedElement(NamedElement object) {
+				return createNamedElementAdapter();
+			}
+			@Override
+			public Adapter caseIntLiteral(IntLiteral object) {
+				return createIntLiteralAdapter();
+			}
+			@Override
+			public Adapter caseDoubleLiteral(DoubleLiteral object) {
+				return createDoubleLiteralAdapter();
+			}
+			@Override
+			public Adapter caseStringLiteral(StringLiteral object) {
+				return createStringLiteralAdapter();
+			}
+			@Override
+			public Adapter caseBooleanLiteral(BooleanLiteral object) {
+				return createBooleanLiteralAdapter();
+			}
+			@Override
+			public Adapter caseLiteral(Literal object) {
+				return createLiteralAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -198,34 +213,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.Type <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Configurator.Type
-	 * @generated
-	 */
-	public Adapter createTypeAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.SimpleType <em>Simple Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Configurator.SimpleType
-	 * @generated
-	 */
-	public Adapter createSimpleTypeAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link Configurator.Enum <em>Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -236,20 +223,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEnumAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.ParamCategory <em>Param Category</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Configurator.ParamCategory
-	 * @generated
-	 */
-	public Adapter createParamCategoryAdapter() {
 		return null;
 	}
 
@@ -292,6 +265,90 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createParameterIdentifierAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.NamedElement <em>Named Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.NamedElement
+	 * @generated
+	 */
+	public Adapter createNamedElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.IntLiteral <em>Int Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.IntLiteral
+	 * @generated
+	 */
+	public Adapter createIntLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.DoubleLiteral <em>Double Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.DoubleLiteral
+	 * @generated
+	 */
+	public Adapter createDoubleLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.StringLiteral <em>String Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.StringLiteral
+	 * @generated
+	 */
+	public Adapter createStringLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.BooleanLiteral <em>Boolean Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.BooleanLiteral
+	 * @generated
+	 */
+	public Adapter createBooleanLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.Literal <em>Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.Literal
+	 * @generated
+	 */
+	public Adapter createLiteralAdapter() {
 		return null;
 	}
 
