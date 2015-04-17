@@ -169,13 +169,22 @@ public interface ConfiguratorPackage extends EPackage {
 	int PARAMETER = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER__NAME = NAMED_ELEMENT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__REQUIRED = 0;
+	int PARAMETER__REQUIRED = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Max Chosen Values</b></em>' attribute.
@@ -184,16 +193,16 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__MAX_CHOSEN_VALUES = 1;
+	int PARAMETER__MAX_CHOSEN_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Literal Value</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Literal Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__LITERAL_VALUE = 2;
+	int PARAMETER__LITERAL_VALUE = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Enum Value</b></em>' reference.
@@ -202,7 +211,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__ENUM_VALUE = 3;
+	int PARAMETER__ENUM_VALUE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Min Chosen Values</b></em>' attribute.
@@ -211,7 +220,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__MIN_CHOSEN_VALUES = 4;
+	int PARAMETER__MIN_CHOSEN_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -220,7 +229,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = 5;
+	int PARAMETER_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
@@ -229,7 +238,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_OPERATION_COUNT = 0;
+	int PARAMETER_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link Configurator.impl.ValueImpl <em>Value</em>}' class.
@@ -798,10 +807,10 @@ public interface ConfiguratorPackage extends EPackage {
 	EAttribute getParameter_MaxChosenValues();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Configurator.Parameter#getLiteralValue <em>Literal Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link Configurator.Parameter#getLiteralValue <em>Literal Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Literal Value</em>'.
+	 * @return the meta object for the containment reference '<em>Literal Value</em>'.
 	 * @see Configurator.Parameter#getLiteralValue()
 	 * @see #getParameter()
 	 * @generated
@@ -1186,7 +1195,7 @@ public interface ConfiguratorPackage extends EPackage {
 		EAttribute PARAMETER__MAX_CHOSEN_VALUES = eINSTANCE.getParameter_MaxChosenValues();
 
 		/**
-		 * The meta object literal for the '<em><b>Literal Value</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Literal Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

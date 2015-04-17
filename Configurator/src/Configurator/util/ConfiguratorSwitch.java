@@ -89,6 +89,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.PARAMETER: {
 				Parameter parameter = (Parameter)theEObject;
 				T result = caseParameter(parameter);
+				if (result == null) result = caseNamedElement(parameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

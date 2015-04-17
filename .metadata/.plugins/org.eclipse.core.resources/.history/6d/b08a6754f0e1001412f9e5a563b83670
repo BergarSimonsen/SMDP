@@ -1,0 +1,18 @@
+package validation
+
+import Configurator.BinaryConstraint
+import org.eclipse.emf.ecore.EObject
+import Configurator.BinaryOperator
+
+class Constraints {
+	// Catch all case for dynamic dispatch resolution
+	def static dispatch boolean constraint(EObject it) {
+		true
+	}
+	
+	def static dispatch boolean constraint(BinaryConstraint it) {
+		if(it.operator.equals(BinaryOperator.AND)) {
+			false
+		}
+	}
+}

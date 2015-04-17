@@ -1,0 +1,14 @@
+package validation
+
+import org.eclipse.emf.ecore.EObject
+
+class Constraints {
+	// Catch all case for dynamic dispatch resolution
+	def static dispatch boolean constraint(EObject it) {
+		true
+	}
+	
+	def static dispatch boolean constraint(Constraint it) {
+		true
+	}
+}

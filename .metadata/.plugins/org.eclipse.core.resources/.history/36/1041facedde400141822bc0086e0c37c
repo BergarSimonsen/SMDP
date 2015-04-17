@@ -1,0 +1,35 @@
+package validation
+
+import java.util.Map
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
+import org.eclipse.emf.common.util.URI;
+
+public class Main {
+	def static void main(String[] args) {
+		final ResourceSetImpl resourceSet = new ResourceSetImpl();
+    	final URI uri = URI.createURI("test-files/test-02.xfsm");
+    	final Resource resource = resourceSet.getResource(uri, true);
+    	
+    	 boolean _forall = IteratorExtensions.<EObject>forall(_allProperContents, _function);
+    if (_forall) {
+      InputOutput.<String>println("All constraints are satisfied!");
+    } else {
+      InputOutput.<String>println("Some constraint is violated");
+    }	
+		
+		
+		    Map<String, Object> _extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();
+    XMIResourceFactoryImpl _xMIResourceFactoryImpl = new XMIResourceFactoryImpl();
+    _extensionToFactoryMap.put("xfsm", _xMIResourceFactoryImpl);
+    FsmPackage.eINSTANCE.eClass();
+    
+    TreeIterator<EObject> _allProperContents = EcoreUtil.<EObject>getAllProperContents(resource, false);
+    final Function1<EObject, Boolean> _function = new Function1<EObject, Boolean>() {
+      public Boolean apply(final EObject it) {
+        return Boolean.valueOf(Constraints.constraint(it));
+      }
+    };
+   	
+	}
+}

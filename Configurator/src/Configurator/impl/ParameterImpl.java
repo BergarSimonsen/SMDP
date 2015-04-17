@@ -5,22 +5,11 @@ package Configurator.impl;
 import Configurator.ConfiguratorPackage;
 import Configurator.Literal;
 import Configurator.Parameter;
-
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -39,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class ParameterImpl extends MinimalEObjectImpl.Container implements Parameter {
+public class ParameterImpl extends NamedElementImpl implements Parameter {
 	/**
 	 * The default value of the '{@link #isRequired() <em>Required</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,14 +70,14 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	protected int maxChosenValues = MAX_CHOSEN_VALUES_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLiteralValue() <em>Literal Value</em>}' containment reference list.
+	 * The cached value of the '{@link #getLiteralValue() <em>Literal Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getLiteralValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Literal> literalValue;
+	protected Literal literalValue;
 
 	/**
 	 * The cached value of the '{@link #getEnumValue() <em>Enum Value</em>}' reference.
@@ -186,11 +175,42 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Literal> getLiteralValue() {
-		if (literalValue == null) {
-			literalValue = new EObjectContainmentEList<Literal>(Literal.class, this, ConfiguratorPackage.PARAMETER__LITERAL_VALUE);
-		}
+	public Literal getLiteralValue() {
 		return literalValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetLiteralValue(Literal newLiteralValue, NotificationChain msgs) {
+		Literal oldLiteralValue = literalValue;
+		literalValue = newLiteralValue;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.PARAMETER__LITERAL_VALUE, oldLiteralValue, newLiteralValue);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLiteralValue(Literal newLiteralValue) {
+		if (newLiteralValue != literalValue) {
+			NotificationChain msgs = null;
+			if (literalValue != null)
+				msgs = ((InternalEObject)literalValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfiguratorPackage.PARAMETER__LITERAL_VALUE, null, msgs);
+			if (newLiteralValue != null)
+				msgs = ((InternalEObject)newLiteralValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfiguratorPackage.PARAMETER__LITERAL_VALUE, null, msgs);
+			msgs = basicSetLiteralValue(newLiteralValue, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.PARAMETER__LITERAL_VALUE, newLiteralValue, newLiteralValue));
 	}
 
 	/**
@@ -261,7 +281,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ConfiguratorPackage.PARAMETER__LITERAL_VALUE:
-				return ((InternalEList<?>)getLiteralValue()).basicRemove(otherEnd, msgs);
+				return basicSetLiteralValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -305,8 +325,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 				setMaxChosenValues((Integer)newValue);
 				return;
 			case ConfiguratorPackage.PARAMETER__LITERAL_VALUE:
-				getLiteralValue().clear();
-				getLiteralValue().addAll((Collection<? extends Literal>)newValue);
+				setLiteralValue((Literal)newValue);
 				return;
 			case ConfiguratorPackage.PARAMETER__ENUM_VALUE:
 				setEnumValue((Configurator.Enum)newValue);
@@ -333,7 +352,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 				setMaxChosenValues(MAX_CHOSEN_VALUES_EDEFAULT);
 				return;
 			case ConfiguratorPackage.PARAMETER__LITERAL_VALUE:
-				getLiteralValue().clear();
+				setLiteralValue((Literal)null);
 				return;
 			case ConfiguratorPackage.PARAMETER__ENUM_VALUE:
 				setEnumValue((Configurator.Enum)null);
@@ -358,7 +377,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
 			case ConfiguratorPackage.PARAMETER__MAX_CHOSEN_VALUES:
 				return maxChosenValues != MAX_CHOSEN_VALUES_EDEFAULT;
 			case ConfiguratorPackage.PARAMETER__LITERAL_VALUE:
-				return literalValue != null && !literalValue.isEmpty();
+				return literalValue != null;
 			case ConfiguratorPackage.PARAMETER__ENUM_VALUE:
 				return enumValue != null;
 			case ConfiguratorPackage.PARAMETER__MIN_CHOSEN_VALUES:

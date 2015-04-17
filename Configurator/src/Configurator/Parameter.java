@@ -2,9 +2,6 @@
  */
 package Configurator;
 
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Parameter extends EObject {
+public interface Parameter extends NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -80,20 +77,30 @@ public interface Parameter extends EObject {
 	void setMaxChosenValues(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Literal Value</b></em>' containment reference list.
-	 * The list contents are of type {@link Configurator.Literal}.
+	 * Returns the value of the '<em><b>Literal Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Literal Value</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Literal Value</em>' containment reference list.
+	 * @return the value of the '<em>Literal Value</em>' containment reference.
+	 * @see #setLiteralValue(Literal)
 	 * @see Configurator.ConfiguratorPackage#getParameter_LiteralValue()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Literal> getLiteralValue();
+	Literal getLiteralValue();
+
+	/**
+	 * Sets the value of the '{@link Configurator.Parameter#getLiteralValue <em>Literal Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Literal Value</em>' containment reference.
+	 * @see #getLiteralValue()
+	 * @generated
+	 */
+	void setLiteralValue(Literal value);
 
 	/**
 	 * Returns the value of the '<em><b>Enum Value</b></em>' reference.

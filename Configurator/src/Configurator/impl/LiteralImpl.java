@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class LiteralImpl extends NamedElementImpl implements Literal {
+public abstract class LiteralImpl extends NamedElementImpl implements Literal {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

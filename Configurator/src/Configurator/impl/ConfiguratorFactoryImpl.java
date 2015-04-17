@@ -10,21 +10,17 @@ import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
 import Configurator.DoubleLiteral;
 import Configurator.IntLiteral;
-import Configurator.Literal;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
 import Configurator.StringLiteral;
 import Configurator.UnaryConstraint;
 import Configurator.UnaryOperator;
 import Configurator.Value;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -82,7 +78,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 			case ConfiguratorPackage.DOUBLE_LITERAL: return createDoubleLiteral();
 			case ConfiguratorPackage.STRING_LITERAL: return createStringLiteral();
 			case ConfiguratorPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
-			case ConfiguratorPackage.LITERAL: return createLiteral();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -230,16 +225,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	public BooleanLiteral createBooleanLiteral() {
 		BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
 		return booleanLiteral;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Literal createLiteral() {
-		LiteralImpl literal = new LiteralImpl();
-		return literal;
 	}
 
 	/**

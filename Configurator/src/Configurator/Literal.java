@@ -10,7 +10,7 @@ package Configurator;
  *
  *
  * @see Configurator.ConfiguratorPackage#getLiteral()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Literal extends NamedElement, Constraint {
