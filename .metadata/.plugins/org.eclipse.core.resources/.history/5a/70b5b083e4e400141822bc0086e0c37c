@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dk.itu.smdp.Configurator1:ConfiguratorModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dk.itu.smdp.Configurator1="http://www.itu.dk/smdp/"
+    xsi:schemaLocation="http://www.itu.dk/smdp/ Configurator.ecore">
+  <parameters
+      name="somename">
+    <literalValue
+        xsi:type="dk.itu.smdp.Configurator1:StringLiteral"
+        name="asd"
+        value="LoL"/>
+  </parameters>
+  <constraints
+      xsi:type="dk.itu.smdp.Configurator1:BinaryConstraint"
+      operator="GT"/>
+</dk.itu.smdp.Configurator1:ConfiguratorModel>

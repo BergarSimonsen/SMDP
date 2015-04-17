@@ -16,7 +16,7 @@ import validation.Constraints;
 
 @SuppressWarnings("all")
 public class Main {
-  private final static String instanceFileName = "model/Test2.xmi";
+  private final static String instanceFileName = "model/Test5.xmi";
   
   public static void main(final String[] args) {
     Map<String, Object> _extensionToFactoryMap = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap();

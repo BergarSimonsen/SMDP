@@ -1,0 +1,48 @@
+package validation
+
+import Configurator.BinaryConstraint
+import org.eclipse.emf.ecore.EObject
+import Configurator.BinaryOperator
+import Configurator.ParameterIdentifier
+import Configurator.Literal
+import java.util.function.UnaryOperator
+import Configurator.UnaryConstraint
+import Configurator.impl.ParameterIdentifierImpl
+import Configurator.impl.LiteralImpl
+
+class Constraints {
+	
+	
+	def static dispatch boolean constraint(BinaryConstraint it) {
+		println(mathOperatorConstraint(it))
+		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
+	}
+	
+	def static boolean mathOperatorConstraint(BinaryConstraint it) {
+		print("--")
+		println((leftOperand.getClass().equals(ParameterIdentifierImpl) || leftOperand.getClass().equals(LiteralImpl)))
+		(operator.equals(BinaryOperator.NOTEQUALS) || operator.equals(BinaryOperator.EQUALS) || operator.equals(BinaryOperator.GT) || operator.equals(BinaryOperator.GTEQ) || operator.equals(BinaryOperator.LT) || operator.equals(BinaryOperator.LTEQ)) 
+		&& 
+		(leftOperand instanceof ParameterIdentifier || leftOperand instanceof Literal)
+//		(leftOperand.getClass().equals(ParameterIdentifierImpl) || leftOperand.getClass().equals(LiteralImpl))
+		&&
+		(rightOperand.getClass().equals(ParameterIdentifierImpl) || rightOperand.getClass().equals(LiteralImpl))
+	}
+	
+	def static boolean andOrOperatorConstraint(BinaryConstraint it) {
+		println("!!!")
+		println(leftOperand.getClass())
+		println((it.leftOperand.getClass().equals(BinaryConstraint) || it.leftOperand.getClass().equals(UnaryConstraint)) && (rightOperand.getClass().equals(BinaryConstraint) || rightOperand.getClass().equals(UnaryConstraint)))
+		
+		(operator.equals(BinaryOperator.AND) || operator.equals(BinaryOperator.OR) || operator.equals(BinaryOperator.XOR))
+		&&
+		(leftOperand.getClass().equals(BinaryConstraint) || leftOperand.getClass().equals(UnaryConstraint))
+		&&
+		(rightOperand.getClass().equals(BinaryConstraint) || rightOperand.getClass().equals(UnaryConstraint))
+	}
+	
+	// Catch all case for dynamic dispatch resolution
+	def static dispatch boolean constraint(EObject it) {
+		true
+	}
+}

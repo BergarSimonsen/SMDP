@@ -9,15 +9,15 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 class Main {
 
-	val static instanceFileName = "model/Test2.xmi"  	// <-- change input file name here
+	val static instanceFileName = "model/Test5.xmi"  	// <-- change input file name here
 															// path is relative to project root
 	
 	def static void main(String[] args) {
 
 		// register the file extension to be read as XMI
 		Resource.Factory.Registry::INSTANCE.extensionToFactoryMap.put("xmi", new XMIResourceFactoryImpl)
-
 		// register our meta-model packages (we have quite a few in this exercise)
+
 		Configurator.ConfiguratorPackage.eINSTANCE.eClass()
 				
 		// load the file 

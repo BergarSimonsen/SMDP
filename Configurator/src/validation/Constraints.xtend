@@ -1,38 +1,48 @@
 package validation
 
 import Configurator.BinaryConstraint
-import org.eclipse.emf.ecore.EObject
 import Configurator.BinaryOperator
-import Configurator.ParameterIdentifier
 import Configurator.Literal
-import java.util.function.UnaryOperator
+import Configurator.Parameter
+import Configurator.ParameterIdentifier
 import Configurator.UnaryConstraint
+import Configurator.impl.BinaryConstraintImpl
+import org.eclipse.emf.ecore.EObject
 
 class Constraints {
 	
-	
+	// Constraint operator contraint
 	def static dispatch boolean constraint(BinaryConstraint it) {
-		println(andOrOperatorConstraint(it))
+//		println(mathOperatorConstraint(it))
 		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
 	}
 	
 	def static boolean mathOperatorConstraint(BinaryConstraint it) {
 		(operator.equals(BinaryOperator.NOTEQUALS) || operator.equals(BinaryOperator.EQUALS) || operator.equals(BinaryOperator.GT) || operator.equals(BinaryOperator.GTEQ) || operator.equals(BinaryOperator.LT) || operator.equals(BinaryOperator.LTEQ)) 
 		&& 
-		(leftOperand.class == ParameterIdentifier || leftOperand.class == Literal)
+		(leftOperand instanceof ParameterIdentifier || leftOperand instanceof Literal)
 		&&
-		(rightOperand.class == ParameterIdentifier || rightOperand.class == Literal)
+		(it.rightOperand instanceof ParameterIdentifier || it.rightOperand instanceof Literal)
 	}
 	
 	def static boolean andOrOperatorConstraint(BinaryConstraint it) {
-		println("!!!")
-		println((it.leftOperand.getClass().equals(BinaryConstraint) || it.leftOperand.getClass().equals(UnaryConstraint)) && (rightOperand.getClass().equals(BinaryConstraint) || rightOperand.getClass().equals(UnaryConstraint)))
-		
 		(operator.equals(BinaryOperator.AND) || operator.equals(BinaryOperator.OR) || operator.equals(BinaryOperator.XOR))
 		&&
-		(leftOperand.getClass().equals(BinaryConstraint) || leftOperand.getClass().equals(UnaryConstraint))
+		(leftOperand instanceof BinaryConstraint || leftOperand instanceof UnaryConstraint)
 		&&
-		(rightOperand.getClass().equals(BinaryConstraint) || rightOperand.getClass().equals(UnaryConstraint))
+		(rightOperand instanceof BinaryConstraint || rightOperand instanceof UnaryConstraint)
+	}
+	
+	// Parameter can only have either literal or enum value
+	def static dispatch boolean constraint(Parameter it) {
+		(literalValue == null && enumValue != null) 
+		||
+		(literalValue != null && enumValue == null) 
+	}
+
+	// Unary constraint can only containa binary constraint	
+	def static dispatch boolean constraint(UnaryConstraint it) {
+		operand instanceof BinaryConstraint
 	}
 	
 	// Catch all case for dynamic dispatch resolution

@@ -1,0 +1,43 @@
+package validation
+
+import Configurator.BinaryConstraint
+import org.eclipse.emf.ecore.EObject
+import Configurator.BinaryOperator
+import Configurator.ParameterIdentifier
+import Configurator.Literal
+import java.util.function.UnaryOperator
+import Configurator.UnaryConstraint
+import Configurator.impl.ParameterIdentifierImpl
+import Configurator.impl.LiteralImpl
+
+class Constraints {
+	
+	
+	def static dispatch boolean constraint(BinaryConstraint it) {
+		println(mathOperatorConstraint(it))
+		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
+	}
+	
+	def static boolean mathOperatorConstraint(BinaryConstraint it) {
+		(operator.equals(BinaryOperator.NOTEQUALS) || operator.equals(BinaryOperator.EQUALS) || operator.equals(BinaryOperator.GT) || operator.equals(BinaryOperator.GTEQ) || operator.equals(BinaryOperator.LT) || operator.equals(BinaryOperator.LTEQ)) 
+		&& 
+		(leftOperand instanceof ParameterIdentifier || leftOperand instanceof Literal)
+		&&
+		(it.rightOperand instanceof ParameterIdentifier || it.rightOperand instanceof Literal)
+	}
+	
+	def static boolean andOrOperatorConstraint(BinaryConstraint it) {
+		(operator.equals(BinaryOperator.AND) || operator.equals(BinaryOperator.OR) || operator.equals(BinaryOperator.XOR))
+		&&
+		(leftOperand instanceof BinaryConstraint || leftOperand instanceof UnaryConstraint)
+//		(leftOperand.getClass().equals(BinaryConstraint) || leftOperand.getClass().equals(UnaryConstraint))
+		&&
+		(rightOperand instanceof BinaryConstraint || rightOperand instanceof UnaryConstraint)
+//		(rightOperand.getClass().equals(BinaryConstraint) || rightOperand.getClass().equals(UnaryConstraint))
+	}
+	
+	// Catch all case for dynamic dispatch resolution
+	def static dispatch boolean constraint(EObject it) {
+		true
+	}
+}
