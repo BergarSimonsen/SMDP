@@ -73,11 +73,11 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 			case ConfiguratorPackage.ENUM: return createEnum();
 			case ConfiguratorPackage.BINARY_CONSTRAINT: return createBinaryConstraint();
 			case ConfiguratorPackage.UNARY_CONSTRAINT: return createUnaryConstraint();
-			case ConfiguratorPackage.PARAMETER_IDENTIFIER: return createParameterIdentifier();
 			case ConfiguratorPackage.INT_LITERAL: return createIntLiteral();
 			case ConfiguratorPackage.DOUBLE_LITERAL: return createDoubleLiteral();
 			case ConfiguratorPackage.STRING_LITERAL: return createStringLiteral();
 			case ConfiguratorPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
+			case ConfiguratorPackage.PARAMETER_IDENTIFIER: return createParameterIdentifier();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

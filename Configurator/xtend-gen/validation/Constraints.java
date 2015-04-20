@@ -2,14 +2,20 @@ package validation;
 
 import Configurator.BinaryConstraint;
 import Configurator.BinaryOperator;
-import Configurator.Constraint;
+import Configurator.BooleanLiteral;
+import Configurator.DoubleLiteral;
+import Configurator.IntLiteral;
 import Configurator.Literal;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
+import Configurator.StringLiteral;
 import Configurator.UnaryConstraint;
 import com.google.common.base.Objects;
 import java.util.Arrays;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class Constraints {
@@ -120,35 +126,142 @@ public class Constraints {
   protected static boolean _constraint(final Parameter it) {
     boolean _or = false;
     boolean _and = false;
-    Literal _literalValue = it.getLiteralValue();
-    boolean _equals = Objects.equal(_literalValue, null);
+    boolean _and_1 = false;
+    EList<Literal> _literalValues = it.getLiteralValues();
+    boolean _equals = Objects.equal(_literalValues, null);
     if (!_equals) {
+      _and_1 = false;
+    } else {
+      EList<Configurator.Enum> _enumValue = it.getEnumValue();
+      boolean _notEquals = (!Objects.equal(_enumValue, null));
+      _and_1 = _notEquals;
+    }
+    if (!_and_1) {
       _and = false;
     } else {
-      Configurator.Enum _enumValue = it.getEnumValue();
-      boolean _notEquals = (!Objects.equal(_enumValue, null));
-      _and = _notEquals;
+      boolean _enumCountConstraint = Constraints.enumCountConstraint(it);
+      _and = _enumCountConstraint;
     }
     if (_and) {
       _or = true;
     } else {
-      boolean _and_1 = false;
-      Literal _literalValue_1 = it.getLiteralValue();
-      boolean _notEquals_1 = (!Objects.equal(_literalValue_1, null));
+      boolean _and_2 = false;
+      boolean _and_3 = false;
+      boolean _and_4 = false;
+      EList<Literal> _literalValues_1 = it.getLiteralValues();
+      boolean _notEquals_1 = (!Objects.equal(_literalValues_1, null));
       if (!_notEquals_1) {
-        _and_1 = false;
+        _and_4 = false;
       } else {
-        Configurator.Enum _enumValue_1 = it.getEnumValue();
+        EList<Configurator.Enum> _enumValue_1 = it.getEnumValue();
         boolean _equals_1 = Objects.equal(_enumValue_1, null);
-        _and_1 = _equals_1;
+        _and_4 = _equals_1;
       }
-      _or = _and_1;
+      if (!_and_4) {
+        _and_3 = false;
+      } else {
+        boolean _literalTypesConstraint = Constraints.literalTypesConstraint(it);
+        _and_3 = _literalTypesConstraint;
+      }
+      if (!_and_3) {
+        _and_2 = false;
+      } else {
+        boolean _literalCountConstraint = Constraints.literalCountConstraint(it);
+        _and_2 = _literalCountConstraint;
+      }
+      _or = _and_2;
+    }
+    return _or;
+  }
+  
+  public static boolean literalCountConstraint(final Parameter it) {
+    boolean _and = false;
+    EList<Literal> _literalValues = it.getLiteralValues();
+    int _size = _literalValues.size();
+    int _maxChosenValues = it.getMaxChosenValues();
+    boolean _lessEqualsThan = (_size <= _maxChosenValues);
+    if (!_lessEqualsThan) {
+      _and = false;
+    } else {
+      EList<Literal> _literalValues_1 = it.getLiteralValues();
+      int _size_1 = _literalValues_1.size();
+      int _minChosenValues = it.getMinChosenValues();
+      boolean _greaterEqualsThan = (_size_1 >= _minChosenValues);
+      _and = _greaterEqualsThan;
+    }
+    return _and;
+  }
+  
+  public static boolean enumCountConstraint(final Parameter it) {
+    boolean _and = false;
+    EList<Configurator.Enum> _enumValue = it.getEnumValue();
+    int _size = _enumValue.size();
+    int _maxChosenValues = it.getMaxChosenValues();
+    boolean _lessEqualsThan = (_size <= _maxChosenValues);
+    if (!_lessEqualsThan) {
+      _and = false;
+    } else {
+      EList<Configurator.Enum> _enumValue_1 = it.getEnumValue();
+      int _size_1 = _enumValue_1.size();
+      int _minChosenValues = it.getMinChosenValues();
+      boolean _greaterEqualsThan = (_size_1 >= _minChosenValues);
+      _and = _greaterEqualsThan;
+    }
+    return _and;
+  }
+  
+  public static boolean literalTypesConstraint(final Parameter it) {
+    boolean _or = false;
+    boolean _or_1 = false;
+    boolean _or_2 = false;
+    EList<Literal> _literalValues = it.getLiteralValues();
+    final Function1<Literal, Boolean> _function = new Function1<Literal, Boolean>() {
+      public Boolean apply(final Literal x) {
+        return Boolean.valueOf((x instanceof IntLiteral));
+      }
+    };
+    boolean _forall = IterableExtensions.<Literal>forall(_literalValues, _function);
+    if (_forall) {
+      _or_2 = true;
+    } else {
+      EList<Literal> _literalValues_1 = it.getLiteralValues();
+      final Function1<Literal, Boolean> _function_1 = new Function1<Literal, Boolean>() {
+        public Boolean apply(final Literal x) {
+          return Boolean.valueOf((x instanceof StringLiteral));
+        }
+      };
+      boolean _forall_1 = IterableExtensions.<Literal>forall(_literalValues_1, _function_1);
+      _or_2 = _forall_1;
+    }
+    if (_or_2) {
+      _or_1 = true;
+    } else {
+      EList<Literal> _literalValues_2 = it.getLiteralValues();
+      final Function1<Literal, Boolean> _function_2 = new Function1<Literal, Boolean>() {
+        public Boolean apply(final Literal x) {
+          return Boolean.valueOf((x instanceof DoubleLiteral));
+        }
+      };
+      boolean _forall_2 = IterableExtensions.<Literal>forall(_literalValues_2, _function_2);
+      _or_1 = _forall_2;
+    }
+    if (_or_1) {
+      _or = true;
+    } else {
+      EList<Literal> _literalValues_3 = it.getLiteralValues();
+      final Function1<Literal, Boolean> _function_3 = new Function1<Literal, Boolean>() {
+        public Boolean apply(final Literal x) {
+          return Boolean.valueOf((x instanceof BooleanLiteral));
+        }
+      };
+      boolean _forall_3 = IterableExtensions.<Literal>forall(_literalValues_3, _function_3);
+      _or = _forall_3;
     }
     return _or;
   }
   
   protected static boolean _constraint(final UnaryConstraint it) {
-    Constraint _operand = it.getOperand();
+    BinaryConstraint _operand = it.getOperand();
     return (_operand instanceof BinaryConstraint);
   }
   

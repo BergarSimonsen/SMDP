@@ -109,10 +109,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 				return createUnaryConstraintAdapter();
 			}
 			@Override
-			public Adapter caseParameterIdentifier(ParameterIdentifier object) {
-				return createParameterIdentifierAdapter();
-			}
-			@Override
 			public Adapter caseNamedElement(NamedElement object) {
 				return createNamedElementAdapter();
 			}
@@ -135,6 +131,10 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseLiteral(Literal object) {
 				return createLiteralAdapter();
+			}
+			@Override
+			public Adapter caseParameterIdentifier(ParameterIdentifier object) {
+				return createParameterIdentifierAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

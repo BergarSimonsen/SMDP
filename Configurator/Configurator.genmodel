@@ -28,11 +28,13 @@
     <genClasses ecoreClass="Configurator.ecore#//Parameter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/required"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/maxChosenValues"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/literalValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/literalValues"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/enumValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/minChosenValues"/>
     </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//Value"/>
+    <genClasses ecoreClass="Configurator.ecore#//Value">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Value/value"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="Configurator.ecore#//Constraint"/>
     <genClasses ecoreClass="Configurator.ecore#//Enum">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Enum/values"/>
@@ -45,9 +47,6 @@
     <genClasses ecoreClass="Configurator.ecore#//UnaryConstraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//UnaryConstraint/operator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//UnaryConstraint/operand"/>
-    </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//ParameterIdentifier">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//ParameterIdentifier/parameter"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Configurator.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//NamedElement/name"/>
@@ -65,5 +64,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//BooleanLiteral/value"/>
     </genClasses>
     <genClasses ecoreClass="Configurator.ecore#//Literal"/>
+    <genClasses ecoreClass="Configurator.ecore#//ParameterIdentifier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//ParameterIdentifier/parameter"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

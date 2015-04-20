@@ -2,17 +2,14 @@
  */
 package Configurator.impl;
 
+import Configurator.BinaryConstraint;
 import Configurator.ConfiguratorPackage;
-import Configurator.Constraint;
 import Configurator.UnaryConstraint;
 import Configurator.UnaryOperator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -58,7 +55,7 @@ public class UnaryConstraintImpl extends ConstraintImpl implements UnaryConstrai
 	 * @generated
 	 * @ordered
 	 */
-	protected Constraint operand;
+	protected BinaryConstraint operand;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -105,7 +102,7 @@ public class UnaryConstraintImpl extends ConstraintImpl implements UnaryConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getOperand() {
+	public BinaryConstraint getOperand() {
 		return operand;
 	}
 
@@ -114,8 +111,8 @@ public class UnaryConstraintImpl extends ConstraintImpl implements UnaryConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetOperand(Constraint newOperand, NotificationChain msgs) {
-		Constraint oldOperand = operand;
+	public NotificationChain basicSetOperand(BinaryConstraint newOperand, NotificationChain msgs) {
+		BinaryConstraint oldOperand = operand;
 		operand = newOperand;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.UNARY_CONSTRAINT__OPERAND, oldOperand, newOperand);
@@ -129,7 +126,7 @@ public class UnaryConstraintImpl extends ConstraintImpl implements UnaryConstrai
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperand(Constraint newOperand) {
+	public void setOperand(BinaryConstraint newOperand) {
 		if (newOperand != operand) {
 			NotificationChain msgs = null;
 			if (operand != null)
@@ -185,7 +182,7 @@ public class UnaryConstraintImpl extends ConstraintImpl implements UnaryConstrai
 				setOperator((UnaryOperator)newValue);
 				return;
 			case ConfiguratorPackage.UNARY_CONSTRAINT__OPERAND:
-				setOperand((Constraint)newValue);
+				setOperand((BinaryConstraint)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,7 +200,7 @@ public class UnaryConstraintImpl extends ConstraintImpl implements UnaryConstrai
 				setOperator(OPERATOR_EDEFAULT);
 				return;
 			case ConfiguratorPackage.UNARY_CONSTRAINT__OPERAND:
-				setOperand((Constraint)null);
+				setOperand((BinaryConstraint)null);
 				return;
 		}
 		super.eUnset(featureID);

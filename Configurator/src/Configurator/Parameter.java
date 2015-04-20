@@ -2,6 +2,8 @@
  */
 package Configurator;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +15,7 @@ package Configurator;
  * <ul>
  *   <li>{@link Configurator.Parameter#isRequired <em>Required</em>}</li>
  *   <li>{@link Configurator.Parameter#getMaxChosenValues <em>Max Chosen Values</em>}</li>
- *   <li>{@link Configurator.Parameter#getLiteralValue <em>Literal Value</em>}</li>
+ *   <li>{@link Configurator.Parameter#getLiteralValues <em>Literal Values</em>}</li>
  *   <li>{@link Configurator.Parameter#getEnumValue <em>Enum Value</em>}</li>
  *   <li>{@link Configurator.Parameter#getMinChosenValues <em>Min Chosen Values</em>}</li>
  * </ul>
@@ -77,56 +79,36 @@ public interface Parameter extends NamedElement {
 	void setMaxChosenValues(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Literal Value</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Literal Values</b></em>' containment reference list.
+	 * The list contents are of type {@link Configurator.Literal}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Literal Value</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Literal Values</em>' containment reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Literal Value</em>' containment reference.
-	 * @see #setLiteralValue(Literal)
-	 * @see Configurator.ConfiguratorPackage#getParameter_LiteralValue()
+	 * @return the value of the '<em>Literal Values</em>' containment reference list.
+	 * @see Configurator.ConfiguratorPackage#getParameter_LiteralValues()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Literal getLiteralValue();
+	EList<Literal> getLiteralValues();
 
 	/**
-	 * Sets the value of the '{@link Configurator.Parameter#getLiteralValue <em>Literal Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Literal Value</em>' containment reference.
-	 * @see #getLiteralValue()
-	 * @generated
-	 */
-	void setLiteralValue(Literal value);
-
-	/**
-	 * Returns the value of the '<em><b>Enum Value</b></em>' reference.
+	 * Returns the value of the '<em><b>Enum Value</b></em>' reference list.
+	 * The list contents are of type {@link Configurator.Enum}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Enum Value</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enum Value</em>' reference.
-	 * @see #setEnumValue(Configurator.Enum)
+	 * @return the value of the '<em>Enum Value</em>' reference list.
 	 * @see Configurator.ConfiguratorPackage#getParameter_EnumValue()
 	 * @model
 	 * @generated
 	 */
-	Configurator.Enum getEnumValue();
-
-	/**
-	 * Sets the value of the '{@link Configurator.Parameter#getEnumValue <em>Enum Value</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Enum Value</em>' reference.
-	 * @see #getEnumValue()
-	 * @generated
-	 */
-	void setEnumValue(Configurator.Enum value);
+	EList<Configurator.Enum> getEnumValue();
 
 	/**
 	 * Returns the value of the '<em><b>Min Chosen Values</b></em>' attribute.

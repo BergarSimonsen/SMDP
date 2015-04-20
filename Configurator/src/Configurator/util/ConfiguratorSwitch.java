@@ -96,7 +96,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.VALUE: {
 				Value value = (Value)theEObject;
 				T result = caseValue(value);
-				if (result == null) result = caseNamedElement(value);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,13 +126,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.PARAMETER_IDENTIFIER: {
-				ParameterIdentifier parameterIdentifier = (ParameterIdentifier)theEObject;
-				T result = caseParameterIdentifier(parameterIdentifier);
-				if (result == null) result = caseConstraint(parameterIdentifier);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConfiguratorPackage.NAMED_ELEMENT: {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
@@ -144,7 +136,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				IntLiteral intLiteral = (IntLiteral)theEObject;
 				T result = caseIntLiteral(intLiteral);
 				if (result == null) result = caseLiteral(intLiteral);
-				if (result == null) result = caseNamedElement(intLiteral);
 				if (result == null) result = caseConstraint(intLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -153,7 +144,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
 				T result = caseDoubleLiteral(doubleLiteral);
 				if (result == null) result = caseLiteral(doubleLiteral);
-				if (result == null) result = caseNamedElement(doubleLiteral);
 				if (result == null) result = caseConstraint(doubleLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -162,7 +152,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				StringLiteral stringLiteral = (StringLiteral)theEObject;
 				T result = caseStringLiteral(stringLiteral);
 				if (result == null) result = caseLiteral(stringLiteral);
-				if (result == null) result = caseNamedElement(stringLiteral);
 				if (result == null) result = caseConstraint(stringLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -171,7 +160,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				BooleanLiteral booleanLiteral = (BooleanLiteral)theEObject;
 				T result = caseBooleanLiteral(booleanLiteral);
 				if (result == null) result = caseLiteral(booleanLiteral);
-				if (result == null) result = caseNamedElement(booleanLiteral);
 				if (result == null) result = caseConstraint(booleanLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -179,8 +167,14 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.LITERAL: {
 				Literal literal = (Literal)theEObject;
 				T result = caseLiteral(literal);
-				if (result == null) result = caseNamedElement(literal);
 				if (result == null) result = caseConstraint(literal);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.PARAMETER_IDENTIFIER: {
+				ParameterIdentifier parameterIdentifier = (ParameterIdentifier)theEObject;
+				T result = caseParameterIdentifier(parameterIdentifier);
+				if (result == null) result = caseConstraint(parameterIdentifier);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

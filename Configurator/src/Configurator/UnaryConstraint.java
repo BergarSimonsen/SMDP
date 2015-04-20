@@ -59,12 +59,12 @@ public interface UnaryConstraint extends Constraint {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Operand</em>' containment reference.
-	 * @see #setOperand(Constraint)
+	 * @see #setOperand(BinaryConstraint)
 	 * @see Configurator.ConfiguratorPackage#getUnaryConstraint_Operand()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	Constraint getOperand();
+	BinaryConstraint getOperand();
 
 	/**
 	 * Sets the value of the '{@link Configurator.UnaryConstraint#getOperand <em>Operand</em>}' containment reference.
@@ -74,6 +74,6 @@ public interface UnaryConstraint extends Constraint {
 	 * @see #getOperand()
 	 * @generated
 	 */
-	void setOperand(Constraint value);
+	void setOperand(BinaryConstraint value);
 
 } // UnaryConstraint

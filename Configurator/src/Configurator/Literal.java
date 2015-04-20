@@ -13,5 +13,5 @@ package Configurator;
  * @model abstract="true"
  * @generated
  */
-public interface Literal extends NamedElement, Constraint {
+public interface Literal extends Constraint {
 } // Literal

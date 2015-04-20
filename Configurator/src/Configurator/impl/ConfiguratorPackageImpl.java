@@ -276,7 +276,7 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getParameter_LiteralValue() {
+	public EReference getParameter_LiteralValues() {
 		return (EReference)parameterEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -305,6 +305,15 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 	 */
 	public EClass getValue() {
 		return valueEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getValue_Value() {
+		return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -568,11 +577,12 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__REQUIRED);
 		createEAttribute(parameterEClass, PARAMETER__MAX_CHOSEN_VALUES);
-		createEReference(parameterEClass, PARAMETER__LITERAL_VALUE);
+		createEReference(parameterEClass, PARAMETER__LITERAL_VALUES);
 		createEReference(parameterEClass, PARAMETER__ENUM_VALUE);
 		createEAttribute(parameterEClass, PARAMETER__MIN_CHOSEN_VALUES);
 
 		valueEClass = createEClass(VALUE);
+		createEAttribute(valueEClass, VALUE__VALUE);
 
 		constraintEClass = createEClass(CONSTRAINT);
 
@@ -587,9 +597,6 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		unaryConstraintEClass = createEClass(UNARY_CONSTRAINT);
 		createEAttribute(unaryConstraintEClass, UNARY_CONSTRAINT__OPERATOR);
 		createEReference(unaryConstraintEClass, UNARY_CONSTRAINT__OPERAND);
-
-		parameterIdentifierEClass = createEClass(PARAMETER_IDENTIFIER);
-		createEReference(parameterIdentifierEClass, PARAMETER_IDENTIFIER__PARAMETER);
 
 		namedElementEClass = createEClass(NAMED_ELEMENT);
 		createEAttribute(namedElementEClass, NAMED_ELEMENT__NAME);
@@ -607,6 +614,9 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__VALUE);
 
 		literalEClass = createEClass(LITERAL);
+
+		parameterIdentifierEClass = createEClass(PARAMETER_IDENTIFIER);
+		createEReference(parameterIdentifierEClass, PARAMETER_IDENTIFIER__PARAMETER);
 
 		// Create enums
 		binaryOperatorEEnum = createEEnum(BINARY_OPERATOR);
@@ -643,17 +653,15 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		// Add supertypes to classes
 		configuratorModelEClass.getESuperTypes().add(this.getNamedElement());
 		parameterEClass.getESuperTypes().add(this.getNamedElement());
-		valueEClass.getESuperTypes().add(this.getNamedElement());
 		enumEClass.getESuperTypes().add(this.getNamedElement());
 		binaryConstraintEClass.getESuperTypes().add(this.getConstraint());
 		unaryConstraintEClass.getESuperTypes().add(this.getConstraint());
-		parameterIdentifierEClass.getESuperTypes().add(this.getConstraint());
 		intLiteralEClass.getESuperTypes().add(this.getLiteral());
 		doubleLiteralEClass.getESuperTypes().add(this.getLiteral());
 		stringLiteralEClass.getESuperTypes().add(this.getLiteral());
 		booleanLiteralEClass.getESuperTypes().add(this.getLiteral());
-		literalEClass.getESuperTypes().add(this.getNamedElement());
 		literalEClass.getESuperTypes().add(this.getConstraint());
+		parameterIdentifierEClass.getESuperTypes().add(this.getConstraint());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(configuratorModelEClass, ConfiguratorModel.class, "ConfiguratorModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -664,11 +672,12 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Required(), ecorePackage.getEBoolean(), "required", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_MaxChosenValues(), ecorePackage.getEInt(), "maxChosenValues", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getParameter_LiteralValue(), this.getLiteral(), null, "literalValue", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getParameter_EnumValue(), this.getEnum(), null, "enumValue", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_LiteralValues(), this.getLiteral(), null, "literalValues", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getParameter_EnumValue(), this.getEnum(), null, "enumValue", null, 0, -1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_MinChosenValues(), ecorePackage.getEInt(), "minChosenValues", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -682,10 +691,7 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 
 		initEClass(unaryConstraintEClass, UnaryConstraint.class, "UnaryConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getUnaryConstraint_Operator(), this.getUnaryOperator(), "operator", null, 0, 1, UnaryConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUnaryConstraint_Operand(), this.getConstraint(), null, "operand", null, 1, 1, UnaryConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(parameterIdentifierEClass, ParameterIdentifier.class, "ParameterIdentifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getParameterIdentifier_Parameter(), this.getParameter(), null, "parameter", null, 1, 1, ParameterIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnaryConstraint_Operand(), this.getBinaryConstraint(), null, "operand", null, 1, 1, UnaryConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedElementEClass, NamedElement.class, "NamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamedElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -703,6 +709,9 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		initEAttribute(getBooleanLiteral_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, BooleanLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(literalEClass, Literal.class, "Literal", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(parameterIdentifierEClass, ParameterIdentifier.class, "ParameterIdentifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getParameterIdentifier_Parameter(), this.getParameter(), null, "parameter", null, 1, 1, ParameterIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(binaryOperatorEEnum, BinaryOperator.class, "BinaryOperator");

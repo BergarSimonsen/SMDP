@@ -2,11 +2,14 @@ package validation
 
 import Configurator.BinaryConstraint
 import Configurator.BinaryOperator
+import Configurator.BooleanLiteral
+import Configurator.DoubleLiteral
+import Configurator.IntLiteral
 import Configurator.Literal
 import Configurator.Parameter
 import Configurator.ParameterIdentifier
+import Configurator.StringLiteral
 import Configurator.UnaryConstraint
-import Configurator.impl.BinaryConstraintImpl
 import org.eclipse.emf.ecore.EObject
 
 class Constraints {
@@ -35,12 +38,36 @@ class Constraints {
 	
 	// Parameter can only have either literal or enum value
 	def static dispatch boolean constraint(Parameter it) {
-		(literalValue == null && enumValue != null) 
+		(literalValues == null && enumValue != null && enumCountConstraint) 
 		||
-		(literalValue != null && enumValue == null) 
+		(literalValues != null && enumValue == null && literalTypesConstraint && literalCountConstraint) 
 	}
-
-	// Unary constraint can only containa binary constraint	
+	
+	def static boolean literalCountConstraint(Parameter it) {
+		(literalValues.size <= maxChosenValues) && (literalValues.size >= minChosenValues)
+	}
+	
+	def static boolean enumCountConstraint(Parameter it) {
+		(enumValue.size <= maxChosenValues) && (enumValue.size >= minChosenValues)
+	}
+	
+	// Literal values need to be of the same type.
+	def static boolean literalTypesConstraint(Parameter it) {
+		literalValues.forall[x | x instanceof IntLiteral]
+		||
+		literalValues.forall[x | x instanceof StringLiteral]
+		|| 
+		literalValues.forall[x | x instanceof DoubleLiteral]
+		||
+		literalValues.forall[x | x instanceof BooleanLiteral]
+	}
+	
+//	def static boolean enumTypeConstraint(Parameter it) {
+//		enumValue.forall[]
+//		
+//	}
+	
+	// Unary constraint can only contains binary constraint	
 	def static dispatch boolean constraint(UnaryConstraint it) {
 		operand instanceof BinaryConstraint
 	}
