@@ -9,19 +9,14 @@ import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
 import Configurator.DoubleLiteral;
 import Configurator.IntLiteral;
-import Configurator.Literal;
 import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
 import Configurator.StringLiteral;
-import Configurator.UnaryConstraint;
 import Configurator.Value;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -89,10 +84,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseValue(Value object) {
-				return createValueAdapter();
-			}
-			@Override
 			public Adapter caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
@@ -103,10 +94,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseBinaryConstraint(BinaryConstraint object) {
 				return createBinaryConstraintAdapter();
-			}
-			@Override
-			public Adapter caseUnaryConstraint(UnaryConstraint object) {
-				return createUnaryConstraintAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -129,8 +116,8 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 				return createBooleanLiteralAdapter();
 			}
 			@Override
-			public Adapter caseLiteral(Literal object) {
-				return createLiteralAdapter();
+			public Adapter caseValue(Value object) {
+				return createValueAdapter();
 			}
 			@Override
 			public Adapter caseParameterIdentifier(ParameterIdentifier object) {
@@ -241,20 +228,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.UnaryConstraint <em>Unary Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Configurator.UnaryConstraint
-	 * @generated
-	 */
-	public Adapter createUnaryConstraintAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link Configurator.ParameterIdentifier <em>Parameter Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -335,20 +308,6 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBooleanLiteralAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.Literal <em>Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see Configurator.Literal
-	 * @generated
-	 */
-	public Adapter createLiteralAdapter() {
 		return null;
 	}
 

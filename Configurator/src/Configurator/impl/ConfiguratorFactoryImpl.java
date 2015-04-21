@@ -13,9 +13,6 @@ import Configurator.IntLiteral;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
 import Configurator.StringLiteral;
-import Configurator.UnaryConstraint;
-import Configurator.UnaryOperator;
-import Configurator.Value;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -69,10 +66,8 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 		switch (eClass.getClassifierID()) {
 			case ConfiguratorPackage.CONFIGURATOR_MODEL: return createConfiguratorModel();
 			case ConfiguratorPackage.PARAMETER: return createParameter();
-			case ConfiguratorPackage.VALUE: return createValue();
 			case ConfiguratorPackage.ENUM: return createEnum();
 			case ConfiguratorPackage.BINARY_CONSTRAINT: return createBinaryConstraint();
-			case ConfiguratorPackage.UNARY_CONSTRAINT: return createUnaryConstraint();
 			case ConfiguratorPackage.INT_LITERAL: return createIntLiteral();
 			case ConfiguratorPackage.DOUBLE_LITERAL: return createDoubleLiteral();
 			case ConfiguratorPackage.STRING_LITERAL: return createStringLiteral();
@@ -93,8 +88,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 		switch (eDataType.getClassifierID()) {
 			case ConfiguratorPackage.BINARY_OPERATOR:
 				return createBinaryOperatorFromString(eDataType, initialValue);
-			case ConfiguratorPackage.UNARY_OPERATOR:
-				return createUnaryOperatorFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -110,8 +103,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 		switch (eDataType.getClassifierID()) {
 			case ConfiguratorPackage.BINARY_OPERATOR:
 				return convertBinaryOperatorToString(eDataType, instanceValue);
-			case ConfiguratorPackage.UNARY_OPERATOR:
-				return convertUnaryOperatorToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -142,16 +133,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Value createValue() {
-		ValueImpl value = new ValueImpl();
-		return value;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Configurator.Enum createEnum() {
 		EnumImpl enum_ = new EnumImpl();
 		return enum_;
@@ -165,16 +146,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	public BinaryConstraint createBinaryConstraint() {
 		BinaryConstraintImpl binaryConstraint = new BinaryConstraintImpl();
 		return binaryConstraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnaryConstraint createUnaryConstraint() {
-		UnaryConstraintImpl unaryConstraint = new UnaryConstraintImpl();
-		return unaryConstraint;
 	}
 
 	/**
@@ -244,26 +215,6 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * @generated
 	 */
 	public String convertBinaryOperatorToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public UnaryOperator createUnaryOperatorFromString(EDataType eDataType, String initialValue) {
-		UnaryOperator result = UnaryOperator.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertUnaryOperatorToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

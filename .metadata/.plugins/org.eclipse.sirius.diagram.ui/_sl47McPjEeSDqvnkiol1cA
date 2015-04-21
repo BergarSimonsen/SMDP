@@ -1,5 +1,5 @@
-#Fri Apr 17 11:04:53 CEST 2015
-viewport.x=246
+#Tue Apr 21 13:34:30 CEST 2015
+viewport.x=0
 zoom=1.0
 print.margin.right=0.5
 rulergrid.rulerunit=0
@@ -16,4 +16,4 @@ rulergrid.gridlinestyle=6
 rulergrid.gridlevel=true
 print.margin.top=0.5
 print.usePortrait=true
-viewport.y=31
+viewport.y=0

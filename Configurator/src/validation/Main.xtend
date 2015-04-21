@@ -1,6 +1,6 @@
 package validation
 
-import Configurator.*;
+import Configurator.ConfiguratorPackage
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl
 
 class Main {
 
-	val static instanceFileName = "model/Test5.xmi"  	// <-- change input file name here
+	val static instanceFileName = "model/Test7.xmi"  	// <-- change input file name here
 															// path is relative to project root
 	
 	def static void main(String[] args) {
@@ -18,7 +18,7 @@ class Main {
 		Resource.Factory.Registry::INSTANCE.extensionToFactoryMap.put("xmi", new XMIResourceFactoryImpl)
 		// register our meta-model packages (we have quite a few in this exercise)
 
-		Configurator.ConfiguratorPackage.eINSTANCE.eClass()
+		ConfiguratorPackage.eINSTANCE.eClass()
 				
 		// load the file 
 		val resourceSet = new ResourceSetImpl

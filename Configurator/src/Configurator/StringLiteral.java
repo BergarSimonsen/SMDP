@@ -19,7 +19,7 @@ package Configurator;
  * @model
  * @generated
  */
-public interface StringLiteral extends Literal {
+public interface StringLiteral extends Value {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

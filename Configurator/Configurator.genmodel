@@ -17,23 +17,18 @@
       <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/GTEQ"/>
       <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//BinaryOperator/LTEQ"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Configurator.ecore#//UnaryOperator">
-      <genEnumLiterals ecoreEnumLiteral="Configurator.ecore#//UnaryOperator/NOT"/>
-    </genEnums>
     <genClasses ecoreClass="Configurator.ecore#//ConfiguratorModel">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ConfiguratorModel/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ConfiguratorModel/constraints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//ConfiguratorModel/enums"/>
     </genClasses>
     <genClasses ecoreClass="Configurator.ecore#//Parameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/required"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/maxChosenValues"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/literalValues"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/enumValue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Parameter/minChosenValues"/>
-    </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//Value">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Value/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/enum"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/children"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/enumValues"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Configurator.ecore#//Constraint"/>
     <genClasses ecoreClass="Configurator.ecore#//Enum">
@@ -43,10 +38,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//BinaryConstraint/operator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryConstraint/leftOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryConstraint/rightOperand"/>
-    </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//UnaryConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//UnaryConstraint/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//UnaryConstraint/operand"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Configurator.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//NamedElement/name"/>
@@ -63,7 +54,7 @@
     <genClasses ecoreClass="Configurator.ecore#//BooleanLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//BooleanLiteral/value"/>
     </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//Literal"/>
+    <genClasses ecoreClass="Configurator.ecore#//Value"/>
     <genClasses ecoreClass="Configurator.ecore#//ParameterIdentifier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//ParameterIdentifier/parameter"/>
     </genClasses>

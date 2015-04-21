@@ -9,17 +9,13 @@ import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
 import Configurator.DoubleLiteral;
 import Configurator.IntLiteral;
-import Configurator.Literal;
 import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
 import Configurator.StringLiteral;
-import Configurator.UnaryConstraint;
 import Configurator.Value;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -93,12 +89,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.VALUE: {
-				Value value = (Value)theEObject;
-				T result = caseValue(value);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConfiguratorPackage.CONSTRAINT: {
 				Constraint constraint = (Constraint)theEObject;
 				T result = caseConstraint(constraint);
@@ -119,13 +109,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.UNARY_CONSTRAINT: {
-				UnaryConstraint unaryConstraint = (UnaryConstraint)theEObject;
-				T result = caseUnaryConstraint(unaryConstraint);
-				if (result == null) result = caseConstraint(unaryConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ConfiguratorPackage.NAMED_ELEMENT: {
 				NamedElement namedElement = (NamedElement)theEObject;
 				T result = caseNamedElement(namedElement);
@@ -135,7 +118,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.INT_LITERAL: {
 				IntLiteral intLiteral = (IntLiteral)theEObject;
 				T result = caseIntLiteral(intLiteral);
-				if (result == null) result = caseLiteral(intLiteral);
+				if (result == null) result = caseValue(intLiteral);
 				if (result == null) result = caseConstraint(intLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -143,7 +126,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.DOUBLE_LITERAL: {
 				DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
 				T result = caseDoubleLiteral(doubleLiteral);
-				if (result == null) result = caseLiteral(doubleLiteral);
+				if (result == null) result = caseValue(doubleLiteral);
 				if (result == null) result = caseConstraint(doubleLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -151,7 +134,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.STRING_LITERAL: {
 				StringLiteral stringLiteral = (StringLiteral)theEObject;
 				T result = caseStringLiteral(stringLiteral);
-				if (result == null) result = caseLiteral(stringLiteral);
+				if (result == null) result = caseValue(stringLiteral);
 				if (result == null) result = caseConstraint(stringLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -159,15 +142,15 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 			case ConfiguratorPackage.BOOLEAN_LITERAL: {
 				BooleanLiteral booleanLiteral = (BooleanLiteral)theEObject;
 				T result = caseBooleanLiteral(booleanLiteral);
-				if (result == null) result = caseLiteral(booleanLiteral);
+				if (result == null) result = caseValue(booleanLiteral);
 				if (result == null) result = caseConstraint(booleanLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.LITERAL: {
-				Literal literal = (Literal)theEObject;
-				T result = caseLiteral(literal);
-				if (result == null) result = caseConstraint(literal);
+			case ConfiguratorPackage.VALUE: {
+				Value value = (Value)theEObject;
+				T result = caseValue(value);
+				if (result == null) result = caseConstraint(value);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -273,21 +256,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unary Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unary Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUnaryConstraint(UnaryConstraint object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Parameter Identifier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -374,21 +342,6 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBooleanLiteral(BooleanLiteral object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Literal</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseLiteral(Literal object) {
 		return null;
 	}
 

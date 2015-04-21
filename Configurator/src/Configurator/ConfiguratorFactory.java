@@ -40,15 +40,6 @@ public interface ConfiguratorFactory extends EFactory {
 	Parameter createParameter();
 
 	/**
-	 * Returns a new object of class '<em>Value</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Value</em>'.
-	 * @generated
-	 */
-	Value createValue();
-
-	/**
 	 * Returns a new object of class '<em>Enum</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,15 +56,6 @@ public interface ConfiguratorFactory extends EFactory {
 	 * @generated
 	 */
 	BinaryConstraint createBinaryConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Unary Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Unary Constraint</em>'.
-	 * @generated
-	 */
-	UnaryConstraint createUnaryConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Parameter Identifier</em>'.

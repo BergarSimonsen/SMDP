@@ -1,0 +1,101 @@
+package validation
+
+import Configurator.BinaryConstraint
+import Configurator.BinaryOperator
+import Configurator.BooleanLiteral
+import Configurator.DoubleLiteral
+import Configurator.IntLiteral
+import Configurator.Literal
+import Configurator.Parameter
+import Configurator.ParameterIdentifier
+import Configurator.StringLiteral
+import Configurator.UnaryConstraint
+import org.eclipse.emf.ecore.EObject
+import Configurator.NamedElement
+
+class Constraints {
+	
+	// Constraint operator contraint
+	def static dispatch boolean constraint(BinaryConstraint it) {
+		println("mathOperatorConstraint: " + mathOperatorConstraint(it))
+		println("andOrOperatorConstraint: " + mathOperatorConstraint(it))
+		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
+	}
+	
+	def static boolean mathOperatorConstraint(BinaryConstraint it) {
+		(operator.equals(BinaryOperator.NOTEQUALS) || operator.equals(BinaryOperator.EQUALS) || operator.equals(BinaryOperator.GT) || operator.equals(BinaryOperator.GTEQ) || operator.equals(BinaryOperator.LT) || operator.equals(BinaryOperator.LTEQ)) 
+		&& 
+		(leftOperand instanceof ParameterIdentifier || leftOperand instanceof Literal)
+		&&
+		(it.rightOperand instanceof ParameterIdentifier || it.rightOperand instanceof Literal)
+	}
+	
+	def static boolean andOrOperatorConstraint(BinaryConstraint it) {
+		(operator.equals(BinaryOperator.AND) || operator.equals(BinaryOperator.OR) || operator.equals(BinaryOperator.XOR))
+		&&
+		(leftOperand instanceof BinaryConstraint || leftOperand instanceof UnaryConstraint)
+		&&
+		(rightOperand instanceof BinaryConstraint || rightOperand instanceof UnaryConstraint)
+	}
+	
+	// Parameter can only have either literals or enum values or children
+	def static dispatch boolean constraint(Parameter it) {
+		println("Only literals, enum vals or children: " + mathOperatorConstraint(it))
+		(literalValues == null && enumValues != null && paramEnumConstraint && enumCountConstraint && !paramChildrenConstraint) 
+		||
+		(literalValues != null && enumValues == null && literalTypesConstraint && literalCountConstraint && !paramChildrenConstraint)
+		||
+		(paramChildrenConstraint && literalValues == null && enumValues == null)	
+	}
+	
+	def static boolean paramEnumConstraint(Parameter it) {
+		enum != null && enumValues.forall[x | enum.values.contains(x)]
+	}
+	
+	def static dispatch boolean constraint(Configurator.Enum it) {
+		values.size > 0 && values.forall[x | x.eClass == values.get(0).eClass]
+	}
+	
+	def static boolean literalCountConstraint(Parameter it) {
+		(literalValues.size <= maxChosenValues) && (literalValues.size >= minChosenValues)
+	}
+	
+	def static boolean paramChildrenConstraint(Parameter it) {
+		children.size > 0 
+	}
+	
+	def static boolean enumCountConstraint(Parameter it) {
+		(enumValues.size <= maxChosenValues) && (enumValues.size >= minChosenValues)
+		// TODO: Change
+	}
+	
+	// Literal values need to be of the same type.
+	def static boolean literalTypesConstraint(Parameter it) {
+		literalValues.forall[x | x instanceof IntLiteral]
+		||
+		literalValues.forall[x | x instanceof StringLiteral]
+		|| 
+		literalValues.forall[x | x instanceof DoubleLiteral]
+		||
+		literalValues.forall[x | x instanceof BooleanLiteral]
+	}
+	
+	def static dispatch boolean constraint(NamedElement it) {
+		!name.empty
+	}
+	
+//	def static boolean enumTypeConstraint(Parameter it) {
+//		enumValue.forall[]
+//		
+//	}
+	
+	// Unary constraint can only contains binary constraint	
+	def static dispatch boolean constraint(UnaryConstraint it) {
+		operand instanceof BinaryConstraint
+	}
+	
+	// Catch all case for dynamic dispatch resolution
+	def static dispatch boolean constraint(EObject it) {
+		true
+	}
+}
