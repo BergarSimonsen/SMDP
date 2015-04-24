@@ -1,10 +1,10 @@
 package validation;
 
-import Configurator.BinaryConstraint;
+import Configurator.BinaryExpression;
 import Configurator.BinaryOperator;
 import Configurator.BooleanLiteral;
-import Configurator.Constraint;
 import Configurator.DoubleLiteral;
+import Configurator.Expression;
 import Configurator.IntLiteral;
 import Configurator.NamedElement;
 import Configurator.Parameter;
@@ -22,7 +22,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class Constraints {
-  protected static boolean _constraint(final BinaryConstraint it) {
+  protected static boolean _constraint(final BinaryExpression it) {
     boolean _xblockexpression = false;
     {
       boolean _mathOperatorConstraint = Constraints.mathOperatorConstraint(it);
@@ -47,7 +47,7 @@ public class Constraints {
   protected static boolean _constraint(final Parameter it) {
     boolean _xblockexpression = false;
     {
-      InputOutput.<String>println("literalvaluesconstraint");
+      InputOutput.<String>println("parameterconstraints");
       boolean _or = false;
       boolean _or_1 = false;
       boolean _and = false;
@@ -365,7 +365,7 @@ public class Constraints {
     return _xblockexpression;
   }
   
-  public static boolean mathOperatorConstraint(final BinaryConstraint it) {
+  public static boolean mathOperatorConstraint(final BinaryExpression it) {
     boolean _xblockexpression = false;
     {
       InputOutput.<String>println("mathoperatorconstraint");
@@ -428,7 +428,7 @@ public class Constraints {
     return _xblockexpression;
   }
   
-  public static boolean andOrOperatorConstraint(final BinaryConstraint it) {
+  public static boolean andOrOperatorConstraint(final BinaryExpression it) {
     boolean _xblockexpression = false;
     {
       InputOutput.<String>println("andoroperatorconstraint");
@@ -455,14 +455,14 @@ public class Constraints {
       if (!_or) {
         _and_1 = false;
       } else {
-        Constraint _leftOperand = it.getLeftOperand();
-        _and_1 = (_leftOperand instanceof BinaryConstraint);
+        Expression _leftOperand = it.getLeftOperand();
+        _and_1 = (_leftOperand instanceof BinaryExpression);
       }
       if (!_and_1) {
         _and = false;
       } else {
-        Constraint _rightOperand = it.getRightOperand();
-        _and = (_rightOperand instanceof BinaryConstraint);
+        Expression _rightOperand = it.getRightOperand();
+        _and = (_rightOperand instanceof BinaryExpression);
       }
       _xblockexpression = _and;
     }
@@ -470,8 +470,8 @@ public class Constraints {
   }
   
   public static boolean constraint(final EObject it) {
-    if (it instanceof BinaryConstraint) {
-      return _constraint((BinaryConstraint)it);
+    if (it instanceof BinaryExpression) {
+      return _constraint((BinaryExpression)it);
     } else if (it instanceof Configurator.Enum) {
       return _constraint((Configurator.Enum)it);
     } else if (it instanceof Parameter) {

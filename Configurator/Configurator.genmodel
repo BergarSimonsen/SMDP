@@ -30,14 +30,14 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/children"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//Parameter/enumValues"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Configurator.ecore#//Constraint"/>
+    <genClasses image="false" ecoreClass="Configurator.ecore#//Expression"/>
     <genClasses ecoreClass="Configurator.ecore#//Enum">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Enum/values"/>
     </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//BinaryConstraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//BinaryConstraint/operator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryConstraint/leftOperand"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryConstraint/rightOperand"/>
+    <genClasses ecoreClass="Configurator.ecore#//BinaryExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//BinaryExpression/operator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryExpression/leftOperand"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//BinaryExpression/rightOperand"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Configurator.ecore#//NamedElement">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//NamedElement/name"/>
@@ -57,6 +57,10 @@
     <genClasses ecoreClass="Configurator.ecore#//Value"/>
     <genClasses ecoreClass="Configurator.ecore#//ParameterIdentifier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Configurator.ecore#//ParameterIdentifier/parameter"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Configurator.ecore#//Constraint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Constraint/if"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Configurator.ecore#//Constraint/then"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

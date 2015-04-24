@@ -49,13 +49,13 @@ public interface ConfiguratorFactory extends EFactory {
 	Enum createEnum();
 
 	/**
-	 * Returns a new object of class '<em>Binary Constraint</em>'.
+	 * Returns a new object of class '<em>Binary Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Constraint</em>'.
+	 * @return a new object of class '<em>Binary Expression</em>'.
 	 * @generated
 	 */
-	BinaryConstraint createBinaryConstraint();
+	BinaryExpression createBinaryExpression();
 
 	/**
 	 * Returns a new object of class '<em>Parameter Identifier</em>'.
@@ -65,6 +65,15 @@ public interface ConfiguratorFactory extends EFactory {
 	 * @generated
 	 */
 	ParameterIdentifier createParameterIdentifier();
+
+	/**
+	 * Returns a new object of class '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint</em>'.
+	 * @generated
+	 */
+	Constraint createConstraint();
 
 	/**
 	 * Returns a new object of class '<em>Int Literal</em>'.

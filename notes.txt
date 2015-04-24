@@ -25,3 +25,8 @@ ConfiguratorModel {
 	parameters{Parameter{Name "NAME!!!" maxChosenValues 42 paramType SimpleType{ Name BOOLEAN } } } 
 }
 
+** TODO Model
+   - [ ] min values required
+   - [ ] max values required
+   - [ ] min values default (1)
+   - [ ] max values default (1)

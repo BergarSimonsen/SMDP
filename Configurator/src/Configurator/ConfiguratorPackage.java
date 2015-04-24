@@ -250,6 +250,34 @@ public interface ConfiguratorPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link Configurator.impl.ExpressionImpl <em>Expression</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.ExpressionImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getExpression()
+	 * @generated
+	 */
+	int EXPRESSION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Expression</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link Configurator.impl.ValueImpl <em>Value</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -267,25 +295,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @see Configurator.impl.ConfiguratorPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 2;
-
-	/**
-	 * The number of structural features of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT_OPERATION_COUNT = 0;
+	int CONSTRAINT = 12;
 
 	/**
 	 * The meta object id for the '{@link Configurator.impl.EnumImpl <em>Enum</em>}' class.
@@ -334,14 +344,14 @@ public interface ConfiguratorPackage extends EPackage {
 	int ENUM_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link Configurator.impl.BinaryConstraintImpl <em>Binary Constraint</em>}' class.
+	 * The meta object id for the '{@link Configurator.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.BinaryConstraintImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryConstraint()
+	 * @see Configurator.impl.BinaryExpressionImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryExpression()
 	 * @generated
 	 */
-	int BINARY_CONSTRAINT = 4;
+	int BINARY_EXPRESSION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Operator</b></em>' attribute.
@@ -350,7 +360,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_CONSTRAINT__OPERATOR = CONSTRAINT_FEATURE_COUNT + 0;
+	int BINARY_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
@@ -359,7 +369,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_CONSTRAINT__LEFT_OPERAND = CONSTRAINT_FEATURE_COUNT + 1;
+	int BINARY_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
@@ -368,25 +378,25 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_CONSTRAINT__RIGHT_OPERAND = CONSTRAINT_FEATURE_COUNT + 2;
+	int BINARY_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Binary Constraint</em>' class.
+	 * The number of structural features of the '<em>Binary Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 3;
+	int BINARY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
-	 * The number of operations of the '<em>Binary Constraint</em>' class.
+	 * The number of operations of the '<em>Binary Expression</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BINARY_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+	int BINARY_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Value</em>' class.
@@ -395,7 +405,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 0;
+	int VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Value</em>' class.
@@ -404,7 +414,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VALUE_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+	int VALUE_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link Configurator.impl.ParameterIdentifierImpl <em>Parameter Identifier</em>}' class.
@@ -571,7 +581,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_IDENTIFIER__PARAMETER = CONSTRAINT_FEATURE_COUNT + 0;
+	int PARAMETER_IDENTIFIER__PARAMETER = EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Identifier</em>' class.
@@ -580,7 +590,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_IDENTIFIER_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 1;
+	int PARAMETER_IDENTIFIER_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Parameter Identifier</em>' class.
@@ -589,7 +599,43 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_IDENTIFIER_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+	int PARAMETER_IDENTIFIER_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>If</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__IF = 0;
+
+	/**
+	 * The feature id for the '<em><b>Then</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__THEN = 1;
+
+	/**
+	 * The number of structural features of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT_OPERATION_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link Configurator.BinaryOperator <em>Binary Operator</em>}' enum.
@@ -599,7 +645,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryOperator()
 	 * @generated
 	 */
-	int BINARY_OPERATOR = 12;
+	int BINARY_OPERATOR = 13;
 
 	/**
 	 * Returns the meta object for class '{@link Configurator.ConfiguratorModel <em>Model</em>}'.
@@ -699,6 +745,16 @@ public interface ConfiguratorPackage extends EPackage {
 	EReference getParameter_EnumValues();
 
 	/**
+	 * Returns the meta object for class '{@link Configurator.Expression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expression</em>'.
+	 * @see Configurator.Expression
+	 * @generated
+	 */
+	EClass getExpression();
+
+	/**
 	 * Returns the meta object for the attribute '{@link Configurator.Parameter#getMinChosenValues <em>Min Chosen Values</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -741,6 +797,28 @@ public interface ConfiguratorPackage extends EPackage {
 	EClass getConstraint();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link Configurator.Constraint#getIf <em>If</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>If</em>'.
+	 * @see Configurator.Constraint#getIf()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_If();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link Configurator.Constraint#getThen <em>Then</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Then</em>'.
+	 * @see Configurator.Constraint#getThen()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EReference getConstraint_Then();
+
+	/**
 	 * Returns the meta object for class '{@link Configurator.Enum <em>Enum</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -762,47 +840,47 @@ public interface ConfiguratorPackage extends EPackage {
 	EReference getEnum_Values();
 
 	/**
-	 * Returns the meta object for class '{@link Configurator.BinaryConstraint <em>Binary Constraint</em>}'.
+	 * Returns the meta object for class '{@link Configurator.BinaryExpression <em>Binary Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Constraint</em>'.
-	 * @see Configurator.BinaryConstraint
+	 * @return the meta object for class '<em>Binary Expression</em>'.
+	 * @see Configurator.BinaryExpression
 	 * @generated
 	 */
-	EClass getBinaryConstraint();
+	EClass getBinaryExpression();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Configurator.BinaryConstraint#getOperator <em>Operator</em>}'.
+	 * Returns the meta object for the attribute '{@link Configurator.BinaryExpression#getOperator <em>Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see Configurator.BinaryConstraint#getOperator()
-	 * @see #getBinaryConstraint()
+	 * @see Configurator.BinaryExpression#getOperator()
+	 * @see #getBinaryExpression()
 	 * @generated
 	 */
-	EAttribute getBinaryConstraint_Operator();
+	EAttribute getBinaryExpression_Operator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link Configurator.BinaryConstraint#getLeftOperand <em>Left Operand</em>}'.
+	 * Returns the meta object for the containment reference '{@link Configurator.BinaryExpression#getLeftOperand <em>Left Operand</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see Configurator.BinaryConstraint#getLeftOperand()
-	 * @see #getBinaryConstraint()
+	 * @see Configurator.BinaryExpression#getLeftOperand()
+	 * @see #getBinaryExpression()
 	 * @generated
 	 */
-	EReference getBinaryConstraint_LeftOperand();
+	EReference getBinaryExpression_LeftOperand();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link Configurator.BinaryConstraint#getRightOperand <em>Right Operand</em>}'.
+	 * Returns the meta object for the containment reference '{@link Configurator.BinaryExpression#getRightOperand <em>Right Operand</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see Configurator.BinaryConstraint#getRightOperand()
-	 * @see #getBinaryConstraint()
+	 * @see Configurator.BinaryExpression#getRightOperand()
+	 * @see #getBinaryExpression()
 	 * @generated
 	 */
-	EReference getBinaryConstraint_RightOperand();
+	EReference getBinaryExpression_RightOperand();
 
 	/**
 	 * Returns the meta object for class '{@link Configurator.ParameterIdentifier <em>Parameter Identifier</em>}'.
@@ -1040,6 +1118,16 @@ public interface ConfiguratorPackage extends EPackage {
 		EReference PARAMETER__ENUM_VALUES = eINSTANCE.getParameter_EnumValues();
 
 		/**
+		 * The meta object literal for the '{@link Configurator.impl.ExpressionImpl <em>Expression</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Configurator.impl.ExpressionImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getExpression()
+		 * @generated
+		 */
+		EClass EXPRESSION = eINSTANCE.getExpression();
+
+		/**
 		 * The meta object literal for the '<em><b>Min Chosen Values</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1076,6 +1164,22 @@ public interface ConfiguratorPackage extends EPackage {
 		EClass CONSTRAINT = eINSTANCE.getConstraint();
 
 		/**
+		 * The meta object literal for the '<em><b>If</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__IF = eINSTANCE.getConstraint_If();
+
+		/**
+		 * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONSTRAINT__THEN = eINSTANCE.getConstraint_Then();
+
+		/**
 		 * The meta object literal for the '{@link Configurator.impl.EnumImpl <em>Enum</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1094,14 +1198,14 @@ public interface ConfiguratorPackage extends EPackage {
 		EReference ENUM__VALUES = eINSTANCE.getEnum_Values();
 
 		/**
-		 * The meta object literal for the '{@link Configurator.impl.BinaryConstraintImpl <em>Binary Constraint</em>}' class.
+		 * The meta object literal for the '{@link Configurator.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.BinaryConstraintImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryConstraint()
+		 * @see Configurator.impl.BinaryExpressionImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryExpression()
 		 * @generated
 		 */
-		EClass BINARY_CONSTRAINT = eINSTANCE.getBinaryConstraint();
+		EClass BINARY_EXPRESSION = eINSTANCE.getBinaryExpression();
 
 		/**
 		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
@@ -1109,7 +1213,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BINARY_CONSTRAINT__OPERATOR = eINSTANCE.getBinaryConstraint_Operator();
+		EAttribute BINARY_EXPRESSION__OPERATOR = eINSTANCE.getBinaryExpression_Operator();
 
 		/**
 		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
@@ -1117,7 +1221,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_CONSTRAINT__LEFT_OPERAND = eINSTANCE.getBinaryConstraint_LeftOperand();
+		EReference BINARY_EXPRESSION__LEFT_OPERAND = eINSTANCE.getBinaryExpression_LeftOperand();
 
 		/**
 		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
@@ -1125,7 +1229,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_CONSTRAINT__RIGHT_OPERAND = eINSTANCE.getBinaryConstraint_RightOperand();
+		EReference BINARY_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getBinaryExpression_RightOperand();
 
 		/**
 		 * The meta object literal for the '{@link Configurator.impl.ParameterIdentifierImpl <em>Parameter Identifier</em>}' class.

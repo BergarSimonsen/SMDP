@@ -2,12 +2,13 @@
  */
 package Configurator.util;
 
-import Configurator.BinaryConstraint;
+import Configurator.BinaryExpression;
 import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
 import Configurator.DoubleLiteral;
+import Configurator.Expression;
 import Configurator.IntLiteral;
 import Configurator.NamedElement;
 import Configurator.Parameter;
@@ -84,16 +85,16 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 				return createParameterAdapter();
 			}
 			@Override
-			public Adapter caseConstraint(Constraint object) {
-				return createConstraintAdapter();
+			public Adapter caseExpression(Expression object) {
+				return createExpressionAdapter();
 			}
 			@Override
 			public Adapter caseEnum(Configurator.Enum object) {
 				return createEnumAdapter();
 			}
 			@Override
-			public Adapter caseBinaryConstraint(BinaryConstraint object) {
-				return createBinaryConstraintAdapter();
+			public Adapter caseBinaryExpression(BinaryExpression object) {
+				return createBinaryExpressionAdapter();
 			}
 			@Override
 			public Adapter caseNamedElement(NamedElement object) {
@@ -122,6 +123,10 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseParameterIdentifier(ParameterIdentifier object) {
 				return createParameterIdentifierAdapter();
+			}
+			@Override
+			public Adapter caseConstraint(Constraint object) {
+				return createConstraintAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -172,6 +177,20 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link Configurator.Expression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see Configurator.Expression
+	 * @generated
+	 */
+	public Adapter createExpressionAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link Configurator.Value <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -214,16 +233,16 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.BinaryConstraint <em>Binary Constraint</em>}'.
+	 * Creates a new adapter for an object of class '{@link Configurator.BinaryExpression <em>Binary Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Configurator.BinaryConstraint
+	 * @see Configurator.BinaryExpression
 	 * @generated
 	 */
-	public Adapter createBinaryConstraintAdapter() {
+	public Adapter createBinaryExpressionAdapter() {
 		return null;
 	}
 

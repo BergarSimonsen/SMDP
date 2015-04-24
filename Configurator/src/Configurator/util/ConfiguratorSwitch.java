@@ -2,12 +2,13 @@
  */
 package Configurator.util;
 
-import Configurator.BinaryConstraint;
+import Configurator.BinaryExpression;
 import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
 import Configurator.Constraint;
 import Configurator.DoubleLiteral;
+import Configurator.Expression;
 import Configurator.IntLiteral;
 import Configurator.NamedElement;
 import Configurator.Parameter;
@@ -89,9 +90,9 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.CONSTRAINT: {
-				Constraint constraint = (Constraint)theEObject;
-				T result = caseConstraint(constraint);
+			case ConfiguratorPackage.EXPRESSION: {
+				Expression expression = (Expression)theEObject;
+				T result = caseExpression(expression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -102,10 +103,10 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.BINARY_CONSTRAINT: {
-				BinaryConstraint binaryConstraint = (BinaryConstraint)theEObject;
-				T result = caseBinaryConstraint(binaryConstraint);
-				if (result == null) result = caseConstraint(binaryConstraint);
+			case ConfiguratorPackage.BINARY_EXPRESSION: {
+				BinaryExpression binaryExpression = (BinaryExpression)theEObject;
+				T result = caseBinaryExpression(binaryExpression);
+				if (result == null) result = caseExpression(binaryExpression);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -119,7 +120,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				IntLiteral intLiteral = (IntLiteral)theEObject;
 				T result = caseIntLiteral(intLiteral);
 				if (result == null) result = caseValue(intLiteral);
-				if (result == null) result = caseConstraint(intLiteral);
+				if (result == null) result = caseExpression(intLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -127,7 +128,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
 				T result = caseDoubleLiteral(doubleLiteral);
 				if (result == null) result = caseValue(doubleLiteral);
-				if (result == null) result = caseConstraint(doubleLiteral);
+				if (result == null) result = caseExpression(doubleLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -135,7 +136,7 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				StringLiteral stringLiteral = (StringLiteral)theEObject;
 				T result = caseStringLiteral(stringLiteral);
 				if (result == null) result = caseValue(stringLiteral);
-				if (result == null) result = caseConstraint(stringLiteral);
+				if (result == null) result = caseExpression(stringLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -143,21 +144,27 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				BooleanLiteral booleanLiteral = (BooleanLiteral)theEObject;
 				T result = caseBooleanLiteral(booleanLiteral);
 				if (result == null) result = caseValue(booleanLiteral);
-				if (result == null) result = caseConstraint(booleanLiteral);
+				if (result == null) result = caseExpression(booleanLiteral);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConfiguratorPackage.VALUE: {
 				Value value = (Value)theEObject;
 				T result = caseValue(value);
-				if (result == null) result = caseConstraint(value);
+				if (result == null) result = caseExpression(value);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ConfiguratorPackage.PARAMETER_IDENTIFIER: {
 				ParameterIdentifier parameterIdentifier = (ParameterIdentifier)theEObject;
 				T result = caseParameterIdentifier(parameterIdentifier);
-				if (result == null) result = caseConstraint(parameterIdentifier);
+				if (result == null) result = caseExpression(parameterIdentifier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case ConfiguratorPackage.CONSTRAINT: {
+				Constraint constraint = (Constraint)theEObject;
+				T result = caseConstraint(constraint);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -192,6 +199,21 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseParameter(Parameter object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpression(Expression object) {
 		return null;
 	}
 
@@ -241,17 +263,17 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Binary Constraint</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Binary Constraint</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Binary Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseBinaryConstraint(BinaryConstraint object) {
+	public T caseBinaryExpression(BinaryExpression object) {
 		return null;
 	}
 

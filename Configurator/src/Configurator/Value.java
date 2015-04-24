@@ -14,5 +14,5 @@ package Configurator;
  * @model abstract="true"
  * @generated
  */
-public interface Value extends Constraint {
+public interface Value extends Expression {
 } // Value

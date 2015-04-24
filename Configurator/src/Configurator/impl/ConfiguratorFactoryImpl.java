@@ -2,12 +2,13 @@
  */
 package Configurator.impl;
 
-import Configurator.BinaryConstraint;
+import Configurator.BinaryExpression;
 import Configurator.BinaryOperator;
 import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorFactory;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
+import Configurator.Constraint;
 import Configurator.DoubleLiteral;
 import Configurator.IntLiteral;
 import Configurator.Parameter;
@@ -67,12 +68,13 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 			case ConfiguratorPackage.CONFIGURATOR_MODEL: return createConfiguratorModel();
 			case ConfiguratorPackage.PARAMETER: return createParameter();
 			case ConfiguratorPackage.ENUM: return createEnum();
-			case ConfiguratorPackage.BINARY_CONSTRAINT: return createBinaryConstraint();
+			case ConfiguratorPackage.BINARY_EXPRESSION: return createBinaryExpression();
 			case ConfiguratorPackage.INT_LITERAL: return createIntLiteral();
 			case ConfiguratorPackage.DOUBLE_LITERAL: return createDoubleLiteral();
 			case ConfiguratorPackage.STRING_LITERAL: return createStringLiteral();
 			case ConfiguratorPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
 			case ConfiguratorPackage.PARAMETER_IDENTIFIER: return createParameterIdentifier();
+			case ConfiguratorPackage.CONSTRAINT: return createConstraint();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -143,9 +145,9 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryConstraint createBinaryConstraint() {
-		BinaryConstraintImpl binaryConstraint = new BinaryConstraintImpl();
-		return binaryConstraint;
+	public BinaryExpression createBinaryExpression() {
+		BinaryExpressionImpl binaryExpression = new BinaryExpressionImpl();
+		return binaryExpression;
 	}
 
 	/**
@@ -156,6 +158,16 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	public ParameterIdentifier createParameterIdentifier() {
 		ParameterIdentifierImpl parameterIdentifier = new ParameterIdentifierImpl();
 		return parameterIdentifier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Constraint createConstraint() {
+		ConstraintImpl constraint = new ConstraintImpl();
+		return constraint;
 	}
 
 	/**

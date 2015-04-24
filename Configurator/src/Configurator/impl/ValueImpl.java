@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class ValueImpl extends ConstraintImpl implements Value {
+public abstract class ValueImpl extends ExpressionImpl implements Value {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

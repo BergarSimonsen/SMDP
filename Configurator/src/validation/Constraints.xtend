@@ -1,6 +1,6 @@
 package validation
 
-import Configurator.BinaryConstraint
+import Configurator.BinaryExpression
 import Configurator.BinaryOperator
 import Configurator.BooleanLiteral
 import Configurator.DoubleLiteral
@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject
 class Constraints {
 	
 	// Constraint operator contraint
-	def static dispatch boolean constraint(BinaryConstraint it) {
+	def static dispatch boolean constraint(BinaryExpression it) {
 		println("mathOperatorConstraint: " + mathOperatorConstraint(it))
 		println("andOrOperatorConstraint: " + mathOperatorConstraint(it))
 		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
@@ -24,7 +24,7 @@ class Constraints {
 	
 	// Parameter can only have either literals or enum values or children
 	def static dispatch boolean constraint(Parameter it) {
-		println("literalvaluesconstraint")
+		println("parameterconstraints")
 		(literalValues.empty && !enumValues.empty && paramEnumConstraint && enumCountConstraint && !paramChildrenConstraint) 
 		||
 		(!literalValues.empty && enumValues.empty && literalTypesConstraint && literalCountConstraint && !paramChildrenConstraint)
@@ -85,7 +85,7 @@ class Constraints {
 		// TODO: Change
 	}
 	
-	def static boolean mathOperatorConstraint(BinaryConstraint it) {
+	def static boolean mathOperatorConstraint(BinaryExpression it) {
 		println("mathoperatorconstraint")
 		(operator.equals(BinaryOperator.NOTEQUALS) || operator.equals(BinaryOperator.EQUALS) || operator.equals(BinaryOperator.GT) || operator.equals(BinaryOperator.GTEQ) || operator.equals(BinaryOperator.LT) || operator.equals(BinaryOperator.LTEQ)) 
 		&& 
@@ -94,12 +94,12 @@ class Constraints {
 		(it.rightOperand instanceof ParameterIdentifier || it.rightOperand instanceof Value)
 	}
 	
-	def static boolean andOrOperatorConstraint(BinaryConstraint it) {
+	def static boolean andOrOperatorConstraint(BinaryExpression it) {
 		println("andoroperatorconstraint")
 		(operator.equals(BinaryOperator.AND) || operator.equals(BinaryOperator.OR) || operator.equals(BinaryOperator.XOR))
 		&&
-		(leftOperand instanceof BinaryConstraint)
+		(leftOperand instanceof BinaryExpression)
 		&&
-		(rightOperand instanceof BinaryConstraint)
+		(rightOperand instanceof BinaryExpression)
 	}
 }
