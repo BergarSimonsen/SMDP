@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="&#x09;&#x09;String[] petStrings = { &quot;Bird&quot;, &quot;Cat&quot;, &quot;Dog&quot;, &quot;Rabbit&quot;, &quot;Pig&quot; };" key="selection"/>
+		<list key="findhistory">
+			<item value="&#x09;&#x09;String[] petStrings = { &quot;Bird&quot;, &quot;Cat&quot;, &quot;Dog&quot;, &quot;Rabbit&quot;, &quot;Pig&quot; };"/>
+			<item value="&#x0A;&#x09;&#x09;setTitle(&quot;JList&quot;);&#x0A;&#x09;&#x09;setDefaultCloseOperation(EXIT_ON_CLOSE);&#x0A;&#x09;&#x09;setLoca"/>
+			<item value="abel(&quot;This is a test&quot;);"/>
+		</list>
+	</section>
+</section>
