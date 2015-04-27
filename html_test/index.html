@@ -1,5 +1,13 @@
 <html>
   <head>
+	<link rel="stylesheet" href="jqwidgets-ver3.8.0/jqwidgets/styles/jqx.base.css" type="text/css"/>
+	<script type="text/javascript" src="jqwidgets-ver3.8.0/scripts/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxcore.js"></script>
+	<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxbuttons.js"></script>
+	<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxscrollbar.js"></script>
+	<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxlistbox.js"></script>
+	<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxcombobox.js"></script>
+	<script type='text/javascript' src='script.js'></script>
   </head>
   <body>
     <h2> PC Configurator </h2>
@@ -11,23 +19,27 @@
 
     <!-- Manufacturer form -->
     <h3>Manufacturer:</h3>
-    <select>
+    <!--<select>
       <option value="dell">Dell</option>
       <option value="hp">HP</option>
       <option value="lenovo">Lenovo</option>
-    </select>
+    </select>-->
+	<div id='ManufacturerCB' class='combobox'>
+	</div>
 
     <!-- GFX -->
     <h3> Graphics: </h3>
     &nbsp; &nbsp; Graphics manufacturer:
-    <select>
+    <!--<select>
       <option value="nvidia">Nvidia</option>
       <option value="amd">AMD</option>
-    </select>
+    </select>-->
+	<div id='GraphicsManufacturerCB' class='combobox'>
+	</div>
     <br/> <br />
 
     &nbsp; &nbsp; Graphics model:
-    <select>
+    <!--<select>
       <option value="Radeon7xxx"> Radeon 7xxx </option>
       <option value="Radeon8xxx"> Radeon 8xxx </option>
       <option value="RadeonR7"> Radeon R7 </option>
@@ -35,7 +47,9 @@
       <option value="Geforce5xx"> Geforce 5xx </option>
       <option value="Geforce6xx"> Geforce 6xx </option>
       <option value="Geforce7xx"> Geforce 7xx </option>
-    </select>
+    </select>-->
+	<div id='GraphicsModelCB' class='combobox'>
+	</div>
   </body>
 </html>
 
