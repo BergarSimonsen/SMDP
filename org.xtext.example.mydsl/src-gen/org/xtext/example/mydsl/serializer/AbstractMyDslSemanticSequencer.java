@@ -146,9 +146,9 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	 * Constraint:
 	 *     (
 	 *         name=EString 
+	 *         (enums+=Enum enums+=Enum*)? 
 	 *         ((parameters+=Parameter2 | parameters+=Parameter3) (parameters+=Parameter2 | parameters+=Parameter3)*)? 
-	 *         (constraints+=Constraint constraints+=Constraint*)? 
-	 *         (enums+=Enum enums+=Enum*)?
+	 *         (constraints+=Constraint constraints+=Constraint*)?
 	 *     )
 	 */
 	protected void sequence_ConfiguratorModel(EObject context, ConfiguratorModel semanticObject) {
@@ -231,7 +231,7 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getParameterIdentifierAccess().getParameterParameterEStringParserRuleCall_3_0_1(), semanticObject.getParameter());
+		feeder.accept(grammarAccess.getParameterIdentifierAccess().getParameterParameterEStringParserRuleCall_1_0_1(), semanticObject.getParameter());
 		feeder.finish();
 	}
 	

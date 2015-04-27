@@ -27,52 +27,52 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cParametersKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Keyword cEnumsKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_4_1 = (Keyword)cGroup_4.eContents().get(1);
-		private final Alternatives cAlternatives_4_2 = (Alternatives)cGroup_4.eContents().get(2);
-		private final Assignment cParametersAssignment_4_2_0 = (Assignment)cAlternatives_4_2.eContents().get(0);
-		private final RuleCall cParametersParameter2ParserRuleCall_4_2_0_0 = (RuleCall)cParametersAssignment_4_2_0.eContents().get(0);
-		private final Assignment cParametersAssignment_4_2_1 = (Assignment)cAlternatives_4_2.eContents().get(1);
-		private final RuleCall cParametersParameter3ParserRuleCall_4_2_1_0 = (RuleCall)cParametersAssignment_4_2_1.eContents().get(0);
+		private final Assignment cEnumsAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cEnumsEnumParserRuleCall_4_2_0 = (RuleCall)cEnumsAssignment_4_2.eContents().get(0);
 		private final Group cGroup_4_3 = (Group)cGroup_4.eContents().get(3);
 		private final Keyword cCommaKeyword_4_3_0 = (Keyword)cGroup_4_3.eContents().get(0);
-		private final Alternatives cAlternatives_4_3_1 = (Alternatives)cGroup_4_3.eContents().get(1);
-		private final Assignment cParametersAssignment_4_3_1_0 = (Assignment)cAlternatives_4_3_1.eContents().get(0);
-		private final RuleCall cParametersParameter2ParserRuleCall_4_3_1_0_0 = (RuleCall)cParametersAssignment_4_3_1_0.eContents().get(0);
-		private final Assignment cParametersAssignment_4_3_1_1 = (Assignment)cAlternatives_4_3_1.eContents().get(1);
-		private final RuleCall cParametersParameter3ParserRuleCall_4_3_1_1_0 = (RuleCall)cParametersAssignment_4_3_1_1.eContents().get(0);
+		private final Assignment cEnumsAssignment_4_3_1 = (Assignment)cGroup_4_3.eContents().get(1);
+		private final RuleCall cEnumsEnumParserRuleCall_4_3_1_0 = (RuleCall)cEnumsAssignment_4_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_4_4 = (Keyword)cGroup_4.eContents().get(4);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cConstraintsKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cParametersKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		private final Assignment cConstraintsAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cConstraintsConstraintParserRuleCall_5_2_0 = (RuleCall)cConstraintsAssignment_5_2.eContents().get(0);
+		private final Alternatives cAlternatives_5_2 = (Alternatives)cGroup_5.eContents().get(2);
+		private final Assignment cParametersAssignment_5_2_0 = (Assignment)cAlternatives_5_2.eContents().get(0);
+		private final RuleCall cParametersParameter2ParserRuleCall_5_2_0_0 = (RuleCall)cParametersAssignment_5_2_0.eContents().get(0);
+		private final Assignment cParametersAssignment_5_2_1 = (Assignment)cAlternatives_5_2.eContents().get(1);
+		private final RuleCall cParametersParameter3ParserRuleCall_5_2_1_0 = (RuleCall)cParametersAssignment_5_2_1.eContents().get(0);
 		private final Group cGroup_5_3 = (Group)cGroup_5.eContents().get(3);
 		private final Keyword cCommaKeyword_5_3_0 = (Keyword)cGroup_5_3.eContents().get(0);
-		private final Assignment cConstraintsAssignment_5_3_1 = (Assignment)cGroup_5_3.eContents().get(1);
-		private final RuleCall cConstraintsConstraintParserRuleCall_5_3_1_0 = (RuleCall)cConstraintsAssignment_5_3_1.eContents().get(0);
+		private final Alternatives cAlternatives_5_3_1 = (Alternatives)cGroup_5_3.eContents().get(1);
+		private final Assignment cParametersAssignment_5_3_1_0 = (Assignment)cAlternatives_5_3_1.eContents().get(0);
+		private final RuleCall cParametersParameter2ParserRuleCall_5_3_1_0_0 = (RuleCall)cParametersAssignment_5_3_1_0.eContents().get(0);
+		private final Assignment cParametersAssignment_5_3_1_1 = (Assignment)cAlternatives_5_3_1.eContents().get(1);
+		private final RuleCall cParametersParameter3ParserRuleCall_5_3_1_1_0 = (RuleCall)cParametersAssignment_5_3_1_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_5_4 = (Keyword)cGroup_5.eContents().get(4);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cEnumsKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Keyword cConstraintsKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
-		private final Assignment cEnumsAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
-		private final RuleCall cEnumsEnumParserRuleCall_6_2_0 = (RuleCall)cEnumsAssignment_6_2.eContents().get(0);
+		private final Assignment cConstraintsAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
+		private final RuleCall cConstraintsConstraintParserRuleCall_6_2_0 = (RuleCall)cConstraintsAssignment_6_2.eContents().get(0);
 		private final Group cGroup_6_3 = (Group)cGroup_6.eContents().get(3);
 		private final Keyword cCommaKeyword_6_3_0 = (Keyword)cGroup_6_3.eContents().get(0);
-		private final Assignment cEnumsAssignment_6_3_1 = (Assignment)cGroup_6_3.eContents().get(1);
-		private final RuleCall cEnumsEnumParserRuleCall_6_3_1_0 = (RuleCall)cEnumsAssignment_6_3_1.eContents().get(0);
+		private final Assignment cConstraintsAssignment_6_3_1 = (Assignment)cGroup_6_3.eContents().get(1);
+		private final RuleCall cConstraintsConstraintParserRuleCall_6_3_1_0 = (RuleCall)cConstraintsAssignment_6_3_1.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6_4 = (Keyword)cGroup_6.eContents().get(4);
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//ConfiguratorModel:
-		//	{ConfiguratorModel} "ConfiguratorModel" name=EString "{" ("parameters" "{" (parameters+=Parameter2 |
-		//	parameters+=Parameter3) ("," (parameters+=Parameter2 | parameters+=Parameter3))* "}")? ("constraints" "{"
-		//	constraints+=Constraint ("," constraints+=Constraint)* "}")? ("enums" "{" enums+=Enum ("," enums+=Enum)* "}")? "}";
+		//	{ConfiguratorModel} "ConfiguratorModel" name=EString "{" ("enums" "{" enums+=Enum ("," enums+=Enum)* "}")?
+		//	("parameters" "{" (parameters+=Parameter2 | parameters+=Parameter3) ("," (parameters+=Parameter2 |
+		//	parameters+=Parameter3))* "}")? ("constraints" "{" constraints+=Constraint ("," constraints+=Constraint)* "}")? "}";
 		public ParserRule getRule() { return rule; }
 
-		//{ConfiguratorModel} "ConfiguratorModel" name=EString "{" ("parameters" "{" (parameters+=Parameter2 |
-		//parameters+=Parameter3) ("," (parameters+=Parameter2 | parameters+=Parameter3))* "}")? ("constraints" "{"
-		//constraints+=Constraint ("," constraints+=Constraint)* "}")? ("enums" "{" enums+=Enum ("," enums+=Enum)* "}")? "}"
+		//{ConfiguratorModel} "ConfiguratorModel" name=EString "{" ("enums" "{" enums+=Enum ("," enums+=Enum)* "}")? ("parameters"
+		//"{" (parameters+=Parameter2 | parameters+=Parameter3) ("," (parameters+=Parameter2 | parameters+=Parameter3))* "}")?
+		//("constraints" "{" constraints+=Constraint ("," constraints+=Constraint)* "}")? "}"
 		public Group getGroup() { return cGroup; }
 
 		//{ConfiguratorModel}
@@ -90,111 +90,111 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_3() { return cLeftCurlyBracketKeyword_3; }
 
-		//("parameters" "{" (parameters+=Parameter2 | parameters+=Parameter3) ("," (parameters+=Parameter2 |
-		//parameters+=Parameter3))* "}")?
+		//("enums" "{" enums+=Enum ("," enums+=Enum)* "}")?
 		public Group getGroup_4() { return cGroup_4; }
 
-		//"parameters"
-		public Keyword getParametersKeyword_4_0() { return cParametersKeyword_4_0; }
+		//"enums"
+		public Keyword getEnumsKeyword_4_0() { return cEnumsKeyword_4_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_4_1() { return cLeftCurlyBracketKeyword_4_1; }
 
-		//parameters+=Parameter2 | parameters+=Parameter3
-		public Alternatives getAlternatives_4_2() { return cAlternatives_4_2; }
+		//enums+=Enum
+		public Assignment getEnumsAssignment_4_2() { return cEnumsAssignment_4_2; }
 
-		//parameters+=Parameter2
-		public Assignment getParametersAssignment_4_2_0() { return cParametersAssignment_4_2_0; }
+		//Enum
+		public RuleCall getEnumsEnumParserRuleCall_4_2_0() { return cEnumsEnumParserRuleCall_4_2_0; }
 
-		//Parameter2
-		public RuleCall getParametersParameter2ParserRuleCall_4_2_0_0() { return cParametersParameter2ParserRuleCall_4_2_0_0; }
-
-		//parameters+=Parameter3
-		public Assignment getParametersAssignment_4_2_1() { return cParametersAssignment_4_2_1; }
-
-		//Parameter3
-		public RuleCall getParametersParameter3ParserRuleCall_4_2_1_0() { return cParametersParameter3ParserRuleCall_4_2_1_0; }
-
-		//("," (parameters+=Parameter2 | parameters+=Parameter3))*
+		//("," enums+=Enum)*
 		public Group getGroup_4_3() { return cGroup_4_3; }
 
 		//","
 		public Keyword getCommaKeyword_4_3_0() { return cCommaKeyword_4_3_0; }
 
-		//parameters+=Parameter2 | parameters+=Parameter3
-		public Alternatives getAlternatives_4_3_1() { return cAlternatives_4_3_1; }
+		//enums+=Enum
+		public Assignment getEnumsAssignment_4_3_1() { return cEnumsAssignment_4_3_1; }
 
-		//parameters+=Parameter2
-		public Assignment getParametersAssignment_4_3_1_0() { return cParametersAssignment_4_3_1_0; }
-
-		//Parameter2
-		public RuleCall getParametersParameter2ParserRuleCall_4_3_1_0_0() { return cParametersParameter2ParserRuleCall_4_3_1_0_0; }
-
-		//parameters+=Parameter3
-		public Assignment getParametersAssignment_4_3_1_1() { return cParametersAssignment_4_3_1_1; }
-
-		//Parameter3
-		public RuleCall getParametersParameter3ParserRuleCall_4_3_1_1_0() { return cParametersParameter3ParserRuleCall_4_3_1_1_0; }
+		//Enum
+		public RuleCall getEnumsEnumParserRuleCall_4_3_1_0() { return cEnumsEnumParserRuleCall_4_3_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_4_4() { return cRightCurlyBracketKeyword_4_4; }
 
-		//("constraints" "{" constraints+=Constraint ("," constraints+=Constraint)* "}")?
+		//("parameters" "{" (parameters+=Parameter2 | parameters+=Parameter3) ("," (parameters+=Parameter2 |
+		//parameters+=Parameter3))* "}")?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//"constraints"
-		public Keyword getConstraintsKeyword_5_0() { return cConstraintsKeyword_5_0; }
+		//"parameters"
+		public Keyword getParametersKeyword_5_0() { return cParametersKeyword_5_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_5_1() { return cLeftCurlyBracketKeyword_5_1; }
 
-		//constraints+=Constraint
-		public Assignment getConstraintsAssignment_5_2() { return cConstraintsAssignment_5_2; }
+		//parameters+=Parameter2 | parameters+=Parameter3
+		public Alternatives getAlternatives_5_2() { return cAlternatives_5_2; }
 
-		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_5_2_0() { return cConstraintsConstraintParserRuleCall_5_2_0; }
+		//parameters+=Parameter2
+		public Assignment getParametersAssignment_5_2_0() { return cParametersAssignment_5_2_0; }
 
-		//("," constraints+=Constraint)*
+		//Parameter2
+		public RuleCall getParametersParameter2ParserRuleCall_5_2_0_0() { return cParametersParameter2ParserRuleCall_5_2_0_0; }
+
+		//parameters+=Parameter3
+		public Assignment getParametersAssignment_5_2_1() { return cParametersAssignment_5_2_1; }
+
+		//Parameter3
+		public RuleCall getParametersParameter3ParserRuleCall_5_2_1_0() { return cParametersParameter3ParserRuleCall_5_2_1_0; }
+
+		//("," (parameters+=Parameter2 | parameters+=Parameter3))*
 		public Group getGroup_5_3() { return cGroup_5_3; }
 
 		//","
 		public Keyword getCommaKeyword_5_3_0() { return cCommaKeyword_5_3_0; }
 
-		//constraints+=Constraint
-		public Assignment getConstraintsAssignment_5_3_1() { return cConstraintsAssignment_5_3_1; }
+		//parameters+=Parameter2 | parameters+=Parameter3
+		public Alternatives getAlternatives_5_3_1() { return cAlternatives_5_3_1; }
 
-		//Constraint
-		public RuleCall getConstraintsConstraintParserRuleCall_5_3_1_0() { return cConstraintsConstraintParserRuleCall_5_3_1_0; }
+		//parameters+=Parameter2
+		public Assignment getParametersAssignment_5_3_1_0() { return cParametersAssignment_5_3_1_0; }
+
+		//Parameter2
+		public RuleCall getParametersParameter2ParserRuleCall_5_3_1_0_0() { return cParametersParameter2ParserRuleCall_5_3_1_0_0; }
+
+		//parameters+=Parameter3
+		public Assignment getParametersAssignment_5_3_1_1() { return cParametersAssignment_5_3_1_1; }
+
+		//Parameter3
+		public RuleCall getParametersParameter3ParserRuleCall_5_3_1_1_0() { return cParametersParameter3ParserRuleCall_5_3_1_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_5_4() { return cRightCurlyBracketKeyword_5_4; }
 
-		//("enums" "{" enums+=Enum ("," enums+=Enum)* "}")?
+		//("constraints" "{" constraints+=Constraint ("," constraints+=Constraint)* "}")?
 		public Group getGroup_6() { return cGroup_6; }
 
-		//"enums"
-		public Keyword getEnumsKeyword_6_0() { return cEnumsKeyword_6_0; }
+		//"constraints"
+		public Keyword getConstraintsKeyword_6_0() { return cConstraintsKeyword_6_0; }
 
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_6_1() { return cLeftCurlyBracketKeyword_6_1; }
 
-		//enums+=Enum
-		public Assignment getEnumsAssignment_6_2() { return cEnumsAssignment_6_2; }
+		//constraints+=Constraint
+		public Assignment getConstraintsAssignment_6_2() { return cConstraintsAssignment_6_2; }
 
-		//Enum
-		public RuleCall getEnumsEnumParserRuleCall_6_2_0() { return cEnumsEnumParserRuleCall_6_2_0; }
+		//Constraint
+		public RuleCall getConstraintsConstraintParserRuleCall_6_2_0() { return cConstraintsConstraintParserRuleCall_6_2_0; }
 
-		//("," enums+=Enum)*
+		//("," constraints+=Constraint)*
 		public Group getGroup_6_3() { return cGroup_6_3; }
 
 		//","
 		public Keyword getCommaKeyword_6_3_0() { return cCommaKeyword_6_3_0; }
 
-		//enums+=Enum
-		public Assignment getEnumsAssignment_6_3_1() { return cEnumsAssignment_6_3_1; }
+		//constraints+=Constraint
+		public Assignment getConstraintsAssignment_6_3_1() { return cConstraintsAssignment_6_3_1; }
 
-		//Enum
-		public RuleCall getEnumsEnumParserRuleCall_6_3_1_0() { return cEnumsEnumParserRuleCall_6_3_1_0; }
+		//Constraint
+		public RuleCall getConstraintsConstraintParserRuleCall_6_3_1_0() { return cConstraintsConstraintParserRuleCall_6_3_1_0; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_6_4() { return cRightCurlyBracketKeyword_6_4; }
@@ -306,14 +306,14 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
 		private final Assignment cMinChosenValuesAssignment_6_2 = (Assignment)cGroup_6.eContents().get(2);
 		private final RuleCall cMinChosenValuesEIntParserRuleCall_6_2_0 = (RuleCall)cMinChosenValuesAssignment_6_2.eContents().get(0);
-		private final Keyword cCommaKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
-		private final Keyword cEnumKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
-		private final Keyword cColonKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
-		private final Assignment cEnumAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
-		private final CrossReference cEnumEnumCrossReference_8_2_0 = (CrossReference)cEnumAssignment_8_2.eContents().get(0);
-		private final RuleCall cEnumEnumEStringParserRuleCall_8_2_0_1 = (RuleCall)cEnumEnumCrossReference_8_2_0.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final Keyword cCommaKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Keyword cEnumKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
+		private final Keyword cColonKeyword_7_2 = (Keyword)cGroup_7.eContents().get(2);
+		private final Assignment cEnumAssignment_7_3 = (Assignment)cGroup_7.eContents().get(3);
+		private final CrossReference cEnumEnumCrossReference_7_3_0 = (CrossReference)cEnumAssignment_7_3.eContents().get(0);
+		private final RuleCall cEnumEnumEStringParserRuleCall_7_3_0_1 = (RuleCall)cEnumEnumCrossReference_7_3_0.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		////Parameter returns Parameter:
 		////	{Parameter}
@@ -329,11 +329,11 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		////	'}';
 		//Parameter2 returns Parameter:
 		//	{Parameter} "Parameter" name=EString "(" ("maxChosenValues" ":" maxChosenValues=EInt) "," ("minChosenValues" ":"
-		//	minChosenValues=EInt) "," ("enum" ":" ^enum=[Enum|EString])? ")";
+		//	minChosenValues=EInt) ("," "enum" ":" ^enum=[Enum|EString])? ")";
 		public ParserRule getRule() { return rule; }
 
 		//{Parameter} "Parameter" name=EString "(" ("maxChosenValues" ":" maxChosenValues=EInt) "," ("minChosenValues" ":"
-		//minChosenValues=EInt) "," ("enum" ":" ^enum=[Enum|EString])? ")"
+		//minChosenValues=EInt) ("," "enum" ":" ^enum=[Enum|EString])? ")"
 		public Group getGroup() { return cGroup; }
 
 		//{Parameter}
@@ -384,29 +384,29 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//EInt
 		public RuleCall getMinChosenValuesEIntParserRuleCall_6_2_0() { return cMinChosenValuesEIntParserRuleCall_6_2_0; }
 
-		//","
-		public Keyword getCommaKeyword_7() { return cCommaKeyword_7; }
+		//("," "enum" ":" ^enum=[Enum|EString])?
+		public Group getGroup_7() { return cGroup_7; }
 
-		//("enum" ":" ^enum=[Enum|EString])?
-		public Group getGroup_8() { return cGroup_8; }
+		//","
+		public Keyword getCommaKeyword_7_0() { return cCommaKeyword_7_0; }
 
 		//"enum"
-		public Keyword getEnumKeyword_8_0() { return cEnumKeyword_8_0; }
+		public Keyword getEnumKeyword_7_1() { return cEnumKeyword_7_1; }
 
 		//":"
-		public Keyword getColonKeyword_8_1() { return cColonKeyword_8_1; }
+		public Keyword getColonKeyword_7_2() { return cColonKeyword_7_2; }
 
 		//^enum=[Enum|EString]
-		public Assignment getEnumAssignment_8_2() { return cEnumAssignment_8_2; }
+		public Assignment getEnumAssignment_7_3() { return cEnumAssignment_7_3; }
 
 		//[Enum|EString]
-		public CrossReference getEnumEnumCrossReference_8_2_0() { return cEnumEnumCrossReference_8_2_0; }
+		public CrossReference getEnumEnumCrossReference_7_3_0() { return cEnumEnumCrossReference_7_3_0; }
 
 		//EString
-		public RuleCall getEnumEnumEStringParserRuleCall_8_2_0_1() { return cEnumEnumEStringParserRuleCall_8_2_0_1; }
+		public RuleCall getEnumEnumEStringParserRuleCall_7_3_0_1() { return cEnumEnumEStringParserRuleCall_7_3_0_1; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_9() { return cRightParenthesisKeyword_9; }
+		public Keyword getRightParenthesisKeyword_8() { return cRightParenthesisKeyword_8; }
 	}
 
 	public class Parameter3Elements extends AbstractParserRuleElementFinder {
@@ -881,41 +881,29 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	public class ParameterIdentifierElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ParameterIdentifier");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cParameterIdentifierKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cParameterKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cParameterAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cParameterParameterCrossReference_3_0 = (CrossReference)cParameterAssignment_3.eContents().get(0);
-		private final RuleCall cParameterParameterEStringParserRuleCall_3_0_1 = (RuleCall)cParameterParameterCrossReference_3_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cIDKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cParameterAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cParameterParameterCrossReference_1_0 = (CrossReference)cParameterAssignment_1.eContents().get(0);
+		private final RuleCall cParameterParameterEStringParserRuleCall_1_0_1 = (RuleCall)cParameterParameterCrossReference_1_0.eContents().get(1);
 		
 		//ParameterIdentifier:
-		//	"ParameterIdentifier" "{" "parameter" parameter=[Parameter|EString] "}";
+		//	"ID" parameter=[Parameter|EString];
 		public ParserRule getRule() { return rule; }
 
-		//"ParameterIdentifier" "{" "parameter" parameter=[Parameter|EString] "}"
+		//"ID" parameter=[Parameter|EString]
 		public Group getGroup() { return cGroup; }
 
-		//"ParameterIdentifier"
-		public Keyword getParameterIdentifierKeyword_0() { return cParameterIdentifierKeyword_0; }
-
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-
-		//"parameter"
-		public Keyword getParameterKeyword_2() { return cParameterKeyword_2; }
+		//"ID"
+		public Keyword getIDKeyword_0() { return cIDKeyword_0; }
 
 		//parameter=[Parameter|EString]
-		public Assignment getParameterAssignment_3() { return cParameterAssignment_3; }
+		public Assignment getParameterAssignment_1() { return cParameterAssignment_1; }
 
 		//[Parameter|EString]
-		public CrossReference getParameterParameterCrossReference_3_0() { return cParameterParameterCrossReference_3_0; }
+		public CrossReference getParameterParameterCrossReference_1_0() { return cParameterParameterCrossReference_1_0; }
 
 		//EString
-		public RuleCall getParameterParameterEStringParserRuleCall_3_0_1() { return cParameterParameterEStringParserRuleCall_3_0_1; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
+		public RuleCall getParameterParameterEStringParserRuleCall_1_0_1() { return cParameterParameterEStringParserRuleCall_1_0_1; }
 	}
 	
 	
@@ -1061,9 +1049,9 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//ConfiguratorModel:
-	//	{ConfiguratorModel} "ConfiguratorModel" name=EString "{" ("parameters" "{" (parameters+=Parameter2 |
-	//	parameters+=Parameter3) ("," (parameters+=Parameter2 | parameters+=Parameter3))* "}")? ("constraints" "{"
-	//	constraints+=Constraint ("," constraints+=Constraint)* "}")? ("enums" "{" enums+=Enum ("," enums+=Enum)* "}")? "}";
+	//	{ConfiguratorModel} "ConfiguratorModel" name=EString "{" ("enums" "{" enums+=Enum ("," enums+=Enum)* "}")?
+	//	("parameters" "{" (parameters+=Parameter2 | parameters+=Parameter3) ("," (parameters+=Parameter2 |
+	//	parameters+=Parameter3))* "}")? ("constraints" "{" constraints+=Constraint ("," constraints+=Constraint)* "}")? "}";
 	public ConfiguratorModelElements getConfiguratorModelAccess() {
 		return (pConfiguratorModel != null) ? pConfiguratorModel : (pConfiguratorModel = new ConfiguratorModelElements());
 	}
@@ -1116,7 +1104,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	////	'}';
 	//Parameter2 returns Parameter:
 	//	{Parameter} "Parameter" name=EString "(" ("maxChosenValues" ":" maxChosenValues=EInt) "," ("minChosenValues" ":"
-	//	minChosenValues=EInt) "," ("enum" ":" ^enum=[Enum|EString])? ")";
+	//	minChosenValues=EInt) ("," "enum" ":" ^enum=[Enum|EString])? ")";
 	public Parameter2Elements getParameter2Access() {
 		return (pParameter2 != null) ? pParameter2 : (pParameter2 = new Parameter2Elements());
 	}
@@ -1290,7 +1278,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ParameterIdentifier:
-	//	"ParameterIdentifier" "{" "parameter" parameter=[Parameter|EString] "}";
+	//	"ID" parameter=[Parameter|EString];
 	public ParameterIdentifierElements getParameterIdentifierAccess() {
 		return (pParameterIdentifier != null) ? pParameterIdentifier : (pParameterIdentifier = new ParameterIdentifierElements());
 	}

@@ -145,7 +145,4 @@ enum BinaryOperator returns BinaryOperator:
 				AND = '&&' | OR = '||' | XOR = '!||' | EQUALS = '==' | NOTEQUALS = '!=' | GT = '>' | LT = '<' | GTEQ = '>=' | LTEQ = '<=';
 
 ParameterIdentifier returns ParameterIdentifier:
-	'ParameterIdentifier'
-	'('
-		parameter=[Parameter|EString]
-	')';
+	'ID' parameter=[Parameter|EString ];

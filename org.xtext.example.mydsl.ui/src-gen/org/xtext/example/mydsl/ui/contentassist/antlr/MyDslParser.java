@@ -37,8 +37,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getConfiguratorModelAccess().getAlternatives_4_2(), "rule__ConfiguratorModel__Alternatives_4_2");
-					put(grammarAccess.getConfiguratorModelAccess().getAlternatives_4_3_1(), "rule__ConfiguratorModel__Alternatives_4_3_1");
+					put(grammarAccess.getConfiguratorModelAccess().getAlternatives_5_2(), "rule__ConfiguratorModel__Alternatives_5_2");
+					put(grammarAccess.getConfiguratorModelAccess().getAlternatives_5_3_1(), "rule__ConfiguratorModel__Alternatives_5_3_1");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 					put(grammarAccess.getExpressionAccess().getAlternatives(), "rule__Expression__Alternatives");
 					put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
@@ -55,7 +55,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getParameter2Access().getGroup(), "rule__Parameter2__Group__0");
 					put(grammarAccess.getParameter2Access().getGroup_4(), "rule__Parameter2__Group_4__0");
 					put(grammarAccess.getParameter2Access().getGroup_6(), "rule__Parameter2__Group_6__0");
-					put(grammarAccess.getParameter2Access().getGroup_8(), "rule__Parameter2__Group_8__0");
+					put(grammarAccess.getParameter2Access().getGroup_7(), "rule__Parameter2__Group_7__0");
 					put(grammarAccess.getParameter3Access().getGroup(), "rule__Parameter3__Group__0");
 					put(grammarAccess.getParameter3Access().getGroup_4(), "rule__Parameter3__Group_4__0");
 					put(grammarAccess.getParameter3Access().getGroup_4_4(), "rule__Parameter3__Group_4_4__0");
@@ -74,18 +74,18 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBinaryExpressionAccess().getGroup(), "rule__BinaryExpression__Group__0");
 					put(grammarAccess.getParameterIdentifierAccess().getGroup(), "rule__ParameterIdentifier__Group__0");
 					put(grammarAccess.getConfiguratorModelAccess().getNameAssignment_2(), "rule__ConfiguratorModel__NameAssignment_2");
-					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_4_2_0(), "rule__ConfiguratorModel__ParametersAssignment_4_2_0");
-					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_4_2_1(), "rule__ConfiguratorModel__ParametersAssignment_4_2_1");
-					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_4_3_1_0(), "rule__ConfiguratorModel__ParametersAssignment_4_3_1_0");
-					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_4_3_1_1(), "rule__ConfiguratorModel__ParametersAssignment_4_3_1_1");
-					put(grammarAccess.getConfiguratorModelAccess().getConstraintsAssignment_5_2(), "rule__ConfiguratorModel__ConstraintsAssignment_5_2");
-					put(grammarAccess.getConfiguratorModelAccess().getConstraintsAssignment_5_3_1(), "rule__ConfiguratorModel__ConstraintsAssignment_5_3_1");
-					put(grammarAccess.getConfiguratorModelAccess().getEnumsAssignment_6_2(), "rule__ConfiguratorModel__EnumsAssignment_6_2");
-					put(grammarAccess.getConfiguratorModelAccess().getEnumsAssignment_6_3_1(), "rule__ConfiguratorModel__EnumsAssignment_6_3_1");
+					put(grammarAccess.getConfiguratorModelAccess().getEnumsAssignment_4_2(), "rule__ConfiguratorModel__EnumsAssignment_4_2");
+					put(grammarAccess.getConfiguratorModelAccess().getEnumsAssignment_4_3_1(), "rule__ConfiguratorModel__EnumsAssignment_4_3_1");
+					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_5_2_0(), "rule__ConfiguratorModel__ParametersAssignment_5_2_0");
+					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_5_2_1(), "rule__ConfiguratorModel__ParametersAssignment_5_2_1");
+					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_5_3_1_0(), "rule__ConfiguratorModel__ParametersAssignment_5_3_1_0");
+					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_5_3_1_1(), "rule__ConfiguratorModel__ParametersAssignment_5_3_1_1");
+					put(grammarAccess.getConfiguratorModelAccess().getConstraintsAssignment_6_2(), "rule__ConfiguratorModel__ConstraintsAssignment_6_2");
+					put(grammarAccess.getConfiguratorModelAccess().getConstraintsAssignment_6_3_1(), "rule__ConfiguratorModel__ConstraintsAssignment_6_3_1");
 					put(grammarAccess.getParameter2Access().getNameAssignment_2(), "rule__Parameter2__NameAssignment_2");
 					put(grammarAccess.getParameter2Access().getMaxChosenValuesAssignment_4_2(), "rule__Parameter2__MaxChosenValuesAssignment_4_2");
 					put(grammarAccess.getParameter2Access().getMinChosenValuesAssignment_6_2(), "rule__Parameter2__MinChosenValuesAssignment_6_2");
-					put(grammarAccess.getParameter2Access().getEnumAssignment_8_2(), "rule__Parameter2__EnumAssignment_8_2");
+					put(grammarAccess.getParameter2Access().getEnumAssignment_7_3(), "rule__Parameter2__EnumAssignment_7_3");
 					put(grammarAccess.getParameter3Access().getNameAssignment_2(), "rule__Parameter3__NameAssignment_2");
 					put(grammarAccess.getParameter3Access().getChildrenAssignment_4_3(), "rule__Parameter3__ChildrenAssignment_4_3");
 					put(grammarAccess.getParameter3Access().getChildrenAssignment_4_4_1(), "rule__Parameter3__ChildrenAssignment_4_4_1");
@@ -101,7 +101,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBinaryExpressionAccess().getLeftOperandAssignment_1(), "rule__BinaryExpression__LeftOperandAssignment_1");
 					put(grammarAccess.getBinaryExpressionAccess().getOperatorAssignment_2(), "rule__BinaryExpression__OperatorAssignment_2");
 					put(grammarAccess.getBinaryExpressionAccess().getRightOperandAssignment_3(), "rule__BinaryExpression__RightOperandAssignment_3");
-					put(grammarAccess.getParameterIdentifierAccess().getParameterAssignment_3(), "rule__ParameterIdentifier__ParameterAssignment_3");
+					put(grammarAccess.getParameterIdentifierAccess().getParameterAssignment_1(), "rule__ParameterIdentifier__ParameterAssignment_1");
 				}
 			};
 		}
