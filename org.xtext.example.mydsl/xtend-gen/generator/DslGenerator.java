@@ -16,5 +16,15 @@ public class DslGenerator implements IGenerator {
   }
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method compileToJava is undefined for the type DslGenerator"
+      + "\nThe method compileToDot is undefined for the type DslGenerator"
+      + "\nThe method or field ResourcesPlugin is undefined for the type DslGenerator"
+      + "\nFile cannot be resolved."
+      + "\nworkspace cannot be resolved"
+      + "\nroot cannot be resolved"
+      + "\ngetProject cannot be resolved"
+      + "\nlocation cannot be resolved"
+      + "\n+ cannot be resolved");
   }
 }

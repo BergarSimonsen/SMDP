@@ -15,22 +15,7 @@ class DslGenerator implements IGenerator {
 	}
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		resource.allContents.toIterable.filter(typeof(ConfiguratorModel)). // FiniteStateMachine.class
-			forEach [ ConfiguratorModel it |
-				val fname = it.name.toFirstUpper
-				// generate Java implementation
-				fsa.generateFile("fsm/" + fname + ".java", it.compileToJava)
-				
-				// generate GraphvizDot representation
-				fsa.generateFile(fname + ".dot", it.compileToDot)
-				
-				// execute graphviz dot to render a PDF file
-				val projectName = resource.URI.segment(1)
-				val project = ResourcesPlugin.workspace.root.getProject(projectName)
-				var path = new File(project.location + "/src-gen/")
-				var cmd = #["dot", "-Tpdf", fname + ".dot", "-o", fname + ".pdf"]
-				Runtime.runtime.exec(cmd, null, path).wait
-			]
+		
 	}
 }
 
