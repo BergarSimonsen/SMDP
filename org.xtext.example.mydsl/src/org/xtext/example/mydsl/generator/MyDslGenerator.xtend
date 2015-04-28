@@ -15,27 +15,8 @@ import org.eclipse.xtext.generator.IGenerator
  */
 class MyDslGenerator implements IGenerator {
 	def static compileToAndroid(ConfiguratorModel it) {
-		
-	}	
-	
-	def static compileToHtml(ConfiguratorModel it) {
-		
-	}
-	
-	
-	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
-	}
-}
-
-
-//class ExternalDSLGenerator implements IGenerator {
-
-//	def static compileToJava(FiniteStateMachine it) {
+		'''
+		'''
 //		var int i = -1
 //		''' 
 //			package fsm;
@@ -87,14 +68,11 @@ class MyDslGenerator implements IGenerator {
 //					}
 //				}
 //				}
-//				
-//			}
-//		'''
-//	}
-//
-//	def static compileToDot(FiniteStateMachine it) {
-//		'''
-//			digraph "«it.name»" {
+	}	
+	
+	def static compileToHtml(ConfiguratorModel it) {
+		''''''
+//		digraph "«it.name»" {
 //				_init -> «it.initial.name»;
 //				«FOR state : states»
 //					«FOR t : state.leavingTransitions»
@@ -103,28 +81,16 @@ class MyDslGenerator implements IGenerator {
 //				«ENDFOR»
 //				«it.initial.name» [shape=doublecircle];
 //				_init [shape=point];
-//			}
-//		'''
-//
-//	}
-//
-//	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//
-//		resource.allContents.toIterable.filter(typeof(FiniteStateMachine)). // FiniteStateMachine.class
-//			forEach [ FiniteStateMachine it |
-//				val fname = it.name.toFirstUpper
-//				// generate Java implementation
-//				fsa.generateFile("fsm/" + fname + ".java", it.compileToJava)
-//				
-//				// generate GraphvizDot representation
-//				fsa.generateFile(fname + ".dot", it.compileToDot)
-//				
-//				// execute graphviz dot to render a PDF file
-//				val projectName = resource.URI.segment(1)
-//				val project = ResourcesPlugin.workspace.root.getProject(projectName)
-//				var path = new File(project.location + "/src-gen/")
-//				var cmd = #["dot", "-Tpdf", fname + ".dot", "-o", fname + ".pdf"]
-//				Runtime.runtime.exec(cmd, null, path).wait
-//			]
-//	}
-//}
+	}
+	
+	
+	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+		resource.allContents.toIterable.filter(typeof(ConfiguratorModel))
+				.forEach [ ConfiguratorModel it | 
+					val fname = it.name.toFirstUpper
+					fsa.generateFile("fsm/" + fname + ".java", it.compileToAndroid)
+					fsa.generateFile("fsm/" + fname + ".js", it.compileToHtml)
+				]
+	}
+}
+
