@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import Configurator.ConfiguratorModel;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
@@ -14,6 +15,14 @@ import org.eclipse.xtext.generator.IGenerator;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator implements IGenerator {
+  public static Object compileToAndroid(final ConfiguratorModel it) {
+    return null;
+  }
+  
+  public static Object compileToHtml(final ConfiguratorModel it) {
+    return null;
+  }
+  
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
   }
 }
