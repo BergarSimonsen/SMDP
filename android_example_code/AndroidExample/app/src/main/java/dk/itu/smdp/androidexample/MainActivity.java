@@ -26,51 +26,17 @@ public class MainActivity extends Activity {
     private ArrayList<String> gfxManufacturerList;
     private ArrayList<String> gfxModelNvidiaList,gfxModelAMDList;
     Spinner gfxModelSpinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-        LayoutParams Params = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
-        LayoutParams ParamsItem = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
-
-
-
-        LinearLayout priceLayout = new LinearLayout(this);
-        priceLayout.setOrientation(LinearLayout.HORIZONTAL);
-
-
-        TextView priceText= new TextView(this);
-        priceText.setText("Price");
-        priceText.setLayoutParams(ParamsItem);
-
-        EditText minEdit = new EditText(this);
-        minEdit.setHint("min");
-        minEdit.setLayoutParams(ParamsItem);
-
-        EditText maxEdit = new EditText(this);
-        maxEdit.setHint("max");
-        maxEdit.setLayoutParams(ParamsItem);
-
-
-        priceLayout.addView(priceText);
-        priceLayout.addView(minEdit);
-        priceLayout.addView(maxEdit);
-
-
-
-
-
-
-
+//        setContentView(R.layout.activity_main);
 
         manufacturerList = new ArrayList<String>();
         manufacturerList.add("Select");
         manufacturerList.add("Dell");
         manufacturerList.add("HP");
         manufacturerList.add("Lenovo");
-
 
         gfxManufacturerList = new ArrayList<String>();
         gfxManufacturerList.add("Select");
@@ -87,6 +53,30 @@ public class MainActivity extends Activity {
         gfxModelNvidiaList.add("Geforce 6xx");
         gfxModelNvidiaList.add("Geforce 7xx");
 
+
+        LayoutParams Params = new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT);
+        LayoutParams ParamsItem = new LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT);
+
+        LinearLayout priceLayout = new LinearLayout(this);
+        priceLayout.setOrientation(LinearLayout.HORIZONTAL);
+
+        TextView priceText= new TextView(this);
+        priceText.setText("Price");
+        priceText.setLayoutParams(ParamsItem);
+
+        EditText minEdit = new EditText(this);
+        minEdit.setHint("min");
+        minEdit.setLayoutParams(ParamsItem);
+
+        EditText maxEdit = new EditText(this);
+        maxEdit.setHint("max");
+        maxEdit.setLayoutParams(ParamsItem);
+
+        priceLayout.addView(priceText);
+        priceLayout.addView(minEdit);
+        priceLayout.addView(maxEdit);
+
+
         LinearLayout manufacturerLayout = new LinearLayout(this);
         manufacturerLayout.setOrientation(LinearLayout.HORIZONTAL);
 
@@ -100,7 +90,6 @@ public class MainActivity extends Activity {
 
         manufacturerLayout.addView(manufacturerText);
         manufacturerLayout.addView(manuSpinner);
-
 
         LinearLayout graphicsLayout = new LinearLayout(this);
         graphicsLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -143,16 +132,16 @@ public class MainActivity extends Activity {
         gfxModel.addView(gfxModelText);
         gfxModel.addView(gfxModelSpinner);
 
-
-
-
 //        LinearLayout LL=((LinearLayout) findViewById(R.id.screenL));
         LinearLayout LL = new LinearLayout(MainActivity.this);
+        LL.setOrientation(LinearLayout.VERTICAL);
         LL.addView(priceLayout, Params);
         LL.addView(manufacturerLayout,Params);
         LL.addView(graphicsLayout,Params);
         LL.addView(gfxMan,Params);
         LL.addView(gfxModel,Params);
+
+        setContentView(LL, Params);
 
         gfxManufacturerSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
