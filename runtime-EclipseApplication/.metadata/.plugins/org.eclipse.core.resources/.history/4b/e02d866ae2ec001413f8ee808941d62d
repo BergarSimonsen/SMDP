@@ -1,0 +1,27 @@
+ConfiguratorModel Model {
+	enums {
+		Enum RAM : 2, 4, 8, 16;,
+		Enum Manufacturer : "Dell", "Lenovo", "HP";,
+		Enum GraphicsManufacturer : "Nvidia", "AMD";,
+//		Enum NvidiaModel : "Geforce 5xx", "Geforce 6xx", "Geforce 7xx";,
+//		Enum AMDModel : "AMD_Radeon 7xxx", "AMD_Radeon 8xxx", "Radeon R7", "Radeon R8";,
+		Enum GraphicsModel : "AMD_Radeon 7xxx", "AMD_Radeon 8xxx", "Radeon R7", "Radeon R8", "Geforce 5xx", "Geforce 6xx", "Geforce 7xx";,
+		Enum ProcessorManufacturer : "Intel", "AMD";,
+		Enum IntelProcessor : "CoreI3", "CoreI5", "CoreI7";,
+		Enum AMDProcessor : "Series A", "Series E", "Series FX";
+	}	
+	
+	
+	parameters {
+		Parameter Price (maxChosenValues : 2, minChosenValues : 1),
+		Parameter Manufacturer (maxChosenValues : 1, minChosenValues : 1),
+		Parameter RAM (maxChosenValues : 2, minChosenValues : 1),
+		Parameter GfxModel (maxChosenValues : 1, minChosenValues : 1, enum : GraphicsModel),
+		Parameter GfxManufacturer (maxChosenValues : 1, minChosenValues : 1, enum : AMDProcessor),
+		Parameter Graphics (children : [GfxManufacturer, GfxModel])
+//		Parameter GraphicsModel (maxChosenValues : 1, minChosenValues : 1, enum : )
+	}
+	
+	
+	
+}
