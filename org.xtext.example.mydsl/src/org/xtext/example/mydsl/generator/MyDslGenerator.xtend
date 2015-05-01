@@ -101,14 +101,16 @@ class MyDslGenerator implements IGenerator {
 							«ENDIF»
 						«ENDFOR»
 						
-						function checkConstraints() {
+						function checkConstraints() { 
 							«FOR c : constraints»
 							«ENDFOR»
 						};
 						
 						«FOR param : parameters»
 						 	«IF param.enum != null»
-								$('#«param.name.toFirstUpper»CB').bind('select', function (event) {
+								$('#«param.name.toFirstUpper»CB').bind('select', function (event) {		
+									checkConstraints();		
+								});
 							«ENDIF»
 						«ENDFOR»
 						

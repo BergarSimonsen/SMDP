@@ -135,7 +135,7 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("\t\t\t\t");
     _builder.newLine();
     _builder.append("\t\t\t\t");
-    _builder.append("function checkConstraints() {");
+    _builder.append("function checkConstraints() { ");
     _builder.newLine();
     {
       EList<Constraint> _constraints = it.getConstraints();
@@ -158,8 +158,13 @@ public class MyDslGenerator implements IGenerator {
             String _name_3 = param_1.getName();
             String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
             _builder.append(_firstUpper_3, "");
-            _builder.append("CB\').bind(\'select\', function (event) {");
+            _builder.append("CB\').bind(\'select\', function (event) {\t\t");
             _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("checkConstraints();\t\t");
+            _builder.newLine();
+            _builder.append("});");
+            _builder.newLine();
           }
         }
       }
