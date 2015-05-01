@@ -4,9 +4,16 @@
 package org.xtext.example.mydsl.generator;
 
 import Configurator.ConfiguratorModel;
+import com.google.common.collect.Iterables;
+import java.util.function.Consumer;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -15,14 +22,30 @@ import org.eclipse.xtext.generator.IGenerator;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator implements IGenerator {
-  public static Object compileToAndroid(final ConfiguratorModel it) {
-    return null;
+  public static CharSequence compileToAndroid(final ConfiguratorModel it) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder;
   }
   
-  public static Object compileToHtml(final ConfiguratorModel it) {
-    return null;
+  public static CharSequence compileToHtml(final ConfiguratorModel it) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder;
   }
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<ConfiguratorModel> _filter = Iterables.<ConfiguratorModel>filter(_iterable, ConfiguratorModel.class);
+    final Consumer<ConfiguratorModel> _function = new Consumer<ConfiguratorModel>() {
+      public void accept(final ConfiguratorModel it) {
+        String _name = it.getName();
+        final String fname = StringExtensions.toFirstUpper(_name);
+        CharSequence _compileToAndroid = MyDslGenerator.compileToAndroid(it);
+        fsa.generateFile((("fsm/" + fname) + ".java"), _compileToAndroid);
+        CharSequence _compileToHtml = MyDslGenerator.compileToHtml(it);
+        fsa.generateFile((("fsm/" + fname) + ".js"), _compileToHtml);
+      }
+    };
+    _filter.forEach(_function);
   }
 }
