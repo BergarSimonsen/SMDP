@@ -1,0 +1,13 @@
+ConfiguratorModel ClothesConfigurator {
+	enums {
+		
+	}
+	
+	parameters {
+		
+	}
+	
+	constraints {
+		
+	}
+}

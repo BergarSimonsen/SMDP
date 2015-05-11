@@ -1,0 +1,13 @@
+ConfiguratorModel ClothesConfigurator {
+	enums {
+		Enum Size : S, M, L, XL; 
+	}
+//	
+//	parameters {
+//		
+//	}
+//	
+//	constraints {
+//		
+//	}
+}

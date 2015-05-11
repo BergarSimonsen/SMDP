@@ -1,0 +1,16 @@
+ConfiguratorModel ClothesConfigurator {
+	enums {
+		Enum Size : S, M, L, XL;,
+		Enum ShirtColor : Red, Black, Blue, White, Yellow, Green;,
+		Enum Print : Front, Back, No;,
+		Enum PrintColor : White, Black, Red; 
+	}
+//	
+//	parameters {
+//		
+//	}
+//	
+//	constraints {
+//		
+//	}
+}

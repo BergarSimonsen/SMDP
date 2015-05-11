@@ -1,0 +1,23 @@
+ConfiguratorModel ShirtConfigurator {
+	enums {
+		Enum Size : S, M, L, XL;,
+		Enum BaseColor : Red, Black, Blue, White, Yellow, Green;,
+		Enum Print : Front, Back, Both;,
+		Enum PrintColor : White, Black, Red; 
+	}
+	
+	parameters {
+		Parameter ShirtSize (maxChosenValues : 1, minChosenValues : 1, enum : Size),
+		Parameter ShirtColor (maxChosenValues : 1, minChosenValues : 1, enum : BaseColor),
+		Parameter HasPrint (maxChosenValues : 1, minChosenValues : 1),
+		Parameter Print (children : [PrintSpec, PrintColor]),
+		Parameter PrintSpec (maxChosenValues : 1, minChosenValues : 1, enum : Print),
+		Parameter PrintColor (maxChosenValues : 1, minChosenValues : 1, enum : PrintColor)
+	}
+	
+	constraints {
+		if (ID HasPrint == false) then (ID Print < 1),
+		if (ID ShirtSize == S) then (ID HasPrint != true),
+		if (ID ShirtColor == ID PrintColor) then (6) // Need to fix	
+	}
+}

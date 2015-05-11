@@ -1,0 +1,20 @@
+ConfiguratorModel ShirtConfigurator {
+	enums {
+		Enum Size : S, M, L, XL;,
+		Enum BaseColor : Red, Black, Blue, White, Yellow, Green;,
+		Enum Print : Front, Back, Both;,
+		Enum PrintColor : White, Black, Red; 
+	}
+	
+	parameters {
+		Parameter ShirtSize (maxChosenValues : 1, minChosenValues : 1, enum : Size),
+		Parameter ShirtColor (maxChosenValues : 1, minChosenValues : 1, enum : BaseColor),
+		Parameter Print (maxChosenValues : 1, minChosenValues : 1),
+		Parameter PrintSpec (maxChosenValues : 1, minChosenValues : 1, enum : Print),
+		Parameter PrintColor (maxChosenValues : 1, minChosenValues : 1, enum : PrintColor)
+	}
+//	
+//	constraints {
+//		
+//	}
+}

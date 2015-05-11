@@ -1,0 +1,41 @@
+!SESSION 2015-04-24 11:26:50.068 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data /home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/../runtime-EclipseApplication -dev file:/home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -os linux -ws gtk -arch x86_64 -consoleLog
+
+!ENTRY org.apache.log4j 4 0 2015-04-24 11:28:39.232
+!MESSAGE org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy  - Qualified name cannot be empty
+
+!SESSION 2015-04-24 11:44:48.072 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data /home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/../runtime-EclipseApplication -dev file:/home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -os linux -ws gtk -arch x86_64 -consoleLog
+
+!ENTRY org.apache.log4j 4 0 2015-04-24 11:46:32.307
+!MESSAGE org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy  - Qualified name cannot be empty
+
+!SESSION 2015-04-27 14:25:20.944 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.platform.ide
+Command-line arguments:  -product org.eclipse.platform.ide -data /home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/../runtime-EclipseApplication -dev file:/home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/.metadata/.plugins/org.eclipse.pde.core/Eclipse Application/dev.properties -os linux -ws gtk -arch x86_64 -consoleLog
+
+!ENTRY org.apache.log4j 4 0 2015-04-27 14:27:25.715
+!MESSAGE org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy  - Qualified name cannot be empty
+
+
+!ENTRY org.apache.log4j 4 0 2015-04-27 14:31:02.526
+!MESSAGE org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy  - Qualified name cannot be empty
+
+
+!ENTRY org.apache.log4j 4 0 2015-04-27 14:35:45.764
+!MESSAGE org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy  - Qualified name cannot be empty
+

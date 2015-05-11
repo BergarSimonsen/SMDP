@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExportRepresentationsAsImagesDialog">
+		<item value="JPG" key="ExportRepresentationsAsImagesDialog.imageFormat"/>
+		<list key="ExportRepresentationsAsImagesDialog.file">
+			<item value="/home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/Configurator/model"/>
+			<item value="/home/bs/Dropbox/itu/kandidat/1_semester/model_driven_development_project_SMDP/project/SMDP/Configurator/model/ class diagram.jpg"/>
+		</list>
+	</section>
+</section>

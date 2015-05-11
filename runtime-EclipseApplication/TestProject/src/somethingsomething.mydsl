@@ -1,0 +1,4 @@
+ConfiguratorModel {
+	Name "SampleName"
+	parameters{Parameter{Name "NAME!!!" maxChosenValues 42 paramType SimpleType{ Name BOOLEAN } } } 
+}

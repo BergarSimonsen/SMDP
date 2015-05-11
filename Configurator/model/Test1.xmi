@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dk.itu.smdp.Configurator1:ConfiguratorModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dk.itu.smdp.Configurator1="http://www.itu.dk/smdp/"
+    xsi:schemaLocation="http://www.itu.dk/smdp/ Configurator.ecore">
+  <parameters
+      name="param1">
+    <literalValue
+        xsi:type="dk.itu.smdp.Configurator1:IntLiteral"
+        name="int"
+        value="42"/>
+  </parameters>
+  <parameters
+      name="param2">
+    <literalValue
+        xsi:type="dk.itu.smdp.Configurator1:IntLiteral"
+        name="int"
+        value="50"/>
+  </parameters>
+  <constraints
+      xsi:type="dk.itu.smdp.Configurator1:BinaryConstraint">
+    <leftOperand
+        xsi:type="dk.itu.smdp.Configurator1:ParameterIdentifier"
+        parameter="//@parameters.0"/>
+    <rightOperand
+        xsi:type="dk.itu.smdp.Configurator1:ParameterIdentifier"
+        parameter="//@parameters.1"/>
+  </constraints>
+</dk.itu.smdp.Configurator1:ConfiguratorModel>
