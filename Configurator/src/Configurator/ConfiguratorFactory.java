@@ -49,13 +49,49 @@ public interface ConfiguratorFactory extends EFactory {
 	Enum createEnum();
 
 	/**
-	 * Returns a new object of class '<em>Binary Expression</em>'.
+	 * Returns a new object of class '<em>Binary Constraint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Binary Expression</em>'.
+	 * @return a new object of class '<em>Binary Constraint</em>'.
 	 * @generated
 	 */
-	BinaryExpression createBinaryExpression();
+	BinaryConstraint createBinaryConstraint();
+
+	/**
+	 * Returns a new object of class '<em>Integer</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Integer</em>'.
+	 * @generated
+	 */
+	Integer createInteger();
+
+	/**
+	 * Returns a new object of class '<em>Double</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Double</em>'.
+	 * @generated
+	 */
+	Double createDouble();
+
+	/**
+	 * Returns a new object of class '<em>String</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>String</em>'.
+	 * @generated
+	 */
+	String createString();
+
+	/**
+	 * Returns a new object of class '<em>Boolean</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Boolean</em>'.
+	 * @generated
+	 */
+	Boolean createBoolean();
 
 	/**
 	 * Returns a new object of class '<em>Parameter Identifier</em>'.
@@ -67,49 +103,13 @@ public interface ConfiguratorFactory extends EFactory {
 	ParameterIdentifier createParameterIdentifier();
 
 	/**
-	 * Returns a new object of class '<em>Constraint</em>'.
+	 * Returns a new object of class '<em>Model</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint</em>'.
+	 * @return a new object of class '<em>Model</em>'.
 	 * @generated
 	 */
-	Constraint createConstraint();
-
-	/**
-	 * Returns a new object of class '<em>Int Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Int Literal</em>'.
-	 * @generated
-	 */
-	IntLiteral createIntLiteral();
-
-	/**
-	 * Returns a new object of class '<em>Double Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Double Literal</em>'.
-	 * @generated
-	 */
-	DoubleLiteral createDoubleLiteral();
-
-	/**
-	 * Returns a new object of class '<em>String Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String Literal</em>'.
-	 * @generated
-	 */
-	StringLiteral createStringLiteral();
-
-	/**
-	 * Returns a new object of class '<em>Boolean Literal</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Boolean Literal</em>'.
-	 * @generated
-	 */
-	BooleanLiteral createBooleanLiteral();
+	Model createModel();
 
 	/**
 	 * Returns the package supported by this factory.

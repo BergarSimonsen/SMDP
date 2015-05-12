@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class ParameterIdentifierImpl extends ExpressionImpl implements ParameterIdentifier {
+public class ParameterIdentifierImpl extends ConstraintImpl implements ParameterIdentifier {
 	/**
 	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->

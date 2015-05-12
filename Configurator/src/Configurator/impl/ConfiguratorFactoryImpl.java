@@ -2,18 +2,14 @@
  */
 package Configurator.impl;
 
-import Configurator.BinaryExpression;
+import Configurator.BinaryConstraint;
 import Configurator.BinaryOperator;
-import Configurator.BooleanLiteral;
 import Configurator.ConfiguratorFactory;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
-import Configurator.Constraint;
-import Configurator.DoubleLiteral;
-import Configurator.IntLiteral;
+import Configurator.Model;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
-import Configurator.StringLiteral;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -68,13 +64,13 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 			case ConfiguratorPackage.CONFIGURATOR_MODEL: return createConfiguratorModel();
 			case ConfiguratorPackage.PARAMETER: return createParameter();
 			case ConfiguratorPackage.ENUM: return createEnum();
-			case ConfiguratorPackage.BINARY_EXPRESSION: return createBinaryExpression();
-			case ConfiguratorPackage.INT_LITERAL: return createIntLiteral();
-			case ConfiguratorPackage.DOUBLE_LITERAL: return createDoubleLiteral();
-			case ConfiguratorPackage.STRING_LITERAL: return createStringLiteral();
-			case ConfiguratorPackage.BOOLEAN_LITERAL: return createBooleanLiteral();
+			case ConfiguratorPackage.BINARY_CONSTRAINT: return createBinaryConstraint();
+			case ConfiguratorPackage.INTEGER: return createInteger();
+			case ConfiguratorPackage.DOUBLE: return createDouble();
+			case ConfiguratorPackage.STRING: return createString();
+			case ConfiguratorPackage.BOOLEAN: return createBoolean();
 			case ConfiguratorPackage.PARAMETER_IDENTIFIER: return createParameterIdentifier();
-			case ConfiguratorPackage.CONSTRAINT: return createConstraint();
+			case ConfiguratorPackage.MODEL: return createModel();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -145,9 +141,49 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BinaryExpression createBinaryExpression() {
-		BinaryExpressionImpl binaryExpression = new BinaryExpressionImpl();
-		return binaryExpression;
+	public BinaryConstraint createBinaryConstraint() {
+		BinaryConstraintImpl binaryConstraint = new BinaryConstraintImpl();
+		return binaryConstraint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Configurator.Integer createInteger() {
+		IntegerImpl integer = new IntegerImpl();
+		return integer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Configurator.Double createDouble() {
+		DoubleImpl double_ = new DoubleImpl();
+		return double_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Configurator.String createString() {
+		StringImpl string = new StringImpl();
+		return string;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Configurator.Boolean createBoolean() {
+		BooleanImpl boolean_ = new BooleanImpl();
+		return boolean_;
 	}
 
 	/**
@@ -165,49 +201,9 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint createConstraint() {
-		ConstraintImpl constraint = new ConstraintImpl();
-		return constraint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public IntLiteral createIntLiteral() {
-		IntLiteralImpl intLiteral = new IntLiteralImpl();
-		return intLiteral;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DoubleLiteral createDoubleLiteral() {
-		DoubleLiteralImpl doubleLiteral = new DoubleLiteralImpl();
-		return doubleLiteral;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StringLiteral createStringLiteral() {
-		StringLiteralImpl stringLiteral = new StringLiteralImpl();
-		return stringLiteral;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BooleanLiteral createBooleanLiteral() {
-		BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
-		return booleanLiteral;
+	public Model createModel() {
+		ModelImpl model = new ModelImpl();
+		return model;
 	}
 
 	/**

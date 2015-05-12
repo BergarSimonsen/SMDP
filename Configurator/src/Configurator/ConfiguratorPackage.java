@@ -2,6 +2,7 @@
  */
 package Configurator;
 
+import java.lang.String;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -132,22 +133,13 @@ public interface ConfiguratorPackage extends EPackage {
 	int CONFIGURATOR_MODEL__CONSTRAINTS = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Enums</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONFIGURATOR_MODEL__ENUMS = NAMED_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The number of structural features of the '<em>Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONFIGURATOR_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int CONFIGURATOR_MODEL_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -187,49 +179,31 @@ public interface ConfiguratorPackage extends EPackage {
 	int PARAMETER__MAX_CHOSEN_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Literal Values</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__LITERAL_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Min Chosen Values</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__MIN_CHOSEN_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 2;
+	int PARAMETER__MIN_CHOSEN_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Enum</b></em>' reference.
+	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__ENUM = NAMED_ELEMENT_FEATURE_COUNT + 3;
+	int PARAMETER__CHILDREN = NAMED_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Children</b></em>' reference list.
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER__CHILDREN = NAMED_ELEMENT_FEATURE_COUNT + 4;
-
-	/**
-	 * The feature id for the '<em><b>Enum Values</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER__ENUM_VALUES = NAMED_ELEMENT_FEATURE_COUNT + 5;
+	int PARAMETER__TYPE = NAMED_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
@@ -238,7 +212,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PARAMETER_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 6;
+	int PARAMETER_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Parameter</em>' class.
@@ -250,44 +224,6 @@ public interface ConfiguratorPackage extends EPackage {
 	int PARAMETER_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link Configurator.impl.ExpressionImpl <em>Expression</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.ExpressionImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getExpression()
-	 * @generated
-	 */
-	int EXPRESSION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_FEATURE_COUNT = 0;
-
-	/**
-	 * The number of operations of the '<em>Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EXPRESSION_OPERATION_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link Configurator.impl.ValueImpl <em>Value</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.ValueImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getValue()
-	 * @generated
-	 */
-	int VALUE = 10;
-
-	/**
 	 * The meta object id for the '{@link Configurator.impl.ConstraintImpl <em>Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -295,7 +231,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @see Configurator.impl.ConfiguratorPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 12;
+	int CONSTRAINT = 2;
 
 	/**
 	 * The meta object id for the '{@link Configurator.impl.EnumImpl <em>Enum</em>}' class.
@@ -308,113 +244,64 @@ public interface ConfiguratorPackage extends EPackage {
 	int ENUM = 3;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * The meta object id for the '{@link Configurator.impl.BinaryConstraintImpl <em>Binary Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.BinaryConstraintImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryConstraint()
 	 * @generated
-	 * @ordered
 	 */
-	int ENUM__NAME = NAMED_ELEMENT__NAME;
+	int BINARY_CONSTRAINT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
+	 * The meta object id for the '{@link Configurator.impl.LiteralImpl <em>Literal</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.LiteralImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getLiteral()
 	 * @generated
-	 * @ordered
 	 */
-	int ENUM__VALUES = NAMED_ELEMENT_FEATURE_COUNT + 0;
+	int LITERAL = 10;
 
 	/**
-	 * The number of structural features of the '<em>Enum</em>' class.
+	 * The meta object id for the '{@link Configurator.impl.IntegerImpl <em>Integer</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.IntegerImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getInteger()
 	 * @generated
-	 * @ordered
 	 */
-	int ENUM_FEATURE_COUNT = NAMED_ELEMENT_FEATURE_COUNT + 1;
+	int INTEGER = 6;
 
 	/**
-	 * The number of operations of the '<em>Enum</em>' class.
+	 * The meta object id for the '{@link Configurator.impl.DoubleImpl <em>Double</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.DoubleImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getDouble()
 	 * @generated
-	 * @ordered
 	 */
-	int ENUM_OPERATION_COUNT = NAMED_ELEMENT_OPERATION_COUNT + 0;
+	int DOUBLE = 7;
 
 	/**
-	 * The meta object id for the '{@link Configurator.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
+	 * The meta object id for the '{@link Configurator.impl.StringImpl <em>String</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.BinaryExpressionImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryExpression()
+	 * @see Configurator.impl.StringImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getString()
 	 * @generated
 	 */
-	int BINARY_EXPRESSION = 4;
+	int STRING = 8;
 
 	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * The meta object id for the '{@link Configurator.impl.BooleanImpl <em>Boolean</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.BooleanImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getBoolean()
 	 * @generated
-	 * @ordered
 	 */
-	int BINARY_EXPRESSION__OPERATOR = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION__LEFT_OPERAND = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION__RIGHT_OPERAND = EXPRESSION_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Binary Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of operations of the '<em>Binary Expression</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BINARY_EXPRESSION_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of operations of the '<em>Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int VALUE_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
+	int BOOLEAN = 9;
 
 	/**
 	 * The meta object id for the '{@link Configurator.impl.ParameterIdentifierImpl <em>Parameter Identifier</em>}' class.
@@ -427,197 +314,14 @@ public interface ConfiguratorPackage extends EPackage {
 	int PARAMETER_IDENTIFIER = 11;
 
 	/**
-	 * The meta object id for the '{@link Configurator.impl.IntLiteralImpl <em>Int Literal</em>}' class.
+	 * The meta object id for the '{@link Configurator.impl.ModelImpl <em>Model</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.IntLiteralImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getIntLiteral()
+	 * @see Configurator.impl.ModelImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getModel()
 	 * @generated
 	 */
-	int INT_LITERAL = 6;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INT_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Int Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INT_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Int Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INT_LITERAL_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link Configurator.impl.DoubleLiteralImpl <em>Double Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.DoubleLiteralImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getDoubleLiteral()
-	 * @generated
-	 */
-	int DOUBLE_LITERAL = 7;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Double Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Double Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOUBLE_LITERAL_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link Configurator.impl.StringLiteralImpl <em>String Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.StringLiteralImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getStringLiteral()
-	 * @generated
-	 */
-	int STRING_LITERAL = 8;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>String Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>String Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int STRING_LITERAL_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link Configurator.impl.BooleanLiteralImpl <em>Boolean Literal</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.BooleanLiteralImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getBooleanLiteral()
-	 * @generated
-	 */
-	int BOOLEAN_LITERAL = 9;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Boolean Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Boolean Literal</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BOOLEAN_LITERAL_OPERATION_COUNT = VALUE_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_IDENTIFIER__PARAMETER = EXPRESSION_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Parameter Identifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_IDENTIFIER_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Parameter Identifier</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PARAMETER_IDENTIFIER_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>If</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__IF = 0;
-
-	/**
-	 * The feature id for the '<em><b>Then</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONSTRAINT__THEN = 1;
+	int MODEL = 12;
 
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
@@ -626,7 +330,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = 2;
+	int CONSTRAINT_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of operations of the '<em>Constraint</em>' class.
@@ -638,6 +342,286 @@ public interface ConfiguratorPackage extends EPackage {
 	int CONSTRAINT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link Configurator.impl.TypeImpl <em>Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.TypeImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getType()
+	 * @generated
+	 */
+	int TYPE = 13;
+
+	/**
+	 * The number of structural features of the '<em>Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TYPE_OPERATION_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>Values</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM__VALUES = TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Enum</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Enum</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_OPERATION_COUNT = TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_CONSTRAINT__OPERATOR = CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Left Operand</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_CONSTRAINT__LEFT_OPERAND = CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Right Operand</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_CONSTRAINT__RIGHT_OPERAND = CONSTRAINT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>Binary Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_CONSTRAINT_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of operations of the '<em>Binary Constraint</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_CONSTRAINT_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER__VALUE = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Integer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE__VALUE = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Double</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Double</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING__VALUE = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>String</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>String</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN__VALUE = LITERAL_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Boolean</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Boolean</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_IDENTIFIER__PARAMETER = CONSTRAINT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Parameter Identifier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_IDENTIFIER_FEATURE_COUNT = CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Parameter Identifier</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PARAMETER_IDENTIFIER_OPERATION_COUNT = CONSTRAINT_OPERATION_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Configurator Models</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL__CONFIGURATOR_MODELS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>Model</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link Configurator.BinaryOperator <em>Binary Operator</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -645,7 +629,7 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryOperator()
 	 * @generated
 	 */
-	int BINARY_OPERATOR = 13;
+	int BINARY_OPERATOR = 14;
 
 	/**
 	 * Returns the meta object for class '{@link Configurator.ConfiguratorModel <em>Model</em>}'.
@@ -680,17 +664,6 @@ public interface ConfiguratorPackage extends EPackage {
 	EReference getConfiguratorModel_Constraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Configurator.ConfiguratorModel#getEnums <em>Enums</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Enums</em>'.
-	 * @see Configurator.ConfiguratorModel#getEnums()
-	 * @see #getConfiguratorModel()
-	 * @generated
-	 */
-	EReference getConfiguratorModel_Enums();
-
-	/**
 	 * Returns the meta object for class '{@link Configurator.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -712,21 +685,10 @@ public interface ConfiguratorPackage extends EPackage {
 	EAttribute getParameter_MaxChosenValues();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link Configurator.Parameter#getLiteralValues <em>Literal Values</em>}'.
+	 * Returns the meta object for the containment reference list '{@link Configurator.Parameter#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Literal Values</em>'.
-	 * @see Configurator.Parameter#getLiteralValues()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EReference getParameter_LiteralValues();
-
-	/**
-	 * Returns the meta object for the reference list '{@link Configurator.Parameter#getChildren <em>Children</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Children</em>'.
+	 * @return the meta object for the containment reference list '<em>Children</em>'.
 	 * @see Configurator.Parameter#getChildren()
 	 * @see #getParameter()
 	 * @generated
@@ -734,25 +696,15 @@ public interface ConfiguratorPackage extends EPackage {
 	EReference getParameter_Children();
 
 	/**
-	 * Returns the meta object for the reference list '{@link Configurator.Parameter#getEnumValues <em>Enum Values</em>}'.
+	 * Returns the meta object for the containment reference '{@link Configurator.Parameter#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Enum Values</em>'.
-	 * @see Configurator.Parameter#getEnumValues()
+	 * @return the meta object for the containment reference '<em>Type</em>'.
+	 * @see Configurator.Parameter#getType()
 	 * @see #getParameter()
 	 * @generated
 	 */
-	EReference getParameter_EnumValues();
-
-	/**
-	 * Returns the meta object for class '{@link Configurator.Expression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Expression</em>'.
-	 * @see Configurator.Expression
-	 * @generated
-	 */
-	EClass getExpression();
+	EReference getParameter_Type();
 
 	/**
 	 * Returns the meta object for the attribute '{@link Configurator.Parameter#getMinChosenValues <em>Min Chosen Values</em>}'.
@@ -766,27 +718,6 @@ public interface ConfiguratorPackage extends EPackage {
 	EAttribute getParameter_MinChosenValues();
 
 	/**
-	 * Returns the meta object for the reference '{@link Configurator.Parameter#getEnum <em>Enum</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Enum</em>'.
-	 * @see Configurator.Parameter#getEnum()
-	 * @see #getParameter()
-	 * @generated
-	 */
-	EReference getParameter_Enum();
-
-	/**
-	 * Returns the meta object for class '{@link Configurator.Value <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Value</em>'.
-	 * @see Configurator.Value
-	 * @generated
-	 */
-	EClass getValue();
-
-	/**
 	 * Returns the meta object for class '{@link Configurator.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -795,28 +726,6 @@ public interface ConfiguratorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getConstraint();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link Configurator.Constraint#getIf <em>If</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>If</em>'.
-	 * @see Configurator.Constraint#getIf()
-	 * @see #getConstraint()
-	 * @generated
-	 */
-	EReference getConstraint_If();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link Configurator.Constraint#getThen <em>Then</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Then</em>'.
-	 * @see Configurator.Constraint#getThen()
-	 * @see #getConstraint()
-	 * @generated
-	 */
-	EReference getConstraint_Then();
 
 	/**
 	 * Returns the meta object for class '{@link Configurator.Enum <em>Enum</em>}'.
@@ -840,47 +749,47 @@ public interface ConfiguratorPackage extends EPackage {
 	EReference getEnum_Values();
 
 	/**
-	 * Returns the meta object for class '{@link Configurator.BinaryExpression <em>Binary Expression</em>}'.
+	 * Returns the meta object for class '{@link Configurator.BinaryConstraint <em>Binary Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Binary Expression</em>'.
-	 * @see Configurator.BinaryExpression
+	 * @return the meta object for class '<em>Binary Constraint</em>'.
+	 * @see Configurator.BinaryConstraint
 	 * @generated
 	 */
-	EClass getBinaryExpression();
+	EClass getBinaryConstraint();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Configurator.BinaryExpression#getOperator <em>Operator</em>}'.
+	 * Returns the meta object for the attribute '{@link Configurator.BinaryConstraint#getOperator <em>Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Operator</em>'.
-	 * @see Configurator.BinaryExpression#getOperator()
-	 * @see #getBinaryExpression()
+	 * @see Configurator.BinaryConstraint#getOperator()
+	 * @see #getBinaryConstraint()
 	 * @generated
 	 */
-	EAttribute getBinaryExpression_Operator();
+	EAttribute getBinaryConstraint_Operator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link Configurator.BinaryExpression#getLeftOperand <em>Left Operand</em>}'.
+	 * Returns the meta object for the containment reference '{@link Configurator.BinaryConstraint#getLeftOperand <em>Left Operand</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Left Operand</em>'.
-	 * @see Configurator.BinaryExpression#getLeftOperand()
-	 * @see #getBinaryExpression()
+	 * @see Configurator.BinaryConstraint#getLeftOperand()
+	 * @see #getBinaryConstraint()
 	 * @generated
 	 */
-	EReference getBinaryExpression_LeftOperand();
+	EReference getBinaryConstraint_LeftOperand();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link Configurator.BinaryExpression#getRightOperand <em>Right Operand</em>}'.
+	 * Returns the meta object for the containment reference '{@link Configurator.BinaryConstraint#getRightOperand <em>Right Operand</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Right Operand</em>'.
-	 * @see Configurator.BinaryExpression#getRightOperand()
-	 * @see #getBinaryExpression()
+	 * @see Configurator.BinaryConstraint#getRightOperand()
+	 * @see #getBinaryConstraint()
 	 * @generated
 	 */
-	EReference getBinaryExpression_RightOperand();
+	EReference getBinaryConstraint_RightOperand();
 
 	/**
 	 * Returns the meta object for class '{@link Configurator.ParameterIdentifier <em>Parameter Identifier</em>}'.
@@ -904,6 +813,37 @@ public interface ConfiguratorPackage extends EPackage {
 	EReference getParameterIdentifier_Parameter();
 
 	/**
+	 * Returns the meta object for class '{@link Configurator.Model <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Model</em>'.
+	 * @see Configurator.Model
+	 * @generated
+	 */
+	EClass getModel();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link Configurator.Model#getConfiguratorModels <em>Configurator Models</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Configurator Models</em>'.
+	 * @see Configurator.Model#getConfiguratorModels()
+	 * @see #getModel()
+	 * @generated
+	 */
+	EReference getModel_ConfiguratorModels();
+
+	/**
+	 * Returns the meta object for class '{@link Configurator.Type <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Type</em>'.
+	 * @see Configurator.Type
+	 * @generated
+	 */
+	EClass getType();
+
+	/**
 	 * Returns the meta object for class '{@link Configurator.NamedElement <em>Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -925,88 +865,98 @@ public interface ConfiguratorPackage extends EPackage {
 	EAttribute getNamedElement_Name();
 
 	/**
-	 * Returns the meta object for class '{@link Configurator.IntLiteral <em>Int Literal</em>}'.
+	 * Returns the meta object for class '{@link Configurator.Integer <em>Integer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Int Literal</em>'.
-	 * @see Configurator.IntLiteral
+	 * @return the meta object for class '<em>Integer</em>'.
+	 * @see Configurator.Integer
 	 * @generated
 	 */
-	EClass getIntLiteral();
+	EClass getInteger();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Configurator.IntLiteral#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link Configurator.Integer#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see Configurator.IntLiteral#getValue()
-	 * @see #getIntLiteral()
+	 * @see Configurator.Integer#getValue()
+	 * @see #getInteger()
 	 * @generated
 	 */
-	EAttribute getIntLiteral_Value();
+	EAttribute getInteger_Value();
 
 	/**
-	 * Returns the meta object for class '{@link Configurator.DoubleLiteral <em>Double Literal</em>}'.
+	 * Returns the meta object for class '{@link Configurator.Double <em>Double</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Double Literal</em>'.
-	 * @see Configurator.DoubleLiteral
+	 * @return the meta object for class '<em>Double</em>'.
+	 * @see Configurator.Double
 	 * @generated
 	 */
-	EClass getDoubleLiteral();
+	EClass getDouble();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Configurator.DoubleLiteral#getValue <em>Value</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see Configurator.DoubleLiteral#getValue()
-	 * @see #getDoubleLiteral()
-	 * @generated
-	 */
-	EAttribute getDoubleLiteral_Value();
-
-	/**
-	 * Returns the meta object for class '{@link Configurator.StringLiteral <em>String Literal</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String Literal</em>'.
-	 * @see Configurator.StringLiteral
-	 * @generated
-	 */
-	EClass getStringLiteral();
-
-	/**
-	 * Returns the meta object for the attribute '{@link Configurator.StringLiteral#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link Configurator.Double#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see Configurator.StringLiteral#getValue()
-	 * @see #getStringLiteral()
+	 * @see Configurator.Double#getValue()
+	 * @see #getDouble()
 	 * @generated
 	 */
-	EAttribute getStringLiteral_Value();
+	EAttribute getDouble_Value();
 
 	/**
-	 * Returns the meta object for class '{@link Configurator.BooleanLiteral <em>Boolean Literal</em>}'.
+	 * Returns the meta object for class '{@link Configurator.String <em>String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Boolean Literal</em>'.
-	 * @see Configurator.BooleanLiteral
+	 * @return the meta object for class '<em>String</em>'.
+	 * @see Configurator.String
 	 * @generated
 	 */
-	EClass getBooleanLiteral();
+	EClass getString();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Configurator.BooleanLiteral#isValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link Configurator.String#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see Configurator.BooleanLiteral#isValue()
-	 * @see #getBooleanLiteral()
+	 * @see Configurator.String#getValue()
+	 * @see #getString()
 	 * @generated
 	 */
-	EAttribute getBooleanLiteral_Value();
+	EAttribute getString_Value();
+
+	/**
+	 * Returns the meta object for class '{@link Configurator.Boolean <em>Boolean</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Boolean</em>'.
+	 * @see Configurator.Boolean
+	 * @generated
+	 */
+	EClass getBoolean();
+
+	/**
+	 * Returns the meta object for the attribute '{@link Configurator.Boolean#isValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see Configurator.Boolean#isValue()
+	 * @see #getBoolean()
+	 * @generated
+	 */
+	EAttribute getBoolean_Value();
+
+	/**
+	 * Returns the meta object for class '{@link Configurator.Literal <em>Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Literal</em>'.
+	 * @see Configurator.Literal
+	 * @generated
+	 */
+	EClass getLiteral();
 
 	/**
 	 * Returns the meta object for enum '{@link Configurator.BinaryOperator <em>Binary Operator</em>}'.
@@ -1068,14 +1018,6 @@ public interface ConfiguratorPackage extends EPackage {
 		EReference CONFIGURATOR_MODEL__CONSTRAINTS = eINSTANCE.getConfiguratorModel_Constraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Enums</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONFIGURATOR_MODEL__ENUMS = eINSTANCE.getConfiguratorModel_Enums();
-
-		/**
 		 * The meta object literal for the '{@link Configurator.impl.ParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1094,15 +1036,7 @@ public interface ConfiguratorPackage extends EPackage {
 		EAttribute PARAMETER__MAX_CHOSEN_VALUES = eINSTANCE.getParameter_MaxChosenValues();
 
 		/**
-		 * The meta object literal for the '<em><b>Literal Values</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETER__LITERAL_VALUES = eINSTANCE.getParameter_LiteralValues();
-
-		/**
-		 * The meta object literal for the '<em><b>Children</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Children</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1110,22 +1044,12 @@ public interface ConfiguratorPackage extends EPackage {
 		EReference PARAMETER__CHILDREN = eINSTANCE.getParameter_Children();
 
 		/**
-		 * The meta object literal for the '<em><b>Enum Values</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference PARAMETER__ENUM_VALUES = eINSTANCE.getParameter_EnumValues();
-
-		/**
-		 * The meta object literal for the '{@link Configurator.impl.ExpressionImpl <em>Expression</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.ExpressionImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getExpression()
-		 * @generated
-		 */
-		EClass EXPRESSION = eINSTANCE.getExpression();
+		EReference PARAMETER__TYPE = eINSTANCE.getParameter_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Min Chosen Values</b></em>' attribute feature.
@@ -1136,24 +1060,6 @@ public interface ConfiguratorPackage extends EPackage {
 		EAttribute PARAMETER__MIN_CHOSEN_VALUES = eINSTANCE.getParameter_MinChosenValues();
 
 		/**
-		 * The meta object literal for the '<em><b>Enum</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PARAMETER__ENUM = eINSTANCE.getParameter_Enum();
-
-		/**
-		 * The meta object literal for the '{@link Configurator.impl.ValueImpl <em>Value</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.ValueImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getValue()
-		 * @generated
-		 */
-		EClass VALUE = eINSTANCE.getValue();
-
-		/**
 		 * The meta object literal for the '{@link Configurator.impl.ConstraintImpl <em>Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1162,22 +1068,6 @@ public interface ConfiguratorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONSTRAINT = eINSTANCE.getConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>If</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRAINT__IF = eINSTANCE.getConstraint_If();
-
-		/**
-		 * The meta object literal for the '<em><b>Then</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONSTRAINT__THEN = eINSTANCE.getConstraint_Then();
 
 		/**
 		 * The meta object literal for the '{@link Configurator.impl.EnumImpl <em>Enum</em>}' class.
@@ -1198,14 +1088,14 @@ public interface ConfiguratorPackage extends EPackage {
 		EReference ENUM__VALUES = eINSTANCE.getEnum_Values();
 
 		/**
-		 * The meta object literal for the '{@link Configurator.impl.BinaryExpressionImpl <em>Binary Expression</em>}' class.
+		 * The meta object literal for the '{@link Configurator.impl.BinaryConstraintImpl <em>Binary Constraint</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.BinaryExpressionImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryExpression()
+		 * @see Configurator.impl.BinaryConstraintImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getBinaryConstraint()
 		 * @generated
 		 */
-		EClass BINARY_EXPRESSION = eINSTANCE.getBinaryExpression();
+		EClass BINARY_CONSTRAINT = eINSTANCE.getBinaryConstraint();
 
 		/**
 		 * The meta object literal for the '<em><b>Operator</b></em>' attribute feature.
@@ -1213,7 +1103,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BINARY_EXPRESSION__OPERATOR = eINSTANCE.getBinaryExpression_Operator();
+		EAttribute BINARY_CONSTRAINT__OPERATOR = eINSTANCE.getBinaryConstraint_Operator();
 
 		/**
 		 * The meta object literal for the '<em><b>Left Operand</b></em>' containment reference feature.
@@ -1221,7 +1111,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_EXPRESSION__LEFT_OPERAND = eINSTANCE.getBinaryExpression_LeftOperand();
+		EReference BINARY_CONSTRAINT__LEFT_OPERAND = eINSTANCE.getBinaryConstraint_LeftOperand();
 
 		/**
 		 * The meta object literal for the '<em><b>Right Operand</b></em>' containment reference feature.
@@ -1229,7 +1119,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BINARY_EXPRESSION__RIGHT_OPERAND = eINSTANCE.getBinaryExpression_RightOperand();
+		EReference BINARY_CONSTRAINT__RIGHT_OPERAND = eINSTANCE.getBinaryConstraint_RightOperand();
 
 		/**
 		 * The meta object literal for the '{@link Configurator.impl.ParameterIdentifierImpl <em>Parameter Identifier</em>}' class.
@@ -1250,6 +1140,34 @@ public interface ConfiguratorPackage extends EPackage {
 		EReference PARAMETER_IDENTIFIER__PARAMETER = eINSTANCE.getParameterIdentifier_Parameter();
 
 		/**
+		 * The meta object literal for the '{@link Configurator.impl.ModelImpl <em>Model</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Configurator.impl.ModelImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getModel()
+		 * @generated
+		 */
+		EClass MODEL = eINSTANCE.getModel();
+
+		/**
+		 * The meta object literal for the '<em><b>Configurator Models</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MODEL__CONFIGURATOR_MODELS = eINSTANCE.getModel_ConfiguratorModels();
+
+		/**
+		 * The meta object literal for the '{@link Configurator.impl.TypeImpl <em>Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Configurator.impl.TypeImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getType()
+		 * @generated
+		 */
+		EClass TYPE = eINSTANCE.getType();
+
+		/**
 		 * The meta object literal for the '{@link Configurator.impl.NamedElementImpl <em>Named Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1268,14 +1186,14 @@ public interface ConfiguratorPackage extends EPackage {
 		EAttribute NAMED_ELEMENT__NAME = eINSTANCE.getNamedElement_Name();
 
 		/**
-		 * The meta object literal for the '{@link Configurator.impl.IntLiteralImpl <em>Int Literal</em>}' class.
+		 * The meta object literal for the '{@link Configurator.impl.IntegerImpl <em>Integer</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.IntLiteralImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getIntLiteral()
+		 * @see Configurator.impl.IntegerImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getInteger()
 		 * @generated
 		 */
-		EClass INT_LITERAL = eINSTANCE.getIntLiteral();
+		EClass INTEGER = eINSTANCE.getInteger();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1283,35 +1201,17 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute INT_LITERAL__VALUE = eINSTANCE.getIntLiteral_Value();
+		EAttribute INTEGER__VALUE = eINSTANCE.getInteger_Value();
 
 		/**
-		 * The meta object literal for the '{@link Configurator.impl.DoubleLiteralImpl <em>Double Literal</em>}' class.
+		 * The meta object literal for the '{@link Configurator.impl.DoubleImpl <em>Double</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.DoubleLiteralImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getDoubleLiteral()
+		 * @see Configurator.impl.DoubleImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getDouble()
 		 * @generated
 		 */
-		EClass DOUBLE_LITERAL = eINSTANCE.getDoubleLiteral();
-
-		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOUBLE_LITERAL__VALUE = eINSTANCE.getDoubleLiteral_Value();
-
-		/**
-		 * The meta object literal for the '{@link Configurator.impl.StringLiteralImpl <em>String Literal</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.StringLiteralImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getStringLiteral()
-		 * @generated
-		 */
-		EClass STRING_LITERAL = eINSTANCE.getStringLiteral();
+		EClass DOUBLE = eINSTANCE.getDouble();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1319,17 +1219,17 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING_LITERAL__VALUE = eINSTANCE.getStringLiteral_Value();
+		EAttribute DOUBLE__VALUE = eINSTANCE.getDouble_Value();
 
 		/**
-		 * The meta object literal for the '{@link Configurator.impl.BooleanLiteralImpl <em>Boolean Literal</em>}' class.
+		 * The meta object literal for the '{@link Configurator.impl.StringImpl <em>String</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.BooleanLiteralImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getBooleanLiteral()
+		 * @see Configurator.impl.StringImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getString()
 		 * @generated
 		 */
-		EClass BOOLEAN_LITERAL = eINSTANCE.getBooleanLiteral();
+		EClass STRING = eINSTANCE.getString();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1337,7 +1237,35 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute BOOLEAN_LITERAL__VALUE = eINSTANCE.getBooleanLiteral_Value();
+		EAttribute STRING__VALUE = eINSTANCE.getString_Value();
+
+		/**
+		 * The meta object literal for the '{@link Configurator.impl.BooleanImpl <em>Boolean</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Configurator.impl.BooleanImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getBoolean()
+		 * @generated
+		 */
+		EClass BOOLEAN = eINSTANCE.getBoolean();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute BOOLEAN__VALUE = eINSTANCE.getBoolean_Value();
+
+		/**
+		 * The meta object literal for the '{@link Configurator.impl.LiteralImpl <em>Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see Configurator.impl.LiteralImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getLiteral()
+		 * @generated
+		 */
+		EClass LITERAL = eINSTANCE.getLiteral();
 
 		/**
 		 * The meta object literal for the '{@link Configurator.BinaryOperator <em>Binary Operator</em>}' enum.

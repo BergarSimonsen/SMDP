@@ -1,15 +1,11 @@
 package org.xtext.example.mydsl.serializer;
 
-import Configurator.BinaryExpression;
-import Configurator.BooleanLiteral;
+import Configurator.BinaryConstraint;
 import Configurator.ConfiguratorModel;
 import Configurator.ConfiguratorPackage;
-import Configurator.Constraint;
-import Configurator.DoubleLiteral;
-import Configurator.IntLiteral;
+import Configurator.Model;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
-import Configurator.StringLiteral;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
@@ -33,18 +29,19 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	
 	public void createSequence(EObject context, EObject semanticObject) {
 		if(semanticObject.eClass().getEPackage() == ConfiguratorPackage.eINSTANCE) switch(semanticObject.eClass().getClassifierID()) {
-			case ConfiguratorPackage.BINARY_EXPRESSION:
-				if(context == grammarAccess.getBinaryExpressionRule() ||
-				   context == grammarAccess.getExpressionRule()) {
-					sequence_BinaryExpression(context, (BinaryExpression) semanticObject); 
+			case ConfiguratorPackage.BINARY_CONSTRAINT:
+				if(context == grammarAccess.getBinaryConstraintRule() ||
+				   context == grammarAccess.getConstraintRule()) {
+					sequence_BinaryConstraint(context, (BinaryConstraint) semanticObject); 
 					return; 
 				}
 				else break;
-			case ConfiguratorPackage.BOOLEAN_LITERAL:
-				if(context == grammarAccess.getBooleanLiteralRule() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getValueRule()) {
-					sequence_BooleanLiteral(context, (BooleanLiteral) semanticObject); 
+			case ConfiguratorPackage.BOOLEAN:
+				if(context == grammarAccess.getBooleanRule() ||
+				   context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_Boolean(context, (Configurator.Boolean) semanticObject); 
 					return; 
 				}
 				else break;
@@ -54,56 +51,56 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 					return; 
 				}
 				else break;
-			case ConfiguratorPackage.CONSTRAINT:
-				if(context == grammarAccess.getConstraintRule()) {
-					sequence_Constraint(context, (Constraint) semanticObject); 
-					return; 
-				}
-				else break;
-			case ConfiguratorPackage.DOUBLE_LITERAL:
-				if(context == grammarAccess.getDoubleLiteralRule() ||
-				   context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getValueRule()) {
-					sequence_DoubleLiteral(context, (DoubleLiteral) semanticObject); 
+			case ConfiguratorPackage.DOUBLE:
+				if(context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getDoubleRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_Double(context, (Configurator.Double) semanticObject); 
 					return; 
 				}
 				else break;
 			case ConfiguratorPackage.ENUM:
-				if(context == grammarAccess.getEnumRule()) {
+				if(context == grammarAccess.getEnumRule() ||
+				   context == grammarAccess.getTypeRule()) {
 					sequence_Enum(context, (Configurator.Enum) semanticObject); 
 					return; 
 				}
 				else break;
-			case ConfiguratorPackage.INT_LITERAL:
-				if(context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getIntLiteralRule() ||
-				   context == grammarAccess.getValueRule()) {
-					sequence_IntLiteral(context, (IntLiteral) semanticObject); 
+			case ConfiguratorPackage.INTEGER:
+				if(context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getIntegerRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_Integer(context, (Configurator.Integer) semanticObject); 
+					return; 
+				}
+				else break;
+			case ConfiguratorPackage.MODEL:
+				if(context == grammarAccess.getModelRule()) {
+					sequence_Model(context, (Model) semanticObject); 
 					return; 
 				}
 				else break;
 			case ConfiguratorPackage.PARAMETER:
-				if(context == grammarAccess.getParameter2Rule()) {
-					sequence_Parameter2(context, (Parameter) semanticObject); 
-					return; 
-				}
-				else if(context == grammarAccess.getParameter3Rule()) {
-					sequence_Parameter3(context, (Parameter) semanticObject); 
+				if(context == grammarAccess.getParameterRule()) {
+					sequence_Parameter(context, (Parameter) semanticObject); 
 					return; 
 				}
 				else break;
 			case ConfiguratorPackage.PARAMETER_IDENTIFIER:
-				if(context == grammarAccess.getExpressionRule() ||
+				if(context == grammarAccess.getConstraintRule() ||
 				   context == grammarAccess.getParameterIdentifierRule()) {
 					sequence_ParameterIdentifier(context, (ParameterIdentifier) semanticObject); 
 					return; 
 				}
 				else break;
-			case ConfiguratorPackage.STRING_LITERAL:
-				if(context == grammarAccess.getExpressionRule() ||
-				   context == grammarAccess.getStringLiteralRule() ||
-				   context == grammarAccess.getValueRule()) {
-					sequence_StringLiteral(context, (StringLiteral) semanticObject); 
+			case ConfiguratorPackage.STRING:
+				if(context == grammarAccess.getConstraintRule() ||
+				   context == grammarAccess.getLiteralRule() ||
+				   context == grammarAccess.getString0Rule() ||
+				   context == grammarAccess.getTypeRule()) {
+					sequence_String0(context, (Configurator.String) semanticObject); 
 					return; 
 				}
 				else break;
@@ -113,43 +110,38 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	
 	/**
 	 * Constraint:
-	 *     (leftOperand=Expression operator=BinaryOperator rightOperand=Expression)
+	 *     (leftOperand=Constraint operator=BinaryOperator rightOperand=Constraint)
 	 */
-	protected void sequence_BinaryExpression(EObject context, BinaryExpression semanticObject) {
+	protected void sequence_BinaryConstraint(EObject context, BinaryConstraint semanticObject) {
 		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.BINARY_EXPRESSION__OPERATOR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.BINARY_EXPRESSION__OPERATOR));
-			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.BINARY_EXPRESSION__LEFT_OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.BINARY_EXPRESSION__LEFT_OPERAND));
-			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.BINARY_EXPRESSION__RIGHT_OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.BINARY_EXPRESSION__RIGHT_OPERAND));
+			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.BINARY_CONSTRAINT__OPERATOR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.BINARY_CONSTRAINT__OPERATOR));
+			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.BINARY_CONSTRAINT__LEFT_OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.BINARY_CONSTRAINT__LEFT_OPERAND));
+			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.BINARY_CONSTRAINT__RIGHT_OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.BINARY_CONSTRAINT__RIGHT_OPERAND));
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getBinaryExpressionAccess().getLeftOperandExpressionParserRuleCall_1_0(), semanticObject.getLeftOperand());
-		feeder.accept(grammarAccess.getBinaryExpressionAccess().getOperatorBinaryOperatorEnumRuleCall_2_0(), semanticObject.getOperator());
-		feeder.accept(grammarAccess.getBinaryExpressionAccess().getRightOperandExpressionParserRuleCall_3_0(), semanticObject.getRightOperand());
+		feeder.accept(grammarAccess.getBinaryConstraintAccess().getLeftOperandConstraintParserRuleCall_1_0(), semanticObject.getLeftOperand());
+		feeder.accept(grammarAccess.getBinaryConstraintAccess().getOperatorBinaryOperatorEnumRuleCall_2_0(), semanticObject.getOperator());
+		feeder.accept(grammarAccess.getBinaryConstraintAccess().getRightOperandConstraintParserRuleCall_3_0(), semanticObject.getRightOperand());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (value?='value'?)
+	 *     {Boolean}
 	 */
-	protected void sequence_BooleanLiteral(EObject context, BooleanLiteral semanticObject) {
+	protected void sequence_Boolean(EObject context, Configurator.Boolean semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (
-	 *         name=EString 
-	 *         (enums+=Enum enums+=Enum*)? 
-	 *         ((parameters+=Parameter2 | parameters+=Parameter3) (parameters+=Parameter2 | parameters+=Parameter3)*)? 
-	 *         (constraints+=Constraint constraints+=Constraint*)?
-	 *     )
+	 *     (name=EString (parameters+=Parameter parameters+=Parameter*)? (constraints+=Constraint constraints+=Constraint*)?)
 	 */
 	protected void sequence_ConfiguratorModel(EObject context, ConfiguratorModel semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -158,35 +150,16 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	
 	/**
 	 * Constraint:
-	 *     (if=BinaryExpression then=BinaryExpression)
+	 *     {Double}
 	 */
-	protected void sequence_Constraint(EObject context, Constraint semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.CONSTRAINT__IF) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.CONSTRAINT__IF));
-			if(transientValues.isValueTransient(semanticObject, ConfiguratorPackage.Literals.CONSTRAINT__THEN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, ConfiguratorPackage.Literals.CONSTRAINT__THEN));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getConstraintAccess().getIfBinaryExpressionParserRuleCall_1_1_0(), semanticObject.getIf());
-		feeder.accept(grammarAccess.getConstraintAccess().getThenBinaryExpressionParserRuleCall_2_1_0(), semanticObject.getThen());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (value=EDouble?)
-	 */
-	protected void sequence_DoubleLiteral(EObject context, DoubleLiteral semanticObject) {
+	protected void sequence_Double(EObject context, Configurator.Double semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=EString values+=Value values+=Value*)
+	 *     (values+=Literal values+=Literal*)
 	 */
 	protected void sequence_Enum(EObject context, Configurator.Enum semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -195,27 +168,18 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	
 	/**
 	 * Constraint:
-	 *     (value=EInt?)
+	 *     {Integer}
 	 */
-	protected void sequence_IntLiteral(EObject context, IntLiteral semanticObject) {
+	protected void sequence_Integer(EObject context, Configurator.Integer semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=EString maxChosenValues=EInt minChosenValues=EInt enum=[Enum|EString]?)
+	 *     (configuratorModels+=ConfiguratorModel configuratorModels+=ConfiguratorModel*)
 	 */
-	protected void sequence_Parameter2(EObject context, Parameter semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (name=EString children+=[Parameter|EString] children+=[Parameter|EString]*)
-	 */
-	protected void sequence_Parameter3(EObject context, Parameter semanticObject) {
+	protected void sequence_Model(EObject context, Model semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -231,16 +195,25 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getParameterIdentifierAccess().getParameterParameterEStringParserRuleCall_1_0_1(), semanticObject.getParameter());
+		feeder.accept(grammarAccess.getParameterIdentifierAccess().getParameterParameterEStringParserRuleCall_0_1(), semanticObject.getParameter());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (value=EString?)
+	 *     (name=EString minChosenValues=EInt maxChosenValues=EInt type=Type)
 	 */
-	protected void sequence_StringLiteral(EObject context, StringLiteral semanticObject) {
+	protected void sequence_Parameter(EObject context, Parameter semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Constraint:
+	 *     {String}
+	 */
+	protected void sequence_String0(EObject context, Configurator.String semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

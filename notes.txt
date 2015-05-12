@@ -48,3 +48,13 @@ parameters {
     Parameter PrintSpec (maxChosenValues : 1, minChosenValues : 1, enum : Print),
     Parameter PrintColor (maxChosenValues : 1, minChosenValues : 1, enum : PrintColor)
 }
+* Remodelling
+** TODO Metamodel
+   - [X] add root node
+   - [ ] remodel enums
+   - [ ] get rid of if/then (go back to previous constrain model)
+   - [ ] child / parent relationship? (recursion)
+
+
+cleanup model code
+change string back!

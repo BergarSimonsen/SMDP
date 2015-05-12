@@ -19,7 +19,7 @@ package Configurator;
  * @model
  * @generated
  */
-public interface ParameterIdentifier extends Expression {
+public interface ParameterIdentifier extends Constraint {
 	/**
 	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->

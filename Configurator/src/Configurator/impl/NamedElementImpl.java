@@ -5,6 +5,7 @@ package Configurator.impl;
 import Configurator.ConfiguratorPackage;
 import Configurator.NamedElement;
 
+import java.lang.String;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
