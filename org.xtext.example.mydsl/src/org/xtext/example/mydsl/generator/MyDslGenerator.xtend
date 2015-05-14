@@ -4,6 +4,8 @@
 package org.xtext.example.mydsl.generator
 
 import Configurator.ConfiguratorModel
+import Configurator.Model
+import Configurator.Parameter
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
@@ -14,139 +16,89 @@ import org.eclipse.xtext.generator.IGenerator
  * see http://www.eclipse.org/Xtext/documentation.html#TutorialCodeGeneration
  */
 class MyDslGenerator implements IGenerator {
-	def static compileToAndroid(ConfiguratorModel it) {
-		'''
-		'''
-//		var int i = -1
-//		''' 
-//			package fsm;
-//			import java.util.Scanner;
-//			
-//			class FSM«it.name.toFirstUpper» {
-//			
-//				«FOR state : it.states»
-//					static final int «state.name.toUpperCase» = «i = i + 1»;
-//				«ENDFOR»
-//				static int current;
-//				
-//				static final String[] stateNames = { 
-//					«FOR state : states»"«state.name»",«ENDFOR»
-//				};
-//					
-//				static final String[] availableInputs = {
-//					«FOR state : states»
-//						"«FOR t : state.leavingTransitions»<«t.input»>«ENDFOR»",
-//					«ENDFOR»
-//				};
-//					
-//				public static void main (String[] args) {
-//			
-//				@SuppressWarnings(value = { "resource" })
-//				Scanner scanner = new Scanner(System.in);
-//				current = «initial.name.toUpperCase»;
-//				
-//				while (true) {
-//					System.out.print ("[" + stateNames[current] + "] ");
-//					System.out.print ("What is the next event? available: " + availableInputs[current]);
-//					System.out.print ("?");
-//					String input = scanner.nextLine();
-//					
-//					switch (current) {
-//				
-//					«FOR state : states»
-//						case «state.name.toUpperCase»:
-//							switch (input) {
-//							«FOR t : state.leavingTransitions»
-//								case "«t.input»":
-//									System.out.println ("machine says: «t.output»");
-//									current = «t.target.name.toUpperCase»;
-//									break;
-//							«ENDFOR»
-//							}
-//							break;
-//					«ENDFOR»
-//					}
-//				}
-//				}
-	}	
 	
 	def static compileToHtml(ConfiguratorModel it) {
 		'''
 		<html>
-			<head>
-				<link rel="stylesheet" href="jqwidgets-ver3.8.0/jqwidgets/styles/jqx.base.css" type="text/css"/>
-				<script type="text/javascript" src="jqwidgets-ver3.8.0/scripts/jquery-1.11.1.min.js"></script>
-				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxcore.js"></script>
-				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxbuttons.js"></script>
-				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxscrollbar.js"></script>
-				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxlistbox.js"></script>
-				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxcombobox.js"></script>
-				<script type='text/javascript'>
-					$(document).ready(function(){
-						«FOR e : enums»
-							var $«e.name.toFirstUpper»Values = [
-							«FOR eval : e.values»
-								«IF eval == e.values.get(e.values.size - 1)»
-									"«eval»"
-								«ELSE»
-									"«eval»",
-								«ENDIF»
-							«ENDFOR»
-							];
-						«ENDFOR»
-						
-						«FOR param : parameters»
-						 	«IF param.enum != null»
-								$("#«param.name.toFirstUpper»CB").jqxComboBox({ source: $«param.enum.name.toFirstUpper»Values, width: '200px', height: '25px',});
-							«ENDIF»
-						«ENDFOR»
-						
-						function checkConstraints() { 
-							«FOR c : constraints»
-							«ENDFOR»
-						};
-						
-						«FOR param : parameters»
-						 	«IF param.enum != null»
-								$('#«param.name.toFirstUpper»CB').bind('select', function (event) {		
-									checkConstraints();		
-								});
-							«ENDIF»
-						«ENDFOR»
-						
-					});
-				</script>
-  			</head>
-  			<body>
-  				<h2> «it.name.toFirstUpper» </h2>
-   				<hr/>
-   				
-  				«FOR param : parameters»  				
-  					<h3>«param.name.toFirstUpper»:</h3>
-  					«IF param.enum != null»
-  						<div id='«param.name.toFirstUpper»CB' class='combobox'>
-						</div>
-					«ELSEIF param.enum == null && param.children.empty»						
-						<form>
-						«FOR n : 1..param.maxChosenValues»
-							<input type="text"/>
-						«ENDFOR»
-						</form>						
-  					«ENDIF»
-  				«ENDFOR»	
-  			</body>
+«««			<head>
+«««				<link rel="stylesheet" href="jqwidgets-ver3.8.0/jqwidgets/styles/jqx.base.css" type="text/css"/>
+«««				<script type="text/javascript" src="jqwidgets-ver3.8.0/scripts/jquery-1.11.1.min.js"></script>
+«««				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxcore.js"></script>
+«««				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxbuttons.js"></script>
+«««				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxscrollbar.js"></script>
+«««				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxlistbox.js"></script>
+«««				<script type="text/javascript" src="jqwidgets-ver3.8.0/jqwidgets/jqxcombobox.js"></script>
+«««				<script type='text/javascript'>
+«««					$(document).ready(function(){
+«««						«FOR e : enums»
+«««							var $«e.name.toFirstUpper»Values = [
+«««							«FOR eval : e.values»
+«««								«IF eval == e.values.get(e.values.size - 1)»
+«««									"«eval»"
+«««								«ELSE»
+«««									"«eval»",
+«««								«ENDIF»
+«««							«ENDFOR»
+«««							];
+«««						«ENDFOR»
+«««						
+«««						«FOR param : parameters»
+«««						 	«IF param.enum != null»
+«««								$("#«param.name.toFirstUpper»CB").jqxComboBox({ source: $«param.enum.name.toFirstUpper»Values, width: '200px', height: '25px',});
+«««							«ENDIF»
+«««						«ENDFOR»
+«««						
+«««						function checkConstraints() { 
+«««							«FOR c : constraints»
+«««							«ENDFOR»
+«««						};
+«««						
+«««						«FOR param : parameters»
+«««						 	«IF param.enum != null»
+«««								$('#«param.name.toFirstUpper»CB').bind('select', function (event) {		
+«««									checkConstraints();		
+«««								});
+«««							«ENDIF»
+«««						«ENDFOR»
+«««						
+«««					});
+«««				</script>
+«««  			</head>
+«««  			<body>
+«««  				<h2> «it.name.toFirstUpper» </h2>
+«««   				<hr/>
+«««   				
+«««  				«FOR param : parameters»  				
+«««  					<h3>«param.name.toFirstUpper»:</h3>
+«««  					«IF param.enum != null»
+«««  						<div id='«param.name.toFirstUpper»CB' class='combobox'>
+«««						</div>
+«««					«ELSEIF param.enum == null && param.children.empty»						
+«««						<form>
+«««						«FOR n : 1..param.maxChosenValues»
+«««							<input type="text"/>
+«««						«ENDFOR»
+«««						</form>						
+«««  					«ENDIF»
+«««  				«ENDFOR»	
+«««  			</body>
 		</html>
 		'''
 	}
 	
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		resource.allContents.toIterable.filter(typeof(ConfiguratorModel))
-				.forEach [ ConfiguratorModel it | 
-					val fname = it.name.toFirstUpper
-					fsa.generateFile("fsm/" + fname + ".java", it.compileToAndroid)
-					fsa.generateFile("fsm/" + fname + ".js", it.compileToHtml)
-				]
+		var m = resource.contents.head as Model
+		for(ConfiguratorModel root : m.configuratorModels) {
+			fsa.generateFile(root.name + ".html", compileToHtml(root))
+		}
 	}
+	
+//	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+////		fsa.generateFile('greetings.txt', 'People to greet: ' + 
+////			resource.allContents
+////				.filter(typeof(Greeting))
+////				.map[name]
+////				.join(', '))
+//	}
 }
-

@@ -20,10 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Enum extends NamedElement {
+public interface Enum extends Type {
 	/**
 	 * Returns the value of the '<em><b>Values</b></em>' containment reference list.
-	 * The list contents are of type {@link Configurator.Value}.
+	 * The list contents are of type {@link Configurator.Literal}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Values</em>' containment reference list isn't clear,
@@ -35,6 +35,6 @@ public interface Enum extends NamedElement {
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<Value> getValues();
+	EList<Literal> getValues();
 
 } // Enum

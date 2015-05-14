@@ -4,7 +4,8 @@ package Configurator.impl;
 
 import Configurator.ConfiguratorPackage;
 import Configurator.Parameter;
-import Configurator.Value;
+import Configurator.Type;
+import java.lang.Integer;
 import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -13,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -24,11 +24,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link Configurator.impl.ParameterImpl#getMaxChosenValues <em>Max Chosen Values</em>}</li>
- *   <li>{@link Configurator.impl.ParameterImpl#getLiteralValues <em>Literal Values</em>}</li>
  *   <li>{@link Configurator.impl.ParameterImpl#getMinChosenValues <em>Min Chosen Values</em>}</li>
- *   <li>{@link Configurator.impl.ParameterImpl#getEnum <em>Enum</em>}</li>
  *   <li>{@link Configurator.impl.ParameterImpl#getChildren <em>Children</em>}</li>
- *   <li>{@link Configurator.impl.ParameterImpl#getEnumValues <em>Enum Values</em>}</li>
+ *   <li>{@link Configurator.impl.ParameterImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,16 +54,6 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 	protected int maxChosenValues = MAX_CHOSEN_VALUES_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLiteralValues() <em>Literal Values</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLiteralValues()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Value> literalValues;
-
-	/**
 	 * The default value of the '{@link #getMinChosenValues() <em>Min Chosen Values</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -86,17 +74,7 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 	protected int minChosenValues = MIN_CHOSEN_VALUES_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getEnum() <em>Enum</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEnum()
-	 * @generated
-	 * @ordered
-	 */
-	protected Configurator.Enum enum_;
-
-	/**
-	 * The cached value of the '{@link #getChildren() <em>Children</em>}' reference list.
+	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getChildren()
@@ -106,14 +84,14 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 	protected EList<Parameter> children;
 
 	/**
-	 * The cached value of the '{@link #getEnumValues() <em>Enum Values</em>}' reference list.
+	 * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getEnumValues()
+	 * @see #getType()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Value> enumValues;
+	protected Type type;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -160,21 +138,9 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Value> getLiteralValues() {
-		if (literalValues == null) {
-			literalValues = new EObjectContainmentEList<Value>(Value.class, this, ConfiguratorPackage.PARAMETER__LITERAL_VALUES);
-		}
-		return literalValues;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<Parameter> getChildren() {
 		if (children == null) {
-			children = new EObjectResolvingEList<Parameter>(Parameter.class, this, ConfiguratorPackage.PARAMETER__CHILDREN);
+			children = new EObjectContainmentEList<Parameter>(Parameter.class, this, ConfiguratorPackage.PARAMETER__CHILDREN);
 		}
 		return children;
 	}
@@ -184,11 +150,42 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Value> getEnumValues() {
-		if (enumValues == null) {
-			enumValues = new EObjectResolvingEList<Value>(Value.class, this, ConfiguratorPackage.PARAMETER__ENUM_VALUES);
+	public Type getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
+		Type oldType = type;
+		type = newType;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.PARAMETER__TYPE, oldType, newType);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return enumValues;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(Type newType) {
+		if (newType != type) {
+			NotificationChain msgs = null;
+			if (type != null)
+				msgs = ((InternalEObject)type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ConfiguratorPackage.PARAMETER__TYPE, null, msgs);
+			if (newType != null)
+				msgs = ((InternalEObject)newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ConfiguratorPackage.PARAMETER__TYPE, null, msgs);
+			msgs = basicSetType(newType, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.PARAMETER__TYPE, newType, newType));
 	}
 
 	/**
@@ -217,49 +214,13 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Configurator.Enum getEnum() {
-		if (enum_ != null && enum_.eIsProxy()) {
-			InternalEObject oldEnum = (InternalEObject)enum_;
-			enum_ = (Configurator.Enum)eResolveProxy(oldEnum);
-			if (enum_ != oldEnum) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfiguratorPackage.PARAMETER__ENUM, oldEnum, enum_));
-			}
-		}
-		return enum_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Configurator.Enum basicGetEnum() {
-		return enum_;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setEnum(Configurator.Enum newEnum) {
-		Configurator.Enum oldEnum = enum_;
-		enum_ = newEnum;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ConfiguratorPackage.PARAMETER__ENUM, oldEnum, enum_));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConfiguratorPackage.PARAMETER__LITERAL_VALUES:
-				return ((InternalEList<?>)getLiteralValues()).basicRemove(otherEnd, msgs);
+			case ConfiguratorPackage.PARAMETER__CHILDREN:
+				return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
+			case ConfiguratorPackage.PARAMETER__TYPE:
+				return basicSetType(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -274,17 +235,12 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 		switch (featureID) {
 			case ConfiguratorPackage.PARAMETER__MAX_CHOSEN_VALUES:
 				return getMaxChosenValues();
-			case ConfiguratorPackage.PARAMETER__LITERAL_VALUES:
-				return getLiteralValues();
 			case ConfiguratorPackage.PARAMETER__MIN_CHOSEN_VALUES:
 				return getMinChosenValues();
-			case ConfiguratorPackage.PARAMETER__ENUM:
-				if (resolve) return getEnum();
-				return basicGetEnum();
 			case ConfiguratorPackage.PARAMETER__CHILDREN:
 				return getChildren();
-			case ConfiguratorPackage.PARAMETER__ENUM_VALUES:
-				return getEnumValues();
+			case ConfiguratorPackage.PARAMETER__TYPE:
+				return getType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -301,23 +257,15 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 			case ConfiguratorPackage.PARAMETER__MAX_CHOSEN_VALUES:
 				setMaxChosenValues((Integer)newValue);
 				return;
-			case ConfiguratorPackage.PARAMETER__LITERAL_VALUES:
-				getLiteralValues().clear();
-				getLiteralValues().addAll((Collection<? extends Value>)newValue);
-				return;
 			case ConfiguratorPackage.PARAMETER__MIN_CHOSEN_VALUES:
 				setMinChosenValues((Integer)newValue);
-				return;
-			case ConfiguratorPackage.PARAMETER__ENUM:
-				setEnum((Configurator.Enum)newValue);
 				return;
 			case ConfiguratorPackage.PARAMETER__CHILDREN:
 				getChildren().clear();
 				getChildren().addAll((Collection<? extends Parameter>)newValue);
 				return;
-			case ConfiguratorPackage.PARAMETER__ENUM_VALUES:
-				getEnumValues().clear();
-				getEnumValues().addAll((Collection<? extends Value>)newValue);
+			case ConfiguratorPackage.PARAMETER__TYPE:
+				setType((Type)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -334,20 +282,14 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 			case ConfiguratorPackage.PARAMETER__MAX_CHOSEN_VALUES:
 				setMaxChosenValues(MAX_CHOSEN_VALUES_EDEFAULT);
 				return;
-			case ConfiguratorPackage.PARAMETER__LITERAL_VALUES:
-				getLiteralValues().clear();
-				return;
 			case ConfiguratorPackage.PARAMETER__MIN_CHOSEN_VALUES:
 				setMinChosenValues(MIN_CHOSEN_VALUES_EDEFAULT);
-				return;
-			case ConfiguratorPackage.PARAMETER__ENUM:
-				setEnum((Configurator.Enum)null);
 				return;
 			case ConfiguratorPackage.PARAMETER__CHILDREN:
 				getChildren().clear();
 				return;
-			case ConfiguratorPackage.PARAMETER__ENUM_VALUES:
-				getEnumValues().clear();
+			case ConfiguratorPackage.PARAMETER__TYPE:
+				setType((Type)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -363,16 +305,12 @@ public class ParameterImpl extends NamedElementImpl implements Parameter {
 		switch (featureID) {
 			case ConfiguratorPackage.PARAMETER__MAX_CHOSEN_VALUES:
 				return maxChosenValues != MAX_CHOSEN_VALUES_EDEFAULT;
-			case ConfiguratorPackage.PARAMETER__LITERAL_VALUES:
-				return literalValues != null && !literalValues.isEmpty();
 			case ConfiguratorPackage.PARAMETER__MIN_CHOSEN_VALUES:
 				return minChosenValues != MIN_CHOSEN_VALUES_EDEFAULT;
-			case ConfiguratorPackage.PARAMETER__ENUM:
-				return enum_ != null;
 			case ConfiguratorPackage.PARAMETER__CHILDREN:
 				return children != null && !children.isEmpty();
-			case ConfiguratorPackage.PARAMETER__ENUM_VALUES:
-				return enumValues != null && !enumValues.isEmpty();
+			case ConfiguratorPackage.PARAMETER__TYPE:
+				return type != null;
 		}
 		return super.eIsSet(featureID);
 	}

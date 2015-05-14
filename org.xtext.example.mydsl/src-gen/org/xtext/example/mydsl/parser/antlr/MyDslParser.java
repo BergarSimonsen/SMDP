@@ -25,7 +25,7 @@ public class MyDslParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPar
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "ConfiguratorModel";
+		return "Model";
 	}
 	
 	public MyDslGrammarAccess getGrammarAccess() {

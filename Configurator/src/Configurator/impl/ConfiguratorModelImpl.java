@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link Configurator.impl.ConfiguratorModelImpl#getEnums <em>Enums</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,16 +53,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 	 * @ordered
 	 */
 	protected EList<Constraint> constraints;
-
-	/**
-	 * The cached value of the '{@link #getEnums() <em>Enums</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getEnums()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Configurator.Enum> enums;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -113,18 +102,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Configurator.Enum> getEnums() {
-		if (enums == null) {
-			enums = new EObjectContainmentEList<Configurator.Enum>(Configurator.Enum.class, this, ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS);
-		}
-		return enums;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -132,8 +109,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
-				return ((InternalEList<?>)getEnums()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -150,8 +125,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 				return getParameters();
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				return getConstraints();
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
-				return getEnums();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,10 +146,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 				getConstraints().clear();
 				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
-				getEnums().clear();
-				getEnums().addAll((Collection<? extends Configurator.Enum>)newValue);
-				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -195,9 +164,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				getConstraints().clear();
 				return;
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
-				getEnums().clear();
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -214,8 +180,6 @@ public class ConfiguratorModelImpl extends NamedElementImpl implements Configura
 				return parameters != null && !parameters.isEmpty();
 			case ConfiguratorPackage.CONFIGURATOR_MODEL__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
-			case ConfiguratorPackage.CONFIGURATOR_MODEL__ENUMS:
-				return enums != null && !enums.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -14,7 +14,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link Configurator.ConfiguratorModel#getParameters <em>Parameters</em>}</li>
  *   <li>{@link Configurator.ConfiguratorModel#getConstraints <em>Constraints</em>}</li>
- *   <li>{@link Configurator.ConfiguratorModel#getEnums <em>Enums</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,21 +53,5 @@ public interface ConfiguratorModel extends NamedElement {
 	 * @generated
 	 */
 	EList<Constraint> getConstraints();
-
-	/**
-	 * Returns the value of the '<em><b>Enums</b></em>' containment reference list.
-	 * The list contents are of type {@link Configurator.Enum}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Enums</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Enums</em>' containment reference list.
-	 * @see Configurator.ConfiguratorPackage#getConfiguratorModel_Enums()
-	 * @model containment="true"
-	 * @generated
-	 */
-	EList<Configurator.Enum> getEnums();
 
 } // ConfiguratorModel

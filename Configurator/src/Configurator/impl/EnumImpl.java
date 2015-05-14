@@ -3,17 +3,12 @@
 package Configurator.impl;
 
 import Configurator.ConfiguratorPackage;
-import Configurator.Value;
-
+import Configurator.Literal;
 import java.util.Collection;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -30,7 +25,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class EnumImpl extends NamedElementImpl implements Configurator.Enum {
+public class EnumImpl extends TypeImpl implements Configurator.Enum {
 	/**
 	 * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -39,7 +34,7 @@ public class EnumImpl extends NamedElementImpl implements Configurator.Enum {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Value> values;
+	protected EList<Literal> values;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -65,9 +60,9 @@ public class EnumImpl extends NamedElementImpl implements Configurator.Enum {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Value> getValues() {
+	public EList<Literal> getValues() {
 		if (values == null) {
-			values = new EObjectContainmentEList<Value>(Value.class, this, ConfiguratorPackage.ENUM__VALUES);
+			values = new EObjectContainmentEList<Literal>(Literal.class, this, ConfiguratorPackage.ENUM__VALUES);
 		}
 		return values;
 	}
@@ -111,7 +106,7 @@ public class EnumImpl extends NamedElementImpl implements Configurator.Enum {
 		switch (featureID) {
 			case ConfiguratorPackage.ENUM__VALUES:
 				getValues().clear();
-				getValues().addAll((Collection<? extends Value>)newValue);
+				getValues().addAll((Collection<? extends Literal>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

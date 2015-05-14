@@ -2,6 +2,7 @@
  */
 package Configurator;
 
+import java.lang.String;
 import org.eclipse.emf.ecore.EObject;
 
 /**
