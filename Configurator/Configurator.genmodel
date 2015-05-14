@@ -45,8 +45,8 @@
     <genClasses ecoreClass="Configurator.ecore#//Double">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Double/value"/>
     </genClasses>
-    <genClasses ecoreClass="Configurator.ecore#//String">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//String/value"/>
+    <genClasses ecoreClass="Configurator.ecore#//Stringg">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Stringg/value"/>
     </genClasses>
     <genClasses ecoreClass="Configurator.ecore#//Boolean">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Configurator.ecore#//Boolean/value"/>

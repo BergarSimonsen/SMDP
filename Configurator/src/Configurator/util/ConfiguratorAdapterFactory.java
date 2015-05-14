@@ -11,6 +11,7 @@ import Configurator.Model;
 import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
+import Configurator.Stringg;
 import Configurator.Type;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -106,8 +107,8 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 				return createDoubleAdapter();
 			}
 			@Override
-			public Adapter caseString(Configurator.String object) {
-				return createStringAdapter();
+			public Adapter caseStringg(Stringg object) {
+				return createStringgAdapter();
 			}
 			@Override
 			public Adapter caseBoolean(Configurator.Boolean object) {
@@ -304,16 +305,16 @@ public class ConfiguratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link Configurator.String <em>String</em>}'.
+	 * Creates a new adapter for an object of class '{@link Configurator.Stringg <em>Stringg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see Configurator.String
+	 * @see Configurator.Stringg
 	 * @generated
 	 */
-	public Adapter createStringAdapter() {
+	public Adapter createStringgAdapter() {
 		return null;
 	}
 

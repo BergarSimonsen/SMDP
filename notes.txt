@@ -51,10 +51,7 @@ parameters {
 * Remodelling
 ** TODO Metamodel
    - [X] add root node
-   - [ ] remodel enums
-   - [ ] get rid of if/then (go back to previous constrain model)
-   - [ ] child / parent relationship? (recursion)
+   - [X] remodel enums
+   - [X] get rid of if/then (go back to previous constrain model)
+   - [X] child / parent relationship? (recursion)
 
-
-cleanup model code
-change string back!

@@ -11,13 +11,13 @@ Model returns Model:
 	'}';
 
 Constraint returns Constraint:
-	BinaryConstraint | Integer | Double | String0 | Boolean | ParameterIdentifier;
+	BinaryConstraint | Integer | Double | Stringg | Boolean | ParameterIdentifier;
 
 Type returns Type:
-	Enum | Integer | Double | String0 | Boolean;
+	Enum | Integer | Double | Stringg | Boolean;
 
 Literal returns Literal:
-	Integer | Double | String0 | Boolean;
+	Integer | Double | Stringg | Boolean;
 
 ConfiguratorModel returns ConfiguratorModel:
 	{ConfiguratorModel}
@@ -36,9 +36,9 @@ Parameter returns Parameter:
 	name=EString
 	'('
 		('minChosenValues' ':' minChosenValues=EInt) ','
-		('maxChosenValues' ':' maxChosenValues=EInt) ','
+		('maxChosenValues' ':' maxChosenValues=EInt)
 	')' ':'	type=Type
-//		('{' children+=Parameter ( "," children+=Parameter)* '}' )?
+	('{' children+=Parameter ( "," children+=Parameter)* '}' )?
 	;
 
 EInt returns ecore::EInt:
@@ -55,9 +55,9 @@ Double returns Double:
 	{Double}
 	'double' | (value=EDouble);
 
-String0 returns String:
-	{String}
-	'String' | (' ' value=EString);
+Stringg returns Stringg:
+	{Stringg}
+	'String' | ( 'String.' value=EString);
 	
 //String0 returns String:
 //	{String}
@@ -81,7 +81,8 @@ BinaryConstraint returns BinaryConstraint:
 	')';
 
 ParameterIdentifier returns ParameterIdentifier:
-	parameter=[Parameter|EString];
+	parameter=[Parameter];
+//	(parameter=Parameter);
 
 enum BinaryOperator returns BinaryOperator:
 				AND = '&&' | OR = '||' | XOR = '!||' | EQUALS = '==' | NOTEQUALS = '!=' | GT = '>' | LT = '<' | GTEQ = '>=' | LTEQ = '<=';

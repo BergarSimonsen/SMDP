@@ -53,6 +53,7 @@ T__43=43
 '['=25
 '>='=44
 ':'=21
+'String.'=30
 'boolean'=31
 '.'=32
 'false'=36
@@ -65,7 +66,6 @@ T__43=43
 'double'=28
 'maxChosenValues'=22
 '<='=45
-' '=30
 'ConfiguratorModel'=15
 '}'=14
 '&&'=37

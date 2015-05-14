@@ -76,13 +76,13 @@ public interface ConfiguratorFactory extends EFactory {
 	Double createDouble();
 
 	/**
-	 * Returns a new object of class '<em>String</em>'.
+	 * Returns a new object of class '<em>Stringg</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>String</em>'.
+	 * @return a new object of class '<em>Stringg</em>'.
 	 * @generated
 	 */
-	String createString();
+	Stringg createStringg();
 
 	/**
 	 * Returns a new object of class '<em>Boolean</em>'.

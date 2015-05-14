@@ -10,6 +10,7 @@ import Configurator.ConfiguratorPackage;
 import Configurator.Model;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
+import Configurator.Stringg;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -67,7 +68,7 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 			case ConfiguratorPackage.BINARY_CONSTRAINT: return createBinaryConstraint();
 			case ConfiguratorPackage.INTEGER: return createInteger();
 			case ConfiguratorPackage.DOUBLE: return createDouble();
-			case ConfiguratorPackage.STRING: return createString();
+			case ConfiguratorPackage.STRINGG: return createStringg();
 			case ConfiguratorPackage.BOOLEAN: return createBoolean();
 			case ConfiguratorPackage.PARAMETER_IDENTIFIER: return createParameterIdentifier();
 			case ConfiguratorPackage.MODEL: return createModel();
@@ -171,9 +172,9 @@ public class ConfiguratorFactoryImpl extends EFactoryImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Configurator.String createString() {
-		StringImpl string = new StringImpl();
-		return string;
+	public Stringg createStringg() {
+		StringgImpl stringg = new StringgImpl();
+		return stringg;
 	}
 
 	/**

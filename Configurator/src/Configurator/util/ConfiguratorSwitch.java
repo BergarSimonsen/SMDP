@@ -11,6 +11,7 @@ import Configurator.Model;
 import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
+import Configurator.Stringg;
 import Configurator.Type;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -131,12 +132,12 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ConfiguratorPackage.STRING: {
-				Configurator.String string = (Configurator.String)theEObject;
-				T result = caseString(string);
-				if (result == null) result = caseLiteral(string);
-				if (result == null) result = caseConstraint(string);
-				if (result == null) result = caseType(string);
+			case ConfiguratorPackage.STRINGG: {
+				Stringg stringg = (Stringg)theEObject;
+				T result = caseStringg(stringg);
+				if (result == null) result = caseLiteral(stringg);
+				if (result == null) result = caseConstraint(stringg);
+				if (result == null) result = caseType(stringg);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -346,17 +347,17 @@ public class ConfiguratorSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>String</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Stringg</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>String</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Stringg</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseString(Configurator.String object) {
+	public T caseStringg(Stringg object) {
 		return null;
 	}
 

@@ -6,6 +6,7 @@ import Configurator.ConfiguratorPackage;
 import Configurator.Model;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
+import Configurator.Stringg;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import org.eclipse.emf.ecore.EObject;
@@ -95,12 +96,12 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 					return; 
 				}
 				else break;
-			case ConfiguratorPackage.STRING:
+			case ConfiguratorPackage.STRINGG:
 				if(context == grammarAccess.getConstraintRule() ||
 				   context == grammarAccess.getLiteralRule() ||
-				   context == grammarAccess.getString0Rule() ||
+				   context == grammarAccess.getStringgRule() ||
 				   context == grammarAccess.getTypeRule()) {
-					sequence_String0(context, (Configurator.String) semanticObject); 
+					sequence_Stringg(context, (Stringg) semanticObject); 
 					return; 
 				}
 				else break;
@@ -186,7 +187,7 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	
 	/**
 	 * Constraint:
-	 *     parameter=[Parameter|EString]
+	 *     parameter=[Parameter|ID]
 	 */
 	protected void sequence_ParameterIdentifier(EObject context, ParameterIdentifier semanticObject) {
 		if(errorAcceptor != null) {
@@ -195,14 +196,14 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getParameterIdentifierAccess().getParameterParameterEStringParserRuleCall_0_1(), semanticObject.getParameter());
+		feeder.accept(grammarAccess.getParameterIdentifierAccess().getParameterParameterIDTerminalRuleCall_0_1(), semanticObject.getParameter());
 		feeder.finish();
 	}
 	
 	
 	/**
 	 * Constraint:
-	 *     (name=EString minChosenValues=EInt maxChosenValues=EInt type=Type)
+	 *     (name=EString minChosenValues=EInt maxChosenValues=EInt type=Type (children+=Parameter children+=Parameter*)?)
 	 */
 	protected void sequence_Parameter(EObject context, Parameter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -211,9 +212,9 @@ public abstract class AbstractMyDslSemanticSequencer extends AbstractDelegatingS
 	
 	/**
 	 * Constraint:
-	 *     {String}
+	 *     {Stringg}
 	 */
-	protected void sequence_String0(EObject context, Configurator.String semanticObject) {
+	protected void sequence_Stringg(EObject context, Stringg semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 }

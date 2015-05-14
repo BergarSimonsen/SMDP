@@ -13,6 +13,7 @@ import Configurator.Model;
 import Configurator.NamedElement;
 import Configurator.Parameter;
 import Configurator.ParameterIdentifier;
+import Configurator.Stringg;
 import Configurator.Type;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -110,7 +111,7 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass stringEClass = null;
+	private EClass stringgEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -433,8 +434,8 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getString() {
-		return stringEClass;
+	public EClass getStringg() {
+		return stringgEClass;
 	}
 
 	/**
@@ -442,8 +443,8 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getString_Value() {
-		return (EAttribute)stringEClass.getEStructuralFeatures().get(0);
+	public EAttribute getStringg_Value() {
+		return (EAttribute)stringgEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -539,8 +540,8 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		doubleEClass = createEClass(DOUBLE);
 		createEAttribute(doubleEClass, DOUBLE__VALUE);
 
-		stringEClass = createEClass(STRING);
-		createEAttribute(stringEClass, STRING__VALUE);
+		stringgEClass = createEClass(STRINGG);
+		createEAttribute(stringgEClass, STRINGG__VALUE);
 
 		booleanEClass = createEClass(BOOLEAN);
 		createEAttribute(booleanEClass, BOOLEAN__VALUE);
@@ -593,7 +594,7 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		binaryConstraintEClass.getESuperTypes().add(this.getConstraint());
 		integerEClass.getESuperTypes().add(this.getLiteral());
 		doubleEClass.getESuperTypes().add(this.getLiteral());
-		stringEClass.getESuperTypes().add(this.getLiteral());
+		stringgEClass.getESuperTypes().add(this.getLiteral());
 		booleanEClass.getESuperTypes().add(this.getLiteral());
 		literalEClass.getESuperTypes().add(this.getConstraint());
 		literalEClass.getESuperTypes().add(this.getType());
@@ -629,8 +630,8 @@ public class ConfiguratorPackageImpl extends EPackageImpl implements Configurato
 		initEClass(doubleEClass, Configurator.Double.class, "Double", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDouble_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, Configurator.Double.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(stringEClass, Configurator.String.class, "String", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getString_Value(), ecorePackage.getEString(), "value", null, 0, 1, Configurator.String.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(stringgEClass, Stringg.class, "Stringg", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getStringg_Value(), ecorePackage.getEString(), "value", null, 0, 1, Stringg.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(booleanEClass, Configurator.Boolean.class, "Boolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBoolean_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, Configurator.Boolean.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

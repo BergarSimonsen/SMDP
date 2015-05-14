@@ -284,16 +284,6 @@ public interface ConfiguratorPackage extends EPackage {
 	int DOUBLE = 7;
 
 	/**
-	 * The meta object id for the '{@link Configurator.impl.StringImpl <em>String</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see Configurator.impl.StringImpl
-	 * @see Configurator.impl.ConfiguratorPackageImpl#getString()
-	 * @generated
-	 */
-	int STRING = 8;
-
-	/**
 	 * The meta object id for the '{@link Configurator.impl.BooleanImpl <em>Boolean</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -514,31 +504,41 @@ public interface ConfiguratorPackage extends EPackage {
 	int DOUBLE_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link Configurator.impl.StringgImpl <em>Stringg</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see Configurator.impl.StringgImpl
+	 * @see Configurator.impl.ConfiguratorPackageImpl#getStringg()
+	 * @generated
+	 */
+	int STRINGG = 8;
+
+	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING__VALUE = LITERAL_FEATURE_COUNT + 0;
+	int STRINGG__VALUE = LITERAL_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>String</em>' class.
+	 * The number of structural features of the '<em>Stringg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
+	int STRINGG_FEATURE_COUNT = LITERAL_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of operations of the '<em>String</em>' class.
+	 * The number of operations of the '<em>Stringg</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int STRING_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
+	int STRINGG_OPERATION_COUNT = LITERAL_OPERATION_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -907,25 +907,25 @@ public interface ConfiguratorPackage extends EPackage {
 	EAttribute getDouble_Value();
 
 	/**
-	 * Returns the meta object for class '{@link Configurator.String <em>String</em>}'.
+	 * Returns the meta object for class '{@link Configurator.Stringg <em>Stringg</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>String</em>'.
-	 * @see Configurator.String
+	 * @return the meta object for class '<em>Stringg</em>'.
+	 * @see Configurator.Stringg
 	 * @generated
 	 */
-	EClass getString();
+	EClass getStringg();
 
 	/**
-	 * Returns the meta object for the attribute '{@link Configurator.String#getValue <em>Value</em>}'.
+	 * Returns the meta object for the attribute '{@link Configurator.Stringg#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see Configurator.String#getValue()
-	 * @see #getString()
+	 * @see Configurator.Stringg#getValue()
+	 * @see #getStringg()
 	 * @generated
 	 */
-	EAttribute getString_Value();
+	EAttribute getStringg_Value();
 
 	/**
 	 * Returns the meta object for class '{@link Configurator.Boolean <em>Boolean</em>}'.
@@ -1222,14 +1222,14 @@ public interface ConfiguratorPackage extends EPackage {
 		EAttribute DOUBLE__VALUE = eINSTANCE.getDouble_Value();
 
 		/**
-		 * The meta object literal for the '{@link Configurator.impl.StringImpl <em>String</em>}' class.
+		 * The meta object literal for the '{@link Configurator.impl.StringgImpl <em>Stringg</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Configurator.impl.StringImpl
-		 * @see Configurator.impl.ConfiguratorPackageImpl#getString()
+		 * @see Configurator.impl.StringgImpl
+		 * @see Configurator.impl.ConfiguratorPackageImpl#getStringg()
 		 * @generated
 		 */
-		EClass STRING = eINSTANCE.getString();
+		EClass STRINGG = eINSTANCE.getStringg();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1237,7 +1237,7 @@ public interface ConfiguratorPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute STRING__VALUE = eINSTANCE.getString_Value();
+		EAttribute STRINGG__VALUE = eINSTANCE.getStringg_Value();
 
 		/**
 		 * The meta object literal for the '{@link Configurator.impl.BooleanImpl <em>Boolean</em>}' class.

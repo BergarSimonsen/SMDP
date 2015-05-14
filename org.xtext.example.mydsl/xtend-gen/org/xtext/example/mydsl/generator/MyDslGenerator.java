@@ -3,9 +3,15 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import Configurator.ConfiguratorModel;
+import Configurator.Model;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Generates code from your model files on save.
@@ -14,6 +20,25 @@ import org.eclipse.xtext.generator.IGenerator;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator implements IGenerator {
+  public static CharSequence compileToHtml(final ConfiguratorModel it) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<html>");
+    _builder.newLine();
+    _builder.append("</html>");
+    _builder.newLine();
+    return _builder;
+  }
+  
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    EList<EObject> _contents = resource.getContents();
+    EObject _head = IterableExtensions.<EObject>head(_contents);
+    Model m = ((Model) _head);
+    EList<ConfiguratorModel> _configuratorModels = m.getConfiguratorModels();
+    for (final ConfiguratorModel root : _configuratorModels) {
+      String _name = root.getName();
+      String _plus = (_name + ".html");
+      CharSequence _compileToHtml = MyDslGenerator.compileToHtml(root);
+      fsa.generateFile(_plus, _compileToHtml);
+    }
   }
 }
