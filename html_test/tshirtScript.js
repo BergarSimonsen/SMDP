@@ -39,7 +39,7 @@ $(document).ready(function(){
 		text += "Title: " + $("#Title").val() + " \r\n";
 		text += "Colour: " + $("#Colour").jqxComboBox('getSelectedItem').value + " \r\n";
 		text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n";
-		text += "Print: " + "\r";
+		text += "Print: " + "\r\n";
 		text += "PrintColour: " + $("#PrintColour").jqxComboBox('getSelectedItem').value + " \r\n";
 		text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n";
 		
