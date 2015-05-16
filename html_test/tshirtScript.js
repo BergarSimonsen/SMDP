@@ -34,7 +34,23 @@ $(document).ready(function(){
 	}
 	
 	function getText() {
-		return "abc";
+		var text = "";
+		
+		text += "Title: " + $("#Title").val() + " \r\n";
+		text += "Colour: " + $("#Colour").jqxComboBox('getSelectedItem').value + " \r\n";
+		text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n";
+		text += "Print: " + "\r";
+		text += "PrintColour: " + $("#PrintColour").jqxComboBox('getSelectedItem').value + " \r\n";
+		text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n";
+		
+		var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems');
+		text += "PrintPlacement: ";		
+		jQuery.each(itemsPrintPlacement, function(index, value){
+			text += this.value + ", "
+		});
+		text += " \r\n";
+		
+		return text;
 	}	
 
 	$('#submitButton').click(function(){
@@ -70,7 +86,6 @@ $(document).ready(function(){
 		}
 
 		downloadLink.click();
-		alert("Saved!");
 	}
 	
 	function destroyClickedElement(event)
