@@ -1,5 +1,9 @@
 $(document).ready(function(){	
-	var $ColourValues = ["Red", "Black", "Blue"];
+	var $ColourValues = [
+	"Red", 
+	"Black", 
+	"Blue"
+	];
 	$("#Colour").jqxComboBox({ source: $ColourValues, width: '200px', height: '25px',});
 	
 	var $SizeValues = [1, 2, 3, 4, 5];
@@ -21,6 +25,7 @@ $(document).ready(function(){
 		if($("#Colour").jqxComboBox('getSelectedItem') === null) valid += "Colour must be filled! \n";
 		if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be filled! \n";
 		if($("#PrintColour").jqxComboBox('getSelectedItem') === null) valid += "PrintColour must be filled! \n";
+		//check lisBoxes!
 		
 		if(valid === "") {
 			if(!($("#Colour").jqxComboBox('getSelectedItem').value != $("#PrintColour").jqxComboBox('getSelectedItem').value)) 

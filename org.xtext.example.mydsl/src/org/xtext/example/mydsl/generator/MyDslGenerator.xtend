@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import Configurator.Literal
+import Configurator.BinaryConstraint
 
 /**
  * Generates code from your model files on save.
@@ -57,7 +58,18 @@ class MyDslGenerator implements IGenerator {
 				
 				function checkConstraints() { 
 					var valid = "";
-						«getConstraints(it)»
+					
+						«FOR p : parameters»
+							«getMandatoryFields(p)»
+						«ENDFOR»
+						
+						if(valid === "") {
+							«FOR p : parameters»
+								«getConstraints(it)»
+							«ENDFOR»
+							
+						}
+						
 					return valid;
 				};
 				
@@ -147,23 +159,21 @@ class MyDslGenerator implements IGenerator {
 			'''
 			«IF type instanceof Configurator.Enum»
 				«val enumType = type as Configurator.Enum»
-				«IF maxChosenValues == 1»
-					var $«name.toFirstUpper»Values = [
-						«FOR eval : enumType.values»
-							«val enumval = getEnumValue(eval)»
-							«IF eval == enumType.values.get(enumType.values.size - 1)»
-								«enumval»
-							«ELSE»
-								«enumval»,
-							«ENDIF»
-						«ENDFOR»];
-				$("#«name.toFirstUpper»").jqxComboBox({ source: $«name.toFirstUpper»Values, width: '200px', height: '25px',});
+				var $«name.toFirstUpper»Values = [
+				«FOR eval : enumType.values»	
+					«IF eval == enumType.values.get(enumType.values.size - 1)»
+						«getEnumValue(eval, true)»
+					«ELSE»
+						«getEnumValue(eval, false)»
+					«ENDIF»							
+				«ENDFOR»];
+				«IF maxChosenValues == 1»					
+					$("#«name.toFirstUpper»").jqxComboBox({ source: $«name.toFirstUpper»Values, width: '200px', height: '25px',});
 				«ELSE»
-					var $«name.toFirstUpper»Values = ["Front", "Back", "LeftSleeve", "RightSleeve"];
 					$("#«name.toFirstUpper»").jqxListBox({ source: $«name.toFirstUpper»Values, width: '200px', height: '150px', multiple: true});
 				«ENDIF»
 			«ENDIF»
-«««		
+			
 			«IF !children.empty»
 				«FOR c : children»
   					«getParametersJavaScript(c)» 
@@ -172,31 +182,43 @@ class MyDslGenerator implements IGenerator {
 		'''
 	}
 	
-	def getEnumValue(Literal it){
+	def getEnumValue(Literal it, boolean islast){
 		'''
 		«IF it instanceof Configurator.Integer»
 			«val intVal = it as Configurator.Integer»
-			«intVal.value»
+			«intVal.value» «IF !islast»,«ENDIF»
 		«ELSEIF it instanceof Configurator.Double»
 			«val doubleVal = it as Configurator.Double»
-			«doubleVal.value»
+			«doubleVal.value» «IF !islast»,«ENDIF»
 		«ELSEIF it instanceof Configurator.Boolean»
 			«val boolVal = it as Configurator.Boolean»
-			«boolVal.value»
+			«boolVal.value» «IF !islast»,«ENDIF»
 		«ELSEIF it instanceof Configurator.Stringg»
 			«val stringVal = it as Configurator.Stringg»
-			"«stringVal.value»"
+			"«stringVal.value»" «IF !islast»,«ENDIF»
 		«ENDIF»
 		'''
 	}
 	
 	def getParametersText(Parameter it) {
 		'''
-		«IF type.eClass.name == "Enum"»
-			«IF maxChosenValues == 1»
+		«IF maxChosenValues > 0»
+			«IF type.eClass.name == "Enum"»
+				«IF maxChosenValues == 1»
+					text += "«name.toFirstUpper»: " + $("#«name.toFirstUpper»").jqxComboBox('getSelectedItem').value + " \r\n";
 				«ELSE»
+					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
+					text += "«name.toFirstUpper»: ";		
+					jQuery.each(items«name.toFirstUpper», function(index, value){
+						text += this.value + ", "
+					});
+					text += " \r\n";
 				«ENDIF»			
+			«ELSE»
+				text += "«name.toFirstUpper»: " + $("#«name.toFirstUpper»").val() + " \r\n";
+			«ENDIF»
 		«ELSE»
+			text += "«name.toFirstUpper»: " + "\r\n";
 		«ENDIF»
 		
 		«IF !children.empty»
@@ -207,10 +229,37 @@ class MyDslGenerator implements IGenerator {
 		'''
 	}
 	
-	def getConstraints(ConfiguratorModel it) {
+	def getMandatoryFields(Parameter it) {
 		'''
+		«IF minChosenValues > 0»
+			«IF type.eClass.name == "Enum"»
+				«IF maxChosenValues == 1»
+					if($("#«name.toFirstUpper»").jqxComboBox('getSelectedItem') === null) valid += "«name.toFirstUpper» must be selected! \n";
+				«ELSEIF maxChosenValues > 1»
+					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
+					if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
+				«ENDIF»
+			«ELSE»
+				if($("#«name.toFirstUpper»").val() === "") valid += "«name.toFirstUpper» must be filled! \n";
+			«ENDIF»
+		«ENDIF»
+«««			Children
+
+		«IF !children.empty»
+			«FOR c : children»
+  				«getMandatoryFields(c)» 
+  			«ENDFOR»
+		«ENDIF»
+		'''
+	}
+	
+	def getConstraints(ConfiguratorModel it) {
+		'''		
 		«FOR c : constraints»
-			/* constraint */
+			«IF c instanceof BinaryConstraint»
+				«val binCon = c as BinaryConstraint»
+				if!()
+			«ENDIF»
   		«ENDFOR»
 		'''
 	}
