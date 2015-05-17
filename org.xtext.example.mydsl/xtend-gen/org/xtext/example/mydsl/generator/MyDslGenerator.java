@@ -31,6 +31,394 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
  */
 @SuppressWarnings("all")
 public class MyDslGenerator implements IGenerator {
+  public String getJavaEnumValue(final Literal it, final boolean islast) {
+    String ret = "";
+    if ((it instanceof Configurator.Integer)) {
+      final Configurator.Integer intVal = ((Configurator.Integer) it);
+      String _ret = ret;
+      int _value = intVal.getValue();
+      ret = (_ret + Integer.valueOf(_value));
+      if ((!islast)) {
+        String _ret_1 = ret;
+        ret = (_ret_1 + ",");
+      }
+    } else {
+      if ((it instanceof Configurator.Double)) {
+        final Configurator.Double doubleVal = ((Configurator.Double) it);
+        String _ret_2 = ret;
+        double _value_1 = doubleVal.getValue();
+        ret = (_ret_2 + Double.valueOf(_value_1));
+        if ((!islast)) {
+          String _ret_3 = ret;
+          ret = (_ret_3 + ",");
+        }
+      } else {
+        if ((it instanceof Configurator.Boolean)) {
+          final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
+          String _ret_4 = ret;
+          boolean _isValue = boolVal.isValue();
+          ret = (_ret_4 + Boolean.valueOf(_isValue));
+          if ((!islast)) {
+            String _ret_5 = ret;
+            ret = (_ret_5 + ",");
+          }
+        } else {
+          if ((it instanceof Stringg)) {
+            final Stringg stringlVal = ((Stringg) it);
+            String _ret_6 = ret;
+            String _value_2 = stringlVal.getValue();
+            String _plus = ("\"" + _value_2);
+            String _plus_1 = (_plus + "\"");
+            ret = (_ret_6 + _plus_1);
+            if ((!islast)) {
+              String _ret_7 = ret;
+              ret = (_ret_7 + ",");
+            }
+          }
+        }
+      }
+    }
+    return ret;
+  }
+  
+  public String getEnumValueJavaType(final Literal it) {
+    if ((it instanceof Configurator.Integer)) {
+      return "Integer";
+    }
+    if ((it instanceof Configurator.Double)) {
+      return "Double";
+    }
+    if ((it instanceof Configurator.Boolean)) {
+      return "Boolean";
+    }
+    if ((it instanceof Stringg)) {
+      return "String";
+    }
+    return null;
+  }
+  
+  public String generateJavaLabel(final Parameter it) {
+    String _name = it.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name);
+    String _plus = ("private JLabel " + _firstLower);
+    String _plus_1 = (_plus + "Label = new JLabel(\"");
+    String _name_1 = it.getName();
+    String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+    String _plus_2 = (_plus_1 + _firstUpper);
+    return (_plus_2 + "\");");
+  }
+  
+  public String generateJavaVariables(final Parameter it) {
+    String r = "";
+    Type _type = it.getType();
+    EClass _eClass = _type.eClass();
+    String _name = _eClass.getName();
+    boolean _equals = Objects.equal(_name, "Enum");
+    if (_equals) {
+      Type _type_1 = it.getType();
+      final Configurator.Enum et = ((Configurator.Enum) _type_1);
+      int _maxChosenValues = it.getMaxChosenValues();
+      boolean _equals_1 = (_maxChosenValues == 1);
+      if (_equals_1) {
+        String _r = r;
+        EList<Literal> _values = et.getValues();
+        Literal _get = _values.get(0);
+        String _enumValueJavaType = this.getEnumValueJavaType(_get);
+        String _plus = ("private " + _enumValueJavaType);
+        String _plus_1 = (_plus + "[] ");
+        String _name_1 = it.getName();
+        String _firstLower = StringExtensions.toFirstLower(_name_1);
+        String _plus_2 = (_plus_1 + _firstLower);
+        String _plus_3 = (_plus_2 + "ComboBoxValues = new ");
+        EList<Literal> _values_1 = et.getValues();
+        Literal _get_1 = _values_1.get(0);
+        String _enumValueJavaType_1 = this.getEnumValueJavaType(_get_1);
+        String _plus_4 = (_plus_3 + _enumValueJavaType_1);
+        String _plus_5 = (_plus_4 + "[] {");
+        r = (_r + _plus_5);
+        EList<Literal> _values_2 = et.getValues();
+        for (final Literal l : _values_2) {
+          String _r_1 = r;
+          EList<Literal> _values_3 = et.getValues();
+          EList<Literal> _values_4 = et.getValues();
+          int _size = _values_4.size();
+          int _minus = (_size - 1);
+          Literal _get_2 = _values_3.get(_minus);
+          boolean _equals_2 = Objects.equal(l, _get_2);
+          String _javaEnumValue = this.getJavaEnumValue(l, _equals_2);
+          r = (_r_1 + _javaEnumValue);
+        }
+        String _r_2 = r;
+        r = (_r_2 + "};\n");
+        String _r_3 = r;
+        EList<Literal> _values_5 = et.getValues();
+        Literal _get_3 = _values_5.get(0);
+        String _enumValueJavaType_2 = this.getEnumValueJavaType(_get_3);
+        String _plus_6 = ("private JComboBox<" + _enumValueJavaType_2);
+        String _plus_7 = (_plus_6 + "> ");
+        String _name_2 = it.getName();
+        String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
+        String _plus_8 = (_plus_7 + _firstLower_1);
+        String _plus_9 = (_plus_8 + "ComboBox = new JComboBox<");
+        EList<Literal> _values_6 = et.getValues();
+        Literal _get_4 = _values_6.get(0);
+        String _enumValueJavaType_3 = this.getEnumValueJavaType(_get_4);
+        String _plus_10 = (_plus_9 + _enumValueJavaType_3);
+        String _plus_11 = (_plus_10 + ">(");
+        String _name_3 = it.getName();
+        String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
+        String _plus_12 = (_plus_11 + _firstLower_2);
+        String _plus_13 = (_plus_12 + "ComboBoxValues);\n");
+        r = (_r_3 + _plus_13);
+      } else {
+        int _maxChosenValues_1 = it.getMaxChosenValues();
+        boolean _greaterThan = (_maxChosenValues_1 > 1);
+        if (_greaterThan) {
+          String _r_4 = r;
+          EList<Literal> _values_7 = et.getValues();
+          Literal _get_5 = _values_7.get(0);
+          String _enumValueJavaType_4 = this.getEnumValueJavaType(_get_5);
+          String _plus_14 = ("private " + _enumValueJavaType_4);
+          String _plus_15 = (_plus_14 + "[] ");
+          String _name_4 = it.getName();
+          String _firstLower_3 = StringExtensions.toFirstLower(_name_4);
+          String _plus_16 = (_plus_15 + _firstLower_3);
+          String _plus_17 = (_plus_16 + "ListValues = new ");
+          EList<Literal> _values_8 = et.getValues();
+          Literal _get_6 = _values_8.get(0);
+          String _enumValueJavaType_5 = this.getEnumValueJavaType(_get_6);
+          String _plus_18 = (_plus_17 + _enumValueJavaType_5);
+          String _plus_19 = (_plus_18 + "[] {");
+          r = (_r_4 + _plus_19);
+          EList<Literal> _values_9 = et.getValues();
+          for (final Literal l_1 : _values_9) {
+            String _r_5 = r;
+            EList<Literal> _values_10 = et.getValues();
+            EList<Literal> _values_11 = et.getValues();
+            int _size_1 = _values_11.size();
+            int _minus_1 = (_size_1 - 1);
+            Literal _get_7 = _values_10.get(_minus_1);
+            boolean _equals_3 = Objects.equal(l_1, _get_7);
+            String _javaEnumValue_1 = this.getJavaEnumValue(l_1, _equals_3);
+            r = (_r_5 + _javaEnumValue_1);
+          }
+          String _r_6 = r;
+          r = (_r_6 + "};\n");
+          String _r_7 = r;
+          EList<Literal> _values_12 = et.getValues();
+          Literal _get_8 = _values_12.get(0);
+          String _enumValueJavaType_6 = this.getEnumValueJavaType(_get_8);
+          String _plus_20 = ("private JList<" + _enumValueJavaType_6);
+          String _plus_21 = (_plus_20 + "> ");
+          String _name_5 = it.getName();
+          String _firstLower_4 = StringExtensions.toFirstLower(_name_5);
+          String _plus_22 = (_plus_21 + _firstLower_4);
+          String _plus_23 = (_plus_22 + "List = new JList<");
+          EList<Literal> _values_13 = et.getValues();
+          Literal _get_9 = _values_13.get(0);
+          String _enumValueJavaType_7 = this.getEnumValueJavaType(_get_9);
+          String _plus_24 = (_plus_23 + _enumValueJavaType_7);
+          String _plus_25 = (_plus_24 + ">(");
+          String _name_6 = it.getName();
+          String _firstLower_5 = StringExtensions.toFirstLower(_name_6);
+          String _plus_26 = (_plus_25 + _firstLower_5);
+          String _plus_27 = (_plus_26 + "ListValues);\n");
+          r = (_r_7 + _plus_27);
+        }
+      }
+    } else {
+      String _r_8 = r;
+      String _name_7 = it.getName();
+      String _firstLower_6 = StringExtensions.toFirstLower(_name_7);
+      String _plus_28 = ("private JTextField " + _firstLower_6);
+      String _plus_29 = (_plus_28 + "TextField = new JTextField(\"");
+      String _name_8 = it.getName();
+      String _firstUpper = StringExtensions.toFirstUpper(_name_8);
+      String _plus_30 = (_plus_29 + _firstUpper);
+      String _plus_31 = (_plus_30 + "\");\n");
+      r = (_r_8 + _plus_31);
+    }
+    return r;
+  }
+  
+  public String addToJavaPanel(final Parameter it) {
+    String r = "";
+    String _r = r;
+    String _name = it.getName();
+    String _firstLower = StringExtensions.toFirstLower(_name);
+    String _plus = ("panel.add(" + _firstLower);
+    String _plus_1 = (_plus + "Label, left);\n");
+    r = (_r + _plus_1);
+    Type _type = it.getType();
+    EClass _eClass = _type.eClass();
+    String _name_1 = _eClass.getName();
+    boolean _equals = Objects.equal(_name_1, "Enum");
+    if (_equals) {
+      Type _type_1 = it.getType();
+      final Configurator.Enum et = ((Configurator.Enum) _type_1);
+      int _maxChosenValues = it.getMaxChosenValues();
+      boolean _equals_1 = (_maxChosenValues == 1);
+      if (_equals_1) {
+        boolean _or = false;
+        EList<Parameter> _children = it.getChildren();
+        boolean _equals_2 = Objects.equal(_children, null);
+        if (_equals_2) {
+          _or = true;
+        } else {
+          EList<Parameter> _children_1 = it.getChildren();
+          int _size = _children_1.size();
+          boolean _equals_3 = (_size == 0);
+          _or = _equals_3;
+        }
+        if (_or) {
+          String _r_1 = r;
+          String _name_2 = it.getName();
+          String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
+          String _plus_2 = ("panel.add(" + _firstLower_1);
+          String _plus_3 = (_plus_2 + "ComboBox, right);\n");
+          r = (_r_1 + _plus_3);
+        } else {
+          String _r_2 = r;
+          r = (_r_2 + "panel.add(new JLabel(), right);\n");
+        }
+      } else {
+        int _maxChosenValues_1 = it.getMaxChosenValues();
+        boolean _greaterThan = (_maxChosenValues_1 > 1);
+        if (_greaterThan) {
+          boolean _or_1 = false;
+          EList<Parameter> _children_2 = it.getChildren();
+          boolean _equals_4 = Objects.equal(_children_2, null);
+          if (_equals_4) {
+            _or_1 = true;
+          } else {
+            EList<Parameter> _children_3 = it.getChildren();
+            int _size_1 = _children_3.size();
+            boolean _equals_5 = (_size_1 == 0);
+            _or_1 = _equals_5;
+          }
+          if (_or_1) {
+            String _r_3 = r;
+            String _name_3 = it.getName();
+            String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
+            String _plus_4 = ("panel.add(" + _firstLower_2);
+            String _plus_5 = (_plus_4 + "List, right);\n");
+            r = (_r_3 + _plus_5);
+          } else {
+            String _r_4 = r;
+            r = (_r_4 + "panel.add(new JLabel(), right);\n");
+          }
+        }
+      }
+    } else {
+      boolean _or_2 = false;
+      EList<Parameter> _children_4 = it.getChildren();
+      boolean _equals_6 = Objects.equal(_children_4, null);
+      if (_equals_6) {
+        _or_2 = true;
+      } else {
+        EList<Parameter> _children_5 = it.getChildren();
+        int _size_2 = _children_5.size();
+        boolean _equals_7 = (_size_2 == 0);
+        _or_2 = _equals_7;
+      }
+      if (_or_2) {
+        String _r_5 = r;
+        String _name_4 = it.getName();
+        String _firstLower_3 = StringExtensions.toFirstLower(_name_4);
+        String _plus_6 = ("panel.add(" + _firstLower_3);
+        String _plus_7 = (_plus_6 + "TextField, right);\n");
+        r = (_r_5 + _plus_7);
+      } else {
+        String _r_6 = r;
+        r = (_r_6 + "panel.add(new JLabel(), right);\n");
+      }
+    }
+    return r;
+  }
+  
+  public String generateJavaVariableStringValue(final Parameter it) {
+    String _xblockexpression = null;
+    {
+      String _name = it.getName();
+      String _firstLower = StringExtensions.toFirstLower(_name);
+      String _plus = ("s += " + _firstLower);
+      String r = (_plus + "Label.getText() + \" : \";\n");
+      String _xifexpression = null;
+      Type _type = it.getType();
+      EClass _eClass = _type.eClass();
+      String _name_1 = _eClass.getName();
+      boolean _equals = Objects.equal(_name_1, "Enum");
+      if (_equals) {
+        String _xblockexpression_1 = null;
+        {
+          Type _type_1 = it.getType();
+          final Configurator.Enum et = ((Configurator.Enum) _type_1);
+          String _xifexpression_1 = null;
+          int _maxChosenValues = it.getMaxChosenValues();
+          boolean _equals_1 = (_maxChosenValues == 1);
+          if (_equals_1) {
+            String _r = r;
+            String _name_2 = it.getName();
+            String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
+            String _plus_1 = ("s += " + _firstLower_1);
+            String _plus_2 = (_plus_1 + "ComboBox.getSelectedItem().toString();\n\n");
+            _xifexpression_1 = r = (_r + _plus_2);
+          } else {
+            String _xifexpression_2 = null;
+            int _maxChosenValues_1 = it.getMaxChosenValues();
+            boolean _greaterThan = (_maxChosenValues_1 > 1);
+            if (_greaterThan) {
+              String _xblockexpression_2 = null;
+              {
+                String _r_1 = r;
+                EList<Literal> _values = et.getValues();
+                Literal _get = _values.get(0);
+                String _enumValueJavaType = this.getEnumValueJavaType(_get);
+                String _plus_3 = ("for(" + _enumValueJavaType);
+                String _plus_4 = (_plus_3 + " p : ");
+                String _name_3 = it.getName();
+                String _firstLower_2 = StringExtensions.toFirstLower(_name_3);
+                String _plus_5 = (_plus_4 + _firstLower_2);
+                String _plus_6 = (_plus_5 + "List.getSelectedValuesList())\n");
+                r = (_r_1 + _plus_6);
+                String _r_2 = r;
+                _xblockexpression_2 = r = (_r_2 + "\t s += String.valueOf(p) + \", \";\n\n");
+              }
+              _xifexpression_2 = _xblockexpression_2;
+            }
+            _xifexpression_1 = _xifexpression_2;
+          }
+          _xblockexpression_1 = _xifexpression_1;
+        }
+        _xifexpression = _xblockexpression_1;
+      } else {
+        String _xifexpression_1 = null;
+        boolean _or = false;
+        EList<Parameter> _children = it.getChildren();
+        boolean _equals_1 = Objects.equal(_children, null);
+        if (_equals_1) {
+          _or = true;
+        } else {
+          EList<Parameter> _children_1 = it.getChildren();
+          int _size = _children_1.size();
+          boolean _equals_2 = (_size == 0);
+          _or = _equals_2;
+        }
+        if (_or) {
+          String _r = r;
+          String _name_2 = it.getName();
+          String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
+          String _plus_1 = ("s += " + _firstLower_1);
+          String _plus_2 = (_plus_1 + "TextField.getText();\n\n");
+          _xifexpression_1 = r = (_r + _plus_2);
+        }
+        _xifexpression = _xifexpression_1;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
+  }
+  
   public CharSequence compileToJava(final ConfiguratorModel it) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("import java.awt.BorderLayout;");
@@ -58,7 +446,6 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("import java.io.FileWriter;");
     _builder.newLine();
     _builder.append("import java.io.IOException;");
-    _builder.newLine();
     _builder.newLine();
     _builder.append("import javax.swing.BorderFactory;");
     _builder.newLine();
@@ -89,33 +476,55 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("private static final long serialVersionUID = 1L;");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("private JButton submitButton;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private JLabel TitleLabel;");
-    _builder.newLine();
+    _builder.append("private JLabel titleLabel = new JLabel(\"");
+    String _name_1 = it.getName();
+    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+    _builder.append(_firstUpper_1, "\t");
+    _builder.append("\");");
+    _builder.newLineIfNotEmpty();
     {
       EList<Parameter> _parameters = it.getParameters();
       for(final Parameter p : _parameters) {
         _builder.append("\t");
-        CharSequence _generateJavaLabel = this.generateJavaLabel(p);
+        String _generateJavaLabel = this.generateJavaLabel(p);
         _builder.append(_generateJavaLabel, "\t");
         _builder.newLineIfNotEmpty();
+        {
+          EList<Parameter> _children = p.getChildren();
+          for(final Parameter c : _children) {
+            _builder.append("\t");
+            String _generateJavaLabel_1 = this.generateJavaLabel(c);
+            _builder.append(_generateJavaLabel_1, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
     {
       EList<Parameter> _parameters_1 = it.getParameters();
       for(final Parameter p_1 : _parameters_1) {
         _builder.append("\t");
-        CharSequence _generateJavaValueClass = this.generateJavaValueClass(p_1);
-        _builder.append(_generateJavaValueClass, "\t");
+        String _generateJavaVariables = this.generateJavaVariables(p_1);
+        _builder.append(_generateJavaVariables, "\t");
         _builder.newLineIfNotEmpty();
+        {
+          EList<Parameter> _children_1 = p_1.getChildren();
+          for(final Parameter c_1 : _children_1) {
+            _builder.append("\t");
+            String _generateJavaVariables_1 = this.generateJavaVariables(c_1);
+            _builder.append(_generateJavaVariables_1, "\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
     _builder.append("\t");
+    _builder.append("private JButton submitButton = new JButton(\"Submit\");");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("private void initUI() {");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("public void setup() {");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("JPanel panel = new JPanel();");
@@ -123,15 +532,11 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("\t\t");
     _builder.append("setPreferredSize(new Dimension(800, 600));");
     _builder.newLine();
-    _builder.append("\t");
-    _builder.newLine();
     _builder.append("\t\t");
     _builder.append("Container contentPane = getContentPane();");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("contentPane.setLayout(new BorderLayout());");
-    _builder.newLine();
-    _builder.append("\t");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("JPanel mainPanel = new JPanel();");
@@ -139,61 +544,10 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("\t\t");
     _builder.append("mainPanel.setLayout(new FlowLayout());");
     _builder.newLine();
-    _builder.newLine();
     _builder.append("\t\t");
     _builder.append("contentPane.add(mainPanel, BorderLayout.CENTER);");
     _builder.newLine();
-    _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("TitleLabel = new JLabel(");
-    String _name_1 = it.getName();
-    String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-    _builder.append(_firstUpper_1, "\t\t");
-    _builder.append(");");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
-    _builder.newLine();
-    {
-      EList<Parameter> _parameters_2 = it.getParameters();
-      for(final Parameter p_2 : _parameters_2) {
-        _builder.append("\t\t");
-        String _name_2 = p_2.getName();
-        _builder.append(_name_2, "\t\t");
-        _builder.append("Label = new JLabel(\"");
-        String _name_3 = p_2.getName();
-        _builder.append(_name_3, "\t\t");
-        _builder.append("\");");
-        _builder.newLineIfNotEmpty();
-        {
-          EList<Parameter> _children = p_2.getChildren();
-          for(final Parameter c : _children) {
-            _builder.append("\t\t");
-            String _name_4 = c.getName();
-            _builder.append(_name_4, "\t\t");
-            _builder.append("Label = new JLabel(\"");
-            String _name_5 = c.getName();
-            _builder.append(_name_5, "\t\t");
-            _builder.append("\");");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    _builder.append("\t\t");
-    _builder.newLine();
-    {
-      EList<Parameter> _parameters_3 = it.getParameters();
-      for(final Parameter p_3 : _parameters_3) {
-        _builder.append("\t\t");
-        CharSequence _initJavaValueClass = this.initJavaValueClass(p_3);
-        _builder.append(_initJavaValueClass, "\t\t");
-        _builder.newLineIfNotEmpty();
-      }
-    }
-    _builder.append("\t\t");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("submitButton = new JButton(\"Submit\");");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("submitButton.addActionListener(new ActionListener() {");
@@ -205,22 +559,22 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("public void actionPerformed(ActionEvent e) {");
     _builder.newLine();
     _builder.append("\t\t\t\t");
-    _builder.append("//String c = checkConstraints();");
+    _builder.append("String c = checkConstraints();");
     _builder.newLine();
     _builder.append("\t\t\t\t");
-    _builder.append("//if(c != null && c.length() == 0) {");
+    _builder.append("if(c != null && c.length() == 0) {");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("//boolean b = save();");
+    _builder.append("boolean b = save();");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("//JOptionPane.showMessageDialog(null, \"Configuration file saved successfully!\");");
+    _builder.append("JOptionPane.showMessageDialog(null, \"Configuration file saved successfully!\");");
     _builder.newLine();
     _builder.append("\t\t\t\t");
-    _builder.append("//} else ");
+    _builder.append("} else ");
     _builder.newLine();
     _builder.append("\t\t\t\t\t");
-    _builder.append("//JOptionPane.showMessageDialog(null, c);");
+    _builder.append("JOptionPane.showMessageDialog(null, c);");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("}");
@@ -229,7 +583,9 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("});");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("getContentPane().add(BorderLayout.NORTH, TitleLabel);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("getContentPane().add(BorderLayout.NORTH, titleLabel);");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("panel.setLayout(new GridBagLayout());");
@@ -261,62 +617,25 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("\t\t");
     _builder.newLine();
     {
-      EList<Parameter> _parameters_4 = it.getParameters();
-      for(final Parameter p_4 : _parameters_4) {
+      EList<Parameter> _parameters_2 = it.getParameters();
+      for(final Parameter p_2 : _parameters_2) {
         _builder.append("\t\t");
-        _builder.append("panel.add(");
-        String _name_6 = p_4.getName();
-        _builder.append(_name_6, "\t\t");
-        _builder.append("Label, left);");
+        String _addToJavaPanel = this.addToJavaPanel(p_2);
+        _builder.append(_addToJavaPanel, "\t\t");
         _builder.newLineIfNotEmpty();
         {
-          Type _type = p_4.getType();
-          EClass _eClass = _type.eClass();
-          String _name_7 = _eClass.getName();
-          boolean _equals = Objects.equal(_name_7, "Enum");
-          if (_equals) {
+          EList<Parameter> _children_2 = p_2.getChildren();
+          for(final Parameter c_2 : _children_2) {
             _builder.append("\t\t");
-            Type _type_1 = p_4.getType();
-            final Configurator.Enum et = ((Configurator.Enum) _type_1);
-            _builder.newLineIfNotEmpty();
-            {
-              int _maxChosenValues = p_4.getMaxChosenValues();
-              boolean _equals_1 = (_maxChosenValues == 1);
-              if (_equals_1) {
-                _builder.append("\t\t");
-                _builder.append("panel.add(");
-                EList<Literal> _values = et.getValues();
-                Literal _get = _values.get(0);
-                CharSequence _enumValueJavaType = this.getEnumValueJavaType(_get);
-                _builder.append(_enumValueJavaType, "\t\t");
-                _builder.append("> ");
-                String _name_8 = p_4.getName();
-                String _firstUpper_2 = StringExtensions.toFirstUpper(_name_8);
-                _builder.append(_firstUpper_2, "\t\t");
-                _builder.append("ComboBox, right);");
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("\t\t");
-                _builder.append("panel.add(");
-                String _name_9 = p_4.getName();
-                String _firstUpper_3 = StringExtensions.toFirstUpper(_name_9);
-                _builder.append(_firstUpper_3, "\t\t");
-                _builder.append("List, right);");
-                _builder.newLineIfNotEmpty();
-              }
-            }
-          } else {
-            _builder.append("\t\t");
-            _builder.append("panel.add(");
-            String _name_10 = p_4.getName();
-            String _firstUpper_4 = StringExtensions.toFirstUpper(_name_10);
-            _builder.append(_firstUpper_4, "\t\t");
-            _builder.append("TextField, right);");
+            String _addToJavaPanel_1 = this.addToJavaPanel(c_2);
+            _builder.append(_addToJavaPanel_1, "\t\t");
             _builder.newLineIfNotEmpty();
           }
         }
       }
     }
+    _builder.append("\t\t");
+    _builder.newLine();
     _builder.append("\t\t");
     _builder.append("panel.add(submitButton, left);");
     _builder.newLine();
@@ -324,8 +643,6 @@ public class MyDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));");
-    _builder.newLine();
-    _builder.append("\t\t");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("pack();");
@@ -337,7 +654,118 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("setLocationRelativeTo(null);");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("show();");
+    _builder.append("show();\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private String checkConstraints() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("String s = \"\";");
+    _builder.newLine();
+    {
+      EList<Parameter> _parameters_3 = it.getParameters();
+      for(final Parameter p_3 : _parameters_3) {
+        _builder.append("\t\t");
+        CharSequence _generateJavaRequiredFields = this.generateJavaRequiredFields(p_3);
+        _builder.append(_generateJavaRequiredFields, "\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("if(s.length() == 0) {");
+    _builder.newLine();
+    {
+      EList<Constraint> _constraints = it.getConstraints();
+      for(final Constraint c_3 : _constraints) {
+        _builder.append("\t\t\t");
+        _builder.append("if(!");
+        Object _generateJavaConstraint = this.generateJavaConstraint(c_3);
+        _builder.append(_generateJavaConstraint, "\t\t\t");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t");
+        _builder.append("\t");
+        _builder.append("s += \"Constraint violated!\"; ");
+        _builder.newLine();
+      }
+    }
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("return s;\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private boolean save() {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("try {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("File f = new File(\"configurator_output.txt\");");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("String s = \"\";");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.newLine();
+    {
+      EList<Parameter> _parameters_4 = it.getParameters();
+      for(final Parameter p_4 : _parameters_4) {
+        _builder.append("\t\t\t");
+        String _generateJavaVariableStringValue = this.generateJavaVariableStringValue(p_4);
+        _builder.append(_generateJavaVariableStringValue, "\t\t\t");
+        _builder.newLineIfNotEmpty();
+        {
+          EList<Parameter> _children_3 = p_4.getChildren();
+          for(final Parameter c_4 : _children_3) {
+            _builder.append("\t\t\t");
+            String _generateJavaVariableStringValue_1 = this.generateJavaVariableStringValue(c_4);
+            _builder.append(_generateJavaVariableStringValue_1, "\t\t\t");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.append("\t\t\t");
+    _builder.append("FileWriter fw = new FileWriter(f);");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("BufferedWriter bw = new BufferedWriter(fw);");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("bw.write(s);");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("bw.flush();");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("bw.close();");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return true;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("} catch (IOException e) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("e.printStackTrace();");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("return false;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
@@ -348,40 +776,216 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("public static void main(String[] args) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("Main m = new Main();");
-    _builder.newLine();
+    String _name_2 = it.getName();
+    String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
+    _builder.append(_firstUpper_2, "\t\t");
+    _builder.append(" c = new ");
+    String _name_3 = it.getName();
+    String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
+    _builder.append(_firstUpper_3, "\t\t");
+    _builder.append("();");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
-    _builder.append("m.initUI();");
+    _builder.append("c.setup();\t");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
+    _builder.newLine();
     return _builder;
   }
   
-  public CharSequence generateJavaLabel(final Parameter it) {
+  public Object generateJavaConstraint(final Constraint it) {
+    if ((it instanceof BinaryConstraint)) {
+      final BinaryConstraint bc = ((BinaryConstraint) it);
+      Constraint _leftOperand = bc.getLeftOperand();
+      Object _generateJavaConstraint = this.generateJavaConstraint(_leftOperand);
+      String _plus = ("(" + _generateJavaConstraint);
+      String _plus_1 = (_plus + " ");
+      BinaryOperator _operator = bc.getOperator();
+      String _generateJavaOperator = this.generateJavaOperator(_operator);
+      String _plus_2 = (_plus_1 + _generateJavaOperator);
+      String _plus_3 = (_plus_2 + " ");
+      Constraint _rightOperand = bc.getRightOperand();
+      Object _generateJavaConstraint_1 = this.generateJavaConstraint(_rightOperand);
+      String _plus_4 = (_plus_3 + _generateJavaConstraint_1);
+      return (_plus_4 + ")");
+    } else {
+      if ((it instanceof Literal)) {
+        if ((it instanceof Stringg)) {
+          final Stringg v = ((Stringg) it);
+          String _value = v.getValue();
+          String _plus_5 = ("\"" + _value);
+          return (_plus_5 + "\"");
+        } else {
+          if ((it instanceof Configurator.Integer)) {
+            final Configurator.Integer v_1 = ((Configurator.Integer) it);
+            return Integer.valueOf(v_1.getValue());
+          } else {
+            if ((it instanceof Configurator.Double)) {
+              final Configurator.Double v_2 = ((Configurator.Double) it);
+              return Double.valueOf(v_2.getValue());
+            } else {
+              final Configurator.Boolean v_3 = ((Configurator.Boolean) it);
+              return Boolean.valueOf(v_3.isValue());
+            }
+          }
+        }
+      } else {
+        final ParameterIdentifier id = ((ParameterIdentifier) it);
+        Parameter _parameter = id.getParameter();
+        return this.generateConstraintParamValueJava(_parameter);
+      }
+    }
+  }
+  
+  public String generateConstraintParamValueJava(final Parameter it) {
+    String ret = "";
+    Type _type = it.getType();
+    EClass _eClass = _type.eClass();
+    String _name = _eClass.getName();
+    boolean _equals = Objects.equal(_name, "Enum");
+    if (_equals) {
+      Type _type_1 = it.getType();
+      Configurator.Enum et = ((Configurator.Enum) _type_1);
+      int _maxChosenValues = it.getMaxChosenValues();
+      boolean _equals_1 = (_maxChosenValues == 1);
+      if (_equals_1) {
+        String _ret = ret;
+        EList<Literal> _values = et.getValues();
+        Literal _get = _values.get(0);
+        String _enumValueJavaType = this.getEnumValueJavaType(_get);
+        String _plus = ("(" + _enumValueJavaType);
+        String _plus_1 = (_plus + ")");
+        String _name_1 = it.getName();
+        String _firstLower = StringExtensions.toFirstLower(_name_1);
+        String _plus_2 = (_plus_1 + _firstLower);
+        String _plus_3 = (_plus_2 + "ComboBox.getSelectedItem()");
+        ret = (_ret + _plus_3);
+      }
+    } else {
+      String _ret_1 = ret;
+      String _name_2 = it.getName();
+      String _firstLower_1 = StringExtensions.toFirstLower(_name_2);
+      String _plus_4 = (_firstLower_1 + "TextField.getText()");
+      ret = (_ret_1 + _plus_4);
+    }
+    return ret;
+  }
+  
+  public String generateJavaOperator(final BinaryOperator it) {
+    int _value = it.getValue();
+    boolean _equals = (_value == 0);
+    if (_equals) {
+      return "&&";
+    } else {
+      int _value_1 = it.getValue();
+      boolean _equals_1 = (_value_1 == 1);
+      if (_equals_1) {
+        return "||";
+      } else {
+        int _value_2 = it.getValue();
+        boolean _equals_2 = (_value_2 == 2);
+        if (_equals_2) {
+          return "XOR";
+        } else {
+          int _value_3 = it.getValue();
+          boolean _equals_3 = (_value_3 == 3);
+          if (_equals_3) {
+            return "==";
+          } else {
+            int _value_4 = it.getValue();
+            boolean _equals_4 = (_value_4 == 4);
+            if (_equals_4) {
+              return "!=";
+            } else {
+              int _value_5 = it.getValue();
+              boolean _equals_5 = (_value_5 == 5);
+              if (_equals_5) {
+                return ">";
+              } else {
+                int _value_6 = it.getValue();
+                boolean _equals_6 = (_value_6 == 6);
+                if (_equals_6) {
+                  return "<";
+                } else {
+                  int _value_7 = it.getValue();
+                  boolean _equals_7 = (_value_7 == 7);
+                  if (_equals_7) {
+                    return ">=";
+                  } else {
+                    return "<=";
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  public CharSequence generateJavaRequiredFields(final Parameter it) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("private JLabel ");
-    String _name = it.getName();
-    _builder.append(_name, "");
-    _builder.append("Label;");
-    _builder.newLineIfNotEmpty();
+    {
+      Type _type = it.getType();
+      EClass _eClass = _type.eClass();
+      String _name = _eClass.getName();
+      boolean _equals = Objects.equal(_name, "Enum");
+      if (_equals) {
+        {
+          int _maxChosenValues = it.getMaxChosenValues();
+          boolean _equals_1 = (_maxChosenValues == 1);
+          if (_equals_1) {
+            _builder.append("if(");
+            String _name_1 = it.getName();
+            String _firstLower = StringExtensions.toFirstLower(_name_1);
+            _builder.append(_firstLower, "");
+            _builder.append("ComboBox.getSelectedItem() == null)");
+            _builder.newLineIfNotEmpty();
+            _builder.append("\t");
+            _builder.append("s += \"");
+            String _name_2 = it.getName();
+            String _firstUpper = StringExtensions.toFirstUpper(_name_2);
+            _builder.append(_firstUpper, "\t");
+            _builder.append(" is required\";");
+            _builder.newLineIfNotEmpty();
+          } else {
+            int _maxChosenValues_1 = it.getMaxChosenValues();
+            boolean _greaterThan = (_maxChosenValues_1 > 2);
+            if (_greaterThan) {
+              _builder.append("if(");
+              String _name_3 = it.getName();
+              String _firstLower_1 = StringExtensions.toFirstLower(_name_3);
+              _builder.append(_firstLower_1, "");
+              _builder.append("List.getSelectedItem() == null)");
+              _builder.newLineIfNotEmpty();
+              _builder.append("\t");
+              _builder.append("s += \"");
+              String _name_4 = it.getName();
+              String _firstUpper_1 = StringExtensions.toFirstUpper(_name_4);
+              _builder.append(_firstUpper_1, "\t");
+              _builder.append(" is required\";");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+    }
     {
       EList<Parameter> _children = it.getChildren();
       for(final Parameter c : _children) {
-        _builder.append("private JLabel ");
-        String _name_1 = c.getName();
-        _builder.append(_name_1, "");
-        _builder.append("Label;");
+        Object _generateJavaRequiredFields = this.generateJavaRequiredFields(c);
+        _builder.append(_generateJavaRequiredFields, "");
         _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
   }
   
-  public CharSequence initJavaValueClass(final Parameter it) {
+  public Object initJavaValueClass(final Parameter it) {
     StringConcatenation _builder = new StringConcatenation();
     {
       int _minChosenValues = it.getMinChosenValues();
@@ -402,7 +1006,7 @@ public class MyDslGenerator implements IGenerator {
               if (_equals_1) {
                 EList<Literal> _values = et.getValues();
                 Literal _get = _values.get(0);
-                CharSequence _enumValueJavaType = this.getEnumValueJavaType(_get);
+                String _enumValueJavaType = this.getEnumValueJavaType(_get);
                 _builder.append(_enumValueJavaType, "");
                 _builder.append("[ ] ");
                 String _name_1 = it.getName();
@@ -418,7 +1022,7 @@ public class MyDslGenerator implements IGenerator {
                     int _minus = (_size - 1);
                     Literal _get_1 = _values_2.get(_minus);
                     boolean _equals_2 = Objects.equal(eval, _get_1);
-                    CharSequence _enumValue = this.getEnumValue(eval, _equals_2);
+                    String _enumValue = this.getEnumValue(eval, _equals_2);
                     _builder.append(_enumValue, "");
                     _builder.newLineIfNotEmpty();
                   }
@@ -430,7 +1034,7 @@ public class MyDslGenerator implements IGenerator {
                 _builder.append("ComboBox = new JComboBox<");
                 EList<Literal> _values_4 = et.getValues();
                 Literal _get_2 = _values_4.get(0);
-                CharSequence _enumValueJavaType_1 = this.getEnumValueJavaType(_get_2);
+                String _enumValueJavaType_1 = this.getEnumValueJavaType(_get_2);
                 _builder.append(_enumValueJavaType_1, "");
                 _builder.append(">(");
                 String _name_3 = it.getName();
@@ -440,7 +1044,7 @@ public class MyDslGenerator implements IGenerator {
               } else {
                 EList<Literal> _values_5 = et.getValues();
                 Literal _get_3 = _values_5.get(0);
-                CharSequence _enumValueJavaType_2 = this.getEnumValueJavaType(_get_3);
+                String _enumValueJavaType_2 = this.getEnumValueJavaType(_get_3);
                 _builder.append(_enumValueJavaType_2, "");
                 _builder.append("[ ] ");
                 String _name_4 = it.getName();
@@ -456,7 +1060,7 @@ public class MyDslGenerator implements IGenerator {
                     int _minus_1 = (_size_1 - 1);
                     Literal _get_4 = _values_7.get(_minus_1);
                     boolean _equals_3 = Objects.equal(eval_1, _get_4);
-                    CharSequence _enumValue_1 = this.getEnumValue(eval_1, _equals_3);
+                    String _enumValue_1 = this.getEnumValue(eval_1, _equals_3);
                     _builder.append(_enumValue_1, "");
                     _builder.newLineIfNotEmpty();
                   }
@@ -468,7 +1072,7 @@ public class MyDslGenerator implements IGenerator {
                 _builder.append("List = new JList<");
                 EList<Literal> _values_9 = et.getValues();
                 Literal _get_5 = _values_9.get(0);
-                CharSequence _enumValueJavaType_3 = this.getEnumValueJavaType(_get_5);
+                String _enumValueJavaType_3 = this.getEnumValueJavaType(_get_5);
                 _builder.append(_enumValueJavaType_3, "");
                 _builder.append(">(");
                 String _name_6 = it.getName();
@@ -552,7 +1156,7 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence generateJavaValueClass(final Parameter it) {
+  public Object generateJavaValueClass(final Parameter it) {
     StringConcatenation _builder = new StringConcatenation();
     {
       int _minChosenValues = it.getMinChosenValues();
@@ -574,7 +1178,7 @@ public class MyDslGenerator implements IGenerator {
                 _builder.append("private JComboBox<");
                 EList<Literal> _values = et.getValues();
                 Literal _get = _values.get(0);
-                CharSequence _enumValueJavaType = this.getEnumValueJavaType(_get);
+                String _enumValueJavaType = this.getEnumValueJavaType(_get);
                 _builder.append(_enumValueJavaType, "");
                 _builder.append("> ");
                 String _name_1 = it.getName();
@@ -586,7 +1190,7 @@ public class MyDslGenerator implements IGenerator {
                 _builder.append("private JList<");
                 EList<Literal> _values_1 = et.getValues();
                 Literal _get_1 = _values_1.get(0);
-                CharSequence _enumValueJavaType_1 = this.getEnumValueJavaType(_get_1);
+                String _enumValueJavaType_1 = this.getEnumValueJavaType(_get_1);
                 _builder.append(_enumValueJavaType_1, "");
                 _builder.append("> ");
                 String _name_2 = it.getName();
@@ -664,32 +1268,6 @@ public class MyDslGenerator implements IGenerator {
             _builder.append(_generateJavaValueClass, "");
             _builder.append(" ");
             _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
-  public CharSequence getEnumValueJavaType(final Literal it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((it instanceof Configurator.Integer)) {
-        _builder.append("Integer");
-        _builder.newLine();
-      } else {
-        if ((it instanceof Configurator.Double)) {
-          _builder.append("Double");
-          _builder.newLine();
-        } else {
-          if ((it instanceof Configurator.Boolean)) {
-            _builder.append("boolean");
-            _builder.newLine();
-          } else {
-            if ((it instanceof Stringg)) {
-              _builder.append("String");
-              _builder.newLine();
-            }
           }
         }
       }
