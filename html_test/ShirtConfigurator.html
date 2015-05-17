@@ -10,89 +10,60 @@
 		<script type='text/javascript'>
 			$(document).ready(function(){
 				
+				var $ColorValues = ["RED", "BLACK", "BLUE"]; 
+				$("#Color").jqxComboBox({ source: $ColorValues, width: '200px', height: '25px',}); 
 		
-		var $ColorValues = [
-		"RED" ,
-						"BLACK" ,
-						"BLUE" 
-						];
-		$("#Color").jqxComboBox({ source: $ColorValues, width: '200px', height: '25px',});
+				var $SizeValues = [1, 2, 3, 4, 5]; 
+				$("#Size").jqxComboBox({ source: $SizeValues, width: '200px', height: '25px',}); 
 		
-		var $SizeValues = [
-		1 ,
-						2 ,
-						3 ,
-						4 ,
-						5 
-						];
-		$("#Size").jqxComboBox({ source: $SizeValues, width: '200px', height: '25px',});
+				var $PrintColorValues = ["RED", "BLACK", "BLUE"]; 
+				$("#PrintColor").jqxComboBox({ source: $PrintColorValues, width: '200px', height: '25px',}); 
 		
+				var $PrintShapeValues = ["ROUND", "SQUARE", "TRIANGULAR"]; 
+				$("#PrintShape").jqxComboBox({ source: $PrintShapeValues, width: '200px', height: '25px',}); 
 		
-		var $PrintColorValues = [
-		"RED" ,
-						"BLACK" ,
-						"BLUE" 
-						];
-		$("#PrintColor").jqxComboBox({ source: $PrintColorValues, width: '200px', height: '25px',});
-		
-		var $PrintShapeValues = [
-		"ROUND" ,
-						"SQUARE" ,
-						"TRIANGULAR" 
-						];
-		$("#PrintShape").jqxComboBox({ source: $PrintShapeValues, width: '200px', height: '25px',});
-		
-		var $PrintPlacementValues = [
-		"Front" ,
-						"Back" ,
-						"LeftSleeve" ,
-						"RightSleeve" 
-						];
-		$("#PrintPlacement").jqxListBox({ source: $PrintPlacementValues, width: '200px', height: '150px', multiple: true});
+				var $PrintPlacementValues = ["Front", "Back", "LeftSleeve", "RightSleeve"]; 
+				$("#PrintPlacement").jqxListBox({ source: $PrintPlacementValues, width: '200px', height: '150px', multiple: true}); 
 		
 				
 				function checkConstraints() { 
 					var valid = "";
 					
-						if($("#Name").val() === "") valid += "Name must be filled! \n";
+					if($("#Name").val() === "") valid += "Name must be filled! \n"; 
+					if($("#Color").jqxComboBox('getSelectedItem') === null) valid += "Color must be selected! \n"; 
+					if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be selected! \n"; 
+					if($("#PrintColor").jqxComboBox('getSelectedItem') === null) valid += "PrintColor must be selected! \n"; 
+					if($("#PrintShape").jqxComboBox('getSelectedItem') === null) valid += "PrintShape must be selected! \n"; 
+					var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems'); 
+					if(itemsPrintPlacement.length == 0) valid += "PrintPlacement must be selected! \n"; 
 						
-						if($("#Color").jqxComboBox('getSelectedItem') === null) valid += "Color must be selected! \n";
-						
-						if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be selected! \n";
-						
-						
-						if($("#PrintColor").jqxComboBox('getSelectedItem') === null) valid += "PrintColor must be selected! \n";
-						
-						if($("#PrintShape").jqxComboBox('getSelectedItem') === null) valid += "PrintShape must be selected! \n";
-						
-						var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems');
-						if(itemsPrintPlacement.length == 0) valid += "PrintPlacement must be selected! \n";
-						
-						
-					return valid;
+					if(valid === "") {
+						if(!((($("#Color").jqxComboBox('getSelectedItem').value != "RED") || (($("#Color").jqxComboBox('getSelectedItem').value === "RED") && ($("#Size").jqxComboBox('getSelectedItem').value > 3))))) 
+								valid += "Invalid constraint: " + "((Color != String.RED) || ((Color === String.RED) && (Size > 3))) \n";
+						if(!(($("#Color").jqxComboBox('getSelectedItem').value != $("#PrintColor").jqxComboBox('getSelectedItem').value))) 
+								valid += "Invalid constraint: " + "(Color != PrintColor) \n";
+					}
+						 
+						return valid;
 				};
 				
 				function getText() {
 					var text = "";
-		text += "Name: " + $("#Name").val() + " \r\n";
+					
+					text += "Name: " + $("#Name").val() + " \r\n"; 
+					text += "Color: " + $("#Color").jqxComboBox('getSelectedItem').value + " \r\n"; 
+					text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n"; 
+					text += "Print: " + "\r\n"; 
+					text += "PrintColor: " + $("#PrintColor").jqxComboBox('getSelectedItem').value + " \r\n"; 
+					text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n"; 
 		
-		text += "Color: " + $("#Color").jqxComboBox('getSelectedItem').value + " \r\n";
-		
-		text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n";
-		
-		text += "Print: " + "\r\n";
-		
-		text += "PrintColor: " + $("#PrintColor").jqxComboBox('getSelectedItem').value + " \r\n";
-		
-		text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n";
-		
-		var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems');
-		text += "PrintPlacement: ";		
-		jQuery.each(itemsPrintPlacement, function(index, value){
-			text += this.value + ", "
-		});
-		text += " \r\n";
-		
+					var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems'); 
+					text += "PrintPlacement: "; 
+					jQuery.each(itemsPrintPlacement, function(index, value){ 
+						text += this.value + ", " 
+					}); 
+					text += " \r\n"; 
+		  					
 					return text;
 				};				
 				
