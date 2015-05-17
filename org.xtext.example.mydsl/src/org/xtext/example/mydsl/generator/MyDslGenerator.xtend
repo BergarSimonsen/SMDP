@@ -155,6 +155,34 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def getParametersJavaScript(Parameter it) {
+		var ret ="";
+		if(type instanceof Configurator.Enum) {
+			val enumType = type as Configurator.Enum
+			ret += "var $" + name.toFirstUpper + "Values = ["
+			for (eval : enumType.values) {
+				if(eval == enumType.values.get(enumType.values.size - 1))
+					ret += getEnumValue(eval, true)
+				else
+					ret += getEnumValue(eval, false) + " "
+			}	
+			ret += "]; \n"
+			
+			if(maxChosenValues == 1)					
+				ret += "$(\"#" + name.toFirstUpper + "\").jqxComboBox({ source: $" 
+						+ name.toFirstUpper + "Values, width: '200px', height: '25px',}); \n\n"
+			else
+				ret += "$(\"#" + name.toFirstUpper + "\").jqxListBox({ source: $" 
+						+ name.toFirstUpper + "Values, width: '200px', height: '150px', multiple: true}); \n\n"
+		}
+		
+		if(!children.empty)
+			for(c : children)
+				ret += getParametersJavaScript(c)
+		
+		return ret
+	}
+	
+	def getParametersJavaScript2(Parameter it) {
 			'''
 			«IF type instanceof Configurator.Enum»
 				«val enumType = type as Configurator.Enum»
@@ -182,21 +210,28 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def getEnumValue(Literal it, boolean islast){
-		'''
-		«IF it instanceof Configurator.Integer»
-			«val intVal = it as Configurator.Integer»
-			«intVal.value» «IF !islast»,«ENDIF»
-		«ELSEIF it instanceof Configurator.Double»
-			«val doubleVal = it as Configurator.Double»
-			«doubleVal.value» «IF !islast»,«ENDIF»
-		«ELSEIF it instanceof Configurator.Boolean»
-			«val boolVal = it as Configurator.Boolean»
-			«boolVal.value» «IF !islast»,«ENDIF»
-		«ELSEIF it instanceof Configurator.Stringg»
-			«val stringVal = it as Configurator.Stringg»
-			"«stringVal.value»" «IF !islast»,«ENDIF»
-		«ENDIF»
-		'''
+		var ret = ""
+		if (it instanceof Configurator.Integer){
+			val intVal = it as Configurator.Integer
+			ret += intVal.value 
+			if(!islast) ret += ","
+		}
+		else if (it instanceof Configurator.Double){
+			val doubleVal = it as Configurator.Double
+			ret += doubleVal.value 
+			if(!islast) ret += ","
+		}
+		else if (it instanceof Configurator.Boolean){
+			val boolVal = it as Configurator.Boolean
+			ret += boolVal.value 
+			if(!islast) ret += ","
+		}
+		else if (it instanceof Configurator.Stringg){
+			val stringlVal = it as Configurator.Stringg
+			ret += stringlVal.value 
+			if(!islast) ret += ","
+		}		
+		return ret
 	}
 	
 	def getParametersText(Parameter it) {

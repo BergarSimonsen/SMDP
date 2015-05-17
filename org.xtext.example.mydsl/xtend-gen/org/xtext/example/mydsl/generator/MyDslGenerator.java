@@ -119,7 +119,7 @@ public class MyDslGenerator implements IGenerator {
     {
       EList<Parameter> _parameters = it.getParameters();
       for(final Parameter p : _parameters) {
-        CharSequence _parametersJavaScript = this.getParametersJavaScript(p);
+        String _parametersJavaScript = this.getParametersJavaScript(p);
         _builder.append(_parametersJavaScript, "");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
@@ -445,7 +445,80 @@ public class MyDslGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence getParametersJavaScript(final Parameter it) {
+  public String getParametersJavaScript(final Parameter it) {
+    String ret = "";
+    Type _type = it.getType();
+    if ((_type instanceof Configurator.Enum)) {
+      Type _type_1 = it.getType();
+      final Configurator.Enum enumType = ((Configurator.Enum) _type_1);
+      String _ret = ret;
+      String _name = it.getName();
+      String _firstUpper = StringExtensions.toFirstUpper(_name);
+      String _plus = ("var $" + _firstUpper);
+      String _plus_1 = (_plus + "Values = [");
+      ret = (_ret + _plus_1);
+      EList<Literal> _values = enumType.getValues();
+      for (final Literal eval : _values) {
+        EList<Literal> _values_1 = enumType.getValues();
+        EList<Literal> _values_2 = enumType.getValues();
+        int _size = _values_2.size();
+        int _minus = (_size - 1);
+        Literal _get = _values_1.get(_minus);
+        boolean _equals = Objects.equal(eval, _get);
+        if (_equals) {
+          String _ret_1 = ret;
+          String _enumValue = this.getEnumValue(eval, true);
+          ret = (_ret_1 + _enumValue);
+        } else {
+          String _ret_2 = ret;
+          String _enumValue_1 = this.getEnumValue(eval, false);
+          String _plus_2 = (_enumValue_1 + " ");
+          ret = (_ret_2 + _plus_2);
+        }
+      }
+      String _ret_3 = ret;
+      ret = (_ret_3 + "]; \n");
+      int _maxChosenValues = it.getMaxChosenValues();
+      boolean _equals_1 = (_maxChosenValues == 1);
+      if (_equals_1) {
+        String _ret_4 = ret;
+        String _name_1 = it.getName();
+        String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
+        String _plus_3 = ("$(\"#" + _firstUpper_1);
+        String _plus_4 = (_plus_3 + "\").jqxComboBox({ source: $");
+        String _name_2 = it.getName();
+        String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
+        String _plus_5 = (_plus_4 + _firstUpper_2);
+        String _plus_6 = (_plus_5 + "Values, width: \'200px\', height: \'25px\',}); \n\n");
+        ret = (_ret_4 + _plus_6);
+      } else {
+        String _ret_5 = ret;
+        String _name_3 = it.getName();
+        String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
+        String _plus_7 = ("$(\"#" + _firstUpper_3);
+        String _plus_8 = (_plus_7 + "\").jqxListBox({ source: $");
+        String _name_4 = it.getName();
+        String _firstUpper_4 = StringExtensions.toFirstUpper(_name_4);
+        String _plus_9 = (_plus_8 + _firstUpper_4);
+        String _plus_10 = (_plus_9 + "Values, width: \'200px\', height: \'150px\', multiple: true}); \n\n");
+        ret = (_ret_5 + _plus_10);
+      }
+    }
+    EList<Parameter> _children = it.getChildren();
+    boolean _isEmpty = _children.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<Parameter> _children_1 = it.getChildren();
+      for (final Parameter c : _children_1) {
+        String _ret_6 = ret;
+        Object _parametersJavaScript = this.getParametersJavaScript(c);
+        ret = (_ret_6 + _parametersJavaScript);
+      }
+    }
+    return ret;
+  }
+  
+  public CharSequence getParametersJavaScript2(final Parameter it) {
     StringConcatenation _builder = new StringConcatenation();
     {
       Type _type = it.getType();
@@ -470,11 +543,11 @@ public class MyDslGenerator implements IGenerator {
               Literal _get = _values_1.get(_minus);
               boolean _equals = Objects.equal(eval, _get);
               if (_equals) {
-                CharSequence _enumValue = this.getEnumValue(eval, true);
+                String _enumValue = this.getEnumValue(eval, true);
                 _builder.append(_enumValue, "");
                 _builder.newLineIfNotEmpty();
               } else {
-                CharSequence _enumValue_1 = this.getEnumValue(eval, false);
+                String _enumValue_1 = this.getEnumValue(eval, false);
                 _builder.append(_enumValue_1, "");
                 _builder.newLineIfNotEmpty();
               }
@@ -522,7 +595,7 @@ public class MyDslGenerator implements IGenerator {
         {
           EList<Parameter> _children_1 = it.getChildren();
           for(final Parameter c : _children_1) {
-            Object _parametersJavaScript = this.getParametersJavaScript(c);
+            String _parametersJavaScript = this.getParametersJavaScript(c);
             _builder.append(_parametersJavaScript, "");
             _builder.append(" ");
             _builder.newLineIfNotEmpty();
@@ -533,67 +606,52 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence getEnumValue(final Literal it, final boolean islast) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((it instanceof Configurator.Integer)) {
-        final Configurator.Integer intVal = ((Configurator.Integer) it);
-        _builder.newLineIfNotEmpty();
-        int _value = intVal.getValue();
-        _builder.append(_value, "");
-        _builder.append(" ");
-        {
-          if ((!islast)) {
-            _builder.append(",");
-          }
+  public String getEnumValue(final Literal it, final boolean islast) {
+    String ret = "";
+    if ((it instanceof Configurator.Integer)) {
+      final Configurator.Integer intVal = ((Configurator.Integer) it);
+      String _ret = ret;
+      int _value = intVal.getValue();
+      ret = (_ret + Integer.valueOf(_value));
+      if ((!islast)) {
+        String _ret_1 = ret;
+        ret = (_ret_1 + ",");
+      }
+    } else {
+      if ((it instanceof Configurator.Double)) {
+        final Configurator.Double doubleVal = ((Configurator.Double) it);
+        String _ret_2 = ret;
+        double _value_1 = doubleVal.getValue();
+        ret = (_ret_2 + Double.valueOf(_value_1));
+        if ((!islast)) {
+          String _ret_3 = ret;
+          ret = (_ret_3 + ",");
         }
-        _builder.newLineIfNotEmpty();
       } else {
-        if ((it instanceof Configurator.Double)) {
-          final Configurator.Double doubleVal = ((Configurator.Double) it);
-          _builder.newLineIfNotEmpty();
-          double _value_1 = doubleVal.getValue();
-          _builder.append(_value_1, "");
-          _builder.append(" ");
-          {
-            if ((!islast)) {
-              _builder.append(",");
-            }
+        if ((it instanceof Configurator.Boolean)) {
+          final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
+          String _ret_4 = ret;
+          boolean _isValue = boolVal.isValue();
+          ret = (_ret_4 + Boolean.valueOf(_isValue));
+          if ((!islast)) {
+            String _ret_5 = ret;
+            ret = (_ret_5 + ",");
           }
-          _builder.newLineIfNotEmpty();
         } else {
-          if ((it instanceof Configurator.Boolean)) {
-            final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
-            _builder.newLineIfNotEmpty();
-            boolean _isValue = boolVal.isValue();
-            _builder.append(_isValue, "");
-            _builder.append(" ");
-            {
-              if ((!islast)) {
-                _builder.append(",");
-              }
-            }
-            _builder.newLineIfNotEmpty();
-          } else {
-            if ((it instanceof Stringg)) {
-              final Stringg stringVal = ((Stringg) it);
-              _builder.newLineIfNotEmpty();
-              _builder.append("\"");
-              String _value_2 = stringVal.getValue();
-              _builder.append(_value_2, "");
-              _builder.append("\" ");
-              {
-                if ((!islast)) {
-                  _builder.append(",");
-                }
-              }
-              _builder.newLineIfNotEmpty();
+          if ((it instanceof Stringg)) {
+            final Stringg stringlVal = ((Stringg) it);
+            String _ret_6 = ret;
+            String _value_2 = stringlVal.getValue();
+            ret = (_ret_6 + _value_2);
+            if ((!islast)) {
+              String _ret_7 = ret;
+              ret = (_ret_7 + ",");
             }
           }
         }
       }
     }
-    return _builder;
+    return ret;
   }
   
   public CharSequence getParametersText(final Parameter it) {
