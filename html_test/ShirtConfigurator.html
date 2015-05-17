@@ -69,6 +69,14 @@
 						if(itemsPrintPlacement.length == 0) valid += "PrintPlacement must be selected! \n";
 						
 						
+						if(valid === "") {
+							if(!((($("#Color").jqxComboBox('getSelectedItem').value != "RED") || (($("#Color").jqxComboBox('getSelectedItem').value === "RED")
+							 && ($("#Size").jqxComboBox('getSelectedItem').value > 3))))) 
+								valid += "Invalid constraint: " + "((Color != String.RED) || ((Color === String.RED) && (Size > 3))) \n";
+							if(!(( 	$("#Color").jqxComboBox('getSelectedItem').value != $("#PrintColor").jqxComboBox('getSelectedItem').value))) 
+								valid += "Invalid constraint: " + "(Color != PrintColor) \n";
+						}
+						 
 					return valid;
 				};
 				

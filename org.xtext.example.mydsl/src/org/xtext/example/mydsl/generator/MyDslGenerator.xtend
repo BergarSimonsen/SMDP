@@ -64,12 +64,11 @@ class MyDslGenerator implements IGenerator {
 						«ENDFOR»
 						
 						if(valid === "") {
-							«FOR p : parameters»
-								«getConstraints(it)»
-							«ENDFOR»
-							
+							«FOR c : constraints»
+								if(!(«getConstraint(c)»)) valid += "Invalid constraint: " + "«getConstraintText(c)» \n";
+							«ENDFOR»							
 						}
-						
+						 
 					return valid;
 				};
 				
@@ -243,7 +242,6 @@ class MyDslGenerator implements IGenerator {
 				if($("#«name.toFirstUpper»").val() === "") valid += "«name.toFirstUpper» must be filled! \n";
 			«ENDIF»
 		«ENDIF»
-«««			Children
 
 		«IF !children.empty»
 			«FOR c : children»
@@ -253,14 +251,85 @@ class MyDslGenerator implements IGenerator {
 		'''
 	}
 	
-	def getConstraints(ConfiguratorModel it) {
+	def getConstraint(Configurator.Constraint it) {
 		'''		
-		«FOR c : constraints»
-			«IF c instanceof BinaryConstraint»
-				«val binCon = c as BinaryConstraint»
-				if!()
+		«IF it instanceof BinaryConstraint»
+			«val binCon = it as BinaryConstraint»
+			( «getConstraint(binCon.leftOperand)» «getOperatorSign(binCon.operator)» «getConstraint(binCon.rightOperand)»)
+		«ELSEIF it instanceof Literal»
+			«IF it instanceof Configurator.Stringg»
+				«val stringVal = it as Configurator.Stringg»
+				"«stringVal.value»"
+			«ELSEIF it instanceof Configurator.Integer»
+				«val intVal = it as Configurator.Integer»
+				«intVal.value»
+			«ELSEIF it instanceof Configurator.Double»
+				«val doubleVal = it as Configurator.Double»
+				«doubleVal.value»
+			«ELSE»
+				«val boolVal = it as Configurator.Boolean»
+				«boolVal.value»
 			«ENDIF»
-  		«ENDFOR»
+		«ELSE»	««« ParameterIdentifier
+			«val id = it as Configurator.ParameterIdentifier»
+			«getConstraintParamValue(id.parameter)»
+		«ENDIF»
+		'''
+	}
+	
+	def getOperatorSign(Configurator.BinaryOperator it) {
+		'''
+		«IF it.value == 0»
+			&&
+		«ELSEIF it.value == 1»
+			||
+		«ELSEIF it.value == 2»
+			XOR
+		«ELSEIF it.value == 3»
+			===
+		«ELSEIF it.value == 4»
+			!=
+		«ELSEIF it.value == 5»
+			>
+		«ELSEIF it.value == 6»
+			<
+		«ELSEIF it.value == 7»
+			>=
+		«ELSE»
+			<=
+		«ENDIF»		
+		'''
+	}
+	
+	def getConstraintParamValue(Parameter it) {
+		'''
+		«IF type.eClass.name == "Enum"»
+				«IF maxChosenValues == 1»
+					$("#«name.toFirstUpper»").jqxComboBox('getSelectedItem').value
+«««				«ELSEIF maxChosenValues > 1»
+«««					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
+«««					if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
+				«ENDIF»
+			«ELSE»
+				$("#«name.toFirstUpper»").val()
+			«ENDIF»
+		'''
+	}
+	
+	def getConstraintText(Configurator.Constraint it) {
+		'''		
+		«IF it instanceof BinaryConstraint»
+			«val binCon = it as BinaryConstraint»
+			( «getConstraintText(binCon.leftOperand)» «getOperatorSign(binCon.operator)» «getConstraintText(binCon.rightOperand)»)
+		«ELSEIF it instanceof Configurator.Stringg»
+			«val stringVal = it as Configurator.Stringg»
+			String.«stringVal.value»
+		«ELSEIF it instanceof Configurator.ParameterIdentifier»
+			«val id = it as Configurator.ParameterIdentifier»
+			«id.parameter.name»
+		«ELSE»
+			«getConstraint(it)»
+		«ENDIF»
 		'''
 	}
 	

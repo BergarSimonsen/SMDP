@@ -4,11 +4,13 @@
 package org.xtext.example.mydsl.generator;
 
 import Configurator.BinaryConstraint;
+import Configurator.BinaryOperator;
 import Configurator.ConfiguratorModel;
 import Configurator.Constraint;
 import Configurator.Literal;
 import Configurator.Model;
 import Configurator.Parameter;
+import Configurator.ParameterIdentifier;
 import Configurator.Stringg;
 import Configurator.Type;
 import com.google.common.base.Objects;
@@ -148,20 +150,23 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("if(valid === \"\") {");
     _builder.newLine();
     {
-      EList<Parameter> _parameters_2 = it.getParameters();
-      for(final Parameter p_2 : _parameters_2) {
+      EList<Constraint> _constraints = it.getConstraints();
+      for(final Constraint c : _constraints) {
         _builder.append("\t\t\t\t\t");
-        CharSequence _constraints = this.getConstraints(it);
-        _builder.append(_constraints, "\t\t\t\t\t");
+        _builder.append("if(!(");
+        CharSequence _constraint = this.getConstraint(c);
+        _builder.append(_constraint, "\t\t\t\t\t");
+        _builder.append(")) valid += \"Invalid constraint: \" + \"");
+        CharSequence _constraintText = this.getConstraintText(c);
+        _builder.append(_constraintText, "\t\t\t\t\t");
+        _builder.append(" \\n\";");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t\t\t\t\t");
-    _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append("}");
     _builder.newLine();
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t\t ");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("return valid;");
@@ -178,9 +183,9 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("var text = \"\";");
     _builder.newLine();
     {
-      EList<Parameter> _parameters_3 = it.getParameters();
-      for(final Parameter p_3 : _parameters_3) {
-        CharSequence _parametersText = this.getParametersText(p_3);
+      EList<Parameter> _parameters_2 = it.getParameters();
+      for(final Parameter p_2 : _parameters_2) {
+        CharSequence _parametersText = this.getParametersText(p_2);
         _builder.append(_parametersText, "");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
@@ -779,17 +784,215 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence getConstraints(final ConfiguratorModel it) {
+  public CharSequence getConstraint(final Constraint it) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      EList<Constraint> _constraints = it.getConstraints();
-      for(final Constraint c : _constraints) {
-        {
-          if ((c instanceof BinaryConstraint)) {
-            final BinaryConstraint binCon = ((BinaryConstraint) c);
-            _builder.newLineIfNotEmpty();
-            _builder.append("if!()");
+      if ((it instanceof BinaryConstraint)) {
+        final BinaryConstraint binCon = ((BinaryConstraint) it);
+        _builder.newLineIfNotEmpty();
+        _builder.append("( ");
+        Constraint _leftOperand = binCon.getLeftOperand();
+        Object _constraint = this.getConstraint(_leftOperand);
+        _builder.append(_constraint, "");
+        _builder.append(" ");
+        BinaryOperator _operator = binCon.getOperator();
+        CharSequence _operatorSign = this.getOperatorSign(_operator);
+        _builder.append(_operatorSign, "");
+        _builder.append(" ");
+        Constraint _rightOperand = binCon.getRightOperand();
+        Object _constraint_1 = this.getConstraint(_rightOperand);
+        _builder.append(_constraint_1, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      } else {
+        if ((it instanceof Literal)) {
+          {
+            if ((it instanceof Stringg)) {
+              final Stringg stringVal = ((Stringg) it);
+              _builder.newLineIfNotEmpty();
+              _builder.append("\"");
+              String _value = stringVal.getValue();
+              _builder.append(_value, "");
+              _builder.append("\"");
+              _builder.newLineIfNotEmpty();
+            } else {
+              if ((it instanceof Configurator.Integer)) {
+                final Configurator.Integer intVal = ((Configurator.Integer) it);
+                _builder.newLineIfNotEmpty();
+                int _value_1 = intVal.getValue();
+                _builder.append(_value_1, "");
+                _builder.newLineIfNotEmpty();
+              } else {
+                if ((it instanceof Configurator.Double)) {
+                  final Configurator.Double doubleVal = ((Configurator.Double) it);
+                  _builder.newLineIfNotEmpty();
+                  double _value_2 = doubleVal.getValue();
+                  _builder.append(_value_2, "");
+                  _builder.newLineIfNotEmpty();
+                } else {
+                  final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
+                  _builder.newLineIfNotEmpty();
+                  boolean _isValue = boolVal.isValue();
+                  _builder.append(_isValue, "");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+            }
+          }
+          _builder.append("\t\t");
+        } else {
+          _builder.append("\t");
+          _builder.append("\t\t\t");
+          final ParameterIdentifier id = ((ParameterIdentifier) it);
+          _builder.newLineIfNotEmpty();
+          _builder.append("\t");
+          Parameter _parameter = id.getParameter();
+          CharSequence _constraintParamValue = this.getConstraintParamValue(_parameter);
+          _builder.append(_constraintParamValue, "\t");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence getOperatorSign(final BinaryOperator it) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      int _value = it.getValue();
+      boolean _equals = (_value == 0);
+      if (_equals) {
+        _builder.append("&&");
+        _builder.newLine();
+      } else {
+        int _value_1 = it.getValue();
+        boolean _equals_1 = (_value_1 == 1);
+        if (_equals_1) {
+          _builder.append("||");
+          _builder.newLine();
+        } else {
+          int _value_2 = it.getValue();
+          boolean _equals_2 = (_value_2 == 2);
+          if (_equals_2) {
+            _builder.append("XOR");
             _builder.newLine();
+          } else {
+            int _value_3 = it.getValue();
+            boolean _equals_3 = (_value_3 == 3);
+            if (_equals_3) {
+              _builder.append("===");
+              _builder.newLine();
+            } else {
+              int _value_4 = it.getValue();
+              boolean _equals_4 = (_value_4 == 4);
+              if (_equals_4) {
+                _builder.append("!=");
+                _builder.newLine();
+              } else {
+                int _value_5 = it.getValue();
+                boolean _equals_5 = (_value_5 == 5);
+                if (_equals_5) {
+                  _builder.append(">");
+                  _builder.newLine();
+                } else {
+                  int _value_6 = it.getValue();
+                  boolean _equals_6 = (_value_6 == 6);
+                  if (_equals_6) {
+                    _builder.append("<");
+                    _builder.newLine();
+                  } else {
+                    int _value_7 = it.getValue();
+                    boolean _equals_7 = (_value_7 == 7);
+                    if (_equals_7) {
+                      _builder.append(">=");
+                      _builder.newLine();
+                    } else {
+                      _builder.append("<=");
+                      _builder.newLine();
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence getConstraintParamValue(final Parameter it) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      Type _type = it.getType();
+      EClass _eClass = _type.eClass();
+      String _name = _eClass.getName();
+      boolean _equals = Objects.equal(_name, "Enum");
+      if (_equals) {
+        {
+          int _maxChosenValues = it.getMaxChosenValues();
+          boolean _equals_1 = (_maxChosenValues == 1);
+          if (_equals_1) {
+            _builder.append("$(\"#");
+            String _name_1 = it.getName();
+            String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+            _builder.append(_firstUpper, "");
+            _builder.append("\").jqxComboBox(\'getSelectedItem\').value");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      } else {
+        _builder.append("$(\"#");
+        String _name_2 = it.getName();
+        String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+        _builder.append(_firstUpper_1, "");
+        _builder.append("\").val()");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence getConstraintText(final Constraint it) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      if ((it instanceof BinaryConstraint)) {
+        final BinaryConstraint binCon = ((BinaryConstraint) it);
+        _builder.newLineIfNotEmpty();
+        _builder.append("( ");
+        Constraint _leftOperand = binCon.getLeftOperand();
+        Object _constraintText = this.getConstraintText(_leftOperand);
+        _builder.append(_constraintText, "");
+        _builder.append(" ");
+        BinaryOperator _operator = binCon.getOperator();
+        CharSequence _operatorSign = this.getOperatorSign(_operator);
+        _builder.append(_operatorSign, "");
+        _builder.append(" ");
+        Constraint _rightOperand = binCon.getRightOperand();
+        Object _constraintText_1 = this.getConstraintText(_rightOperand);
+        _builder.append(_constraintText_1, "");
+        _builder.append(")");
+        _builder.newLineIfNotEmpty();
+      } else {
+        if ((it instanceof Stringg)) {
+          final Stringg stringVal = ((Stringg) it);
+          _builder.newLineIfNotEmpty();
+          _builder.append("String.");
+          String _value = stringVal.getValue();
+          _builder.append(_value, "");
+          _builder.newLineIfNotEmpty();
+        } else {
+          if ((it instanceof ParameterIdentifier)) {
+            final ParameterIdentifier id = ((ParameterIdentifier) it);
+            _builder.newLineIfNotEmpty();
+            Parameter _parameter = id.getParameter();
+            String _name = _parameter.getName();
+            _builder.append(_name, "");
+            _builder.newLineIfNotEmpty();
+          } else {
+            CharSequence _constraint = this.getConstraint(it);
+            _builder.append(_constraint, "");
+            _builder.newLineIfNotEmpty();
           }
         }
       }
