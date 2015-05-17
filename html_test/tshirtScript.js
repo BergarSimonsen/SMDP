@@ -25,6 +25,7 @@ $(document).ready(function(){
 		if($("#Colour").jqxComboBox('getSelectedItem') === null) valid += "Colour must be filled! \n";
 		if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be filled! \n";
 		if($("#PrintColour").jqxComboBox('getSelectedItem') === null) valid += "PrintColour must be filled! \n";
+		//check lisBoxes!
 		
 		if(valid === "") {
 			if(!($("#Colour").jqxComboBox('getSelectedItem').value != $("#PrintColour").jqxComboBox('getSelectedItem').value)) 

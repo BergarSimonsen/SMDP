@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import Configurator.Literal
+import Configurator.BinaryConstraint
 
 /**
  * Generates code from your model files on save.
@@ -57,7 +58,18 @@ class MyDslGenerator implements IGenerator {
 				
 				function checkConstraints() { 
 					var valid = "";
-						«getConstraints(it)»
+					
+						«FOR p : parameters»
+							«getMandatoryFields(p)»
+						«ENDFOR»
+						
+						if(valid === "") {
+							«FOR p : parameters»
+								«getConstraints(it)»
+							«ENDFOR»
+							
+						}
+						
 					return valid;
 				};
 				
@@ -217,10 +229,37 @@ class MyDslGenerator implements IGenerator {
 		'''
 	}
 	
-	def getConstraints(ConfiguratorModel it) {
+	def getMandatoryFields(Parameter it) {
 		'''
+		«IF minChosenValues > 0»
+			«IF type.eClass.name == "Enum"»
+				«IF maxChosenValues == 1»
+					if($("#«name.toFirstUpper»").jqxComboBox('getSelectedItem') === null) valid += "«name.toFirstUpper» must be selected! \n";
+				«ELSEIF maxChosenValues > 1»
+					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
+					if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
+				«ENDIF»
+			«ELSE»
+				if($("#«name.toFirstUpper»").val() === "") valid += "«name.toFirstUpper» must be filled! \n";
+			«ENDIF»
+		«ENDIF»
+«««			Children
+
+		«IF !children.empty»
+			«FOR c : children»
+  				«getMandatoryFields(c)» 
+  			«ENDFOR»
+		«ENDIF»
+		'''
+	}
+	
+	def getConstraints(ConfiguratorModel it) {
+		'''		
 		«FOR c : constraints»
-			/* constraint */
+			«IF c instanceof BinaryConstraint»
+				«val binCon = c as BinaryConstraint»
+				if!()
+			«ENDIF»
   		«ENDFOR»
 		'''
 	}

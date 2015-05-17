@@ -3,6 +3,7 @@
  */
 package org.xtext.example.mydsl.generator;
 
+import Configurator.BinaryConstraint;
 import Configurator.ConfiguratorModel;
 import Configurator.Constraint;
 import Configurator.Literal;
@@ -130,10 +131,38 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("\t\t\t");
     _builder.append("var valid = \"\";");
     _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    {
+      EList<Parameter> _parameters_1 = it.getParameters();
+      for(final Parameter p_1 : _parameters_1) {
+        _builder.append("\t\t\t\t");
+        CharSequence _mandatoryFields = this.getMandatoryFields(p_1);
+        _builder.append(_mandatoryFields, "\t\t\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\t\t\t\t");
-    CharSequence _constraints = this.getConstraints(it);
-    _builder.append(_constraints, "\t\t\t\t");
-    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("if(valid === \"\") {");
+    _builder.newLine();
+    {
+      EList<Parameter> _parameters_2 = it.getParameters();
+      for(final Parameter p_2 : _parameters_2) {
+        _builder.append("\t\t\t\t\t");
+        CharSequence _constraints = this.getConstraints(it);
+        _builder.append(_constraints, "\t\t\t\t\t");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\t\t\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("return valid;");
     _builder.newLine();
@@ -149,9 +178,9 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("var text = \"\";");
     _builder.newLine();
     {
-      EList<Parameter> _parameters_1 = it.getParameters();
-      for(final Parameter p_1 : _parameters_1) {
-        CharSequence _parametersText = this.getParametersText(p_1);
+      EList<Parameter> _parameters_3 = it.getParameters();
+      for(final Parameter p_3 : _parameters_3) {
+        CharSequence _parametersText = this.getParametersText(p_3);
         _builder.append(_parametersText, "");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
@@ -662,13 +691,107 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
+  public CharSequence getMandatoryFields(final Parameter it) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      int _minChosenValues = it.getMinChosenValues();
+      boolean _greaterThan = (_minChosenValues > 0);
+      if (_greaterThan) {
+        {
+          Type _type = it.getType();
+          EClass _eClass = _type.eClass();
+          String _name = _eClass.getName();
+          boolean _equals = Objects.equal(_name, "Enum");
+          if (_equals) {
+            {
+              int _maxChosenValues = it.getMaxChosenValues();
+              boolean _equals_1 = (_maxChosenValues == 1);
+              if (_equals_1) {
+                _builder.append("if($(\"#");
+                String _name_1 = it.getName();
+                String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+                _builder.append(_firstUpper, "");
+                _builder.append("\").jqxComboBox(\'getSelectedItem\') === null) valid += \"");
+                String _name_2 = it.getName();
+                String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+                _builder.append(_firstUpper_1, "");
+                _builder.append(" must be selected! \\n\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                int _maxChosenValues_1 = it.getMaxChosenValues();
+                boolean _greaterThan_1 = (_maxChosenValues_1 > 1);
+                if (_greaterThan_1) {
+                  _builder.append("var items");
+                  String _name_3 = it.getName();
+                  String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
+                  _builder.append(_firstUpper_2, "");
+                  _builder.append(" = $(\"#");
+                  String _name_4 = it.getName();
+                  String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
+                  _builder.append(_firstUpper_3, "");
+                  _builder.append("\").jqxListBox(\'getSelectedItems\');");
+                  _builder.newLineIfNotEmpty();
+                  _builder.append("if(items");
+                  String _name_5 = it.getName();
+                  String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
+                  _builder.append(_firstUpper_4, "");
+                  _builder.append(".length == 0) valid += \"");
+                  String _name_6 = it.getName();
+                  String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
+                  _builder.append(_firstUpper_5, "");
+                  _builder.append(" must be selected! \\n\";");
+                  _builder.newLineIfNotEmpty();
+                }
+              }
+            }
+          } else {
+            _builder.append("if($(\"#");
+            String _name_7 = it.getName();
+            String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
+            _builder.append(_firstUpper_6, "");
+            _builder.append("\").val() === \"\") valid += \"");
+            String _name_8 = it.getName();
+            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
+            _builder.append(_firstUpper_7, "");
+            _builder.append(" must be filled! \\n\";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    {
+      EList<Parameter> _children = it.getChildren();
+      boolean _isEmpty = _children.isEmpty();
+      boolean _not = (!_isEmpty);
+      if (_not) {
+        {
+          EList<Parameter> _children_1 = it.getChildren();
+          for(final Parameter c : _children_1) {
+            Object _mandatoryFields = this.getMandatoryFields(c);
+            _builder.append(_mandatoryFields, "");
+            _builder.append(" ");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    return _builder;
+  }
+  
   public CharSequence getConstraints(final ConfiguratorModel it) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Constraint> _constraints = it.getConstraints();
       for(final Constraint c : _constraints) {
-        _builder.append("/* constraint */");
-        _builder.newLine();
+        {
+          if ((c instanceof BinaryConstraint)) {
+            final BinaryConstraint binCon = ((BinaryConstraint) c);
+            _builder.newLineIfNotEmpty();
+            _builder.append("if!()");
+            _builder.newLine();
+          }
+        }
       }
     }
     return _builder;

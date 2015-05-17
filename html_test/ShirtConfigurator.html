@@ -53,8 +53,22 @@
 				
 				function checkConstraints() { 
 					var valid = "";
-						/* constraint */
-						/* constraint */
+					
+						if($("#Name").val() === "") valid += "Name must be filled! \n";
+						
+						if($("#Color").jqxComboBox('getSelectedItem') === null) valid += "Color must be selected! \n";
+						
+						if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be selected! \n";
+						
+						
+						if($("#PrintColor").jqxComboBox('getSelectedItem') === null) valid += "PrintColor must be selected! \n";
+						
+						if($("#PrintShape").jqxComboBox('getSelectedItem') === null) valid += "PrintShape must be selected! \n";
+						
+						var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems');
+						if(itemsPrintPlacement.length == 0) valid += "PrintPlacement must be selected! \n";
+						
+						
 					return valid;
 				};
 				
