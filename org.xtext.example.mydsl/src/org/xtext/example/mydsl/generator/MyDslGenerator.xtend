@@ -52,24 +52,24 @@ class MyDslGenerator implements IGenerator {
 		<script type='text/javascript'>
 			$(document).ready(function(){
 				
-				«FOR p : parameters»
-  					«getParametersJavaScript(p)» 
-  				«ENDFOR»
+						«FOR p : parameters»
+  							«getParametersJavaScript(p)» 
+  						«ENDFOR»
 				
 				function checkConstraints() { 
 					var valid = "";
 					
-						«FOR p : parameters»
-							«getMandatoryFields(p)»
-						«ENDFOR»
+					«FOR p : parameters»
+						«getMandatoryFields(p)»
+					«ENDFOR»
 						
-						if(valid === "") {
-							«FOR c : constraints»
-								if(!(«getConstraint(c)»)) valid += "Invalid constraint: " + "«getConstraintText(c)» \n";
-							«ENDFOR»							
-						}
+					if(valid === "") {
+						«FOR c : constraints»
+							if(!(«getConstraint(c)»)) valid += "Invalid constraint: " + "«getConstraintText(c)» \n";
+						«ENDFOR»							
+					}
 						 
-					return valid;
+						return valid;
 				};
 				
 				function getText() {
@@ -182,33 +182,6 @@ class MyDslGenerator implements IGenerator {
 		return ret
 	}
 	
-	def getParametersJavaScript2(Parameter it) {
-			'''
-			«IF type instanceof Configurator.Enum»
-				«val enumType = type as Configurator.Enum»
-				var $«name.toFirstUpper»Values = [
-				«FOR eval : enumType.values»	
-					«IF eval == enumType.values.get(enumType.values.size - 1)»
-						«getEnumValue(eval, true)»
-					«ELSE»
-						«getEnumValue(eval, false)»
-					«ENDIF»							
-				«ENDFOR»];
-				«IF maxChosenValues == 1»					
-					$("#«name.toFirstUpper»").jqxComboBox({ source: $«name.toFirstUpper»Values, width: '200px', height: '25px',});
-				«ELSE»
-					$("#«name.toFirstUpper»").jqxListBox({ source: $«name.toFirstUpper»Values, width: '200px', height: '150px', multiple: true});
-				«ENDIF»
-			«ENDIF»
-			
-			«IF !children.empty»
-				«FOR c : children»
-  					«getParametersJavaScript(c)» 
-  				«ENDFOR»
-			«ENDIF»
-		'''
-	}
-	
 	def getEnumValue(Literal it, boolean islast){
 		var ret = ""
 		if (it instanceof Configurator.Integer){
@@ -264,26 +237,26 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def getMandatoryFields(Parameter it) {
-		'''
-		«IF minChosenValues > 0»
-			«IF type.eClass.name == "Enum"»
-				«IF maxChosenValues == 1»
-					if($("#«name.toFirstUpper»").jqxComboBox('getSelectedItem') === null) valid += "«name.toFirstUpper» must be selected! \n";
-				«ELSEIF maxChosenValues > 1»
-					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
-					if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
-				«ENDIF»
-			«ELSE»
-				if($("#«name.toFirstUpper»").val() === "") valid += "«name.toFirstUpper» must be filled! \n";
-			«ENDIF»
-		«ENDIF»
+		var ret = "";
+		if (minChosenValues > 0) {
+			if (type.eClass.name == "Enum") {
+				if(maxChosenValues == 1) 
+					ret += "if($(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem') === null) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
+				else if (maxChosenValues > 1) {
+					ret += "var items" + name.toFirstUpper +  "= $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
+					ret += "if(items" + name.toFirstUpper + ".length == 0) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
+				}
+			}				
+			else
+				ret += "if($(\"#" + name.toFirstUpper + "\").val() === \"\") valid += \"" + name.toFirstUpper +  " must be filled! \\n\"; \n"
+		}			
 
-		«IF !children.empty»
-			«FOR c : children»
-  				«getMandatoryFields(c)» 
-  			«ENDFOR»
-		«ENDIF»
-		'''
+		if (!children.empty)
+			for (c : children)
+  				ret += getMandatoryFields(c)
+  		
+  		ret += "\n"		
+  		return ret
 	}
 	
 	def getConstraint(Configurator.Constraint it) {

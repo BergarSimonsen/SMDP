@@ -138,37 +138,37 @@ public class MyDslGenerator implements IGenerator {
     {
       EList<Parameter> _parameters_1 = it.getParameters();
       for(final Parameter p_1 : _parameters_1) {
-        _builder.append("\t\t\t\t");
-        CharSequence _mandatoryFields = this.getMandatoryFields(p_1);
-        _builder.append(_mandatoryFields, "\t\t\t\t");
+        _builder.append("\t\t\t");
+        String _mandatoryFields = this.getMandatoryFields(p_1);
+        _builder.append(_mandatoryFields, "\t\t\t");
         _builder.newLineIfNotEmpty();
       }
     }
     _builder.append("\t\t\t\t");
     _builder.newLine();
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t");
     _builder.append("if(valid === \"\") {");
     _builder.newLine();
     {
       EList<Constraint> _constraints = it.getConstraints();
       for(final Constraint c : _constraints) {
-        _builder.append("\t\t\t\t\t");
+        _builder.append("\t\t\t\t");
         _builder.append("if(!(");
         CharSequence _constraint = this.getConstraint(c);
-        _builder.append(_constraint, "\t\t\t\t\t");
+        _builder.append(_constraint, "\t\t\t\t");
         _builder.append(")) valid += \"Invalid constraint: \" + \"");
         CharSequence _constraintText = this.getConstraintText(c);
-        _builder.append(_constraintText, "\t\t\t\t\t");
+        _builder.append(_constraintText, "\t\t\t\t");
         _builder.append(" \\n\";");
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t");
     _builder.append("}");
     _builder.newLine();
     _builder.append("\t\t\t\t ");
     _builder.newLine();
-    _builder.append("\t\t\t");
+    _builder.append("\t\t\t\t");
     _builder.append("return valid;");
     _builder.newLine();
     _builder.append("\t\t");
@@ -518,94 +518,6 @@ public class MyDslGenerator implements IGenerator {
     return ret;
   }
   
-  public CharSequence getParametersJavaScript2(final Parameter it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      Type _type = it.getType();
-      if ((_type instanceof Configurator.Enum)) {
-        Type _type_1 = it.getType();
-        final Configurator.Enum enumType = ((Configurator.Enum) _type_1);
-        _builder.newLineIfNotEmpty();
-        _builder.append("var $");
-        String _name = it.getName();
-        String _firstUpper = StringExtensions.toFirstUpper(_name);
-        _builder.append(_firstUpper, "");
-        _builder.append("Values = [");
-        _builder.newLineIfNotEmpty();
-        {
-          EList<Literal> _values = enumType.getValues();
-          for(final Literal eval : _values) {
-            {
-              EList<Literal> _values_1 = enumType.getValues();
-              EList<Literal> _values_2 = enumType.getValues();
-              int _size = _values_2.size();
-              int _minus = (_size - 1);
-              Literal _get = _values_1.get(_minus);
-              boolean _equals = Objects.equal(eval, _get);
-              if (_equals) {
-                String _enumValue = this.getEnumValue(eval, true);
-                _builder.append(_enumValue, "");
-                _builder.newLineIfNotEmpty();
-              } else {
-                String _enumValue_1 = this.getEnumValue(eval, false);
-                _builder.append(_enumValue_1, "");
-                _builder.newLineIfNotEmpty();
-              }
-            }
-            _builder.append("\t\t\t\t");
-          }
-        }
-        _builder.append("];");
-        _builder.newLineIfNotEmpty();
-        {
-          int _maxChosenValues = it.getMaxChosenValues();
-          boolean _equals_1 = (_maxChosenValues == 1);
-          if (_equals_1) {
-            _builder.append("$(\"#");
-            String _name_1 = it.getName();
-            String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-            _builder.append(_firstUpper_1, "");
-            _builder.append("\").jqxComboBox({ source: $");
-            String _name_2 = it.getName();
-            String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
-            _builder.append(_firstUpper_2, "");
-            _builder.append("Values, width: \'200px\', height: \'25px\',});");
-            _builder.newLineIfNotEmpty();
-          } else {
-            _builder.append("$(\"#");
-            String _name_3 = it.getName();
-            String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
-            _builder.append(_firstUpper_3, "");
-            _builder.append("\").jqxListBox({ source: $");
-            String _name_4 = it.getName();
-            String _firstUpper_4 = StringExtensions.toFirstUpper(_name_4);
-            _builder.append(_firstUpper_4, "");
-            _builder.append("Values, width: \'200px\', height: \'150px\', multiple: true});");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    _builder.newLine();
-    {
-      EList<Parameter> _children = it.getChildren();
-      boolean _isEmpty = _children.isEmpty();
-      boolean _not = (!_isEmpty);
-      if (_not) {
-        {
-          EList<Parameter> _children_1 = it.getChildren();
-          for(final Parameter c : _children_1) {
-            String _parametersJavaScript = this.getParametersJavaScript(c);
-            _builder.append(_parametersJavaScript, "");
-            _builder.append(" ");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    return _builder;
-  }
-  
   public String getEnumValue(final Literal it, final boolean islast) {
     String ret = "";
     if ((it instanceof Configurator.Integer)) {
@@ -754,92 +666,82 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence getMandatoryFields(final Parameter it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      int _minChosenValues = it.getMinChosenValues();
-      boolean _greaterThan = (_minChosenValues > 0);
-      if (_greaterThan) {
-        {
-          Type _type = it.getType();
-          EClass _eClass = _type.eClass();
-          String _name = _eClass.getName();
-          boolean _equals = Objects.equal(_name, "Enum");
-          if (_equals) {
-            {
-              int _maxChosenValues = it.getMaxChosenValues();
-              boolean _equals_1 = (_maxChosenValues == 1);
-              if (_equals_1) {
-                _builder.append("if($(\"#");
-                String _name_1 = it.getName();
-                String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-                _builder.append(_firstUpper, "");
-                _builder.append("\").jqxComboBox(\'getSelectedItem\') === null) valid += \"");
-                String _name_2 = it.getName();
-                String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
-                _builder.append(_firstUpper_1, "");
-                _builder.append(" must be selected! \\n\";");
-                _builder.newLineIfNotEmpty();
-              } else {
-                int _maxChosenValues_1 = it.getMaxChosenValues();
-                boolean _greaterThan_1 = (_maxChosenValues_1 > 1);
-                if (_greaterThan_1) {
-                  _builder.append("var items");
-                  String _name_3 = it.getName();
-                  String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
-                  _builder.append(_firstUpper_2, "");
-                  _builder.append(" = $(\"#");
-                  String _name_4 = it.getName();
-                  String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
-                  _builder.append(_firstUpper_3, "");
-                  _builder.append("\").jqxListBox(\'getSelectedItems\');");
-                  _builder.newLineIfNotEmpty();
-                  _builder.append("if(items");
-                  String _name_5 = it.getName();
-                  String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
-                  _builder.append(_firstUpper_4, "");
-                  _builder.append(".length == 0) valid += \"");
-                  String _name_6 = it.getName();
-                  String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
-                  _builder.append(_firstUpper_5, "");
-                  _builder.append(" must be selected! \\n\";");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
-            }
-          } else {
-            _builder.append("if($(\"#");
-            String _name_7 = it.getName();
-            String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
-            _builder.append(_firstUpper_6, "");
-            _builder.append("\").val() === \"\") valid += \"");
-            String _name_8 = it.getName();
-            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
-            _builder.append(_firstUpper_7, "");
-            _builder.append(" must be filled! \\n\";");
-            _builder.newLineIfNotEmpty();
+  public String getMandatoryFields(final Parameter it) {
+    String ret = "";
+    int _minChosenValues = it.getMinChosenValues();
+    boolean _greaterThan = (_minChosenValues > 0);
+    if (_greaterThan) {
+      Type _type = it.getType();
+      EClass _eClass = _type.eClass();
+      String _name = _eClass.getName();
+      boolean _equals = Objects.equal(_name, "Enum");
+      if (_equals) {
+        int _maxChosenValues = it.getMaxChosenValues();
+        boolean _equals_1 = (_maxChosenValues == 1);
+        if (_equals_1) {
+          String _ret = ret;
+          String _name_1 = it.getName();
+          String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+          String _plus = ("if($(\"#" + _firstUpper);
+          String _plus_1 = (_plus + "\").jqxComboBox(\'getSelectedItem\') === null) valid += \"");
+          String _name_2 = it.getName();
+          String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+          String _plus_2 = (_plus_1 + _firstUpper_1);
+          String _plus_3 = (_plus_2 + " must be selected! \\n\"; \n");
+          ret = (_ret + _plus_3);
+        } else {
+          int _maxChosenValues_1 = it.getMaxChosenValues();
+          boolean _greaterThan_1 = (_maxChosenValues_1 > 1);
+          if (_greaterThan_1) {
+            String _ret_1 = ret;
+            String _name_3 = it.getName();
+            String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
+            String _plus_4 = ("var items" + _firstUpper_2);
+            String _plus_5 = (_plus_4 + "= $(\"#");
+            String _name_4 = it.getName();
+            String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
+            String _plus_6 = (_plus_5 + _firstUpper_3);
+            String _plus_7 = (_plus_6 + "\").jqxListBox(\'getSelectedItems\'); \n");
+            ret = (_ret_1 + _plus_7);
+            String _ret_2 = ret;
+            String _name_5 = it.getName();
+            String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
+            String _plus_8 = ("if(items" + _firstUpper_4);
+            String _plus_9 = (_plus_8 + ".length == 0) valid += \"");
+            String _name_6 = it.getName();
+            String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
+            String _plus_10 = (_plus_9 + _firstUpper_5);
+            String _plus_11 = (_plus_10 + " must be selected! \\n\"; \n");
+            ret = (_ret_2 + _plus_11);
           }
         }
+      } else {
+        String _ret_3 = ret;
+        String _name_7 = it.getName();
+        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
+        String _plus_12 = ("if($(\"#" + _firstUpper_6);
+        String _plus_13 = (_plus_12 + "\").val() === \"\") valid += \"");
+        String _name_8 = it.getName();
+        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
+        String _plus_14 = (_plus_13 + _firstUpper_7);
+        String _plus_15 = (_plus_14 + " must be filled! \\n\"; \n");
+        ret = (_ret_3 + _plus_15);
       }
     }
-    _builder.newLine();
-    {
-      EList<Parameter> _children = it.getChildren();
-      boolean _isEmpty = _children.isEmpty();
-      boolean _not = (!_isEmpty);
-      if (_not) {
-        {
-          EList<Parameter> _children_1 = it.getChildren();
-          for(final Parameter c : _children_1) {
-            Object _mandatoryFields = this.getMandatoryFields(c);
-            _builder.append(_mandatoryFields, "");
-            _builder.append(" ");
-            _builder.newLineIfNotEmpty();
-          }
-        }
+    EList<Parameter> _children = it.getChildren();
+    boolean _isEmpty = _children.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<Parameter> _children_1 = it.getChildren();
+      for (final Parameter c : _children_1) {
+        String _ret_4 = ret;
+        Object _mandatoryFields = this.getMandatoryFields(c);
+        ret = (_ret_4 + _mandatoryFields);
       }
     }
-    return _builder;
+    String _ret_5 = ret;
+    ret = (_ret_5 + "\n");
+    return ret;
   }
   
   public CharSequence getConstraint(final Constraint it) {
