@@ -7997,3 +7997,52 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp
 
 !ENTRY org.eclipse.core.resources 2 10035 2015-05-14 13:42:23.144
 !MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+!SESSION 2015-05-17 12:04:11.418 -----------------------------------------------
+eclipse.buildId=4.4.1.M20140925-0400
+java.version=1.8.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.modeling.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.modeling.product
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.872
+!MESSAGE Marker id 4265 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.880
+!MESSAGE Marker id 4264 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.880
+!MESSAGE Marker id 4263 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.881
+!MESSAGE Marker id 4262 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.881
+!MESSAGE Marker id 4261 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.881
+!MESSAGE Marker id 4260 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.882
+!MESSAGE Marker id 4259 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.882
+!MESSAGE Marker id 4258 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.882
+!MESSAGE Marker id 4257 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.882
+!MESSAGE Marker id 4256 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.883
+!MESSAGE Marker id 4255 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.883
+!MESSAGE Marker id 4254 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.883
+!MESSAGE Marker id 4253 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-17 13:47:28.883
+!MESSAGE Marker id 4252 not found.
