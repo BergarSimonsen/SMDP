@@ -154,11 +154,15 @@ public class MyDslGenerator implements IGenerator {
       for(final Constraint c : _constraints) {
         _builder.append("\t\t\t\t");
         _builder.append("if(!(");
-        CharSequence _constraint = this.getConstraint(c);
+        Object _constraint = this.getConstraint(c);
         _builder.append(_constraint, "\t\t\t\t");
-        _builder.append(")) valid += \"Invalid constraint: \" + \"");
-        CharSequence _constraintText = this.getConstraintText(c);
-        _builder.append(_constraintText, "\t\t\t\t");
+        _builder.append(")) ");
+        _builder.newLineIfNotEmpty();
+        _builder.append("\t\t\t\t");
+        _builder.append("\t\t");
+        _builder.append("valid += \"Invalid constraint: \" + \"");
+        Object _constraintText = this.getConstraintText(c);
+        _builder.append(_constraintText, "\t\t\t\t\t\t");
         _builder.append(" \\n\";");
         _builder.newLineIfNotEmpty();
       }
@@ -168,7 +172,7 @@ public class MyDslGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("\t\t\t\t ");
     _builder.newLine();
-    _builder.append("\t\t\t\t");
+    _builder.append("\t\t\t");
     _builder.append("return valid;");
     _builder.newLine();
     _builder.append("\t\t");
@@ -458,7 +462,7 @@ public class MyDslGenerator implements IGenerator {
       String _ret = ret;
       String _name = it.getName();
       String _firstUpper = StringExtensions.toFirstUpper(_name);
-      String _plus = ("var $" + _firstUpper);
+      String _plus = ("\t\tvar $" + _firstUpper);
       String _plus_1 = (_plus + "Values = [");
       ret = (_ret + _plus_1);
       EList<Literal> _values = enumType.getValues();
@@ -488,7 +492,7 @@ public class MyDslGenerator implements IGenerator {
         String _ret_4 = ret;
         String _name_1 = it.getName();
         String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-        String _plus_3 = ("$(\"#" + _firstUpper_1);
+        String _plus_3 = ("\t\t$(\"#" + _firstUpper_1);
         String _plus_4 = (_plus_3 + "\").jqxComboBox({ source: $");
         String _name_2 = it.getName();
         String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
@@ -499,7 +503,7 @@ public class MyDslGenerator implements IGenerator {
         String _ret_5 = ret;
         String _name_3 = it.getName();
         String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
-        String _plus_7 = ("$(\"#" + _firstUpper_3);
+        String _plus_7 = ("\t\t$(\"#" + _firstUpper_3);
         String _plus_8 = (_plus_7 + "\").jqxListBox({ source: $");
         String _name_4 = it.getName();
         String _firstUpper_4 = StringExtensions.toFirstUpper(_name_4);
@@ -558,7 +562,9 @@ public class MyDslGenerator implements IGenerator {
             final Stringg stringlVal = ((Stringg) it);
             String _ret_6 = ret;
             String _value_2 = stringlVal.getValue();
-            ret = (_ret_6 + _value_2);
+            String _plus = ("\"" + _value_2);
+            String _plus_1 = (_plus + "\"");
+            ret = (_ret_6 + _plus_1);
             if ((!islast)) {
               String _ret_7 = ret;
               ret = (_ret_7 + ",");
@@ -586,7 +592,7 @@ public class MyDslGenerator implements IGenerator {
           String _ret = ret;
           String _name_1 = it.getName();
           String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-          String _plus = ("text += \"" + _firstUpper);
+          String _plus = ("\t\t\ttext += \"" + _firstUpper);
           String _plus_1 = (_plus + ": \" + $(\"#");
           String _name_2 = it.getName();
           String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
@@ -599,7 +605,7 @@ public class MyDslGenerator implements IGenerator {
           String _ret_2 = ret;
           String _name_3 = it.getName();
           String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
-          String _plus_4 = ("var items" + _firstUpper_2);
+          String _plus_4 = ("\t\t\tvar items" + _firstUpper_2);
           String _plus_5 = (_plus_4 + " = $(\"#");
           String _name_4 = it.getName();
           String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
@@ -609,28 +615,28 @@ public class MyDslGenerator implements IGenerator {
           String _ret_3 = ret;
           String _name_5 = it.getName();
           String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
-          String _plus_8 = ("text += \"" + _firstUpper_4);
+          String _plus_8 = ("\t\t\ttext += \"" + _firstUpper_4);
           String _plus_9 = (_plus_8 + ": \"; \n");
           ret = (_ret_3 + _plus_9);
           String _ret_4 = ret;
           String _name_6 = it.getName();
           String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
-          String _plus_10 = ("jQuery.each(items" + _firstUpper_5);
+          String _plus_10 = ("\t\t\tjQuery.each(items" + _firstUpper_5);
           String _plus_11 = (_plus_10 + ", function(index, value){ \n");
           ret = (_ret_4 + _plus_11);
           String _ret_5 = ret;
-          ret = (_ret_5 + "\t text += this.value + \", \" \n");
+          ret = (_ret_5 + "\t\t\t\ttext += this.value + \", \" \n");
           String _ret_6 = ret;
-          ret = (_ret_6 + "}); \n");
+          ret = (_ret_6 + "\t\t\t}); \n");
           String _ret_7 = ret;
-          ret = (_ret_7 + "text += \" \\r\\n\"; \n");
+          ret = (_ret_7 + "\t\t\ttext += \" \\r\\n\"; \n");
         }
       } else {
         String _ret_8 = ret;
         String _name_7 = it.getName();
         String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
-        String _plus_12 = ("text += \"" + _firstUpper_6);
-        String _plus_13 = (_plus_12 + "\" + $(\"#");
+        String _plus_12 = ("\t\t\ttext += \"" + _firstUpper_6);
+        String _plus_13 = (_plus_12 + ": \" + $(\"#");
         String _name_8 = it.getName();
         String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
         String _plus_14 = (_plus_13 + _firstUpper_7);
@@ -641,7 +647,7 @@ public class MyDslGenerator implements IGenerator {
       String _ret_9 = ret;
       String _name_9 = it.getName();
       String _firstUpper_8 = StringExtensions.toFirstUpper(_name_9);
-      String _plus_16 = ("text += \"" + _firstUpper_8);
+      String _plus_16 = ("\t\t\ttext += \"" + _firstUpper_8);
       String _plus_17 = (_plus_16 + ": \" + \"\\r\\n\"; \n");
       ret = (_ret_9 + _plus_17);
     }
@@ -735,132 +741,92 @@ public class MyDslGenerator implements IGenerator {
     return ret;
   }
   
-  public CharSequence getConstraint(final Constraint it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((it instanceof BinaryConstraint)) {
-        final BinaryConstraint binCon = ((BinaryConstraint) it);
-        _builder.newLineIfNotEmpty();
-        _builder.append("( ");
-        Constraint _leftOperand = binCon.getLeftOperand();
-        Object _constraint = this.getConstraint(_leftOperand);
-        _builder.append(_constraint, "");
-        _builder.append(" ");
-        BinaryOperator _operator = binCon.getOperator();
-        CharSequence _operatorSign = this.getOperatorSign(_operator);
-        _builder.append(_operatorSign, "");
-        _builder.append(" ");
-        Constraint _rightOperand = binCon.getRightOperand();
-        Object _constraint_1 = this.getConstraint(_rightOperand);
-        _builder.append(_constraint_1, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
-      } else {
-        if ((it instanceof Literal)) {
-          {
-            if ((it instanceof Stringg)) {
-              final Stringg stringVal = ((Stringg) it);
-              _builder.newLineIfNotEmpty();
-              _builder.append("\"");
-              String _value = stringVal.getValue();
-              _builder.append(_value, "");
-              _builder.append("\"");
-              _builder.newLineIfNotEmpty();
+  public Object getConstraint(final Constraint it) {
+    if ((it instanceof BinaryConstraint)) {
+      final BinaryConstraint binCon = ((BinaryConstraint) it);
+      Constraint _leftOperand = binCon.getLeftOperand();
+      Object _constraint = this.getConstraint(_leftOperand);
+      String _plus = ("(" + _constraint);
+      String _plus_1 = (_plus + " ");
+      BinaryOperator _operator = binCon.getOperator();
+      String _operatorSign = this.getOperatorSign(_operator);
+      String _plus_2 = (_plus_1 + _operatorSign);
+      String _plus_3 = (_plus_2 + " ");
+      Constraint _rightOperand = binCon.getRightOperand();
+      Object _constraint_1 = this.getConstraint(_rightOperand);
+      String _plus_4 = (_plus_3 + _constraint_1);
+      return (_plus_4 + ")");
+    } else {
+      if ((it instanceof Literal)) {
+        if ((it instanceof Stringg)) {
+          final Stringg stringVal = ((Stringg) it);
+          String _value = stringVal.getValue();
+          String _plus_5 = ("\"" + _value);
+          return (_plus_5 + "\"");
+        } else {
+          if ((it instanceof Configurator.Integer)) {
+            final Configurator.Integer intVal = ((Configurator.Integer) it);
+            return Integer.valueOf(intVal.getValue());
+          } else {
+            if ((it instanceof Configurator.Double)) {
+              final Configurator.Double doubleVal = ((Configurator.Double) it);
+              return Double.valueOf(doubleVal.getValue());
             } else {
-              if ((it instanceof Configurator.Integer)) {
-                final Configurator.Integer intVal = ((Configurator.Integer) it);
-                _builder.newLineIfNotEmpty();
-                int _value_1 = intVal.getValue();
-                _builder.append(_value_1, "");
-                _builder.newLineIfNotEmpty();
-              } else {
-                if ((it instanceof Configurator.Double)) {
-                  final Configurator.Double doubleVal = ((Configurator.Double) it);
-                  _builder.newLineIfNotEmpty();
-                  double _value_2 = doubleVal.getValue();
-                  _builder.append(_value_2, "");
-                  _builder.newLineIfNotEmpty();
-                } else {
-                  final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
-                  _builder.newLineIfNotEmpty();
-                  boolean _isValue = boolVal.isValue();
-                  _builder.append(_isValue, "");
-                  _builder.newLineIfNotEmpty();
-                }
-              }
+              final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
+              return Boolean.valueOf(boolVal.isValue());
             }
           }
-          _builder.append("\t\t");
-        } else {
-          _builder.append("\t");
-          _builder.append("\t\t\t");
-          final ParameterIdentifier id = ((ParameterIdentifier) it);
-          _builder.newLineIfNotEmpty();
-          _builder.append("\t");
-          Parameter _parameter = id.getParameter();
-          CharSequence _constraintParamValue = this.getConstraintParamValue(_parameter);
-          _builder.append(_constraintParamValue, "\t");
-          _builder.newLineIfNotEmpty();
         }
+      } else {
+        final ParameterIdentifier id = ((ParameterIdentifier) it);
+        Parameter _parameter = id.getParameter();
+        return this.getConstraintParamValue(_parameter);
       }
     }
-    return _builder;
   }
   
-  public CharSequence getOperatorSign(final BinaryOperator it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      int _value = it.getValue();
-      boolean _equals = (_value == 0);
-      if (_equals) {
-        _builder.append("&&");
-        _builder.newLine();
+  public String getOperatorSign(final BinaryOperator it) {
+    int _value = it.getValue();
+    boolean _equals = (_value == 0);
+    if (_equals) {
+      return "&&";
+    } else {
+      int _value_1 = it.getValue();
+      boolean _equals_1 = (_value_1 == 1);
+      if (_equals_1) {
+        return "||";
       } else {
-        int _value_1 = it.getValue();
-        boolean _equals_1 = (_value_1 == 1);
-        if (_equals_1) {
-          _builder.append("||");
-          _builder.newLine();
+        int _value_2 = it.getValue();
+        boolean _equals_2 = (_value_2 == 2);
+        if (_equals_2) {
+          return "XOR";
         } else {
-          int _value_2 = it.getValue();
-          boolean _equals_2 = (_value_2 == 2);
-          if (_equals_2) {
-            _builder.append("XOR");
-            _builder.newLine();
+          int _value_3 = it.getValue();
+          boolean _equals_3 = (_value_3 == 3);
+          if (_equals_3) {
+            return "===";
           } else {
-            int _value_3 = it.getValue();
-            boolean _equals_3 = (_value_3 == 3);
-            if (_equals_3) {
-              _builder.append("===");
-              _builder.newLine();
+            int _value_4 = it.getValue();
+            boolean _equals_4 = (_value_4 == 4);
+            if (_equals_4) {
+              return "!=";
             } else {
-              int _value_4 = it.getValue();
-              boolean _equals_4 = (_value_4 == 4);
-              if (_equals_4) {
-                _builder.append("!=");
-                _builder.newLine();
+              int _value_5 = it.getValue();
+              boolean _equals_5 = (_value_5 == 5);
+              if (_equals_5) {
+                return ">";
               } else {
-                int _value_5 = it.getValue();
-                boolean _equals_5 = (_value_5 == 5);
-                if (_equals_5) {
-                  _builder.append(">");
-                  _builder.newLine();
+                int _value_6 = it.getValue();
+                boolean _equals_6 = (_value_6 == 6);
+                if (_equals_6) {
+                  return "<";
                 } else {
-                  int _value_6 = it.getValue();
-                  boolean _equals_6 = (_value_6 == 6);
-                  if (_equals_6) {
-                    _builder.append("<");
-                    _builder.newLine();
+                  int _value_7 = it.getValue();
+                  boolean _equals_7 = (_value_7 == 7);
+                  if (_equals_7) {
+                    return ">=";
                   } else {
-                    int _value_7 = it.getValue();
-                    boolean _equals_7 = (_value_7 == 7);
-                    if (_equals_7) {
-                      _builder.append(">=");
-                      _builder.newLine();
-                    } else {
-                      _builder.append("<=");
-                      _builder.newLine();
-                    }
+                    return "<=";
                   }
                 }
               }
@@ -869,86 +835,66 @@ public class MyDslGenerator implements IGenerator {
         }
       }
     }
-    return _builder;
   }
   
-  public CharSequence getConstraintParamValue(final Parameter it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      Type _type = it.getType();
-      EClass _eClass = _type.eClass();
-      String _name = _eClass.getName();
-      boolean _equals = Objects.equal(_name, "Enum");
-      if (_equals) {
-        {
-          int _maxChosenValues = it.getMaxChosenValues();
-          boolean _equals_1 = (_maxChosenValues == 1);
-          if (_equals_1) {
-            _builder.append("$(\"#");
-            String _name_1 = it.getName();
-            String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-            _builder.append(_firstUpper, "");
-            _builder.append("\").jqxComboBox(\'getSelectedItem\').value");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      } else {
-        _builder.append("$(\"#");
-        String _name_2 = it.getName();
-        String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
-        _builder.append(_firstUpper_1, "");
-        _builder.append("\").val()");
-        _builder.newLineIfNotEmpty();
+  public String getConstraintParamValue(final Parameter it) {
+    String ret = "";
+    Type _type = it.getType();
+    EClass _eClass = _type.eClass();
+    String _name = _eClass.getName();
+    boolean _equals = Objects.equal(_name, "Enum");
+    if (_equals) {
+      int _maxChosenValues = it.getMaxChosenValues();
+      boolean _equals_1 = (_maxChosenValues == 1);
+      if (_equals_1) {
+        String _ret = ret;
+        String _name_1 = it.getName();
+        String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+        String _plus = ("$(\"#" + _firstUpper);
+        String _plus_1 = (_plus + "\").jqxComboBox(\'getSelectedItem\').value");
+        ret = (_ret + _plus_1);
       }
+    } else {
+      String _ret_1 = ret;
+      String _name_2 = it.getName();
+      String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+      String _plus_2 = ("$(\"#" + _firstUpper_1);
+      String _plus_3 = (_plus_2 + "\").val()");
+      ret = (_ret_1 + _plus_3);
     }
-    return _builder;
+    return ret;
   }
   
-  public CharSequence getConstraintText(final Constraint it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      if ((it instanceof BinaryConstraint)) {
-        final BinaryConstraint binCon = ((BinaryConstraint) it);
-        _builder.newLineIfNotEmpty();
-        _builder.append("( ");
-        Constraint _leftOperand = binCon.getLeftOperand();
-        Object _constraintText = this.getConstraintText(_leftOperand);
-        _builder.append(_constraintText, "");
-        _builder.append(" ");
-        BinaryOperator _operator = binCon.getOperator();
-        CharSequence _operatorSign = this.getOperatorSign(_operator);
-        _builder.append(_operatorSign, "");
-        _builder.append(" ");
-        Constraint _rightOperand = binCon.getRightOperand();
-        Object _constraintText_1 = this.getConstraintText(_rightOperand);
-        _builder.append(_constraintText_1, "");
-        _builder.append(")");
-        _builder.newLineIfNotEmpty();
+  public Object getConstraintText(final Constraint it) {
+    if ((it instanceof BinaryConstraint)) {
+      final BinaryConstraint binCon = ((BinaryConstraint) it);
+      Constraint _leftOperand = binCon.getLeftOperand();
+      Object _constraintText = this.getConstraintText(_leftOperand);
+      String _plus = ("(" + _constraintText);
+      String _plus_1 = (_plus + " ");
+      BinaryOperator _operator = binCon.getOperator();
+      String _operatorSign = this.getOperatorSign(_operator);
+      String _plus_2 = (_plus_1 + _operatorSign);
+      String _plus_3 = (_plus_2 + " ");
+      Constraint _rightOperand = binCon.getRightOperand();
+      Object _constraintText_1 = this.getConstraintText(_rightOperand);
+      String _plus_4 = (_plus_3 + _constraintText_1);
+      return (_plus_4 + ")");
+    } else {
+      if ((it instanceof Stringg)) {
+        final Stringg stringVal = ((Stringg) it);
+        String _value = stringVal.getValue();
+        return ("String." + _value);
       } else {
-        if ((it instanceof Stringg)) {
-          final Stringg stringVal = ((Stringg) it);
-          _builder.newLineIfNotEmpty();
-          _builder.append("String.");
-          String _value = stringVal.getValue();
-          _builder.append(_value, "");
-          _builder.newLineIfNotEmpty();
+        if ((it instanceof ParameterIdentifier)) {
+          final ParameterIdentifier id = ((ParameterIdentifier) it);
+          Parameter _parameter = id.getParameter();
+          return _parameter.getName();
         } else {
-          if ((it instanceof ParameterIdentifier)) {
-            final ParameterIdentifier id = ((ParameterIdentifier) it);
-            _builder.newLineIfNotEmpty();
-            Parameter _parameter = id.getParameter();
-            String _name = _parameter.getName();
-            _builder.append(_name, "");
-            _builder.newLineIfNotEmpty();
-          } else {
-            CharSequence _constraint = this.getConstraint(it);
-            _builder.append(_constraint, "");
-            _builder.newLineIfNotEmpty();
-          }
+          return this.getConstraint(it);
         }
       }
     }
-    return _builder;
   }
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {

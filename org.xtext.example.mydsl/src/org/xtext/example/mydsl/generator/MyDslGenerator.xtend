@@ -65,11 +65,12 @@ class MyDslGenerator implements IGenerator {
 						
 					if(valid === "") {
 						«FOR c : constraints»
-							if(!(«getConstraint(c)»)) valid += "Invalid constraint: " + "«getConstraintText(c)» \n";
+							if(!(«getConstraint(c)»)) 
+									valid += "Invalid constraint: " + "«getConstraintText(c)» \n";
 						«ENDFOR»							
 					}
 						 
-						return valid;
+					return valid;
 				};
 				
 				function getText() {
@@ -160,7 +161,7 @@ class MyDslGenerator implements IGenerator {
 		var ret ="";
 		if(type instanceof Configurator.Enum) {
 			val enumType = type as Configurator.Enum
-			ret += "var $" + name.toFirstUpper + "Values = ["
+			ret += "\t\tvar $" + name.toFirstUpper + "Values = ["
 			for (eval : enumType.values) {
 				if(eval == enumType.values.get(enumType.values.size - 1))
 					ret += getEnumValue(eval, true)
@@ -170,10 +171,10 @@ class MyDslGenerator implements IGenerator {
 			ret += "]; \n"
 			
 			if(maxChosenValues == 1)					
-				ret += "$(\"#" + name.toFirstUpper + "\").jqxComboBox({ source: $" 
+				ret += "\t\t$(\"#" + name.toFirstUpper + "\").jqxComboBox({ source: $" 
 						+ name.toFirstUpper + "Values, width: '200px', height: '25px',}); \n\n"
 			else
-				ret += "$(\"#" + name.toFirstUpper + "\").jqxListBox({ source: $" 
+				ret += "\t\t$(\"#" + name.toFirstUpper + "\").jqxListBox({ source: $" 
 						+ name.toFirstUpper + "Values, width: '200px', height: '150px', multiple: true}); \n\n"
 		}
 		
@@ -203,7 +204,7 @@ class MyDslGenerator implements IGenerator {
 		}
 		else if (it instanceof Configurator.Stringg){
 			val stringlVal = it as Configurator.Stringg
-			ret += stringlVal.value 
+			ret += "\"" +  stringlVal.value + "\""
 			if(!islast) ret += ","
 		}		
 		return ret
@@ -214,23 +215,23 @@ class MyDslGenerator implements IGenerator {
 		if (maxChosenValues > 0) {
 			if(type.eClass.name == "Enum") {
 				if(maxChosenValues == 1)
-					ret += "text += \"" + name.toFirstUpper + ": \" + $(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem').value + \" \\r\\n\"; \n"
+					ret += "\t\t\ttext += \"" + name.toFirstUpper + ": \" + $(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem').value + \" \\r\\n\"; \n"
 				else {
 					ret += "\n"
-					ret += "var items" + name.toFirstUpper +  " = $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
-					ret += "text += \"" + name.toFirstUpper + ": \"; \n"		
-					ret += "jQuery.each(items" + name.toFirstUpper + ", function(index, value){ \n"
-					ret += "\t text += this.value + \", \" \n"
-					ret += "}); \n"
-					ret += "text += \" \\r\\n\"; \n" 
+					ret += "\t\t\tvar items" + name.toFirstUpper +  " = $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
+					ret += "\t\t\ttext += \"" + name.toFirstUpper + ": \"; \n"		
+					ret += "\t\t\tjQuery.each(items" + name.toFirstUpper + ", function(index, value){ \n"
+					ret += "\t\t\t\ttext += this.value + \", \" \n"
+					ret += "\t\t\t}); \n"
+					ret += "\t\t\ttext += \" \\r\\n\"; \n" 
 				}
 			}
 			else {
-				ret += "text += \"" + name.toFirstUpper + "\" + $(\"#" + name.toFirstUpper + "\").val() + \" \\r\\n\"; \n"
+				ret += "\t\t\ttext += \"" + name.toFirstUpper + ": \" + $(\"#" + name.toFirstUpper + "\").val() + \" \\r\\n\"; \n"
 			}
 		}
 		else {
-			ret += "text += \"" + name.toFirstUpper + ": \" + \"\\r\\n\"; \n"	
+			ret += "\t\t\ttext += \"" + name.toFirstUpper + ": \" + \"\\r\\n\"; \n"	
 		}
 		
 		if(!children.empty)
@@ -263,87 +264,89 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def getConstraint(Configurator.Constraint it) {
-		'''		
-		«IF it instanceof BinaryConstraint»
-			«val binCon = it as BinaryConstraint»
-			( «getConstraint(binCon.leftOperand)» «getOperatorSign(binCon.operator)» «getConstraint(binCon.rightOperand)»)
-		«ELSEIF it instanceof Literal»
-			«IF it instanceof Configurator.Stringg»
-				«val stringVal = it as Configurator.Stringg»
-				"«stringVal.value»"
-			«ELSEIF it instanceof Configurator.Integer»
-				«val intVal = it as Configurator.Integer»
-				«intVal.value»
-			«ELSEIF it instanceof Configurator.Double»
-				«val doubleVal = it as Configurator.Double»
-				«doubleVal.value»
-			«ELSE»
-				«val boolVal = it as Configurator.Boolean»
-				«boolVal.value»
-			«ENDIF»
-		«ELSE»	««« ParameterIdentifier
-			«val id = it as Configurator.ParameterIdentifier»
-			«getConstraintParamValue(id.parameter)»
-		«ENDIF»
-		'''
+		if(it instanceof BinaryConstraint) {
+			val binCon = it as BinaryConstraint
+			return "(" + getConstraint(binCon.leftOperand) + " " + getOperatorSign(binCon.operator) + " " + getConstraint(binCon.rightOperand) + ")"
+		}			
+		else if(it instanceof Literal) {
+			if(it instanceof Configurator.Stringg) {
+				val stringVal = it as Configurator.Stringg
+				return "\"" + stringVal.value + "\""
+			}  
+			else if(it instanceof Configurator.Integer) {
+				val intVal = it as Configurator.Integer
+				return intVal.value
+			}				
+			else if(it instanceof Configurator.Double) {
+				val doubleVal = it as Configurator.Double
+				return doubleVal.value
+			} 				
+			else {
+				val boolVal = it as Configurator.Boolean
+				return boolVal.value
+			}
+		}			
+		else {	// ParameterIdentifier
+			val id = it as Configurator.ParameterIdentifier
+			return getConstraintParamValue(id.parameter)
+		}	
 	}
 	
 	def getOperatorSign(Configurator.BinaryOperator it) {
-		'''
-		«IF it.value == 0»
-			&&
-		«ELSEIF it.value == 1»
-			||
-		«ELSEIF it.value == 2»
-			XOR
-		«ELSEIF it.value == 3»
-			===
-		«ELSEIF it.value == 4»
-			!=
-		«ELSEIF it.value == 5»
-			>
-		«ELSEIF it.value == 6»
-			<
-		«ELSEIF it.value == 7»
-			>=
-		«ELSE»
-			<=
-		«ENDIF»		
-		'''
+		if(it.value == 0)
+			return "&&"
+		else if(it.value == 1)
+			return "||"
+		else if(it.value == 2)
+			return "XOR"
+		else if(it.value == 3)
+			return "==="
+		else if(it.value == 4)
+			return "!="
+		else if(it.value == 5)
+			return ">"
+		else if(it.value == 6)
+			return "<"
+		else if(it.value == 7)
+			return ">="
+		else
+			return "<="
 	}
 	
 	def getConstraintParamValue(Parameter it) {
-		'''
-		«IF type.eClass.name == "Enum"»
-				«IF maxChosenValues == 1»
-					$("#«name.toFirstUpper»").jqxComboBox('getSelectedItem').value
-«««				«ELSEIF maxChosenValues > 1»
-«««					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
-«««					if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
-				«ENDIF»
-			«ELSE»
-				$("#«name.toFirstUpper»").val()
-			«ENDIF»
-		'''
+		var ret = ""
+		if(type.eClass.name == "Enum") {
+			if(maxChosenValues == 1) {
+				ret += "$(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem').value"
+			}
+//			else if(maxChosenValues > 1){
+//				var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
+//				if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
+//			}
+		}
+		else {
+			ret += "$(\"#" + name.toFirstUpper + "\").val()"
+		}		
+		
+		return ret
 	}
 	
 	def getConstraintText(Configurator.Constraint it) {
-		'''		
-		«IF it instanceof BinaryConstraint»
-			«val binCon = it as BinaryConstraint»
-			( «getConstraintText(binCon.leftOperand)» «getOperatorSign(binCon.operator)» «getConstraintText(binCon.rightOperand)»)
-		«ELSEIF it instanceof Configurator.Stringg»
-			«val stringVal = it as Configurator.Stringg»
-			String.«stringVal.value»
-		«ELSEIF it instanceof Configurator.ParameterIdentifier»
-			«val id = it as Configurator.ParameterIdentifier»
-			«id.parameter.name»
-		«ELSE»
-			«getConstraint(it)»
-		«ENDIF»
-		'''
-	}
-	
+		if(it instanceof BinaryConstraint){
+			val binCon = it as BinaryConstraint
+			return "(" + getConstraintText(binCon.leftOperand) + " " + getOperatorSign(binCon.operator) + " " + getConstraintText(binCon.rightOperand) + ")"
+		}			
+		else if(it instanceof Configurator.Stringg) {
+			val stringVal = it as Configurator.Stringg
+			return "String." + stringVal.value
+		} 
+		else if(it instanceof Configurator.ParameterIdentifier) {
+			val id = it as Configurator.ParameterIdentifier
+			return id.parameter.name
+		}
+		else
+			return getConstraint(it)
+	}	
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		var m = resource.contents.head as Model
