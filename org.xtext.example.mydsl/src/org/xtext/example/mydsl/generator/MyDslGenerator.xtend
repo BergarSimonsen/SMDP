@@ -74,9 +74,11 @@ class MyDslGenerator implements IGenerator {
 				
 				function getText() {
 					var text = "";
+					
 					«FOR p : parameters»
   						«getParametersText(p)» 
   					«ENDFOR»
+  					
 					return text;
 				};				
 				
@@ -208,32 +210,34 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def getParametersText(Parameter it) {
-		'''
-		«IF maxChosenValues > 0»
-			«IF type.eClass.name == "Enum"»
-				«IF maxChosenValues == 1»
-					text += "«name.toFirstUpper»: " + $("#«name.toFirstUpper»").jqxComboBox('getSelectedItem').value + " \r\n";
-				«ELSE»
-					var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
-					text += "«name.toFirstUpper»: ";		
-					jQuery.each(items«name.toFirstUpper», function(index, value){
-						text += this.value + ", "
-					});
-					text += " \r\n";
-				«ENDIF»			
-			«ELSE»
-				text += "«name.toFirstUpper»: " + $("#«name.toFirstUpper»").val() + " \r\n";
-			«ENDIF»
-		«ELSE»
-			text += "«name.toFirstUpper»: " + "\r\n";
-		«ENDIF»
+		var ret = ""	
+		if (maxChosenValues > 0) {
+			if(type.eClass.name == "Enum") {
+				if(maxChosenValues == 1)
+					ret += "text += \"" + name.toFirstUpper + ": \" + $(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem').value + \" \\r\\n\"; \n"
+				else {
+					ret += "\n"
+					ret += "var items" + name.toFirstUpper +  " = $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
+					ret += "text += \"" + name.toFirstUpper + ": \"; \n"		
+					ret += "jQuery.each(items" + name.toFirstUpper + ", function(index, value){ \n"
+					ret += "\t text += this.value + \", \" \n"
+					ret += "}); \n"
+					ret += "text += \" \\r\\n\"; \n" 
+				}
+			}
+			else {
+				ret += "text += \"" + name.toFirstUpper + "\" + $(\"#" + name.toFirstUpper + "\").val() + \" \\r\\n\"; \n"
+			}
+		}
+		else {
+			ret += "text += \"" + name.toFirstUpper + ": \" + \"\\r\\n\"; \n"	
+		}
 		
-		«IF !children.empty»
-			«FOR c : children»
-  				«getParametersText(c)» 
-  			«ENDFOR»
-		«ENDIF»
-		'''
+		if(!children.empty)
+			for(c : children)
+				ret += getParametersText(c)
+			
+		return ret
 	}
 	
 	def getMandatoryFields(Parameter it) {
@@ -243,7 +247,7 @@ class MyDslGenerator implements IGenerator {
 				if(maxChosenValues == 1) 
 					ret += "if($(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem') === null) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
 				else if (maxChosenValues > 1) {
-					ret += "var items" + name.toFirstUpper +  "= $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
+					ret += "var items" + name.toFirstUpper +  " = $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
 					ret += "if(items" + name.toFirstUpper + ".length == 0) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
 				}
 			}				
@@ -254,8 +258,7 @@ class MyDslGenerator implements IGenerator {
 		if (!children.empty)
 			for (c : children)
   				ret += getMandatoryFields(c)
-  		
-  		ret += "\n"		
+  			
   		return ret
 	}
 	

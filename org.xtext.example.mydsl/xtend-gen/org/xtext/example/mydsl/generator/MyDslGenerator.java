@@ -182,15 +182,19 @@ public class MyDslGenerator implements IGenerator {
     _builder.append("\t\t\t");
     _builder.append("var text = \"\";");
     _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.newLine();
     {
       EList<Parameter> _parameters_2 = it.getParameters();
       for(final Parameter p_2 : _parameters_2) {
-        CharSequence _parametersText = this.getParametersText(p_2);
+        String _parametersText = this.getParametersText(p_2);
         _builder.append(_parametersText, "");
         _builder.append(" ");
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("  \t\t\t\t\t");
+    _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("return text;");
     _builder.newLine();
@@ -566,104 +570,93 @@ public class MyDslGenerator implements IGenerator {
     return ret;
   }
   
-  public CharSequence getParametersText(final Parameter it) {
-    StringConcatenation _builder = new StringConcatenation();
-    {
-      int _maxChosenValues = it.getMaxChosenValues();
-      boolean _greaterThan = (_maxChosenValues > 0);
-      if (_greaterThan) {
-        {
-          Type _type = it.getType();
-          EClass _eClass = _type.eClass();
-          String _name = _eClass.getName();
-          boolean _equals = Objects.equal(_name, "Enum");
-          if (_equals) {
-            {
-              int _maxChosenValues_1 = it.getMaxChosenValues();
-              boolean _equals_1 = (_maxChosenValues_1 == 1);
-              if (_equals_1) {
-                _builder.append("text += \"");
-                String _name_1 = it.getName();
-                String _firstUpper = StringExtensions.toFirstUpper(_name_1);
-                _builder.append(_firstUpper, "");
-                _builder.append(": \" + $(\"#");
-                String _name_2 = it.getName();
-                String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
-                _builder.append(_firstUpper_1, "");
-                _builder.append("\").jqxComboBox(\'getSelectedItem\').value + \" \\r\\n\";");
-                _builder.newLineIfNotEmpty();
-              } else {
-                _builder.append("var items");
-                String _name_3 = it.getName();
-                String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
-                _builder.append(_firstUpper_2, "");
-                _builder.append(" = $(\"#");
-                String _name_4 = it.getName();
-                String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
-                _builder.append(_firstUpper_3, "");
-                _builder.append("\").jqxListBox(\'getSelectedItems\');");
-                _builder.newLineIfNotEmpty();
-                _builder.append("text += \"");
-                String _name_5 = it.getName();
-                String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
-                _builder.append(_firstUpper_4, "");
-                _builder.append(": \";\t\t");
-                _builder.newLineIfNotEmpty();
-                _builder.append("jQuery.each(items");
-                String _name_6 = it.getName();
-                String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
-                _builder.append(_firstUpper_5, "");
-                _builder.append(", function(index, value){");
-                _builder.newLineIfNotEmpty();
-                _builder.append("\t");
-                _builder.append("text += this.value + \", \"");
-                _builder.newLine();
-                _builder.append("});");
-                _builder.newLine();
-                _builder.append("text += \" \\r\\n\";");
-                _builder.newLine();
-              }
-            }
-          } else {
-            _builder.append("text += \"");
-            String _name_7 = it.getName();
-            String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
-            _builder.append(_firstUpper_6, "");
-            _builder.append(": \" + $(\"#");
-            String _name_8 = it.getName();
-            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
-            _builder.append(_firstUpper_7, "");
-            _builder.append("\").val() + \" \\r\\n\";");
-            _builder.newLineIfNotEmpty();
-          }
+  public String getParametersText(final Parameter it) {
+    String ret = "";
+    int _maxChosenValues = it.getMaxChosenValues();
+    boolean _greaterThan = (_maxChosenValues > 0);
+    if (_greaterThan) {
+      Type _type = it.getType();
+      EClass _eClass = _type.eClass();
+      String _name = _eClass.getName();
+      boolean _equals = Objects.equal(_name, "Enum");
+      if (_equals) {
+        int _maxChosenValues_1 = it.getMaxChosenValues();
+        boolean _equals_1 = (_maxChosenValues_1 == 1);
+        if (_equals_1) {
+          String _ret = ret;
+          String _name_1 = it.getName();
+          String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+          String _plus = ("text += \"" + _firstUpper);
+          String _plus_1 = (_plus + ": \" + $(\"#");
+          String _name_2 = it.getName();
+          String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+          String _plus_2 = (_plus_1 + _firstUpper_1);
+          String _plus_3 = (_plus_2 + "\").jqxComboBox(\'getSelectedItem\').value + \" \\r\\n\"; \n");
+          ret = (_ret + _plus_3);
+        } else {
+          String _ret_1 = ret;
+          ret = (_ret_1 + "\n");
+          String _ret_2 = ret;
+          String _name_3 = it.getName();
+          String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
+          String _plus_4 = ("var items" + _firstUpper_2);
+          String _plus_5 = (_plus_4 + " = $(\"#");
+          String _name_4 = it.getName();
+          String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
+          String _plus_6 = (_plus_5 + _firstUpper_3);
+          String _plus_7 = (_plus_6 + "\").jqxListBox(\'getSelectedItems\'); \n");
+          ret = (_ret_2 + _plus_7);
+          String _ret_3 = ret;
+          String _name_5 = it.getName();
+          String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
+          String _plus_8 = ("text += \"" + _firstUpper_4);
+          String _plus_9 = (_plus_8 + ": \"; \n");
+          ret = (_ret_3 + _plus_9);
+          String _ret_4 = ret;
+          String _name_6 = it.getName();
+          String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
+          String _plus_10 = ("jQuery.each(items" + _firstUpper_5);
+          String _plus_11 = (_plus_10 + ", function(index, value){ \n");
+          ret = (_ret_4 + _plus_11);
+          String _ret_5 = ret;
+          ret = (_ret_5 + "\t text += this.value + \", \" \n");
+          String _ret_6 = ret;
+          ret = (_ret_6 + "}); \n");
+          String _ret_7 = ret;
+          ret = (_ret_7 + "text += \" \\r\\n\"; \n");
         }
       } else {
-        _builder.append("text += \"");
-        String _name_9 = it.getName();
-        String _firstUpper_8 = StringExtensions.toFirstUpper(_name_9);
-        _builder.append(_firstUpper_8, "");
-        _builder.append(": \" + \"\\r\\n\";");
-        _builder.newLineIfNotEmpty();
+        String _ret_8 = ret;
+        String _name_7 = it.getName();
+        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
+        String _plus_12 = ("text += \"" + _firstUpper_6);
+        String _plus_13 = (_plus_12 + "\" + $(\"#");
+        String _name_8 = it.getName();
+        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
+        String _plus_14 = (_plus_13 + _firstUpper_7);
+        String _plus_15 = (_plus_14 + "\").val() + \" \\r\\n\"; \n");
+        ret = (_ret_8 + _plus_15);
+      }
+    } else {
+      String _ret_9 = ret;
+      String _name_9 = it.getName();
+      String _firstUpper_8 = StringExtensions.toFirstUpper(_name_9);
+      String _plus_16 = ("text += \"" + _firstUpper_8);
+      String _plus_17 = (_plus_16 + ": \" + \"\\r\\n\"; \n");
+      ret = (_ret_9 + _plus_17);
+    }
+    EList<Parameter> _children = it.getChildren();
+    boolean _isEmpty = _children.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (_not) {
+      EList<Parameter> _children_1 = it.getChildren();
+      for (final Parameter c : _children_1) {
+        String _ret_10 = ret;
+        Object _parametersText = this.getParametersText(c);
+        ret = (_ret_10 + _parametersText);
       }
     }
-    _builder.newLine();
-    {
-      EList<Parameter> _children = it.getChildren();
-      boolean _isEmpty = _children.isEmpty();
-      boolean _not = (!_isEmpty);
-      if (_not) {
-        {
-          EList<Parameter> _children_1 = it.getChildren();
-          for(final Parameter c : _children_1) {
-            Object _parametersText = this.getParametersText(c);
-            _builder.append(_parametersText, "");
-            _builder.append(" ");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    return _builder;
+    return ret;
   }
   
   public String getMandatoryFields(final Parameter it) {
@@ -697,7 +690,7 @@ public class MyDslGenerator implements IGenerator {
             String _name_3 = it.getName();
             String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
             String _plus_4 = ("var items" + _firstUpper_2);
-            String _plus_5 = (_plus_4 + "= $(\"#");
+            String _plus_5 = (_plus_4 + " = $(\"#");
             String _name_4 = it.getName();
             String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
             String _plus_6 = (_plus_5 + _firstUpper_3);
@@ -739,8 +732,6 @@ public class MyDslGenerator implements IGenerator {
         ret = (_ret_4 + _mandatoryFields);
       }
     }
-    String _ret_5 = ret;
-    ret = (_ret_5 + "\n");
     return ret;
   }
   
