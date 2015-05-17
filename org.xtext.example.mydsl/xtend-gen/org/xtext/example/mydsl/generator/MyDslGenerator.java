@@ -419,77 +419,67 @@ public class MyDslGenerator implements IGenerator {
         Type _type_1 = it.getType();
         final Configurator.Enum enumType = ((Configurator.Enum) _type_1);
         _builder.newLineIfNotEmpty();
+        _builder.append("var $");
+        String _name = it.getName();
+        String _firstUpper = StringExtensions.toFirstUpper(_name);
+        _builder.append(_firstUpper, "");
+        _builder.append("Values = [");
+        _builder.newLineIfNotEmpty();
         {
-          int _maxChosenValues = it.getMaxChosenValues();
-          boolean _equals = (_maxChosenValues == 1);
-          if (_equals) {
-            _builder.append("var $");
-            String _name = it.getName();
-            String _firstUpper = StringExtensions.toFirstUpper(_name);
-            _builder.append(_firstUpper, "");
-            _builder.append("Values = [");
-            _builder.newLineIfNotEmpty();
+          EList<Literal> _values = enumType.getValues();
+          for(final Literal eval : _values) {
             {
-              EList<Literal> _values = enumType.getValues();
-              for(final Literal eval : _values) {
-                _builder.append("\t");
-                final CharSequence enumval = this.getEnumValue(eval);
+              EList<Literal> _values_1 = enumType.getValues();
+              EList<Literal> _values_2 = enumType.getValues();
+              int _size = _values_2.size();
+              int _minus = (_size - 1);
+              Literal _get = _values_1.get(_minus);
+              boolean _equals = Objects.equal(eval, _get);
+              if (_equals) {
+                CharSequence _enumValue = this.getEnumValue(eval, true);
+                _builder.append(_enumValue, "");
                 _builder.newLineIfNotEmpty();
-                {
-                  EList<Literal> _values_1 = enumType.getValues();
-                  EList<Literal> _values_2 = enumType.getValues();
-                  int _size = _values_2.size();
-                  int _minus = (_size - 1);
-                  Literal _get = _values_1.get(_minus);
-                  boolean _equals_1 = Objects.equal(eval, _get);
-                  if (_equals_1) {
-                    _builder.append("\t");
-                    _builder.append(enumval, "\t");
-                    _builder.newLineIfNotEmpty();
-                  } else {
-                    _builder.append("\t");
-                    _builder.append(enumval, "\t");
-                    _builder.append(",");
-                    _builder.newLineIfNotEmpty();
-                  }
-                }
-                _builder.append("\t\t\t\t\t\t");
+              } else {
+                CharSequence _enumValue_1 = this.getEnumValue(eval, false);
+                _builder.append(_enumValue_1, "");
+                _builder.newLineIfNotEmpty();
               }
             }
-            _builder.append("];");
-            _builder.newLineIfNotEmpty();
             _builder.append("\t\t\t\t");
+          }
+        }
+        _builder.append("];");
+        _builder.newLineIfNotEmpty();
+        {
+          int _maxChosenValues = it.getMaxChosenValues();
+          boolean _equals_1 = (_maxChosenValues == 1);
+          if (_equals_1) {
             _builder.append("$(\"#");
             String _name_1 = it.getName();
             String _firstUpper_1 = StringExtensions.toFirstUpper(_name_1);
-            _builder.append(_firstUpper_1, "\t\t\t\t");
+            _builder.append(_firstUpper_1, "");
             _builder.append("\").jqxComboBox({ source: $");
             String _name_2 = it.getName();
             String _firstUpper_2 = StringExtensions.toFirstUpper(_name_2);
-            _builder.append(_firstUpper_2, "\t\t\t\t");
+            _builder.append(_firstUpper_2, "");
             _builder.append("Values, width: \'200px\', height: \'25px\',});");
             _builder.newLineIfNotEmpty();
           } else {
-            _builder.append("var $");
+            _builder.append("$(\"#");
             String _name_3 = it.getName();
             String _firstUpper_3 = StringExtensions.toFirstUpper(_name_3);
             _builder.append(_firstUpper_3, "");
-            _builder.append("Values = [\"Front\", \"Back\", \"LeftSleeve\", \"RightSleeve\"];");
-            _builder.newLineIfNotEmpty();
-            _builder.append("$(\"#");
+            _builder.append("\").jqxListBox({ source: $");
             String _name_4 = it.getName();
             String _firstUpper_4 = StringExtensions.toFirstUpper(_name_4);
             _builder.append(_firstUpper_4, "");
-            _builder.append("\").jqxListBox({ source: $");
-            String _name_5 = it.getName();
-            String _firstUpper_5 = StringExtensions.toFirstUpper(_name_5);
-            _builder.append(_firstUpper_5, "");
             _builder.append("Values, width: \'200px\', height: \'150px\', multiple: true});");
             _builder.newLineIfNotEmpty();
           }
         }
       }
     }
+    _builder.newLine();
     {
       EList<Parameter> _children = it.getChildren();
       boolean _isEmpty = _children.isEmpty();
@@ -509,7 +499,7 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence getEnumValue(final Literal it) {
+  public CharSequence getEnumValue(final Literal it, final boolean islast) {
     StringConcatenation _builder = new StringConcatenation();
     {
       if ((it instanceof Configurator.Integer)) {
@@ -517,6 +507,12 @@ public class MyDslGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
         int _value = intVal.getValue();
         _builder.append(_value, "");
+        _builder.append(" ");
+        {
+          if ((!islast)) {
+            _builder.append(",");
+          }
+        }
         _builder.newLineIfNotEmpty();
       } else {
         if ((it instanceof Configurator.Double)) {
@@ -524,6 +520,12 @@ public class MyDslGenerator implements IGenerator {
           _builder.newLineIfNotEmpty();
           double _value_1 = doubleVal.getValue();
           _builder.append(_value_1, "");
+          _builder.append(" ");
+          {
+            if ((!islast)) {
+              _builder.append(",");
+            }
+          }
           _builder.newLineIfNotEmpty();
         } else {
           if ((it instanceof Configurator.Boolean)) {
@@ -531,6 +533,12 @@ public class MyDslGenerator implements IGenerator {
             _builder.newLineIfNotEmpty();
             boolean _isValue = boolVal.isValue();
             _builder.append(_isValue, "");
+            _builder.append(" ");
+            {
+              if ((!islast)) {
+                _builder.append(",");
+              }
+            }
             _builder.newLineIfNotEmpty();
           } else {
             if ((it instanceof Stringg)) {
@@ -539,7 +547,12 @@ public class MyDslGenerator implements IGenerator {
               _builder.append("\"");
               String _value_2 = stringVal.getValue();
               _builder.append(_value_2, "");
-              _builder.append("\"");
+              _builder.append("\" ");
+              {
+                if ((!islast)) {
+                  _builder.append(",");
+                }
+              }
               _builder.newLineIfNotEmpty();
             }
           }
@@ -552,19 +565,81 @@ public class MyDslGenerator implements IGenerator {
   public CharSequence getParametersText(final Parameter it) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      Type _type = it.getType();
-      EClass _eClass = _type.eClass();
-      String _name = _eClass.getName();
-      boolean _equals = Objects.equal(_name, "Enum");
-      if (_equals) {
+      int _maxChosenValues = it.getMaxChosenValues();
+      boolean _greaterThan = (_maxChosenValues > 0);
+      if (_greaterThan) {
         {
-          int _maxChosenValues = it.getMaxChosenValues();
-          boolean _equals_1 = (_maxChosenValues == 1);
-          if (_equals_1) {
+          Type _type = it.getType();
+          EClass _eClass = _type.eClass();
+          String _name = _eClass.getName();
+          boolean _equals = Objects.equal(_name, "Enum");
+          if (_equals) {
+            {
+              int _maxChosenValues_1 = it.getMaxChosenValues();
+              boolean _equals_1 = (_maxChosenValues_1 == 1);
+              if (_equals_1) {
+                _builder.append("text += \"");
+                String _name_1 = it.getName();
+                String _firstUpper = StringExtensions.toFirstUpper(_name_1);
+                _builder.append(_firstUpper, "");
+                _builder.append(": \" + $(\"#");
+                String _name_2 = it.getName();
+                String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
+                _builder.append(_firstUpper_1, "");
+                _builder.append("\").jqxComboBox(\'getSelectedItem\').value + \" \\r\\n\";");
+                _builder.newLineIfNotEmpty();
+              } else {
+                _builder.append("var items");
+                String _name_3 = it.getName();
+                String _firstUpper_2 = StringExtensions.toFirstUpper(_name_3);
+                _builder.append(_firstUpper_2, "");
+                _builder.append(" = $(\"#");
+                String _name_4 = it.getName();
+                String _firstUpper_3 = StringExtensions.toFirstUpper(_name_4);
+                _builder.append(_firstUpper_3, "");
+                _builder.append("\").jqxListBox(\'getSelectedItems\');");
+                _builder.newLineIfNotEmpty();
+                _builder.append("text += \"");
+                String _name_5 = it.getName();
+                String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
+                _builder.append(_firstUpper_4, "");
+                _builder.append(": \";\t\t");
+                _builder.newLineIfNotEmpty();
+                _builder.append("jQuery.each(items");
+                String _name_6 = it.getName();
+                String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
+                _builder.append(_firstUpper_5, "");
+                _builder.append(", function(index, value){");
+                _builder.newLineIfNotEmpty();
+                _builder.append("\t");
+                _builder.append("text += this.value + \", \"");
+                _builder.newLine();
+                _builder.append("});");
+                _builder.newLine();
+                _builder.append("text += \" \\r\\n\";");
+                _builder.newLine();
+              }
+            }
           } else {
+            _builder.append("text += \"");
+            String _name_7 = it.getName();
+            String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
+            _builder.append(_firstUpper_6, "");
+            _builder.append(": \" + $(\"#");
+            String _name_8 = it.getName();
+            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
+            _builder.append(_firstUpper_7, "");
+            _builder.append("\").val() + \" \\r\\n\";");
+            _builder.newLineIfNotEmpty();
           }
         }
       } else {
+        _builder.append("text += \"");
+        String _name_9 = it.getName();
+        String _firstUpper_8 = StringExtensions.toFirstUpper(_name_9);
+        _builder.append(_firstUpper_8, "");
+        _builder.append(": \" + \"\\r\\n\";");
+        _builder.newLineIfNotEmpty();
       }
     }
     _builder.newLine();

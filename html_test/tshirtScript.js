@@ -1,5 +1,9 @@
 $(document).ready(function(){	
-	var $ColourValues = ["Red", "Black", "Blue"];
+	var $ColourValues = [
+	"Red", 
+	"Black", 
+	"Blue"
+	];
 	$("#Colour").jqxComboBox({ source: $ColourValues, width: '200px', height: '25px',});
 	
 	var $SizeValues = [1, 2, 3, 4, 5];
