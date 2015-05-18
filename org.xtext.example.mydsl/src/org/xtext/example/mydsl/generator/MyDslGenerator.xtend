@@ -20,6 +20,134 @@ import Configurator.BinaryOperator
  */
 class MyDslGenerator implements IGenerator {
 	
+	// Java generator
+	// -------------------------------------------------------------------------------------------------------------------------------
+	
+	def compileToJava(ConfiguratorModel it) {
+		'''
+	import java.awt.BorderLayout;
+	import java.awt.Color;
+	import java.awt.Container;
+	import java.awt.Dimension;
+	import java.awt.FlowLayout;
+	import java.awt.GridBagConstraints;
+	import java.awt.GridBagLayout;
+	import java.awt.event.ActionEvent;
+	import java.awt.event.ActionListener;
+	import java.io.BufferedWriter;
+	import java.io.File;
+	import java.io.FileWriter;
+	import java.io.IOException;
+	import javax.swing.BorderFactory;
+	import javax.swing.JButton;
+	import javax.swing.JCheckBox;
+	import javax.swing.JComboBox;
+	import javax.swing.JFrame;
+	import javax.swing.JLabel;
+	import javax.swing.JList;
+	import javax.swing.JOptionPane;
+	import javax.swing.JPanel;
+	import javax.swing.JTextField;
+	
+	public class « name.toFirstUpper » extends JFrame { 
+		private static final long serialVersionUID = 1L;
+		private JLabel titleLabel = new JLabel("«name.toFirstUpper»");
+		«FOR p : parameters»
+			«generateJavaLabel(p)»
+		«ENDFOR»
+		«FOR p : parameters»
+			«generateJavaVariables(p)»
+		«ENDFOR»
+		private JButton submitButton = new JButton("Submit");
+		
+		public void setup() {
+			JPanel panel = new JPanel();
+			setPreferredSize(new Dimension(800, 600));
+			Container contentPane = getContentPane();
+			contentPane.setLayout(new BorderLayout());
+			JPanel mainPanel = new JPanel();
+			mainPanel.setLayout(new FlowLayout());
+			contentPane.add(mainPanel, BorderLayout.CENTER);
+			
+			submitButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					String c = checkConstraints();
+					if(c != null && c.length() == 0) {
+						boolean b = save();
+						if(b)
+							JOptionPane.showMessageDialog(null, "Configuration file saved successfully!");
+					} else 
+						JOptionPane.showMessageDialog(null, c);
+				}
+			});
+			
+			getContentPane().add(BorderLayout.NORTH, titleLabel);
+			panel.setLayout(new GridBagLayout());
+			panel.setBackground(Color.GREEN);
+			getContentPane().add(panel);
+			GridBagConstraints left = new GridBagConstraints();
+			left.anchor = GridBagConstraints.EAST;
+			GridBagConstraints right = new GridBagConstraints();
+			right.weightx = 2.0;
+			right.fill = GridBagConstraints.HORIZONTAL;
+			right.gridwidth = GridBagConstraints.REMAINDER;
+			
+			«FOR p : parameters»
+			«addToJavaPanel(p)»
+			«ENDFOR»
+			
+			panel.add(submitButton, left);
+			
+			panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+			pack();
+			setDefaultCloseOperation(EXIT_ON_CLOSE);
+			setLocationRelativeTo(null);
+			show();	
+		}
+		
+		private String checkConstraints() {
+			String s = "";
+			«FOR p : parameters»
+			«generateJavaRequiredFields(p)»
+			«ENDFOR»
+			if(s.length() == 0) {
+				«FOR c : constraints»
+				if(!«generateJavaConstraint(c)»)
+					s += "Constraint violated!\n"; 
+				«ENDFOR»
+			}
+			return s;	
+		}
+		
+		private boolean save() {
+			try {
+				File f = new File("configurator_output.txt");
+				String s = "";
+					
+				«FOR p : parameters»
+				«generateJavaVariableStringValue(p)»
+				«ENDFOR»
+				FileWriter fw = new FileWriter(f);
+				BufferedWriter bw = new BufferedWriter(fw);
+				bw.write(s);
+				bw.flush();
+				bw.close();
+				return true;
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+		
+		public static void main(String[] args) {
+			«name.toFirstUpper» c = new «name.toFirstUpper»();
+			c.setup();	
+		}
+	}
+		'''
+	}
+	
 	def getJavaEnumValue(Literal it, boolean islast){
 		var ret = ""
 		if (it instanceof Configurator.Integer){
@@ -45,18 +173,18 @@ class MyDslGenerator implements IGenerator {
 		return ret
 	}
 	
-	// Java generator
-	// -------------------------------------------------------------------------------------------------------------------------------
-	
 	def getEnumValueJavaType(Literal it){
-		if(it instanceof Configurator.Integer) return "Integer"
-		if(it instanceof Configurator.Double) return "Double"
-		if(it instanceof Configurator.Boolean) return "Boolean"
-		if(it instanceof Configurator.Stringg) return "String"
+		if(it instanceof Configurator.Integer) 	return "Integer"
+		if(it instanceof Configurator.Double) 	return "Double"
+		if(it instanceof Configurator.Boolean) 	return "Boolean"
+		if(it instanceof Configurator.Stringg) 	return "String"
 	}
 	
 	def generateJavaLabel(Parameter it) {
-		return "private JLabel " + name.toFirstLower + "Label = new JLabel(\"" + name.toFirstUpper + "\");"
+		var r = "private JLabel " + name.toFirstLower + "Label = new JLabel(\"" + name.toFirstUpper + "\");"
+		for(c : children)
+			r += "\n" + generateJavaLabel(c)
+		return r
 	}
 	
 	def generateJavaVariables(Parameter it) {
@@ -78,9 +206,13 @@ class MyDslGenerator implements IGenerator {
 				r += "};\n"
 				r += "private JList<" + getEnumValueJavaType(et.values.get(0)) + "> " + name.toFirstLower + "List = new JList<" + getEnumValueJavaType(et.values.get(0)) + ">(" + name.toFirstLower + "ListValues);\n"
 			}
+		} else if(type.eClass.name == "Boolean" && children.empty) {
+			r += "private JCheckBox " + name.toFirstLower + "CheckBox = new JCheckBox();\n" 
 		} else {
 			r += "private JTextField " + name.toFirstLower + "TextField = new JTextField(\"" + name.toFirstUpper + "\");\n"
 		}
+		for(c : children)
+			r += generateJavaVariables(c)
 		return r;
 	}
 	
@@ -100,12 +232,16 @@ class MyDslGenerator implements IGenerator {
 				else
 					r += "panel.add(new JLabel(), right);\n"
 			}
+		} else if(type.eClass.name == "Boolean" && children.empty) { 
+			r += "panel.add(" + name.toFirstLower + "CheckBox, right);\n"
 		} else {
 			if(children == null || children.size == 0)
 				r += "panel.add(" + name.toFirstLower + "TextField, right);\n"
 			else
 				r += "panel.add(new JLabel(), right);\n"
 		}
+		for(c : children)
+			r += addToJavaPanel(c)
 		return r
 	}
 	
@@ -119,221 +255,16 @@ class MyDslGenerator implements IGenerator {
 				r += "for(" + getEnumValueJavaType(et.values.get(0)) + " p : " + name.toFirstLower + "List.getSelectedValuesList())\n"
 				r += "\t s += String.valueOf(p) + \", \";\n\n"
 			}
+		} else if (type.eClass.name == "Boolean" && children.empty) { 
+			r += "s += String.valueOf(" + name.toFirstLower + "CheckBox.isSelected());\n\n"
 		} else {
 			if(children == null || children.size == 0)
 				r += "s += " + name.toFirstLower + "TextField.getText();\n\n"
 		}
+		for (c : children)
+			r += generateJavaVariableStringValue(c)
+		return r
 	}
-	
-	def compileToJava(ConfiguratorModel it) {
-		'''
-	import java.awt.BorderLayout;
-	import java.awt.Color;
-	import java.awt.Container;
-	import java.awt.Dimension;
-	import java.awt.FlowLayout;
-	import java.awt.GridBagConstraints;
-	import java.awt.GridBagLayout;
-	import java.awt.event.ActionEvent;
-	import java.awt.event.ActionListener;
-	import java.io.BufferedWriter;
-	import java.io.File;
-	import java.io.FileWriter;
-	import java.io.IOException;
-	import javax.swing.BorderFactory;
-	import javax.swing.JButton;
-	import javax.swing.JComboBox;
-	import javax.swing.JFrame;
-	import javax.swing.JLabel;
-	import javax.swing.JList;
-	import javax.swing.JOptionPane;
-	import javax.swing.JPanel;
-	import javax.swing.JTextField;
-	
-	public class « name.toFirstUpper » extends JFrame { 
-		private static final long serialVersionUID = 1L;
-		private JLabel titleLabel = new JLabel("«name.toFirstUpper»");
-		«FOR p : parameters»
-			«generateJavaLabel(p)»
-			«FOR c : p.children»
-			«generateJavaLabel(c)»
-			«ENDFOR»
-		«ENDFOR»
-		«FOR p : parameters»
-			«generateJavaVariables(p)»
-			«FOR c : p.children»
-			«generateJavaVariables(c)»
-			«ENDFOR»
-		«ENDFOR»
-		private JButton submitButton = new JButton("Submit");
-		
-		public void setup() {
-			JPanel panel = new JPanel();
-			setPreferredSize(new Dimension(800, 600));
-			Container contentPane = getContentPane();
-			contentPane.setLayout(new BorderLayout());
-			JPanel mainPanel = new JPanel();
-			mainPanel.setLayout(new FlowLayout());
-			contentPane.add(mainPanel, BorderLayout.CENTER);
-			
-			submitButton.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					String c = checkConstraints();
-					if(c != null && c.length() == 0) {
-						boolean b = save();
-						JOptionPane.showMessageDialog(null, "Configuration file saved successfully!");
-					} else 
-						JOptionPane.showMessageDialog(null, c);
-				}
-			});
-			
-			getContentPane().add(BorderLayout.NORTH, titleLabel);
-			panel.setLayout(new GridBagLayout());
-			panel.setBackground(Color.GREEN);
-			getContentPane().add(panel);
-			GridBagConstraints left = new GridBagConstraints();
-			left.anchor = GridBagConstraints.EAST;
-			GridBagConstraints right = new GridBagConstraints();
-			right.weightx = 2.0;
-			right.fill = GridBagConstraints.HORIZONTAL;
-			right.gridwidth = GridBagConstraints.REMAINDER;
-			
-			«FOR p : parameters»
-			«addToJavaPanel(p)»
-			«FOR c : p.children»
-			«addToJavaPanel(c)»
-			«ENDFOR»
-			«ENDFOR»
-			
-			panel.add(submitButton, left);
-			
-			panel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-			pack();
-			setDefaultCloseOperation(EXIT_ON_CLOSE);
-			setLocationRelativeTo(null);
-			show();	
-		}
-		
-		private String checkConstraints() {
-			String s = "";
-			«FOR p : parameters»
-			«generateJavaRequiredFields(p)»
-			«ENDFOR»
-			if(s.length() == 0) {
-				«FOR c : constraints»
-				if(!«generateJavaConstraint(c)»)
-					s += "Constraint violated!"; 
-				«ENDFOR»
-			}
-			return s;	
-		}
-		
-		private boolean save() {
-			try {
-				File f = new File("configurator_output.txt");
-				String s = "";
-					
-				«FOR p : parameters»
-				«generateJavaVariableStringValue(p)»
-				«FOR c : p.children»
-				«generateJavaVariableStringValue(c)»
-				«ENDFOR»
-				«ENDFOR»
-				FileWriter fw = new FileWriter(f);
-				BufferedWriter bw = new BufferedWriter(fw);
-				bw.write(s);
-				bw.flush();
-				bw.close();
-				return true;
-			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
-		
-		public static void main(String[] args) {
-			«name.toFirstUpper» c = new «name.toFirstUpper»();
-			c.setup();	
-		}
-	}
-
-«««		
-«««		private String checkConstraints() {
-«««			String s = "";
-«««			«FOR p : parameters»
-«««			«generateJavaRequiredFields(p)»
-«««			«ENDFOR»
-«««			if(s.length() == 0) {
-«««			«FOR c : constraints»
-«««			«generateJavaConstraint(c)»
-«««			«ENDFOR»
-«««			}
-«««			
-«««			return s;
-«««		}
-«««		
-«««		public static void main(String[] args) {
-«««			«name.toFirstUpper» m = new «name.toFirstUpper»();
-«««			m.initUI();
-«««		}
-«««	}
-		'''
-//		String r = "";
-//		
-//		if(NameTextField.getText().length() == 0)
-//			r += "Name cannot be empty\n";
-//		if(ColorComboBox.getSelectedItem() == null)
-//			r += "Color cannot be empty\n";
-//		if(SizeComboBox.getSelectedItem() == null)
-//			r += "Size cannot be empty";
-//		if(PrintColorComboBox.getSelectedItem() == null)
-//			r += "PrintColor cannot be empty\n";
-//		if(PrintShapeComboBox.getSelectedItem() == null)
-//			r += "PrintShapeCannot be empty\n";
-//		if(PrintPlacementList.getSelectedValuesList().size() == 0 || PrintPlacementList.getSelectedValuesList().size() > 2)
-//			r += "PrintPlacement must have 1 or 2 values";
-
-
-//		if(r.length() == 0) {
-//			if(!(ColorComboBox.getSelectedItem().toString() != PrintColorComboBox.getSelectedItem().toString()))
-//				r += "Constraint (Color != PrintColor) validated\n";
-//			if(!(!(ColorComboBox.getSelectedItem().toString().equals("RED")) || (ColorComboBox.getSelectedItem().toString().equals("RED") && (int)SizeComboBox.getSelectedItem() > 3)))
-//				r += "Constraint ((Color != String.RED) || ((Color == String.RED) && (Size > 3))) validated";
-//		}
-//		
-//		return r;
-
-	}
-	
-//	def getConstraint(Configurator.Constraint it) {
-//		if(it instanceof BinaryConstraint) {
-//			val binCon = it as BinaryConstraint
-//			return "(" + getConstraint(binCon.leftOperand) + " " + getOperatorSign(binCon.operator) + " " + getConstraint(binCon.rightOperand) + ")"
-//		}			
-//		else if(it instanceof Literal) {
-//			if(it instanceof Configurator.Stringg) {
-//				val stringVal = it as Configurator.Stringg
-//				return "\"" + stringVal.value + "\""
-//			}  
-//			else if(it instanceof Configurator.Integer) {
-//				val intVal = it as Configurator.Integer
-//				return intVal.value
-//			}				
-//			else if(it instanceof Configurator.Double) {
-//				val doubleVal = it as Configurator.Double
-//				return doubleVal.value
-//			} 				
-//			else {
-//				val boolVal = it as Configurator.Boolean
-//				return boolVal.value
-//			}
-//		}			
-//		else {	// ParameterIdentifier
-//			val id = it as Configurator.ParameterIdentifier
-//			return getConstraintParamValue(id.parameter)
-//		}	
-//	}
 	
 	def generateJavaConstraint(Configurator.Constraint it) {
 		if(it instanceof BinaryConstraint) {
@@ -366,10 +297,11 @@ class MyDslGenerator implements IGenerator {
 			if(maxChosenValues == 1) {
 				ret += "(" + getEnumValueJavaType(et.values.get(0)) + ")" + name.toFirstLower + "ComboBox.getSelectedItem()"
 			} 
-		}
-		else {
+		} else if(type.eClass.name == "Boolean" && children.empty) {
+			ret += name.toFirstLower + "CheckBox.isSelected()"
+		} else {
 			ret += name.toFirstLower + "TextField.getText()"
-		}		
+		}
 		return ret
 	}
 	
@@ -387,100 +319,26 @@ class MyDslGenerator implements IGenerator {
 	
 	def generateJavaRequiredFields(Parameter it) {
 		'''
+		«IF minChosenValues > 0»
 		«IF type.eClass.name == "Enum"»
 			«IF maxChosenValues == 1»
 			if(«name.toFirstLower»ComboBox.getSelectedItem() == null)
 				s += "«name.toFirstUpper» is required";
-			«ELSEIF maxChosenValues > 2»
-			if(«name.toFirstLower»List.getSelectedItem() == null)
-				s += "«name.toFirstUpper» is required";
+			«ELSEIF maxChosenValues > 1»
+			if(«name.toFirstLower»List.getSelectedValuesList() == null || «name.toFirstLower»List.getSelectedValuesList().size() == 0)
+				s += "«name.toFirstUpper» must have at least " + «minChosenValues» + " and max " + «maxChosenValues» + " values";
 			«ENDIF»
+		«ELSEIF type.eClass.name != "Boolean" && type.eClass.name != "Enum"»
+			if(«name.toFirstLower»TextField.getText() == null || «name.toFirstLower»TextField.getText().length() == 0)
+				s += "«name.toFirstUpper» is required";
+		«ENDIF»
+		
 		«ENDIF»
 		«FOR c : children»
 		«generateJavaRequiredFields(c)»
 		«ENDFOR»
 		'''
 	}
-	
-//	def generateJavaLabel(Parameter it) {
-//		'''
-//		private JLabel « name »Label;
-//		« FOR c : children »
-//		private JLabel « c.name »Label;
-//		« ENDFOR »
-//		'''
-//	}
-	
-	def initJavaValueClass(Parameter it) {
-		'''
-		«IF minChosenValues > 0»
-			«IF type.eClass.name == "Enum"»
-				«val et = type as Configurator.Enum»
-				«IF maxChosenValues == 1»
-					«getEnumValueJavaType(et.values.get(0))»[ ] «name»ComboBoxValues = {
-					«FOR eval : et.values»
-						«getEnumValue(eval, (eval == et.values.get(et.values.size - 1)))»
-					«ENDFOR»
-					};
-					«name»ComboBox = new JComboBox<«getEnumValueJavaType(et.values.get(0))»>(«name»ComboBoxValues);
-				«ELSE»
-					«getEnumValueJavaType(et.values.get(0))»[ ] «name»ListValues = {
-					«FOR eval : et.values»
-						«getEnumValue(eval, (eval == et.values.get(et.values.size - 1)))»
-					«ENDFOR»
-					};
-					«name»List = new JList<«getEnumValueJavaType(et.values.get(0))»>(«name»ListValues);
-				«ENDIF»
-			«ELSE»
-				«IF type.eClass.name == "Integer" || type.eClass.name == "Double"»
-					private JTextField «name.toFirstUpper»TextField;
-				«ELSEIF type.eClass.name == "Stringg"»
-					private JTextField «name.toFirstUpper»TextField;
-				«ELSEIF type.eClass.name == "Boolean"»
-					private JTextField «name.toFirstUpper»TextField;
-				«ENDIF»
-			«ENDIF»
-		«ENDIF»
-		
-		«IF !children.empty»
-			«FOR c : children»
-  				«initJavaValueClass(c)» 
-  			«ENDFOR»
-		«ENDIF»
-		'''
-	}
-	
-	def generateJavaValueClass(Parameter it) {
-		'''
-		«IF minChosenValues > 0»
-			«IF type.eClass.name == "Enum"»
-				«val et = type as Configurator.Enum»
-				«IF maxChosenValues == 1»
-					private JComboBox<«getEnumValueJavaType(et.values.get(0))»> «name.toFirstUpper»ComboBox;
-				«ELSE»
-					private JList<«getEnumValueJavaType(et.values.get(0))»> «name.toFirstUpper»List;
-				«ENDIF»
-			«ELSE»
-				«IF type.eClass.name == "Integer" || type.eClass.name == "Double"»
-					private JTextField «name.toFirstUpper»TextField;
-				«ELSEIF type.eClass.name == "Stringg"»
-					private JTextField «name.toFirstUpper»TextField;
-				«ELSEIF type.eClass.name == "Boolean"»
-					private JTextField «name.toFirstUpper»TextField;
-				«ENDIF»
-			«ENDIF»
-		«ENDIF»
-		
-		«IF !children.empty»
-			«FOR c : children»
-  				«generateJavaValueClass(c)» 
-  			«ENDFOR»
-		«ENDIF»
-		'''
-	}
-	
-	
-	
 	
 	// HTML generator
 	// -------------------------------------------------------------------------------------------------------------------------------
