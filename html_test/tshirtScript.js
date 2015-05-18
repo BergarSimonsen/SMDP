@@ -1,15 +1,15 @@
 $(document).ready(function(){	
-	var $ColourValues = ["Red", "Black", "Blue"];
-	$("#Colour").jqxComboBox({ source: $ColourValues, width: '200px', height: '25px',});
+	var $ColorValues = ["Black", "Blue", "Green", "Red", "White", "Yellow"];
+	$("#Color").jqxComboBox({ source: $ColorValues, width: '200px', height: '25px'});
 	
-	var $SizeValues = [1, 2, 3, 4, 5];
-	$("#Size").jqxComboBox({ source: $SizeValues, width: '200px', height: '25px',});
+	var $SizeValues = [32, 34, 36, 38, 40, 42, 44, 46];
+	$("#Size").jqxComboBox({ source: $SizeValues, width: '200px', height: '25px'});
 	
-	var $PrintColourValues = ["Red", "Black", "Blue"];
-	$("#PrintColour").jqxComboBox({ source: $PrintColourValues, width: '200px', height: '25px', autoComplete: false});
+	var $PrintColorValues = ["Red", "Green", "Blue"];
+	$("#PrintColor").jqxComboBox({ source: $PrintColorValues, width: '200px', height: '25px'});
 	
 	var $PrintShapeValues = ["Round", "Square", "Triangular"];
-	$("#PrintShape").jqxComboBox({ source: $PrintShapeValues, width: '200px', height: '25px',});
+	$("#PrintShape").jqxComboBox({ source: $PrintShapeValues, width: '200px', height: '25px'});
 	
 	var $PrintPlacementValues = ["Front", "Back", "LeftSleeve", "RightSleeve"];
 	$("#PrintPlacement").jqxListBox({ source: $PrintPlacementValues, width: '200px', height: '150px', multiple: true});		
@@ -17,17 +17,23 @@ $(document).ready(function(){
 	function checkConstraints() {		
 		var valid = "";
 		
-		//if($("#Title").val() === "") valid += "Title must be filled! \n";
-		if($("#Colour").jqxComboBox('getSelectedItem') === null) valid += "Colour must be filled! \n";
+		if($("#Color").jqxComboBox('getSelectedItem') === null) valid += "Color must be filled! \n";
 		if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be filled! \n";
-		if($("#PrintColour").jqxComboBox('getSelectedItem') === null) valid += "PrintColour must be filled! \n";
+		if($("#PrintColor").jqxComboBox('getSelectedItem') === null) valid += "PrintColor must be filled! \n";
 		
-		if(valid === "") {
-			if(!($("#Colour").jqxComboBox('getSelectedItem').value != $("#PrintColour").jqxComboBox('getSelectedItem').value)) 
-				valid += "Invalid constraint: " + "(Colour != PrintColor) \n";
-			if(!((($("#Colour").jqxComboBox('getSelectedItem').value != "Red") || (($("#Colour").jqxComboBox('getSelectedItem').value === "Red") 
+		var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems'); 
+		if(itemsPrintPlacement.length < 1) valid += "At least 1 value of PrintPlacement must be selected! \n"; 
+		if(itemsPrintPlacement.length > 2) valid += "No more than 2 values of PrintPlacement must be selected! \n"; 
+		
+		if(valid === "") {			
+			if(!((($("#Color").jqxComboBox('getSelectedItem').value != "Red") || (($("#Color").jqxComboBox('getSelectedItem').value === "Red") 
 				&& ($("#Size").jqxComboBox('getSelectedItem').value > 3))))) 
-				valid += "Invalid constraint: " + "((Color != String.RED) || ((Color == String.RED) && (ShirtSize > 3))) \n";
+				valid += "Invalid constraint: " + "((Color != String.Red) || ((Color === String.Red) && (ShirtSize > 3))) \n";
+			if(!((($("#Size").jqxComboBox('getSelectedItem').value <= 40) || (($("#Size").jqxComboBox('getSelectedItem').value > 40) 
+				&& ($("#VNeck").prop('checked') === false))))) 
+				valid += "Invalid constraint: " + "((Size <= 40) || ((Size > 40) && (VNeck === false))) \n";
+			if(!($("#Color").jqxComboBox('getSelectedItem').value != $("#PrintColor").jqxComboBox('getSelectedItem').value)) 
+				valid += "Invalid constraint: " + "(Colour != PrintColor) \n";
 		}
 			
 		return valid;
@@ -36,11 +42,12 @@ $(document).ready(function(){
 	function getText() {
 		var text = "";
 		
-		text += "Title: " + $("#Title").val() + " \r\n";
-		text += "Colour: " + $("#Colour").jqxComboBox('getSelectedItem').value + " \r\n";
+		text += "Brand: " + $("#Brand").val() + " \r\n";
+		text += "Color: " + $("#Color").jqxComboBox('getSelectedItem').value + " \r\n";
 		text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n";
+		text += "VNeck: " + $("#VNeck").prop('checked') + " \r\n"; 
 		text += "Print: " + "\r\n";
-		text += "PrintColour: " + $("#PrintColour").jqxComboBox('getSelectedItem').value + " \r\n";
+		text += "PrintColor: " + $("#PrintColor").jqxComboBox('getSelectedItem').value + " \r\n";
 		text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n";
 		
 		var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems');
@@ -71,14 +78,10 @@ $(document).ready(function(){
 		downloadLink.download = fileNameToSaveAs;
 		downloadLink.innerHTML = "Download File";
 		if (window.webkitURL != null) {
-			// Chrome allows the link to be clicked
-			// without actually adding it to the DOM.
 			downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
 		}
 		else
 		{
-			// Firefox requires the link to be added to the DOM
-			// before it can be clicked.
 			downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
 			downloadLink.onclick = destroyClickedElement;
 			downloadLink.style.display = "none";

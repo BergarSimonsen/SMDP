@@ -10,16 +10,16 @@
 		<script type='text/javascript'>
 			$(document).ready(function(){
 				
-				var $ColorValues = ["RED", "BLACK", "BLUE"]; 
+				var $ColorValues = ["Black", "Blue", "Green", "Red", "White", "Yellow"]; 
 				$("#Color").jqxComboBox({ source: $ColorValues, width: '200px', height: '25px',}); 
 		
-				var $SizeValues = [1, 2, 3, 4, 5]; 
+				var $SizeValues = [32, 34, 36, 38, 40, 42, 44, 46]; 
 				$("#Size").jqxComboBox({ source: $SizeValues, width: '200px', height: '25px',}); 
 		
-				var $PrintColorValues = ["RED", "BLACK", "BLUE"]; 
+				var $PrintColorValues = ["Red", "Green", "Blue"]; 
 				$("#PrintColor").jqxComboBox({ source: $PrintColorValues, width: '200px', height: '25px',}); 
 		
-				var $PrintShapeValues = ["ROUND", "SQUARE", "TRIANGULAR"]; 
+				var $PrintShapeValues = ["Round", "Square", "Triangular"]; 
 				$("#PrintShape").jqxComboBox({ source: $PrintShapeValues, width: '200px', height: '25px',}); 
 		
 				var $PrintPlacementValues = ["Front", "Back", "LeftSleeve", "RightSleeve"]; 
@@ -29,7 +29,6 @@
 				function checkConstraints() { 
 					var valid = "";
 					
-					if($("#Name").val() === "") valid += "Name must be filled! \n"; 
 					if($("#Color").jqxComboBox('getSelectedItem') === null) valid += "Color must be selected! \n"; 
 					if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be selected! \n"; 
 					if($("#PrintColor").jqxComboBox('getSelectedItem') === null) valid += "PrintColor must be selected! \n"; 
@@ -39,8 +38,10 @@
 					if(itemsPrintPlacement.length > 2) valid += "No more than 2 values of PrintPlacement must be selected! \n"; 
 						
 					if(valid === "") {
-						if(!((($("#Color").jqxComboBox('getSelectedItem').value != "RED") || (($("#Color").jqxComboBox('getSelectedItem').value === "RED") && ($("#Size").jqxComboBox('getSelectedItem').value > 3))))) 
-								valid += "Invalid constraint: " + "((Color != String.RED) || ((Color === String.RED) && (Size > 3))) \n";
+						if(!((($("#Color").jqxComboBox('getSelectedItem').value != "Red") || (($("#Color").jqxComboBox('getSelectedItem').value === "Red") && ($("#Size").jqxComboBox('getSelectedItem').value > 38))))) 
+								valid += "Invalid constraint: " + "((Color != String.Red) || ((Color === String.Red) && (Size > 38))) \n";
+						if(!((($("#Size").jqxComboBox('getSelectedItem').value <= 40) || (($("#Size").jqxComboBox('getSelectedItem').value > 40) && ($("#VNeck").prop('checked') === false))))) 
+								valid += "Invalid constraint: " + "((Size <= 40) || ((Size > 40) && (VNeck === false))) \n";
 						if(!(($("#Color").jqxComboBox('getSelectedItem').value != $("#PrintColor").jqxComboBox('getSelectedItem').value))) 
 								valid += "Invalid constraint: " + "(Color != PrintColor) \n";
 					}
@@ -51,7 +52,7 @@
 				function getText() {
 					var text = "";
 					
-					text += "Name: " + $("#Name").val() + " \r\n"; 
+					text += "Brand: " + $("#Brand").val() + " \r\n"; 
 					text += "Color: " + $("#Color").jqxComboBox('getSelectedItem').value + " \r\n"; 
 					text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n"; 
 					text += "VNeck: " + $("#VNeck").prop('checked') + " \r\n"; 
@@ -110,9 +111,9 @@
   				<h2> ShirtConfigurator </h2>
    				<hr/>
    				
-  				<h3>Name:</h3>
+  				<h3>Brand:</h3>
   				<form>
-  				<input type='text' name='Name' id='Name'/>
+  				<input type='text' name='Brand' id='Brand'/>
   				</form>
   				
   				<h3>Color:</h3>

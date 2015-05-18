@@ -426,7 +426,7 @@ class MyDslGenerator implements IGenerator {
 		if (header > 6) header = 6
 		'''
 		<h«header»>«name.toFirstUpper»:</h«header»>
-		«IF minChosenValues > 0»
+		«IF maxChosenValues > 0»
 			«IF type.eClass.name == "Enum"»
 				«IF maxChosenValues == 1»
 					<div id='«name.toFirstUpper»' class='combobox'>
