@@ -1341,8 +1341,8 @@ public class MyDslGenerator implements IGenerator {
       _builder.append(">");
       _builder.newLineIfNotEmpty();
       {
-        int _minChosenValues = it.getMinChosenValues();
-        boolean _greaterThan = (_minChosenValues > 0);
+        int _maxChosenValues = it.getMaxChosenValues();
+        boolean _greaterThan = (_maxChosenValues > 0);
         if (_greaterThan) {
           {
             Type _type = it.getType();
@@ -1351,8 +1351,8 @@ public class MyDslGenerator implements IGenerator {
             boolean _equals = Objects.equal(_name_1, "Enum");
             if (_equals) {
               {
-                int _maxChosenValues = it.getMaxChosenValues();
-                boolean _equals_1 = (_maxChosenValues == 1);
+                int _maxChosenValues_1 = it.getMaxChosenValues();
+                boolean _equals_1 = (_maxChosenValues_1 == 1);
                 if (_equals_1) {
                   _builder.append("<div id=\'");
                   String _name_2 = it.getName();
