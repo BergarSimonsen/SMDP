@@ -37,7 +37,7 @@ $(document).ready(function(){
 		
 		if(valid === "") {			
 			if(!((($("#Color").jqxComboBox('getSelectedItem').value != "Red") || (($("#Color").jqxComboBox('getSelectedItem').value === "Red") 
-				&& ($("#Size").jqxComboBox('getSelectedItem').value > 3))))) 
+				&& ($("#Size").jqxComboBox('getSelectedItem').value > 38))))) 
 				valid += "Invalid constraint: " + "((Color != String.Red) || ((Color === String.Red) && (ShirtSize > 3))) \n";
 			if(!((($("#Size").jqxComboBox('getSelectedItem').value <= 40) || (($("#Size").jqxComboBox('getSelectedItem').value > 40) 
 				&& ($("#VNeck").prop('checked') === false))))) 
