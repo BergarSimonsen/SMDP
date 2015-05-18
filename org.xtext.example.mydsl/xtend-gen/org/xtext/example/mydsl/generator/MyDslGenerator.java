@@ -377,56 +377,6 @@ public class MyDslGenerator implements IGenerator {
     return _builder;
   }
   
-  public String getJavaEnumValue(final Literal it, final boolean islast) {
-    String ret = "";
-    if ((it instanceof Configurator.Integer)) {
-      final Configurator.Integer intVal = ((Configurator.Integer) it);
-      String _ret = ret;
-      int _value = intVal.getValue();
-      ret = (_ret + Integer.valueOf(_value));
-      if ((!islast)) {
-        String _ret_1 = ret;
-        ret = (_ret_1 + ",");
-      }
-    } else {
-      if ((it instanceof Configurator.Double)) {
-        final Configurator.Double doubleVal = ((Configurator.Double) it);
-        String _ret_2 = ret;
-        double _value_1 = doubleVal.getValue();
-        ret = (_ret_2 + Double.valueOf(_value_1));
-        if ((!islast)) {
-          String _ret_3 = ret;
-          ret = (_ret_3 + ",");
-        }
-      } else {
-        if ((it instanceof Configurator.Boolean)) {
-          final Configurator.Boolean boolVal = ((Configurator.Boolean) it);
-          String _ret_4 = ret;
-          boolean _isValue = boolVal.isValue();
-          ret = (_ret_4 + Boolean.valueOf(_isValue));
-          if ((!islast)) {
-            String _ret_5 = ret;
-            ret = (_ret_5 + ",");
-          }
-        } else {
-          if ((it instanceof Stringg)) {
-            final Stringg stringlVal = ((Stringg) it);
-            String _ret_6 = ret;
-            String _value_2 = stringlVal.getValue();
-            String _plus = ("\"" + _value_2);
-            String _plus_1 = (_plus + "\"");
-            ret = (_ret_6 + _plus_1);
-            if ((!islast)) {
-              String _ret_7 = ret;
-              ret = (_ret_7 + ",");
-            }
-          }
-        }
-      }
-    }
-    return ret;
-  }
-  
   public String getEnumValueJavaType(final Literal it) {
     if ((it instanceof Configurator.Integer)) {
       return "Integer";
@@ -499,8 +449,8 @@ public class MyDslGenerator implements IGenerator {
           int _minus = (_size - 1);
           Literal _get_2 = _values_3.get(_minus);
           boolean _equals_2 = Objects.equal(l, _get_2);
-          String _javaEnumValue = this.getJavaEnumValue(l, _equals_2);
-          r = (_r_1 + _javaEnumValue);
+          String _enumValue = this.getEnumValue(l, _equals_2);
+          r = (_r_1 + _enumValue);
         }
         String _r_2 = r;
         r = (_r_2 + "};\n");
@@ -553,8 +503,8 @@ public class MyDslGenerator implements IGenerator {
             int _minus_1 = (_size_1 - 1);
             Literal _get_7 = _values_10.get(_minus_1);
             boolean _equals_3 = Objects.equal(l_1, _get_7);
-            String _javaEnumValue_1 = this.getJavaEnumValue(l_1, _equals_3);
-            r = (_r_5 + _javaEnumValue_1);
+            String _enumValue_1 = this.getEnumValue(l_1, _equals_3);
+            r = (_r_5 + _enumValue_1);
           }
           String _r_6 = r;
           r = (_r_6 + "};\n");
@@ -1695,24 +1645,41 @@ public class MyDslGenerator implements IGenerator {
           ret = (_ret_7 + "\t\t\ttext += \" \\r\\n\"; \n");
         }
       } else {
-        String _ret_8 = ret;
-        String _name_7 = it.getName();
-        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
-        String _plus_12 = ("\t\t\ttext += \"" + _firstUpper_6);
-        String _plus_13 = (_plus_12 + ": \" + $(\"#");
-        String _name_8 = it.getName();
-        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
-        String _plus_14 = (_plus_13 + _firstUpper_7);
-        String _plus_15 = (_plus_14 + "\").val() + \" \\r\\n\"; \n");
-        ret = (_ret_8 + _plus_15);
+        Type _type_1 = it.getType();
+        EClass _eClass_1 = _type_1.eClass();
+        String _name_7 = _eClass_1.getName();
+        boolean _equals_2 = Objects.equal(_name_7, "Boolean");
+        if (_equals_2) {
+          String _ret_8 = ret;
+          String _name_8 = it.getName();
+          String _firstUpper_6 = StringExtensions.toFirstUpper(_name_8);
+          String _plus_12 = ("\t\t\ttext += \"" + _firstUpper_6);
+          String _plus_13 = (_plus_12 + ": \" + $(\"#");
+          String _name_9 = it.getName();
+          String _firstUpper_7 = StringExtensions.toFirstUpper(_name_9);
+          String _plus_14 = (_plus_13 + _firstUpper_7);
+          String _plus_15 = (_plus_14 + "\").prop(\'checked\') + \" \\r\\n\"; \n");
+          ret = (_ret_8 + _plus_15);
+        } else {
+          String _ret_9 = ret;
+          String _name_10 = it.getName();
+          String _firstUpper_8 = StringExtensions.toFirstUpper(_name_10);
+          String _plus_16 = ("\t\t\ttext += \"" + _firstUpper_8);
+          String _plus_17 = (_plus_16 + ": \" + $(\"#");
+          String _name_11 = it.getName();
+          String _firstUpper_9 = StringExtensions.toFirstUpper(_name_11);
+          String _plus_18 = (_plus_17 + _firstUpper_9);
+          String _plus_19 = (_plus_18 + "\").val() + \" \\r\\n\"; \n");
+          ret = (_ret_9 + _plus_19);
+        }
       }
     } else {
-      String _ret_9 = ret;
-      String _name_9 = it.getName();
-      String _firstUpper_8 = StringExtensions.toFirstUpper(_name_9);
-      String _plus_16 = ("\t\t\ttext += \"" + _firstUpper_8);
-      String _plus_17 = (_plus_16 + ": \" + \"\\r\\n\"; \n");
-      ret = (_ret_9 + _plus_17);
+      String _ret_10 = ret;
+      String _name_12 = it.getName();
+      String _firstUpper_10 = StringExtensions.toFirstUpper(_name_12);
+      String _plus_20 = ("\t\t\ttext += \"" + _firstUpper_10);
+      String _plus_21 = (_plus_20 + ": \" + \"\\r\\n\"; \n");
+      ret = (_ret_10 + _plus_21);
     }
     EList<Parameter> _children = it.getChildren();
     boolean _isEmpty = _children.isEmpty();
@@ -1720,9 +1687,9 @@ public class MyDslGenerator implements IGenerator {
     if (_not) {
       EList<Parameter> _children_1 = it.getChildren();
       for (final Parameter c : _children_1) {
-        String _ret_10 = ret;
+        String _ret_11 = ret;
         Object _parametersText = this.getParametersText(c);
-        ret = (_ret_10 + _parametersText);
+        ret = (_ret_11 + _parametersText);
       }
     }
     return ret;
@@ -1778,16 +1745,22 @@ public class MyDslGenerator implements IGenerator {
           }
         }
       } else {
-        String _ret_3 = ret;
-        String _name_7 = it.getName();
-        String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
-        String _plus_12 = ("if($(\"#" + _firstUpper_6);
-        String _plus_13 = (_plus_12 + "\").val() === \"\") valid += \"");
-        String _name_8 = it.getName();
-        String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
-        String _plus_14 = (_plus_13 + _firstUpper_7);
-        String _plus_15 = (_plus_14 + " must be filled! \\n\"; \n");
-        ret = (_ret_3 + _plus_15);
+        Type _type_1 = it.getType();
+        EClass _eClass_1 = _type_1.eClass();
+        String _name_7 = _eClass_1.getName();
+        boolean _notEquals = (!Objects.equal(_name_7, "Boolean"));
+        if (_notEquals) {
+          String _ret_3 = ret;
+          String _name_8 = it.getName();
+          String _firstUpper_6 = StringExtensions.toFirstUpper(_name_8);
+          String _plus_12 = ("if($(\"#" + _firstUpper_6);
+          String _plus_13 = (_plus_12 + "\").val() === \"\") valid += \"");
+          String _name_9 = it.getName();
+          String _firstUpper_7 = StringExtensions.toFirstUpper(_name_9);
+          String _plus_14 = (_plus_13 + _firstUpper_7);
+          String _plus_15 = (_plus_14 + " must be filled! \\n\"; \n");
+          ret = (_ret_3 + _plus_15);
+        }
       }
     }
     EList<Parameter> _children = it.getChildren();
@@ -1918,12 +1891,25 @@ public class MyDslGenerator implements IGenerator {
         ret = (_ret + _plus_1);
       }
     } else {
-      String _ret_1 = ret;
-      String _name_2 = it.getName();
-      String _firstUpper_1 = StringExtensions.toFirstUpper(_name_2);
-      String _plus_2 = ("$(\"#" + _firstUpper_1);
-      String _plus_3 = (_plus_2 + "\").val()");
-      ret = (_ret_1 + _plus_3);
+      Type _type_1 = it.getType();
+      EClass _eClass_1 = _type_1.eClass();
+      String _name_2 = _eClass_1.getName();
+      boolean _equals_2 = Objects.equal(_name_2, "Boolean");
+      if (_equals_2) {
+        String _ret_1 = ret;
+        String _name_3 = it.getName();
+        String _firstUpper_1 = StringExtensions.toFirstUpper(_name_3);
+        String _plus_2 = ("$(\"#" + _firstUpper_1);
+        String _plus_3 = (_plus_2 + "\").prop(\'checked\')");
+        ret = (_ret_1 + _plus_3);
+      } else {
+        String _ret_2 = ret;
+        String _name_4 = it.getName();
+        String _firstUpper_2 = StringExtensions.toFirstUpper(_name_4);
+        String _plus_4 = ("$(\"#" + _firstUpper_2);
+        String _plus_5 = (_plus_4 + "\").val()");
+        ret = (_ret_2 + _plus_5);
+      }
     }
     return ret;
   }

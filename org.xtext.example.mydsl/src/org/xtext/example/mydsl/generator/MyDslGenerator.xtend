@@ -148,31 +148,6 @@ class MyDslGenerator implements IGenerator {
 		'''
 	}
 	
-	def getJavaEnumValue(Literal it, boolean islast){
-		var ret = ""
-		if (it instanceof Configurator.Integer){
-			val intVal = it as Configurator.Integer
-			ret += intVal.value 
-			if(!islast) ret += ","
-		}
-		else if (it instanceof Configurator.Double){
-			val doubleVal = it as Configurator.Double
-			ret += doubleVal.value 
-			if(!islast) ret += ","
-		}
-		else if (it instanceof Configurator.Boolean){
-			val boolVal = it as Configurator.Boolean
-			ret += boolVal.value 
-			if(!islast) ret += ","
-		}
-		else if (it instanceof Configurator.Stringg){
-			val stringlVal = it as Configurator.Stringg
-			ret += "\"" +  stringlVal.value + "\""
-			if(!islast) ret += ","
-		}		
-		return ret
-	}
-	
 	def getEnumValueJavaType(Literal it){
 		if(it instanceof Configurator.Integer) 	return "Integer"
 		if(it instanceof Configurator.Double) 	return "Double"
@@ -194,14 +169,14 @@ class MyDslGenerator implements IGenerator {
 			if (maxChosenValues == 1) { // Generate combo boxes
 				r += "private " + getEnumValueJavaType(et.values.get(0)) + "[] " + name.toFirstLower + "ComboBoxValues = new " + getEnumValueJavaType(et.values.get(0)) + "[] {"
 				for(Literal l : et.values) {
-					r += getJavaEnumValue(l, (l == et.values.get(et.values.size - 1)))
+					r += getEnumValue(l, (l == et.values.get(et.values.size - 1)))
 				}
 				r += "};\n"
 				r += "private JComboBox<" + getEnumValueJavaType(et.values.get(0)) + "> " + name.toFirstLower + "ComboBox = new JComboBox<" + getEnumValueJavaType(et.values.get(0)) + ">(" + name.toFirstLower + "ComboBoxValues);\n"
 			} else if (maxChosenValues > 1) { // Generate jlists
 				r += "private " + getEnumValueJavaType(et.values.get(0)) + "[] " + name.toFirstLower + "ListValues = new " + getEnumValueJavaType(et.values.get(0)) + "[] {"
 				for(Literal l : et.values) {
-					r += getJavaEnumValue(l, (l == et.values.get(et.values.size - 1)))
+					r += getEnumValue(l, (l == et.values.get(et.values.size - 1)))
 				}
 				r += "};\n"
 				r += "private JList<" + getEnumValueJavaType(et.values.get(0)) + "> " + name.toFirstLower + "List = new JList<" + getEnumValueJavaType(et.values.get(0)) + ">(" + name.toFirstLower + "ListValues);\n"
@@ -550,6 +525,9 @@ class MyDslGenerator implements IGenerator {
 					ret += "\t\t\ttext += \" \\r\\n\"; \n" 
 				}
 			}
+			else if (type.eClass.name == "Boolean") {
+				ret += "\t\t\ttext += \"" + name.toFirstUpper + ": \" + $(\"#" + name.toFirstUpper + "\").prop('checked') + \" \\r\\n\"; \n"	
+			}
 			else {
 				ret += "\t\t\ttext += \"" + name.toFirstUpper + ": \" + $(\"#" + name.toFirstUpper + "\").val() + \" \\r\\n\"; \n"
 			}
@@ -576,7 +554,7 @@ class MyDslGenerator implements IGenerator {
 					ret += "if(items" + name.toFirstUpper + ".length == 0) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
 				}
 			}				
-			else
+			else if (type.eClass.name != "Boolean")
 				ret += "if($(\"#" + name.toFirstUpper + "\").val() === \"\") valid += \"" + name.toFirstUpper +  " must be filled! \\n\"; \n"
 		}			
 
@@ -617,24 +595,15 @@ class MyDslGenerator implements IGenerator {
 	}
 	
 	def getOperatorSign(Configurator.BinaryOperator it) {
-		if(it.value == 0)
-			return "&&"
-		else if(it.value == 1)
-			return "||"
-		else if(it.value == 2)
-			return "XOR"
-		else if(it.value == 3)
-			return "==="
-		else if(it.value == 4)
-			return "!="
-		else if(it.value == 5)
-			return ">"
-		else if(it.value == 6)
-			return "<"
-		else if(it.value == 7)
-			return ">="
-		else
-			return "<="
+		if(it.value == 0) return "&&"
+		else if(it.value == 1)	return "||"
+		else if(it.value == 2)	return "XOR"
+		else if(it.value == 3)	return "==="
+		else if(it.value == 4)	return "!="
+		else if(it.value == 5)	return ">"
+		else if(it.value == 6)	return "<"
+		else if(it.value == 7)	return ">="
+		else return "<="
 	}
 	
 	def getConstraintParamValue(Parameter it) {
@@ -648,6 +617,9 @@ class MyDslGenerator implements IGenerator {
 //				if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
 //			}
 		}
+		else if (type.eClass.name == "Boolean") {
+			ret += "$(\"#" + name.toFirstUpper + "\").prop('checked')"
+		}	
 		else {
 			ret += "$(\"#" + name.toFirstUpper + "\").val()"
 		}		
