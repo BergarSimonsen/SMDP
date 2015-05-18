@@ -472,6 +472,7 @@ class MyDslGenerator implements IGenerator {
 			if(maxChosenValues == 1)					
 				ret += "\t\t$(\"#" + name.toFirstUpper + "\").jqxComboBox({ source: $" 
 						+ name.toFirstUpper + "Values, width: '200px', height: '25px',}); \n\n"
+				
 			else
 				ret += "\t\t$(\"#" + name.toFirstUpper + "\").jqxListBox({ source: $" 
 						+ name.toFirstUpper + "Values, width: '200px', height: '150px', multiple: true}); \n\n"
