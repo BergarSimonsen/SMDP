@@ -49,7 +49,7 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEBooleanAccess().getAlternatives(), "rule__EBoolean__Alternatives");
 					put(grammarAccess.getBinaryOperatorAccess().getAlternatives(), "rule__BinaryOperator__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
-					put(grammarAccess.getModelAccess().getGroup_4(), "rule__Model__Group_4__0");
+					put(grammarAccess.getModelAccess().getGroup_3(), "rule__Model__Group_3__0");
 					put(grammarAccess.getConfiguratorModelAccess().getGroup(), "rule__ConfiguratorModel__Group__0");
 					put(grammarAccess.getConfiguratorModelAccess().getGroup_4(), "rule__ConfiguratorModel__Group_4__0");
 					put(grammarAccess.getConfiguratorModelAccess().getGroup_4_3(), "rule__ConfiguratorModel__Group_4_3__0");
@@ -71,8 +71,8 @@ public class MyDslParser extends AbstractContentAssistParser {
 					put(grammarAccess.getEDoubleAccess().getGroup(), "rule__EDouble__Group__0");
 					put(grammarAccess.getEDoubleAccess().getGroup_4(), "rule__EDouble__Group_4__0");
 					put(grammarAccess.getBinaryConstraintAccess().getGroup(), "rule__BinaryConstraint__Group__0");
-					put(grammarAccess.getModelAccess().getConfiguratorModelsAssignment_3(), "rule__Model__ConfiguratorModelsAssignment_3");
-					put(grammarAccess.getModelAccess().getConfiguratorModelsAssignment_4_1(), "rule__Model__ConfiguratorModelsAssignment_4_1");
+					put(grammarAccess.getModelAccess().getConfiguratorModelsAssignment_2(), "rule__Model__ConfiguratorModelsAssignment_2");
+					put(grammarAccess.getModelAccess().getConfiguratorModelsAssignment_3_1(), "rule__Model__ConfiguratorModelsAssignment_3_1");
 					put(grammarAccess.getConfiguratorModelAccess().getNameAssignment_2(), "rule__ConfiguratorModel__NameAssignment_2");
 					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_4_2(), "rule__ConfiguratorModel__ParametersAssignment_4_2");
 					put(grammarAccess.getConfiguratorModelAccess().getParametersAssignment_4_3_1(), "rule__ConfiguratorModel__ParametersAssignment_4_3_1");

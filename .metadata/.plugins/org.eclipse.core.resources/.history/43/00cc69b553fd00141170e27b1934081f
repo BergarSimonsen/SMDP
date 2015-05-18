@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ASCII"?>
+<dk.itu.smdp.Configurator1:Model
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dk.itu.smdp.Configurator1="http://www.itu.dk/smdp/"
+    xsi:schemaLocation="http://www.itu.dk/smdp/ Configurator.ecore">
+  <configuratorModels
+      name="ShirtConfigurator">
+    <parameters
+        name="Color"
+        maxChosenValues="1"
+        minChosenValues="1">
+      <type
+          xsi:type="dk.itu.smdp.Configurator1:Enum">
+        <values
+            xsi:type="dk.itu.smdp.Configurator1:Stringg"
+            value="RED"/>
+        <values
+            xsi:type="dk.itu.smdp.Configurator1:Stringg"
+            value="BLACK"/>
+        <values
+            xsi:type="dk.itu.smdp.Configurator1:Stringg"
+            value="BLUE"/>
+      </type>
+    </parameters>
+    <constraints
+        xsi:type="dk.itu.smdp.Configurator1:BinaryConstraint"
+        operator="OR">
+      <leftOperand
+          xsi:type="dk.itu.smdp.Configurator1:ParameterIdentifier"
+          parameter="//@configuratorModels.0/@parameters.0"/>
+      <rightOperand
+          xsi:type="dk.itu.smdp.Configurator1:BinaryConstraint">
+        <leftOperand
+            xsi:type="dk.itu.smdp.Configurator1:ParameterIdentifier"
+            parameter="//@configuratorModels.0/@parameters.0"/>
+        <rightOperand
+            xsi:type="dk.itu.smdp.Configurator1:Stringg"
+            value="RED"/>
+      </rightOperand>
+    </constraints>
+  </configuratorModels>
+</dk.itu.smdp.Configurator1:Model>

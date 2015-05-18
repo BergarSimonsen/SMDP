@@ -23,21 +23,19 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cModelKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cConfiguratorModelsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cConfiguratorModelsConfiguratorModelParserRuleCall_3_0 = (RuleCall)cConfiguratorModelsAssignment_3.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cConfiguratorModelsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cConfiguratorModelsConfiguratorModelParserRuleCall_4_1_0 = (RuleCall)cConfiguratorModelsAssignment_4_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cConfiguratorModelsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConfiguratorModelsConfiguratorModelParserRuleCall_2_0 = (RuleCall)cConfiguratorModelsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cConfiguratorModelsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cConfiguratorModelsConfiguratorModelParserRuleCall_3_1_0 = (RuleCall)cConfiguratorModelsAssignment_3_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Model:
-		//	"Model" "{" "{" configuratorModels+=ConfiguratorModel ("," configuratorModels+=ConfiguratorModel)* "}" "}";
+		//	"Model" "{" configuratorModels+=ConfiguratorModel ("," configuratorModels+=ConfiguratorModel)* "}";
 		public ParserRule getRule() { return rule; }
 
-		//"Model" "{" "{" configuratorModels+=ConfiguratorModel ("," configuratorModels+=ConfiguratorModel)* "}" "}"
+		//"Model" "{" configuratorModels+=ConfiguratorModel ("," configuratorModels+=ConfiguratorModel)* "}"
 		public Group getGroup() { return cGroup; }
 
 		//"Model"
@@ -46,32 +44,26 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		//"{"
 		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
 
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-
 		//configuratorModels+=ConfiguratorModel
-		public Assignment getConfiguratorModelsAssignment_3() { return cConfiguratorModelsAssignment_3; }
+		public Assignment getConfiguratorModelsAssignment_2() { return cConfiguratorModelsAssignment_2; }
 
 		//ConfiguratorModel
-		public RuleCall getConfiguratorModelsConfiguratorModelParserRuleCall_3_0() { return cConfiguratorModelsConfiguratorModelParserRuleCall_3_0; }
+		public RuleCall getConfiguratorModelsConfiguratorModelParserRuleCall_2_0() { return cConfiguratorModelsConfiguratorModelParserRuleCall_2_0; }
 
 		//("," configuratorModels+=ConfiguratorModel)*
-		public Group getGroup_4() { return cGroup_4; }
+		public Group getGroup_3() { return cGroup_3; }
 
 		//","
-		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 
 		//configuratorModels+=ConfiguratorModel
-		public Assignment getConfiguratorModelsAssignment_4_1() { return cConfiguratorModelsAssignment_4_1; }
+		public Assignment getConfiguratorModelsAssignment_3_1() { return cConfiguratorModelsAssignment_3_1; }
 
 		//ConfiguratorModel
-		public RuleCall getConfiguratorModelsConfiguratorModelParserRuleCall_4_1_0() { return cConfiguratorModelsConfiguratorModelParserRuleCall_4_1_0; }
+		public RuleCall getConfiguratorModelsConfiguratorModelParserRuleCall_3_1_0() { return cConfiguratorModelsConfiguratorModelParserRuleCall_3_1_0; }
 
 		//"}"
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_6() { return cRightCurlyBracketKeyword_6; }
+		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
 	}
 
 	public class ConstraintElements extends AbstractParserRuleElementFinder {
@@ -611,9 +603,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cValueEBooleanParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
-		////String0 returns String:
-		////	{String}
-		////	'String' | (value=EString);	
 		//Boolean:
 		//	{Boolean} "boolean" | value=EBoolean;
 		public ParserRule getRule() { return rule; }
@@ -796,7 +785,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		private final EnumLiteralDeclaration cLTEQEnumLiteralDeclaration_8 = (EnumLiteralDeclaration)cAlternatives.eContents().get(8);
 		private final Keyword cLTEQLessThanSignEqualsSignKeyword_8_0 = (Keyword)cLTEQEnumLiteralDeclaration_8.eContents().get(0);
 		
-		////	(parameter=Parameter);
 		//enum BinaryOperator:
 		//	AND="&&" | OR="||" | XOR="!||" | EQUALS="==" | NOTEQUALS="!=" | GT=">" | LT="<" | GTEQ=">=" | LTEQ="<=";
 		public EnumRule getRule() { return rule; }
@@ -917,7 +905,7 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	"Model" "{" "{" configuratorModels+=ConfiguratorModel ("," configuratorModels+=ConfiguratorModel)* "}" "}";
+	//	"Model" "{" configuratorModels+=ConfiguratorModel ("," configuratorModels+=ConfiguratorModel)* "}";
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -1038,9 +1026,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getStringgAccess().getRule();
 	}
 
-	////String0 returns String:
-	////	{String}
-	////	'String' | (value=EString);	
 	//Boolean:
 	//	{Boolean} "boolean" | value=EBoolean;
 	public BooleanElements getBooleanAccess() {
@@ -1091,7 +1076,6 @@ public class MyDslGrammarAccess extends AbstractGrammarElementFinder {
 		return getParameterIdentifierAccess().getRule();
 	}
 
-	////	(parameter=Parameter);
 	//enum BinaryOperator:
 	//	AND="&&" | OR="||" | XOR="!||" | EQUALS="==" | NOTEQUALS="!=" | GT=">" | LT="<" | GTEQ=">=" | LTEQ="<=";
 	public BinaryOperatorElements getBinaryOperatorAccess() {

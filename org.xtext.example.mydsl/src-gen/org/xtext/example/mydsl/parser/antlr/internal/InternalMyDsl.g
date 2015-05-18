@@ -86,57 +86,49 @@ ruleModel returns [EObject current=null]
     {
     	newLeafNode(otherlv_1, grammarAccess.getModelAccess().getLeftCurlyBracketKeyword_1());
     }
-	otherlv_2='{' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getModelAccess().getLeftCurlyBracketKeyword_2());
-    }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getConfiguratorModelsConfiguratorModelParserRuleCall_3_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getConfiguratorModelsConfiguratorModelParserRuleCall_2_0()); 
 	    }
-		lv_configuratorModels_3_0=ruleConfiguratorModel		{
+		lv_configuratorModels_2_0=ruleConfiguratorModel		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		add(
        			$current, 
        			"configuratorModels",
-        		lv_configuratorModels_3_0, 
+        		lv_configuratorModels_2_0, 
         		"ConfiguratorModel");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)(	otherlv_4=',' 
+)(	otherlv_3=',' 
     {
-    	newLeafNode(otherlv_4, grammarAccess.getModelAccess().getCommaKeyword_4_0());
+    	newLeafNode(otherlv_3, grammarAccess.getModelAccess().getCommaKeyword_3_0());
     }
 (
 (
 		{ 
-	        newCompositeNode(grammarAccess.getModelAccess().getConfiguratorModelsConfiguratorModelParserRuleCall_4_1_0()); 
+	        newCompositeNode(grammarAccess.getModelAccess().getConfiguratorModelsConfiguratorModelParserRuleCall_3_1_0()); 
 	    }
-		lv_configuratorModels_5_0=ruleConfiguratorModel		{
+		lv_configuratorModels_4_0=ruleConfiguratorModel		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
        		add(
        			$current, 
        			"configuratorModels",
-        		lv_configuratorModels_5_0, 
+        		lv_configuratorModels_4_0, 
         		"ConfiguratorModel");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-))*	otherlv_6='}' 
+))*	otherlv_5='}' 
     {
-    	newLeafNode(otherlv_6, grammarAccess.getModelAccess().getRightCurlyBracketKeyword_5());
-    }
-	otherlv_7='}' 
-    {
-    	newLeafNode(otherlv_7, grammarAccess.getModelAccess().getRightCurlyBracketKeyword_6());
+    	newLeafNode(otherlv_5, grammarAccess.getModelAccess().getRightCurlyBracketKeyword_4());
     }
 )
 ;

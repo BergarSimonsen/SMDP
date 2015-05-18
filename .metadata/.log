@@ -8237,3 +8237,12 @@ Binding(CTRL+D,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-18 11:54:40.828
+!MESSAGE Marker id 13707 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-18 11:54:45.603
+!MESSAGE Marker id 13716 not found.
+
+!ENTRY org.eclipse.core.resources 4 376 2015-05-18 11:56:59.640
+!MESSAGE Marker id 13752 not found.

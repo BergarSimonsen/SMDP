@@ -1,0 +1,134 @@
+package validation
+
+import Configurator.BinaryExpression
+import Configurator.BinaryOperator
+import Configurator.BooleanLiteral
+import Configurator.DoubleLiteral
+import Configurator.Enum
+import Configurator.IntLiteral
+import Configurator.NamedElement
+import Configurator.Parameter
+import Configurator.ParameterIdentifier
+import Configurator.StringLiteral
+import Configurator.Value
+import org.eclipse.emf.ecore.EObject
+import javax.security.auth.login.Configuration
+import Configurator.BinaryConstraint
+import Configurator.Literal
+import Configurator.Stringg
+
+class Constraints {
+	
+	// Ensure that correct operators are used for constraints
+	def static dispatch boolean constraint(BinaryConstraint it) {
+		println("mathOperatorConstraint: " + mathOperatorConstraint(it))
+		println("andOrOperatorConstraint: " + mathOperatorConstraint(it))
+		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
+	}
+	
+	// &&, || and XOR can only be used on binary constraints 
+	def static boolean andOrOperatorConstraint(BinaryConstraint it) {
+		println("andoroperatorconstraint")
+		(operator.equals(BinaryOperator.AND) || operator.equals(BinaryOperator.OR) || operator.equals(BinaryOperator.XOR))
+		&&
+		(leftOperand instanceof BinaryConstraint)
+		&&
+		(rightOperand instanceof BinaryConstraint)
+	}
+	
+	// Math operators can only be used on values and parameters.
+	// Literal values can only appear on the right side of the constraint
+	def static boolean mathOperatorConstraint(BinaryConstraint it) {
+		println("mathoperatorconstraint")
+		(BinaryOperator.equals(BinaryOperator.NOTEQUALS) || BinaryOperator.equals(BinaryOperator.EQUALS) || BinaryOperator.equals(BinaryOperator.GT) || BinaryOperator.equals(BinaryOperator.GTEQ) || BinaryOperator.equals(BinaryOperator.LT) || BinaryOperator.equals(BinaryOperator.LTEQ)) 
+		&& 
+		(leftOperand instanceof ParameterIdentifier && (rightOperand instanceof Literal || rightOperand instanceof ParameterIdentifier))
+		&&
+		(rightOperand instanceof ParameterIdentifier || rightOperand instanceof Literal)
+	}
+	
+	// Parameter can only have either literals or enum values or children
+//	def static dispatch boolean constraint(Parameter it) {
+//		println("parameterconstraints")
+//		val enumType = type as Enum
+//			  enumType.values.forall[x | enum.values.contains(x)]
+//		}
+//	
+
+	
+	def static boolean enumCountConstraint(Parameter it) {
+		println("enumcountconstraint")
+			val enumType = type  as Enum
+		
+		(enumType.values.size <= maxChosenValues) && (enumType.values.size >= minChosenValues)
+		// TODO: Change
+	}
+	def static dispatch boolean constraint(Parameter it) {
+		println("parameterconstraints")
+			val literalType = type as Literal
+			val enumType = type  as Enum
+		(literalType==null && !enumType.values.empty  && enumCountConstraint && !paramChildrenConstraint) 
+		||
+		(literalType!=null && enumType.values.empty && literalTypesConstraint  && !paramChildrenConstraint)
+		||
+		(paramChildrenConstraint && literalType==null && enumType.values.empty )	
+}
+	
+	// Enum can't be empty && all values in enum must have same type.
+	def static dispatch boolean constraint(Enum it) {
+		println("enumconstraint")
+		values.size > 0 && values.forall[x | x.eClass == values.get(0).eClass]
+	}
+	
+	// Name must not be empty
+	def static dispatch boolean constraint(NamedElement it) {
+		println("nameconstraint")
+//		name != null && !name.empty
+		!(name == null || name.empty)
+	}
+	
+	// Catch all case for dynamic dispatch resolution
+	def static dispatch boolean constraint(EObject it) {
+		println("default constraint")
+		true
+	}
+	
+	///////////////////////////////////////////////////////////////////////////
+	// HELPER METHODS
+	///////////////////////////////////////////////////////////////////////////
+//	def static boolean paramEnumConstraint(Parameter it) {
+//		println("paramenumconstraint")
+//		enum != null && enumValues.forall[x | enum.values.contains(x)]
+//	}
+	
+	// Literal values need to be of the same type.
+	def static boolean literalTypesConstraint(Parameter it) {
+		println("literaltypesconstraint")
+		val literalType = type as Literal
+		literalType instanceof Stringg
+		||
+		literalType instanceof Configurator.Double
+		|| 
+		literalType instanceof Configurator.Integer
+		||
+		literalType instanceof Configurator.Boolean
+	}
+	
+	
+	
+	// enum.values.count >= minChosenValues <= maxChosenValues
+//	def static boolean literalCountConstraint(Parameter it) {
+//		println("literalContConstraint")
+//		(type instanceof Enum && (literalValues.size <= maxChosenValues) && (literalValues.size >= minChosenValues))
+//	}
+	
+	def static boolean paramChildrenConstraint(Parameter it) {
+		println("Paramchildrenconstraint")
+		children.size > 0 && children.forall[x | x != it]
+	}
+	
+
+
+	
+	
+}

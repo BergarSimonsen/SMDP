@@ -22,7 +22,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="BinaryOperator">
     <eLiterals name="AND"/>
-    <eLiterals name="OR" value="1" literal=""/>
+    <eLiterals name="OR" value="1" literal="OR"/>
     <eLiterals name="XOR" value="2"/>
     <eLiterals name="EQUALS" value="3"/>
     <eLiterals name="NOTEQUALS" value="4"/>

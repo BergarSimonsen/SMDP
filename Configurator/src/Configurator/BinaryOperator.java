@@ -37,7 +37,7 @@ public enum BinaryOperator implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	OR(1, "OR", ""),
+	OR(1, "OR", "OR"),
 
 	/**
 	 * The '<em><b>XOR</b></em>' literal object.
@@ -133,7 +133,7 @@ public enum BinaryOperator implements Enumerator {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @see #OR
-	 * @model literal=""
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

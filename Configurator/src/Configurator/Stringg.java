@@ -34,7 +34,7 @@ public interface Stringg extends Literal {
 	 * @model
 	 * @generated
 	 */
-	java.lang.String getValue();
+	String getValue();
 
 	/**
 	 * Sets the value of the '{@link Configurator.Stringg#getValue <em>Value</em>}' attribute.
@@ -44,6 +44,6 @@ public interface Stringg extends Literal {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(java.lang.String value);
+	void setValue(String value);
 
 } // Stringg
