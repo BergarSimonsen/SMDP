@@ -53,6 +53,7 @@
 					text += "Name: " + $("#Name").val() + " \r\n"; 
 					text += "Color: " + $("#Color").jqxComboBox('getSelectedItem').value + " \r\n"; 
 					text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n"; 
+					text += "VNeck: " + $("#VNeck").prop('checked') + " \r\n";
 					text += "Print: " + "\r\n"; 
 					text += "PrintColor: " + $("#PrintColor").jqxComboBox('getSelectedItem').value + " \r\n"; 
 					text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n"; 
@@ -120,6 +121,11 @@
   				<h3>Size:</h3>
   				<div id='Size' class='combobox'>
   				</div>
+				
+				<h3>VNeck:</h3>
+  				<form>
+  				<input type='checkbox' name='VNeck' id='VNeck'/>
+  				</form>
   				
   				<h3>Print:</h3>
   				
