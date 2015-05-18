@@ -8246,3 +8246,91 @@ Binding(CTRL+D,
 
 !ENTRY org.eclipse.core.resources 4 376 2015-05-18 11:56:59.640
 !MESSAGE Marker id 13752 not found.
+
+!ENTRY org.apache.log4j 4 0 2015-05-18 15:02:35.008
+!MESSAGE org.eclipse.xtext.builder.clustering.ClusteringBuilderState  - Error resolving cross references on resource 'platform:/resource/org.xtext.example.mydsl/src/org/xtext/example/mydsl/validation/MyDslValidator.xtend'
+
+!STACK 0
+java.lang.NullPointerException
+
+!ENTRY org.apache.log4j 4 0 2015-05-18 15:02:35.009
+!MESSAGE org.eclipse.xtext.builder.clustering.ClusteringBuilderState  - Error loading resource from: platform:/resource/org.xtext.example.mydsl/src/org/xtext/example/mydsl/validation/MyDslValidator.xtend
+
+!STACK 0
+org.eclipse.xtext.builder.resourceloader.IResourceLoader$LoadOperationException: java.lang.NullPointerException
+	at org.eclipse.xtext.builder.clustering.ClusteringBuilderState.doUpdate(ClusteringBuilderState.java:221)
+	at org.eclipse.xtext.builder.builderState.AbstractBuilderState.update(AbstractBuilderState.java:112)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.doBuild(XtextBuilder.java:188)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.incrementalBuild(XtextBuilder.java:166)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.build(XtextBuilder.java:95)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+Caused by: java.lang.NullPointerException
+
+!ENTRY org.apache.log4j 4 0 2015-05-18 15:02:35.010
+!MESSAGE org.eclipse.xtext.builder.clustering.CopiedResourceDescription  - java.lang.IllegalStateException: getReferenceDescriptions platform:/resource/org.xtext.example.mydsl/src/org/xtext/example/mydsl/validation/MyDslValidator.xtend
+
+!STACK 0
+java.lang.IllegalStateException: getReferenceDescriptions platform:/resource/org.xtext.example.mydsl/src/org/xtext/example/mydsl/validation/MyDslValidator.xtend
+	at org.eclipse.xtext.builder.clustering.CopiedResourceDescription.getReferenceDescriptions(CopiedResourceDescription.java:79)
+	at org.eclipse.xtext.builder.builderState.BuilderStateUtil.copyReferenceDescriptions(BuilderStateUtil.java:59)
+	at org.eclipse.xtext.builder.builderState.BuilderStateUtil.create(BuilderStateUtil.java:34)
+	at org.eclipse.xtext.builder.clustering.ClusteringBuilderState.doUpdate(ClusteringBuilderState.java:247)
+	at org.eclipse.xtext.builder.builderState.AbstractBuilderState.update(AbstractBuilderState.java:112)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.doBuild(XtextBuilder.java:188)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.incrementalBuild(XtextBuilder.java:166)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.build(XtextBuilder.java:95)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.apache.log4j 4 0 2015-05-18 15:02:35.010
+!MESSAGE org.eclipse.xtext.builder.clustering.CopiedResourceDescription  - java.lang.IllegalStateException: getImportedNames platform:/resource/org.xtext.example.mydsl/src/org/xtext/example/mydsl/validation/MyDslValidator.xtend
+
+!STACK 0
+java.lang.IllegalStateException: getImportedNames platform:/resource/org.xtext.example.mydsl/src/org/xtext/example/mydsl/validation/MyDslValidator.xtend
+	at org.eclipse.xtext.builder.clustering.CopiedResourceDescription.getImportedNames(CopiedResourceDescription.java:71)
+	at org.eclipse.xtext.builder.builderState.BuilderStateUtil.copyImportedNames(BuilderStateUtil.java:40)
+	at org.eclipse.xtext.builder.builderState.BuilderStateUtil.create(BuilderStateUtil.java:35)
+	at org.eclipse.xtext.builder.clustering.ClusteringBuilderState.doUpdate(ClusteringBuilderState.java:247)
+	at org.eclipse.xtext.builder.builderState.AbstractBuilderState.update(AbstractBuilderState.java:112)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.doBuild(XtextBuilder.java:188)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.incrementalBuild(XtextBuilder.java:166)
+	at org.eclipse.xtext.builder.impl.XtextBuilder.build(XtextBuilder.java:95)
+	at org.eclipse.core.internal.events.BuildManager$2.run(BuildManager.java:734)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:206)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:246)
+	at org.eclipse.core.internal.events.BuildManager$1.run(BuildManager.java:299)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.events.BuildManager.basicBuild(BuildManager.java:302)
+	at org.eclipse.core.internal.events.BuildManager.basicBuildLoop(BuildManager.java:358)
+	at org.eclipse.core.internal.events.BuildManager.build(BuildManager.java:381)
+	at org.eclipse.core.internal.events.AutoBuildJob.doBuild(AutoBuildJob.java:143)
+	at org.eclipse.core.internal.events.AutoBuildJob.run(AutoBuildJob.java:241)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+
+!ENTRY org.apache.log4j 4 0 2015-05-18 15:02:35.591
+!MESSAGE org.eclipse.xtext.ui.editor.DirtyStateEditorSupport  - Error updating dirty state editor
+
+!STACK 0
+java.lang.NullPointerException
