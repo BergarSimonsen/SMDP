@@ -35,7 +35,8 @@
 					if($("#PrintColor").jqxComboBox('getSelectedItem') === null) valid += "PrintColor must be selected! \n"; 
 					if($("#PrintShape").jqxComboBox('getSelectedItem') === null) valid += "PrintShape must be selected! \n"; 
 					var itemsPrintPlacement = $("#PrintPlacement").jqxListBox('getSelectedItems'); 
-					if(itemsPrintPlacement.length == 0) valid += "PrintPlacement must be selected! \n"; 
+					if(itemsPrintPlacement.length < 1) valid += "At least 1 values of PrintPlacement must be selected! \n"; 
+					if(itemsPrintPlacement.length > 2) valid += "No more than 2 values of PrintPlacement must be selected! \n"; 
 						
 					if(valid === "") {
 						if(!((($("#Color").jqxComboBox('getSelectedItem').value != "RED") || (($("#Color").jqxComboBox('getSelectedItem').value === "RED") && ($("#Size").jqxComboBox('getSelectedItem').value > 3))))) 
@@ -44,7 +45,7 @@
 								valid += "Invalid constraint: " + "(Color != PrintColor) \n";
 					}
 						 
-						return valid;
+					return valid;
 				};
 				
 				function getText() {
@@ -53,7 +54,7 @@
 					text += "Name: " + $("#Name").val() + " \r\n"; 
 					text += "Color: " + $("#Color").jqxComboBox('getSelectedItem').value + " \r\n"; 
 					text += "Size: " + $("#Size").jqxComboBox('getSelectedItem').value + " \r\n"; 
-					text += "VNeck: " + $("#VNeck").prop('checked') + " \r\n";
+					text += "VNeck: " + $("#VNeck").prop('checked') + " \r\n"; 
 					text += "Print: " + "\r\n"; 
 					text += "PrintColor: " + $("#PrintColor").jqxComboBox('getSelectedItem').value + " \r\n"; 
 					text += "PrintShape: " + $("#PrintShape").jqxComboBox('getSelectedItem').value + " \r\n"; 
@@ -121,8 +122,8 @@
   				<h3>Size:</h3>
   				<div id='Size' class='combobox'>
   				</div>
-				
-				<h3>VNeck:</h3>
+  				
+  				<h3>VNeck:</h3>
   				<form>
   				<input type='checkbox' name='VNeck' id='VNeck'/>
   				</form>
