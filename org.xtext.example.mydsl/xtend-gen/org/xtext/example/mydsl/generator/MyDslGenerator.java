@@ -1736,30 +1736,52 @@ public class MyDslGenerator implements IGenerator {
             String _name_5 = it.getName();
             String _firstUpper_4 = StringExtensions.toFirstUpper(_name_5);
             String _plus_8 = ("if(items" + _firstUpper_4);
-            String _plus_9 = (_plus_8 + ".length == 0) valid += \"");
+            String _plus_9 = (_plus_8 + ".length < ");
+            int _minChosenValues_1 = it.getMinChosenValues();
+            String _plus_10 = (_plus_9 + Integer.valueOf(_minChosenValues_1));
+            String _plus_11 = (_plus_10 + ") valid += \"At least ");
+            int _minChosenValues_2 = it.getMinChosenValues();
+            String _plus_12 = (_plus_11 + Integer.valueOf(_minChosenValues_2));
+            String _plus_13 = (_plus_12 + " values of ");
             String _name_6 = it.getName();
             String _firstUpper_5 = StringExtensions.toFirstUpper(_name_6);
-            String _plus_10 = (_plus_9 + _firstUpper_5);
-            String _plus_11 = (_plus_10 + " must be selected! \\n\"; \n");
-            ret = (_ret_2 + _plus_11);
+            String _plus_14 = (_plus_13 + _firstUpper_5);
+            String _plus_15 = (_plus_14 + " must be selected! \\n\"; \n");
+            ret = (_ret_2 + _plus_15);
+            String _ret_3 = ret;
+            String _name_7 = it.getName();
+            String _firstUpper_6 = StringExtensions.toFirstUpper(_name_7);
+            String _plus_16 = ("if(items" + _firstUpper_6);
+            String _plus_17 = (_plus_16 + ".length > ");
+            int _maxChosenValues_2 = it.getMaxChosenValues();
+            String _plus_18 = (_plus_17 + Integer.valueOf(_maxChosenValues_2));
+            String _plus_19 = (_plus_18 + ") valid += \"No more than ");
+            int _maxChosenValues_3 = it.getMaxChosenValues();
+            String _plus_20 = (_plus_19 + Integer.valueOf(_maxChosenValues_3));
+            String _plus_21 = (_plus_20 + " values of ");
+            String _name_8 = it.getName();
+            String _firstUpper_7 = StringExtensions.toFirstUpper(_name_8);
+            String _plus_22 = (_plus_21 + _firstUpper_7);
+            String _plus_23 = (_plus_22 + " must be selected! \\n\"; \n");
+            ret = (_ret_3 + _plus_23);
           }
         }
       } else {
         Type _type_1 = it.getType();
         EClass _eClass_1 = _type_1.eClass();
-        String _name_7 = _eClass_1.getName();
-        boolean _notEquals = (!Objects.equal(_name_7, "Boolean"));
+        String _name_9 = _eClass_1.getName();
+        boolean _notEquals = (!Objects.equal(_name_9, "Boolean"));
         if (_notEquals) {
-          String _ret_3 = ret;
-          String _name_8 = it.getName();
-          String _firstUpper_6 = StringExtensions.toFirstUpper(_name_8);
-          String _plus_12 = ("if($(\"#" + _firstUpper_6);
-          String _plus_13 = (_plus_12 + "\").val() === \"\") valid += \"");
-          String _name_9 = it.getName();
-          String _firstUpper_7 = StringExtensions.toFirstUpper(_name_9);
-          String _plus_14 = (_plus_13 + _firstUpper_7);
-          String _plus_15 = (_plus_14 + " must be filled! \\n\"; \n");
-          ret = (_ret_3 + _plus_15);
+          String _ret_4 = ret;
+          String _name_10 = it.getName();
+          String _firstUpper_8 = StringExtensions.toFirstUpper(_name_10);
+          String _plus_24 = ("if($(\"#" + _firstUpper_8);
+          String _plus_25 = (_plus_24 + "\").val() === \"\") valid += \"");
+          String _name_11 = it.getName();
+          String _firstUpper_9 = StringExtensions.toFirstUpper(_name_11);
+          String _plus_26 = (_plus_25 + _firstUpper_9);
+          String _plus_27 = (_plus_26 + " must be filled! \\n\"; \n");
+          ret = (_ret_4 + _plus_27);
         }
       }
     }
@@ -1769,9 +1791,9 @@ public class MyDslGenerator implements IGenerator {
     if (_not) {
       EList<Parameter> _children_1 = it.getChildren();
       for (final Parameter c : _children_1) {
-        String _ret_4 = ret;
+        String _ret_5 = ret;
         Object _mandatoryFields = this.getMandatoryFields(c);
-        ret = (_ret_4 + _mandatoryFields);
+        ret = (_ret_5 + _mandatoryFields);
       }
     }
     return ret;

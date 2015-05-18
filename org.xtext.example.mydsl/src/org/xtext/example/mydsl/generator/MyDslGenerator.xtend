@@ -472,6 +472,7 @@ class MyDslGenerator implements IGenerator {
 			if(maxChosenValues == 1)					
 				ret += "\t\t$(\"#" + name.toFirstUpper + "\").jqxComboBox({ source: $" 
 						+ name.toFirstUpper + "Values, width: '200px', height: '25px',}); \n\n"
+				
 			else
 				ret += "\t\t$(\"#" + name.toFirstUpper + "\").jqxListBox({ source: $" 
 						+ name.toFirstUpper + "Values, width: '200px', height: '150px', multiple: true}); \n\n"
@@ -551,7 +552,8 @@ class MyDslGenerator implements IGenerator {
 					ret += "if($(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem') === null) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
 				else if (maxChosenValues > 1) {
 					ret += "var items" + name.toFirstUpper +  " = $(\"#" + name.toFirstUpper + "\").jqxListBox('getSelectedItems'); \n"
-					ret += "if(items" + name.toFirstUpper + ".length == 0) valid += \"" + name.toFirstUpper +  " must be selected! \\n\"; \n"
+					ret += "if(items" + name.toFirstUpper + ".length < " + minChosenValues + ") valid += \"At least " + minChosenValues + " values of " + name.toFirstUpper +  " must be selected! \\n\"; \n"
+					ret += "if(items" + name.toFirstUpper + ".length > " + maxChosenValues + ") valid += \"No more than " + maxChosenValues + " values of " + name.toFirstUpper +  " must be selected! \\n\"; \n"
 				}
 			}				
 			else if (type.eClass.name != "Boolean")

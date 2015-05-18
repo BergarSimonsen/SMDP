@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$("#Size").jqxComboBox({ source: $SizeValues, width: '200px', height: '25px',});
 	
 	var $PrintColourValues = ["Red", "Black", "Blue"];
-	$("#PrintColour").jqxComboBox({ source: $PrintColourValues, width: '200px', height: '25px',});
+	$("#PrintColour").jqxComboBox({ source: $PrintColourValues, width: '200px', height: '25px', autoComplete: false});
 	
 	var $PrintShapeValues = ["Round", "Square", "Triangular"];
 	$("#PrintShape").jqxComboBox({ source: $PrintShapeValues, width: '200px', height: '25px',});
@@ -17,11 +17,10 @@ $(document).ready(function(){
 	function checkConstraints() {		
 		var valid = "";
 		
-		if($("#Title").val() === "") valid += "Title must be filled! \n";
+		//if($("#Title").val() === "") valid += "Title must be filled! \n";
 		if($("#Colour").jqxComboBox('getSelectedItem') === null) valid += "Colour must be filled! \n";
 		if($("#Size").jqxComboBox('getSelectedItem') === null) valid += "Size must be filled! \n";
 		if($("#PrintColour").jqxComboBox('getSelectedItem') === null) valid += "PrintColour must be filled! \n";
-		//check lisBoxes!
 		
 		if(valid === "") {
 			if(!($("#Colour").jqxComboBox('getSelectedItem').value != $("#PrintColour").jqxComboBox('getSelectedItem').value)) 
