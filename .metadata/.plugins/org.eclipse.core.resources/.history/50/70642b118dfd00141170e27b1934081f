@@ -5,14 +5,18 @@ package org.xtext.example.mydsl.validation
 
 import Configurator.BinaryConstraint
 import Configurator.BinaryOperator
-import Configurator.ConfiguratorPackage
-import Configurator.Enum
 import Configurator.Literal
 import Configurator.NamedElement
 import Configurator.Parameter
 import Configurator.ParameterIdentifier
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.validation.Check
+import Configurator.ConfiguratorPackage
+import org.eclipse.emf.ecore.EStructuralFeature
+import Configurator.impl.ConfiguratorPackageImpl
+import Configurator.ConfiguratorModel
+import org.xtext.example.mydsl.services.MyDslGrammarAccess.ConfiguratorModelElements
+import org.eclipse.emf.codegen.ecore.genmodel.impl.Literals
 
 /**
  * Custom validation rules. 
@@ -29,16 +33,17 @@ class MyDslValidator extends AbstractMyDslValidator {
 	def constraint(BinaryConstraint it) {
 		println("mathOperatorConstraint: " + mathOperatorConstraint(it))
 		println("andOrOperatorConstraint: " + mathOperatorConstraint(it))
-		if(!((andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))))
-			error("Illegal use of operator", ConfiguratorPackage.Literals.BINARY_CONSTRAINT__OPERATOR)
+//		(andOrOperatorConstraint(it)) || (mathOperatorConstraint(it))
+		if(!(andOrOperatorConstraint(it)) && !(mathOperatorConstraint(it)))
+			error("Conditional operators must be applied to Binary Constraints and Equality operators must be applied to Literal values or parameters", ConfiguratorPackage.Literals.BINARY_CONSTRAINT__OPERATOR)
 	}
 	
 	// Enum can't be empty && all values in enum must have same type.
 	@Check
-	def constraint(Enum it) {
+	def constraint(Configurator.Enum it) {
 		println("enumconstraint")
 		if(!(values.size > 0 && values.forall[x | x.eClass == values.get(0).eClass])) 
-			error("Enum.size must be > 0 and all enum values must have same type", ConfiguratorPackage.Literals.ENUM__VALUES)
+			error("Enum.size must be > 0 and all enum values must have same typef", ConfiguratorPackage.Literals.ENUM__VALUES)
 	}
 	
 	// Name must not be empty
@@ -53,8 +58,8 @@ class MyDslValidator extends AbstractMyDslValidator {
 	@Check
 	def constraint(Parameter it) {
 		println("parameterConstraint " + name)
-		if(!(((type instanceof Enum && enumCountConstraint) || !(type instanceof Enum)) && (maxChosenValues >= minChosenValues)))
-			error("Illegal parameter", ConfiguratorPackage.Literals.PARAMETER__MAX_CHOSEN_VALUES)
+		if(!(((type instanceof Configurator.Enum && enumCountConstraint) || !(type instanceof Configurator.Enum)) && (maxChosenValues >= minChosenValues)))
+			error("some random error!!", ConfiguratorPackage.Literals.PARAMETER__MAX_CHOSEN_VALUES)
 	}	
 	
 	// Catch all case for dynamic dispatch resolution
@@ -90,7 +95,7 @@ class MyDslValidator extends AbstractMyDslValidator {
 	// parameter.minChosenValues <= parameter.enum.values.size <= parameter.maxChosenValues
 	def static boolean enumCountConstraint(Parameter it) {
 		println("enumcountconstraint " + name)
-		val enumType = type as Enum
+		val enumType = type as Configurator.Enum
 		(enumType.values.size >= maxChosenValues) && (enumType.values.size >= minChosenValues)
 	}
 

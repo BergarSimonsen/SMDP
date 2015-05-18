@@ -32,26 +32,25 @@ public class MyDslValidator extends AbstractMyDslValidator {
   public final static String INVALID_NAME = "invalidName";
   
   @Check
-  public boolean constraint(final BinaryConstraint it) {
-    boolean _xblockexpression = false;
-    {
-      boolean _mathOperatorConstraint = MyDslValidator.mathOperatorConstraint(it);
-      String _plus = ("mathOperatorConstraint: " + Boolean.valueOf(_mathOperatorConstraint));
-      InputOutput.<String>println(_plus);
-      boolean _mathOperatorConstraint_1 = MyDslValidator.mathOperatorConstraint(it);
-      String _plus_1 = ("andOrOperatorConstraint: " + Boolean.valueOf(_mathOperatorConstraint_1));
-      InputOutput.<String>println(_plus_1);
-      boolean _or = false;
-      boolean _andOrOperatorConstraint = MyDslValidator.andOrOperatorConstraint(it);
-      if (_andOrOperatorConstraint) {
-        _or = true;
-      } else {
-        boolean _mathOperatorConstraint_2 = MyDslValidator.mathOperatorConstraint(it);
-        _or = _mathOperatorConstraint_2;
-      }
-      _xblockexpression = _or;
+  public void constraint(final BinaryConstraint it) {
+    boolean _mathOperatorConstraint = MyDslValidator.mathOperatorConstraint(it);
+    String _plus = ("mathOperatorConstraint: " + Boolean.valueOf(_mathOperatorConstraint));
+    InputOutput.<String>println(_plus);
+    boolean _mathOperatorConstraint_1 = MyDslValidator.mathOperatorConstraint(it);
+    String _plus_1 = ("andOrOperatorConstraint: " + Boolean.valueOf(_mathOperatorConstraint_1));
+    InputOutput.<String>println(_plus_1);
+    boolean _or = false;
+    boolean _andOrOperatorConstraint = MyDslValidator.andOrOperatorConstraint(it);
+    if (_andOrOperatorConstraint) {
+      _or = true;
+    } else {
+      boolean _mathOperatorConstraint_2 = MyDslValidator.mathOperatorConstraint(it);
+      _or = _mathOperatorConstraint_2;
     }
-    return _xblockexpression;
+    boolean _not = (!_or);
+    if (_not) {
+      this.error("Illegal use of operator", ConfiguratorPackage.Literals.BINARY_CONSTRAINT__OPERATOR);
+    }
   }
   
   @Check
@@ -79,7 +78,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
     }
     boolean _not = (!_and);
     if (_not) {
-      this.error("Enum.size must be > 0 and all enum values must have same typef", ConfiguratorPackage.Literals.ENUM__VALUES);
+      this.error("Enum.size must be > 0 and all enum values must have same type", ConfiguratorPackage.Literals.ENUM__VALUES);
     }
   }
   
@@ -133,7 +132,7 @@ public class MyDslValidator extends AbstractMyDslValidator {
     }
     boolean _not = (!_and);
     if (_not) {
-      this.error("some random error!!", ConfiguratorPackage.Literals.PARAMETER__MAX_CHOSEN_VALUES);
+      this.error("Illegal parameter", ConfiguratorPackage.Literals.PARAMETER__MAX_CHOSEN_VALUES);
     }
   }
   
