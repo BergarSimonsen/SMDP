@@ -614,10 +614,6 @@ class MyDslGenerator implements IGenerator {
 			if(maxChosenValues == 1) {
 				ret += "$(\"#" + name.toFirstUpper + "\").jqxComboBox('getSelectedItem').value"
 			}
-//			else if(maxChosenValues > 1){
-//				var items«name.toFirstUpper» = $("#«name.toFirstUpper»").jqxListBox('getSelectedItems');
-//				if(items«name.toFirstUpper».length == 0) valid += "«name.toFirstUpper» must be selected! \n";
-//			}
 		}
 		else if (type.eClass.name == "Boolean") {
 			ret += "$(\"#" + name.toFirstUpper + "\").prop('checked')"
@@ -655,12 +651,4 @@ class MyDslGenerator implements IGenerator {
 			fsa.generateFile(root.name + ".java", compileToJava(root))
 		}
 	}
-	
-//	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-////		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-////			resource.allContents
-////				.filter(typeof(Greeting))
-////				.map[name]
-////				.join(', '))
-//	}
 }
